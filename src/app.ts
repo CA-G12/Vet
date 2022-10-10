@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser'
 const app = express()
 
 app.disable('x-powered-by')
+
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
