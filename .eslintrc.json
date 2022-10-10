@@ -7,7 +7,6 @@
     "@typescript-eslint"
   ],
   "extends": [
-    "prettier",
     "standard-with-typescript"
   ],
   "overrides": [
