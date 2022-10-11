@@ -3,8 +3,8 @@ import { Model, DataTypes } from 'sequelize'
 
 class booking extends Model {
   declare id?: number
-  declare user_id: number
-  declare doctor_id: number
+  declare userId: number
+  declare doctorId: number
   declare description: string
 }
 
