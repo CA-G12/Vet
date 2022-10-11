@@ -7,6 +7,8 @@ class User extends Model {
   declare name: string
   declare email: string
   declare password: string
+  declare role: 'ADM' | 'USR'
+  declare avatar?: string
   declare createdAt?: Date
   declare updatedAt?: Date
 }
@@ -18,6 +20,14 @@ User.init({
     defaultValue: DataTypes.UUIDV4
   },
   name: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  role: {
+    type: DataTypes.ENUM('ADM', 'USR'),
+    allowNull: false
+  },
+  avatar: {
     type: DataTypes.STRING,
     allowNull: false
   },
