@@ -2,7 +2,6 @@ import express, { Request, Response } from 'express'
 import { join } from 'path'
 import compression from 'compression'
 import cookieParser from 'cookie-parser'
-
 // Middlewares
 const app = express()
 
