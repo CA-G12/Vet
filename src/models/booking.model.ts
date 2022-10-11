@@ -14,12 +14,12 @@ booking.init({
     autoIncrement: true,
     primaryKey: true
   },
-  user_id: {
+  userId: {
     type: DataTypes.NUMBER,
     allowNull: false
 
   },
-  doctor_id: {
+  doctorId: {
     type: DataTypes.NUMBER,
     allowNull: false
 
