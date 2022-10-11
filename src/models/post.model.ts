@@ -5,9 +5,9 @@ class post extends Model {
   declare id?: number
   declare content: string
   declare image: string
-  declare tag_id: number
-  declare animal_id: number
-  declare user_id: number
+  declare tagId: number
+  declare animalId: number
+  declare userId: number
 }
 
 post.init(
@@ -24,13 +24,13 @@ post.init(
     image: {
       type: DataTypes.STRING
     },
-    tag_id: {
+    tagId: {
       type: DataTypes.INTEGER
     },
-    animal_id: {
+    animalId: {
       type: DataTypes.INTEGER
     },
-    user_id: {
+    userId: {
       type: DataTypes.INTEGER
     }
   },
