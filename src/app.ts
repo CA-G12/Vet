@@ -1,23 +1,28 @@
-import express, { Request, Response } from 'express'
-import { join } from 'path'
+import express, { Application } from 'express'
 import compression from 'compression'
 import cookieParser from 'cookie-parser'
+import environment from './config/environment'
+import { join } from 'path'
 
-// Middlewares
-const app = express()
+class App {
+  public app: Application
+  public nodeEnv: string
 
-app.disable('x-powered-by')
+  constructor () {
+    this.app = express()
+    this.nodeEnv = environment.nodeEnv
+    this.initializeMiddlwares()
+  }
 
-app.use(cookieParser())
-app.use(express.urlencoded({ extended: false }))
-app.use(express.json())
-app.use(compression())
-app.use(express.static(join(__dirname, '..', 'client', 'build')))
+  private initializeMiddlwares (): void {
+    this.app.use(compression())
+    this.app.use(express.json())
+    this.app.use(cookieParser())
+    this.app.use(express.urlencoded({ extended: false }))
+    this.app.use(express.static(join(__dirname, '..', 'client', 'build')))
+  }
+}
 
-// Routers
-app.get('/', (req: Request, res: Response) => {
-  res.send('hello Said ')
-})
-// handling errors
+const { app } = new App()
 
 export default app
