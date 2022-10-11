@@ -5,7 +5,7 @@
       "strict": true,
       "noFallthroughCasesInSwitch": true,
       "isolatedModules": true,
-      "target": "es2021",
+      "target": "es2017",
       "lib": [
           "es2021"
       ],
