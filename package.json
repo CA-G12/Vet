@@ -5,7 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --config nodemon.json src/index.ts",
+    "dev": "cross-env NODE_ENV=development nodemon --config nodemon.json src/index.ts",
+    "satrt": "cross-env NODE_ENV=development node src/index.ts",
     "lint": "eslint src/** --ext .ts"
   },
   "repository": {
