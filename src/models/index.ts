@@ -1,5 +1,5 @@
-import booking from './booking.model'
-import tag from './tag.model'
+import Booking from './Booking'
+import Tag from './Tag'
 export {
-  booking, tag
+  Booking, Tag
 }
