@@ -24,7 +24,7 @@ User.init({
     allowNull: false
   },
   role: {
-    type: DataTypes.ENUM('ADM', 'USR'),
+    type: DataTypes.ENUM('ADMIN', 'USER'),
     allowNull: false
   },
   avatar: {
@@ -46,7 +46,6 @@ User.init({
     type: DataTypes.DATE
   }
 }, {
-  sequelize,
-  modelName: 'user'
+  sequelize
 })
 export default User
