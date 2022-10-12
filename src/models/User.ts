@@ -7,10 +7,9 @@ class User extends Model {
   declare name: string
   declare email: string
   declare password: string
-  declare role: 'ADM' | 'USR'
+  declare role: 'ADMIN' | 'USER' | 'DOCTOR'
   declare avatar?: string
   declare createdAt?: Date
-  declare updatedAt?: Date
 }
 
 User.init({
@@ -24,7 +23,7 @@ User.init({
     allowNull: false
   },
   role: {
-    type: DataTypes.ENUM('ADMIN', 'USER'),
+    type: DataTypes.ENUM('ADMIN', 'USER', 'DOCTOR'),
     allowNull: false
   },
   avatar: {
@@ -40,9 +39,6 @@ User.init({
     allowNull: false
   },
   createdAt: {
-    type: DataTypes.DATE
-  },
-  updatedAt: {
     type: DataTypes.DATE
   }
 }, {
