@@ -18,10 +18,5 @@ Like.init({
     type: DataTypes.INTEGER
   }
 }, {
-  sequelize,
-  modelName: 'like'
+  sequelize
 })
-
-// export async function createLike () {
-//   await Like.create({ postId: 1, userId: 1 })
-// }

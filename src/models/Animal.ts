@@ -15,9 +15,5 @@ Animal.init({
     allowNull: false
   }
 }, {
-  sequelize,
-  modelName: 'animal'
+  sequelize
 })
-// export async function createLike () {
-//   await Animal.create({ name: 'Cat' })
-// }

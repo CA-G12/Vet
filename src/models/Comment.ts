@@ -34,10 +34,5 @@ Comment.init({
     type: DataTypes.INTEGER
   }
 }, {
-  sequelize,
-  modelName: 'comment'
+  sequelize
 })
-
-// export async function createComment () {
-//   await Comment.create({ comment: 'first', postId: 1, userId: 1, image: 'https://img.freepik.com/premium-photo/cute-dog-during-consultation_23-2149314361.jpg' })
-// }
