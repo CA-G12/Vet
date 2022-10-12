@@ -15,12 +15,12 @@ Booking.init({
     primaryKey: true
   },
   userId: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false
 
   },
   doctorId: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false
 
   },

@@ -1,4 +1,4 @@
-import { sequelize } from '../db/connection'
+import sequelize from '../db/connection'
 import { Model, InferAttributes, InferCreationAttributes, CreationOptional, DataTypes } from 'sequelize'
 
 export class Animal extends Model<InferAttributes<Animal>, InferCreationAttributes <Animal>> {
@@ -7,6 +7,7 @@ export class Animal extends Model<InferAttributes<Animal>, InferCreationAttribut
 }
 Animal.init({
   id: {
+    primaryKey: true,
     type: DataTypes.UUID,
     autoIncrement: true
   },

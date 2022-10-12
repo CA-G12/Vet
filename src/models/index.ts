@@ -6,4 +6,4 @@ import { Like } from './Like'
 import { Comment } from './Comment'
 import { Animal } from './Animal'
 
-export default { User, Like, Comment, Animal, Post, Booking, Tag }
+export { User, Like, Comment, Animal, Post, Booking, Tag }

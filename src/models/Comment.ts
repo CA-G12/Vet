@@ -1,4 +1,4 @@
-import { sequelize } from '../db/connection'
+import sequelize from '../db/connection'
 import {
   Model,
   CreationOptional,
