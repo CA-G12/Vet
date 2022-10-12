@@ -1,2 +1,2 @@
-import post from './post.model'
-export { post }
+import Post from './Post'
+export { Post }
