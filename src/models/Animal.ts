@@ -8,7 +8,7 @@ export class Animal extends Model<InferAttributes<Animal>, InferCreationAttribut
 Animal.init({
   id: {
     primaryKey: true,
-    type: DataTypes.UUID,
+    type: DataTypes.INTEGER,
     autoIncrement: true
   },
   name: {

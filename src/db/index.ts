@@ -10,9 +10,9 @@ Like.belongsTo(User)
 User.hasMany(Comment)
 Comment.belongsTo(User)
 
-// User.hasMany(Booking, { as: 'bookings' })
-// Booking.belongsTo(User, { as: 'user', foreignKey: 'userId' })
-// Booking.belongsTo(User, { as: 'doctor', foreignKey: 'doctorId' })
+User.hasMany(Booking)
+Booking.belongsTo(User)
+// Booking.belongsTo(User, { as: 'doctor', foreignKey: 'userId' })
 
 Post.hasMany(Comment)
 
