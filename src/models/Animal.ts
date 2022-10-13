@@ -1,7 +1,7 @@
 import sequelize from '../db/connection'
 import { Model, InferAttributes, InferCreationAttributes, CreationOptional, DataTypes } from 'sequelize'
 
-export class Animal extends Model<InferAttributes<Animal>, InferCreationAttributes <Animal>> {
+class Animal extends Model {
   declare id: CreationOptional<number>
   declare name: string
 }
@@ -18,3 +18,5 @@ Animal.init({
 }, {
   sequelize
 })
+
+export default Animal

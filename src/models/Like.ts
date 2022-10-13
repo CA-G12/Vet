@@ -1,7 +1,7 @@
 import sequelize from '../db/connection'
-import { Model, InferAttributes, InferCreationAttributes, CreationOptional, DataTypes } from 'sequelize'
+import { Model, CreationOptional, DataTypes } from 'sequelize'
 
-export class Like extends Model<InferAttributes<Like>, InferCreationAttributes <Like>> {
+class Like extends Model {
   declare id: CreationOptional<number>
 }
 Like.init({
@@ -13,3 +13,4 @@ Like.init({
 }, {
   sequelize
 })
+export default Like

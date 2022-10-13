@@ -2,11 +2,10 @@ import sequelize from '../db/connection'
 import {
   Model,
   CreationOptional,
-  DataTypes,
-  InferAttributes, InferCreationAttributes
+  DataTypes
 } from 'sequelize'
 
-export class Comment extends Model <InferAttributes<Comment>, InferCreationAttributes<Comment>> {
+class Comment extends Model {
   declare id?: CreationOptional<number>
   declare comment: string
   declare image: string
@@ -28,3 +27,4 @@ Comment.init({
 }, {
   sequelize
 })
+export default Comment

@@ -3,7 +3,6 @@ import compression from 'compression'
 import cookieParser from 'cookie-parser'
 import environment from './config/environment'
 import { join } from 'path'
-
 class App {
   public app: Application
   public nodeEnv: string
