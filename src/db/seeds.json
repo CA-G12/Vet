@@ -39,22 +39,22 @@
     ],
     "Tag":[
       {
-          "description":"All"
+          "name":"All"
       },
       {
-          "description":"Need help"
+          "name":"Need help"
       },
       {
-          "description":"Advise"
+          "name":"Advise"
       },
       {
-          "description":"Up for adoption"
+          "name":"Up for adoption"
       },
       {
-          "description":"Memes"
+          "name":"Memes"
       },
       {
-          "description":"Up for sale"
+          "name":"Up for sale"
       }
       
     ],

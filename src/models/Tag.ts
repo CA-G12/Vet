@@ -3,7 +3,7 @@ import { Model, DataTypes } from 'sequelize'
 
 class Tag extends Model {
   declare id?: number
-  declare description: string
+  declare name: string
 }
 
 Tag.init({
