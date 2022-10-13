@@ -20,7 +20,6 @@ const getPosts = async (req: Request, res: Response) => {
       }
     }
   })
-  const pos = JSON.stringify(posts)
-  res.json(JSON.parse(pos))
+  res.json(JSON.parse(JSON.stringify(posts)))
 }
 export default getPosts
