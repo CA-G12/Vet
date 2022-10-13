@@ -10,8 +10,6 @@ export class Comment extends Model <InferAttributes<Comment>, InferCreationAttri
   declare id?: CreationOptional<number>
   declare comment: string
   declare image: string
-  declare postId: number
-  declare userId: number
 }
 
 Comment.init({
@@ -26,12 +24,6 @@ Comment.init({
   },
   image: {
     type: DataTypes.STRING
-  },
-  postId: {
-    type: DataTypes.INTEGER
-  },
-  userId: {
-    type: DataTypes.INTEGER
   }
 }, {
   sequelize

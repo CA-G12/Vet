@@ -3,20 +3,19 @@ import sequelize from '../db/connection'
 import { Model, DataTypes } from 'sequelize'
 
 class User extends Model {
-  declare id?: string
+  declare id?: number
   declare name: string
   declare email: string
   declare password: string
   declare role: 'ADMIN' | 'USER' | 'DOCTOR'
   declare avatar?: string
-  declare createdAt?: Date
 }
 
 User.init({
   id: {
     primaryKey: true,
     type: DataTypes.INTEGER,
-    defaultValue: DataTypes.INTEGER
+    autoIncrement: true
   },
   name: {
     type: DataTypes.STRING,
@@ -37,9 +36,6 @@ User.init({
   password: {
     type: DataTypes.STRING,
     allowNull: false
-  },
-  createdAt: {
-    type: DataTypes.DATE
   }
 }, {
   sequelize
