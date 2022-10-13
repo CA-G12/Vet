@@ -1,6 +1,4 @@
 import sequelize from './index'
-import { User, Post, Like, Animal, Tag } from '../models'
-import data from './data.json'
 import environment from '../config/environment'
 
 const buildDB = async () => {
