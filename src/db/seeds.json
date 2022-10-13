@@ -77,41 +77,41 @@
       {
       "content":"Post 1111",
       "image": "https://www.petfoodindustry.com/ext/resources/Images-by-month-year/21_07/Russian-blue-cat.jpg?t=1627569905&width=700",
-      "tagID": 1,
-      "animalId":1,
-      "userId":1
+      "TagID": 1,
+      "AnimalId":1,
+      "UserId":1
   },
   {
       "content":"Post 222",
       "image": "https://www.petfoodindustry.com/ext/resources/Images-by-month-year/21_07/Russian-blue-cat.jpg?t=1627569905&width=700",
-      "tagID": 2,
-      "animalId":2,
-      "userId":2
+      "TagID": 2,
+      "AnimalId":2,
+      "UserId":2
   }
     ],
     "Like":[{
-      "userId":2,
-      "postId":1
+      "UserId":2,
+      "PostId":1
     },{
-      "userId":1,
-      "postId":2
+      "UserId":1,
+      "PostId":2
     },{
-      "userId":3,
-      "postId":1
+      "UserId":3,
+      "PostId":1
     }
   ],
   "Comment":[
       {
        "comment": "Comment1",
        "image": "https://www.petfoodindustry.com/ext/resources/Images-by-month-year/21_07/Russian-blue-cat.jpg?t=1627569905&width=700",
-        "postId": 1,
-        "userId": 3
+        "PostId": 1,
+        "UserId": 3
       }, 
       {
           "comment": "Comment2",
           "image": "https://www.petfoodindustry.com/ext/resources/Images-by-month-year/21_07/Russian-blue-cat.jpg?t=1627569905&width=700",
-           "postId": 2,
-           "userId": 2
+           "PostId": 2,
+           "UserId": 2
          }
   ]
     
