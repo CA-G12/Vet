@@ -3,7 +3,35 @@ import { User, Post, Like, Tag, Animal } from '../db'
 import { Op } from 'sequelize'
 
 const getPosts = async (req: Request, res: Response) => {
-  const { tagID, animalId, searchContent } = req.query
+  const { tagId, animalId, searchContent } = req.query
+  let filterData = { }
+  tagId && animalId
+    ? filterData = {
+      content: {
+        [Op.substring]: searchContent
+      },
+      TagId: tagId,
+      AnimalId: animalId
+    }
+    : animalId
+      ? filterData = {
+        content: {
+          [Op.substring]: searchContent
+        },
+        AnimalId: animalId
+      }
+      : tagId
+        ? filterData = {
+          content: {
+            [Op.substring]: searchContent
+          },
+          TagId: tagId
+        }
+        : filterData = {
+          content: {
+            [Op.substring]: searchContent
+          }
+        }
   const posts = await Post.findAll({
     attributes: ['id', 'content', 'image'],
     include: [{ model: User, attributes: ['name', 'avatar', 'id'] },
@@ -12,13 +40,7 @@ const getPosts = async (req: Request, res: Response) => {
       }, {
         model: Animal, attributes: ['id', 'name']
       }],
-    where: {
-      TagId: tagID,
-      AnimalId: animalId,
-      content: {
-        [Op.substring]: searchContent
-      }
-    }
+    where: filterData
   })
   res.json(JSON.parse(JSON.stringify(posts)))
 }
