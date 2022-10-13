@@ -11,8 +11,8 @@ User.hasMany(Comment)
 Comment.belongsTo(User)
 
 User.hasMany(Booking, { as: 'bookings' })
-Booking.belongsTo(User, { as: 'user' })
-Booking.belongsTo(User, { as: 'doctor' })
+Booking.belongsTo(User, { as: 'User' })
+Booking.belongsTo(User, { as: 'Doctor' })
 
 Post.hasMany(Comment)
 
