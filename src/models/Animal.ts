@@ -1,13 +1,14 @@
-import { sequelize } from '../db/connection'
+import sequelize from '../db/connection'
 import { Model, InferAttributes, InferCreationAttributes, CreationOptional, DataTypes } from 'sequelize'
 
-export class Animal extends Model<InferAttributes<Animal>, InferCreationAttributes <Animal>> {
+class Animal extends Model {
   declare id: CreationOptional<number>
   declare name: string
 }
 Animal.init({
   id: {
-    type: DataTypes.UUID,
+    primaryKey: true,
+    type: DataTypes.INTEGER,
     autoIncrement: true
   },
   name: {
@@ -15,9 +16,7 @@ Animal.init({
     allowNull: false
   }
 }, {
-  sequelize,
-  modelName: 'animal'
+  sequelize
 })
-// export async function createLike () {
-//   await Animal.create({ name: 'Cat' })
-// }
+
+export default Animal
