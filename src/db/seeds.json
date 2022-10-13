@@ -1,0 +1,120 @@
+
+{
+    "User" : [
+      {
+      "name" : "abdallah",
+      "email" :"abdallah@gmail.com",
+      "password" :"123456789",
+      "role" :"ADMIN",
+      "avatar": " "
+      }
+     ,{
+      "name" : "salsabeel",
+      "email" :"salsabeel@gmail.com",
+      "password" :"123456789",
+      "role" :"ADMIN",
+      "avatar": " "
+  },
+  {
+      "name" : "aseel",
+      "email" :"aseel@gmail.com",
+      "password" :"123456789",
+      "role" :"ADMIN",
+      "avatar": " "
+  } 
+  ,{ 
+      "name" : "saeed",
+      "email" :"saeed@gmail.com",
+      "password" :"123456789",
+      "role" :"ADMIN",
+      "avatar": " "
+  },
+  {
+      "name" : "mohammed",
+      "email" :"mohammed@gmail.com",
+      "password" :"123456789",
+      "role" :"ADMIN",
+      "avatar": " "
+  }
+    ],
+    "Tag":[
+      {
+          "name":"All"
+      },
+      {
+          "name":"Need help"
+      },
+      {
+          "name":"Advise"
+      },
+      {
+          "name":"Up for adoption"
+      },
+      {
+          "name":"Memes"
+      },
+      {
+          "name":"Up for sale"
+      }
+      
+    ],
+    "Animal":[
+
+      {
+          "name":"All"
+      },
+      {
+          "name":"Cat"
+      },
+      {
+          "name":"Dog"
+      },
+      {
+          "name":"Turtle"
+      }
+    ],
+    "Post":[
+      {
+      "content":"Post 1111",
+      "image": "https://www.petfoodindustry.com/ext/resources/Images-by-month-year/21_07/Russian-blue-cat.jpg?t=1627569905&width=700",
+      "TagId": 1,
+      "AnimalId":1,
+      "UserId":1
+  },
+  {
+      "content":"Post 222",
+      "image": "https://www.petfoodindustry.com/ext/resources/Images-by-month-year/21_07/Russian-blue-cat.jpg?t=1627569905&width=700",
+      "TagId": 2,
+      "AnimalId":2,
+      "UserId":2
+  }
+    ],
+    "Like":[{
+      "UserId":2,
+      "PostId":1
+    },{
+      "UserId":1,
+      "PostId":2
+    },{
+      "UserId":3,
+      "PostId":1
+    }
+  ],
+  "Comment":[
+      {
+       "comment": "Comment1",
+       "image": "https://www.petfoodindustry.com/ext/resources/Images-by-month-year/21_07/Russian-blue-cat.jpg?t=1627569905&width=700",
+        "PostId": 1,
+        "UserId": 3
+      }, 
+      {
+          "comment": "Comment2",
+          "image": "https://www.petfoodindustry.com/ext/resources/Images-by-month-year/21_07/Russian-blue-cat.jpg?t=1627569905&width=700",
+           "PostId": 2,
+           "UserId": 2
+         }
+  ]
+    
+  
+
+}

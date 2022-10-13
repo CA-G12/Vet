@@ -26,4 +26,4 @@ Post.belongsTo(Tag)
 Animal.hasMany(Post)
 Post.belongsTo(Animal)
 
-export default sequelize
+export { sequelize, User, Like, Comment, Animal, Post, Booking, Tag }

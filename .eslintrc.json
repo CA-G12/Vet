@@ -1,37 +1,19 @@
 {
   "env": {
-    "browser": true,
-    "es2021": true
+      "es2020": true,
+      "node": true
+  },
+  "extends": [
+      "standard"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+      "ecmaVersion": 11,
+      "sourceType": "module"
   },
   "plugins": [
-    "@typescript-eslint"
+      "@typescript-eslint"
   ],
-  "extends": [
-    "standard-with-typescript"
-  ],
-  "overrides": [
-    {
-      "files": [
-        "*.ts",
-        "*.tsx"
-      ],
-      "extends": [
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking"
-      ],
-      "parserOptions": {
-        "project": [
-          "./tsconfig.json"
-        ]
-      }
-    }
-  ],
-  "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module"
-  },
   "rules": {
-    "@typescript-eslint/explicit-function-return-type": [
-      "off"]
-    }
+  }
 }
