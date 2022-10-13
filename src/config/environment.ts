@@ -12,6 +12,9 @@ switch (nodeEnv) {
   case 'production':
     dbUrl = process.env.DATABASE_URL
     break
+  case 'test':
+    dbUrl = process.env.TEST_URL
+    break
   default:
     dbUrl = 'postgres://mss_user:root@localhost:5432/mss'
 }

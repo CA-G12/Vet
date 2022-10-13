@@ -14,16 +14,7 @@ Booking.init({
     autoIncrement: true,
     primaryKey: true
   },
-  userId: {
-    type: DataTypes.NUMBER,
-    allowNull: false
 
-  },
-  doctorId: {
-    type: DataTypes.NUMBER,
-    allowNull: false
-
-  },
   description: {
     type: DataTypes.TEXT,
     allowNull: false

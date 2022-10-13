@@ -1,22 +1,16 @@
-import { sequelize } from '../db/connection'
-import { Model, InferAttributes, InferCreationAttributes, CreationOptional, DataTypes } from 'sequelize'
+import sequelize from '../db/connection'
+import { Model, CreationOptional, DataTypes } from 'sequelize'
 
-export class Like extends Model<InferAttributes<Like>, InferCreationAttributes <Like>> {
+class Like extends Model {
   declare id: CreationOptional<number>
-  declare postId: number
-  declare userId: number
 }
 Like.init({
   id: {
+    primaryKey: true,
     type: DataTypes.INTEGER,
     autoIncrement: true
-  },
-  postId: {
-    type: DataTypes.INTEGER
-  },
-  userId: {
-    type: DataTypes.INTEGER
   }
 }, {
   sequelize
 })
+export default Like
