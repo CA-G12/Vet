@@ -7,42 +7,36 @@ const getPosts = async (req: Request, res: Response) => {
   console.log(req.query)
 
   let filterData = { }
-  tagId && animalId
-    ? filterData = {
+  if (tagId && animalId) {
+    filterData = {
       content: {
         [Op.substring]: searchCountent || ''
       },
       TagId: tagId,
       AnimalId: animalId
     }
-    : animalId
-      ? filterData = {
-        content: {
-          [Op.substring]: searchCountent || ''
-        },
-        AnimalId: animalId
+  } else if (animalId) {
+    filterData = {
+      content: {
+        [Op.substring]: searchCountent || ''
+      },
+      AnimalId: animalId
+    }
+  } else if (tagId) {
+    filterData = {
+      content: {
+        [Op.substring]: searchCountent || ''
+      },
+      TagId: tagId
+    }
+  } else {
+    filterData = {
+      content: {
+        [Op.substring]: ''
       }
-      : tagId
-        ? filterData = {
-          content: {
-            [Op.substring]: searchCountent || ''
-          },
-          TagId: tagId
-        }
+    }
+  }
 
-        : filterData = {
-          content: {
-            [Op.substring]: ''
-          }
-        }
-  console.log(filterData)
-
-  // : searchContent
-  // ? filterData = {
-  //   content: {
-  //     [Op.substring]: searchContent
-  //   }
-  // }
   const posts = await Post.findAll({
     attributes: ['id', 'content', 'image'],
     include: [{ model: User, attributes: ['name', 'avatar', 'id'] },

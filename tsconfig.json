@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    
       "skipLibCheck": true,
       "strict": true,
       "noFallthroughCasesInSwitch": true,
@@ -32,6 +31,5 @@
   },
   "include": [
       "src",
-      "client"
-, "__test__"  ]
+ "__test__"  ]
 }
