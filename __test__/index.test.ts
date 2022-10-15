@@ -57,8 +57,8 @@ describe('get some post when add searchCountent ,tag,animal ', () => {
   })
 })
 
-describe('get some post when add searchCountent ,tag,animal ', () => {
-  test('get some post when add searchCountent ,tag,animal', (done) => {
+describe('get some post when add searchCountent  ', () => {
+  test('get some post when add searchCountent ', (done) => {
     supertest(app)
       .get('/posts?q=1111')
       .expect('Content-Type', /json/)
