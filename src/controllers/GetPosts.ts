@@ -3,14 +3,14 @@ import { User, Post, Like, Tag, Animal } from '../db'
 import { Op } from 'sequelize'
 
 const getPosts = async (req: Request, res: Response) => {
-  const { tagId, animalId, searchCountent } = req.query
+  const { tagId, animalId, q } = req.query
   console.log(req.query)
 
   let filterData = { }
   if (tagId && animalId) {
     filterData = {
       content: {
-        [Op.substring]: searchCountent || ''
+        [Op.substring]: q || ''
       },
       TagId: tagId,
       AnimalId: animalId
@@ -18,16 +18,22 @@ const getPosts = async (req: Request, res: Response) => {
   } else if (animalId) {
     filterData = {
       content: {
-        [Op.substring]: searchCountent || ''
+        [Op.substring]: q || ''
       },
       AnimalId: animalId
     }
   } else if (tagId) {
     filterData = {
       content: {
-        [Op.substring]: searchCountent || ''
+        [Op.substring]: q || ''
       },
       TagId: tagId
+    }
+  } else if (q) {
+    filterData = {
+      content: {
+        [Op.substring]: q
+      }
     }
   } else {
     filterData = {

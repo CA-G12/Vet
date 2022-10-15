@@ -47,7 +47,20 @@ describe('get posts by specific tag ', () => {
 describe('get some post when add searchCountent ,tag,animal ', () => {
   test('get some post when add searchCountent ,tag,animal', (done) => {
     supertest(app)
-      .get('/posts?tagId=1&animalId=1&searchCountent=1111')
+      .get('/posts?tagId=1&animalId=1&q=1111')
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err)
+        expect(res.body.length).toEqual(1)
+        return done()
+      })
+  })
+})
+
+describe('get some post when add searchCountent ,tag,animal ', () => {
+  test('get some post when add searchCountent ,tag,animal', (done) => {
+    supertest(app)
+      .get('/posts?q=1111')
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err)
@@ -59,7 +72,7 @@ describe('get some post when add searchCountent ,tag,animal ', () => {
 describe('Not getting any data when When searching for something that is not there ', () => {
   test('Not getting any data when When searching for something that is not there', (done) => {
     supertest(app)
-      .get('/posts?tagId=1&animalId=1&searchCountent=kakashi')
+      .get('/posts?tagId=1&animalId=1&q=kakashi')
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err)
