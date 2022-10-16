@@ -26,6 +26,7 @@
   "rules": {
     "no-nested-ternary": 0,
     "no-use-before-define": "off",
+    "eol-last": ["error", "always"],
     "@typescript-eslint/no-use-before-define": [
       "error"
     ],
@@ -74,6 +75,5 @@
     "import/resolver": {
       "typescript": {}
     }
-  },
- "eol-last": ["error", "always"]
+  }
 }

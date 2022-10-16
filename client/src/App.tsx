@@ -1,6 +1,8 @@
+import AddPost from './components/AddPost';
+
 const App = () => (
   <div>
-    <h1>Saeed</h1>
+    <AddPost />
   </div>
 );
 
