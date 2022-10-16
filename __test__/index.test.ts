@@ -111,6 +111,7 @@ describe('add a post', () => {
         return done()
       })
   })
+  // final test here for passport
 })
 
 afterAll(() => sequelize.close())
