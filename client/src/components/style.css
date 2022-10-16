@@ -1,0 +1,11 @@
+.SignBar{
+    border-bottom:1px #C4C4C4 solid;
+    width: 250px;
+    height: 60px;
+    display:flex;
+    justify-content: space-around;
+}
+
+.Sign-up{
+    color:#356E6E;
+}
