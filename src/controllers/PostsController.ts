@@ -10,7 +10,10 @@ export default class PostsController {
       const createPost = await Post.create({ content, image, AnimalId, TagId, UserId })
       res.status(200).json({ status: res.status, msg: 'new post added successfully', data: createPost })
     } catch (error) {
-      res.status(400).json({ error })
+      res.status(400).json({
+        msg: 'something went wrong',
+        error
+      })
     }
   }
 }

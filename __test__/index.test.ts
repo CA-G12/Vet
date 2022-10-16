@@ -70,6 +70,8 @@ describe('add a post', () => {
       .end((err, res) => {
         if (err) return done(err)
         expect(res.status).toBe(400)
+        expect(res.body.msg).toBe('something went wrong')
+
         return done()
       })
   })
@@ -86,6 +88,8 @@ describe('add a post', () => {
       .end((err, res) => {
         if (err) return done(err)
         expect(res.status).toBe(400)
+        expect(res.body.msg).toBe('something went wrong')
+
         return done()
       })
   })
@@ -102,6 +106,8 @@ describe('add a post', () => {
       .end((err, res) => {
         if (err) return done(err)
         expect(res.status).toBe(400)
+        expect(res.body.msg).toBe('something went wrong')
+
         return done()
       })
   })
