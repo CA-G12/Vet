@@ -8,8 +8,6 @@ const buildDB = async () => {
   await User.bulkCreate(data.User)
   await Post.bulkCreate(data.Post)
   await Like.bulkCreate(data.Like)
-  const postd = await Post.findAll({})
-  console.log(JSON.stringify(postd))
 }
 
 if (environment.nodeEnv !== 'test') {
