@@ -3,8 +3,16 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const port = process.env.PORT ?? 8080
-let dbUrl: string | undefined
+
+const googleClientId = process.env.GOOGLE_CLIENT_ID ?? ''
+
+const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET ?? ''
+
+const secretKey = process.env.SECRET_KEY
+
 const nodeEnv = process.env.NODE_ENV ?? ''
+
+let dbUrl: string | undefined
 switch (nodeEnv) {
   case 'development':
     dbUrl = process.env.DEV_DB_URL
@@ -22,5 +30,8 @@ switch (nodeEnv) {
 export default {
   port,
   dbUrl,
-  nodeEnv
+  nodeEnv,
+  secretKey,
+  googleClientId,
+  googleClientSecret
 }
