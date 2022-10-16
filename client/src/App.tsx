@@ -1,8 +1,11 @@
-import AddPost from './components/AddPost';
+import { Outlet } from 'react-router-dom';
+import Nav from './components/Nav';
 
 const App = () => (
   <div>
-    <AddPost />
+    <Nav />
+    <h1>kakashi is here</h1>
+    <Outlet />
   </div>
 );
 
