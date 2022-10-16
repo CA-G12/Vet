@@ -93,8 +93,11 @@ border-radius: 50%;
   height: 0;
 }
 .likeItem {
-  display: block;
+  display: flex;
   padding: 10px;
+  gap: 5px;
+  text-decoration: none;
+  color: var(--font-color);
   border-radius: 10px;
 
 }

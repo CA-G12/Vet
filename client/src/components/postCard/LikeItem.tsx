@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom';
+
 interface User{
   id:number
   name:string
@@ -9,11 +11,11 @@ interface ILike{
     User:User
   }
 }
-const LikeItem = ({ like: { User } } : ILike) => (
-  <div className="likeItem">
+const LikeItem = ({ like: { id, User } } : ILike) => (
+  <NavLink to={`/users/${id}`} className="likeItem">
     <img src={User.avatar} alt="" />
     <h4>{User.name}</h4>
-  </div>
+  </NavLink>
 );
 
 export default LikeItem;

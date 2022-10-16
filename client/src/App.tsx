@@ -1,5 +1,7 @@
 import './App.css';
+import { Outlet } from 'react-router-dom';
 import Post from './components/postCard/Post';
+import Nav from './components/Nav';
 
 const post = {
   id: 1,
@@ -41,9 +43,13 @@ const post = {
     name: 'All',
   },
 };
+
 const App = () => (
   <div>
+    <Nav />
     <Post post={post} />
+
+    <Outlet />
   </div>
 );
 
