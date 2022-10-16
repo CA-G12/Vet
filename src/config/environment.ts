@@ -5,6 +5,8 @@ dotenv.config()
 const port = process.env.PORT ?? 8080
 let dbUrl: string | undefined
 const nodeEnv = process.env.NODE_ENV ?? ''
+const secretKey = process.env.SECRET_KEY ?? ''
+
 switch (nodeEnv) {
   case 'development':
     dbUrl = process.env.DEV_DB_URL
@@ -22,5 +24,6 @@ switch (nodeEnv) {
 export default {
   port,
   dbUrl,
-  nodeEnv
+  nodeEnv,
+  secretKey
 }

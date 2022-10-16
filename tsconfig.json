@@ -27,10 +27,15 @@
       "esModuleInterop": true,
       "resolveJsonModule": true,
       "importHelpers": true,
-      "baseUrl": "src"
+      "baseUrl": "src",
+      "paths":{
+        "@interfaces": ["interfaces/*"]
+      },
   },
   "include": [
       "src",
-      "client"
-  ]
+      "client",
+      "test",
+  ],
+
 }
