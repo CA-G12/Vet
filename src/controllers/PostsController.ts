@@ -48,7 +48,7 @@ export default class PostsController {
     const posts = await Post.findAll({
       attributes: ['id', 'content', 'image'],
       include: [{ model: User, attributes: ['name', 'avatar', 'id'] },
-        { model: Like, attributes: ['id'], include: [{ model: User, attributes: ['name', 'id'] }] }, {
+        { model: Like, attributes: ['id'], include: [{ model: User, attributes: ['name', 'id', 'avatar'] }] }, {
           model: Tag, attributes: ['id', 'name']
         }, {
           model: Animal, attributes: ['id', 'name']

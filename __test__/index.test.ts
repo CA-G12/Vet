@@ -17,8 +17,6 @@ describe('all post ', () => {
         return done()
       })
   })
-})
-describe('get posts by specific animal ', () => {
   test('get posts by specific animal', (done) => {
     supertest(app)
       .get('/posts?animalId=1')
@@ -29,9 +27,6 @@ describe('get posts by specific animal ', () => {
         return done()
       })
   })
-})
-
-describe('get posts by specific tag ', () => {
   test('get posts by specific tag', (done) => {
     supertest(app)
       .get('/posts?tagId=1')
@@ -42,9 +37,6 @@ describe('get posts by specific tag ', () => {
         return done()
       })
   })
-})
-
-describe('get some post when add searchCountent ,tag,animal ', () => {
   test('get some post when add searchCountent ,tag,animal', (done) => {
     supertest(app)
       .get('/posts?tagId=1&animalId=1&q=1111')
@@ -55,9 +47,6 @@ describe('get some post when add searchCountent ,tag,animal ', () => {
         return done()
       })
   })
-})
-
-describe('get some post when add searchCountent  ', () => {
   test('get some post when add searchCountent ', (done) => {
     supertest(app)
       .get('/posts?q=1111')
@@ -68,8 +57,6 @@ describe('get some post when add searchCountent  ', () => {
         return done()
       })
   })
-})
-describe('Not getting any data when When searching for something that is not there ', () => {
   test('Not getting any data when When searching for something that is not there', (done) => {
     supertest(app)
       .get('/posts?tagId=1&animalId=1&q=kakashi')
