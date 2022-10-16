@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "buildDB": " cross-env NODE_ENV=development ts-node src/db/build.ts",
     "dev": "cross-env NODE_ENV=development nodemon --config nodemon.json src/index.ts",
-    "start": "cross-env NODE_ENV=development node src/index.ts",
+    "start": "cross-env NODE_ENV=development node dist",
+    "build": "tsc -p .",
     "lint": "eslint src/** --ext .ts"
   },
   "repository": {
@@ -38,6 +39,11 @@
     "typescript": "^4.8.4"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/icons-material": "^5.10.9",
+    "@mui/lab": "^5.0.0-alpha.103",
+    "@mui/material": "^5.10.9",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",

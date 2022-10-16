@@ -30,7 +30,6 @@
       "baseUrl": "src"
   },
   "include": [
-      "src",
-      "client"
-  ]
+      "src"
+    ]
 }
