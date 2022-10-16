@@ -1,0 +1,115 @@
+.post-card{
+  max-width: 650px;
+  border-radius: 12px;
+
+}
+.article{
+  background-color:var(--background-post) ;
+  display: flex;
+  justify-content: space-between;
+  padding: 13px;
+  color: var(--font-color);
+  border-radius: 12px 12px 0 0;
+
+}
+.user-info-post{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.content{
+padding-left: 70px;
+font-size: 15px;
+font-family: Inter;
+font-weight: 700;
+line-height: 21.78px
+;
+}
+.user-info-post img{
+width: 60px;
+height: 60px;
+border-radius: 50%;
+}
+.img-post{
+  border-radius: 12px;
+  max-width:284px ;
+  max-height: 150px;
+}
+.comments-likes-btn{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 5px 50px;
+  gap: 15px;
+}
+.comments-likes-btn div{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+.comments-likes-btn i,svg{
+ font-size: 15px !important;
+}
+.BtnsPost{
+  background:var(--sacredly-color);
+  border-radius:0 0 12px 12px;
+  position: relative;
+
+}
+.BtnsPost::after{
+  position: absolute;
+  content: '';
+  width: 2px;
+  height: 70%;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 5px;
+  background-color: var( --not-active-color);
+}
+.BtnsPost button{
+  width: 50%;
+}
+
+.BtnsPost button svg,.BtnsPost button i{
+  font-size: 15px;
+  color: var( --not-active-color);
+
+}
+.likesNum{
+  position: relative;
+}
+.whoLike{
+  position: absolute;
+  display: block !important;
+  content: '';
+  background-color: var(--not-active-color);
+  top: 20px;
+  border-radius: 10px;
+  z-index: 5;
+  border: 1px solid var(--font-color);
+  z-index: -5;
+  opacity: 0;
+  height: 0;
+}
+.likeItem {
+  display: block;
+  padding: 10px;
+  border-radius: 10px;
+
+}
+.likeItem:hover{
+  background-color: var(--font-color);
+  color: var(--not-active-color);
+}
+.likeItem img{
+  width: 20px;
+}
+.likeItem h4{
+font-size: 12px;
+}
+.likesNum:hover .whoLike{
+  height: auto;
+  z-index: 5;
+  opacity: 1;
+}
