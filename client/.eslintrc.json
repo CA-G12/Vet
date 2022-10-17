@@ -68,12 +68,12 @@
       {
         "namedComponents": "arrow-function"
       }
-    ]
+    ],
+    "eol-last": ["error", "always"]
   },
   "settings": {
     "import/resolver": {
       "typescript": {}
     }
-  },
- "eol-last": ["error", "always"]
+  }
 }
