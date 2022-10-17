@@ -16,6 +16,7 @@ const LikeItem = ({ like: { id, User } } : ILike) => (
     <img src={User.avatar} alt="" />
     <h4>{User.name}</h4>
   </NavLink>
+
 );
 
 export default LikeItem;
