@@ -1,5 +1,5 @@
 import sequelize from '../db/connection'
-import { Model, InferAttributes, InferCreationAttributes, CreationOptional, DataTypes } from 'sequelize'
+import { Model, CreationOptional, DataTypes } from 'sequelize'
 
 class Animal extends Model {
   declare id: CreationOptional<number>
