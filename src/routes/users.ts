@@ -19,8 +19,5 @@ signInRouter.get('/auth/google/failure', (req, res) => {
 })
 
 signInRouter.post('/signin', UsersController.signin)
-signInRouter.get('/', (req, res) => {
-  res.send('hello')
-})
 
 export default signInRouter
