@@ -14,7 +14,7 @@ interface props{
 }
 const HoverLikes = ({ likes }:props) => (
   <div className="whoLike">
-    {likes.map((liked:Like) => <LikeItem like={liked} />)}
+    {likes.map((liked:Like) => <LikeItem key={liked.id} like={liked} />)}
   </div>
 );
 

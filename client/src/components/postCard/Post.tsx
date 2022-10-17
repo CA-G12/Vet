@@ -1,74 +1,116 @@
 import './post.css';
 import PetsIcon from '@mui/icons-material/Pets';
+import Tooltip from '@mui/material/Tooltip';
+import {
+  useEffect, useRef, useState,
+} from 'react';
 import BtnsPost from './BtnsPost';
 import HoverLikes from './HoverLikes';
+import IPost from '../../Interfaces/post/Ipost';
+import UserPostInfo from './UserPostInfo';
+import Comments from './Comments';
 
-interface User{
-  id:number
-  name:string
-  avatar:string
-}
+const comments = {
+  id: 1,
+  Comments: [{
+    id: 1,
+    UserId: 3,
+    comment: 'Comment1',
+    image: null,
+    User: {
+      name: 'Kakashi',
+      avatar: 'https://media.tenor.com/fR49OunP59UAAAAC/killua-killua-zoldyck.gif',
+      id: 1,
+    },
+  }, {
+    id: 2,
+    UserId: 2,
+    comment: 'Comment2',
+    User: {
+      name: 'Kakashi',
+      avatar: 'https://media.tenor.com/fR49OunP59UAAAAC/killua-killua-zoldyck.gif',
+      id: 1,
+    },
+    image: 'https://i.pinimg.com/originals/8a/81/ec/8a81ecd8fdd266b3221da325875c0ea8.gif',
+  }],
+};
 
-interface Like{
-  id:number
-  User:User
-}
+const Post = ({ post }:IPost) => {
+  const [showComments, setShowComments] = useState(false);
+  const useOutsideClick = (callback: Function) => {
+    const ref = useRef<HTMLDivElement>(null);
 
-interface Tag{
-  id:number
-  name:string
-}
+    useEffect(() => {
+      const handleClick = (event: any) => {
+        if (ref.current && !ref.current.contains(event.target)) {
+          callback();
+        }
+      };
 
-interface Animal{
-  id:number
-  name:string
-}
-interface IPost{
-  id:number
-  content:string
-  image:string
-  User:User
-  Likes:Array<Like>
-  Tag:Tag
-  Animal:Animal
+      document.addEventListener('click', handleClick);
 
-}
+      return () => {
+        document.removeEventListener('click', handleClick);
+      };
+    }, []);
 
-interface props{
-  post:IPost
-}
+    return ref;
+  };
+  const handleClick = () => {
+    setShowComments(!showComments);
+  };
 
-const Post = ({ post }:props) => (
-  <div className="post-card">
-    <article className="article">
-      <section>
-        <div className="user-info-post">
-          <img src={post.User.avatar} alt="" />
-          <h3>{post.User.name}</h3>
-        </div>
-        <p className="content">
-          {post.content}
+  const handleClickOutside = () => {
+    setShowComments(false);
+  };
+  const ref = useOutsideClick(handleClickOutside);
 
-        </p>
-        <div className="comments-likes-btn">
-          <div>
-            <i className="fa-solid fa-comment" />
-            25
+  return (
+    <div ref={ref} className="post-card">
+      <article className="article">
+        <section>
+          <UserPostInfo post={post} />
+          {post.image && (
+          <div className="img-post-mobile">
+            <img src={post.image} alt="" />
           </div>
-          <div className="likesNum">
-            <PetsIcon />
-            {' '}
-            {post.Likes.length}
-            <HoverLikes likes={post.Likes} />
-          </div>
-        </div>
-      </section>
-      <figure>
-        <img className="img-post" src={post.image} alt="" />
-      </figure>
-    </article>
-    <BtnsPost />
-  </div>
-);
+          ) }
+          <p className="content">
+            {post.content}
 
+          </p>
+          <div className="comments-likes-btn">
+            <div role="presentation" onClick={handleClick}>
+              <Tooltip title="Show Comments">
+                <i className="fa-solid fa-comment" />
+              </Tooltip>
+              {comments.Comments.length}
+            </div>
+            <div className="likesNum">
+              <PetsIcon />
+              {' '}
+              {post.Likes.length}
+              <HoverLikes likes={post.Likes} />
+            </div>
+          </div>
+        </section>
+        {post.image && (
+        <figure className="img-post-desctop">
+          <img className="img-post" src={post.image} alt="" />
+        </figure>
+        ) }
+
+      </article>
+      <BtnsPost />
+      {
+        showComments && (
+        <div>
+          <Comments comments={comments.Comments} />
+
+        </div>
+        )
+      }
+    </div>
+  );
+};
 export default Post;
