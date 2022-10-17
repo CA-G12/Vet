@@ -7,7 +7,7 @@ export default class ApiServices {
 
     public static init():void {
       this.axios = axios.create({
-        baseURL: process.env.BASE_URL,
+        baseURL: process.env.REACT_APP_BASE_URL,
         headers: {
           Authorization: `Bearer ${JwtService.getToken()}`,
           accept: 'application/json',
