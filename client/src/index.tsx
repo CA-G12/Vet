@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import AddPost from './components/AddPost';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
         element: <Emergency />,
       },
       { path: 'users/:id', element: <DoctorProfile /> },
+      { path: '/', element: <AddPost /> },
     ],
   },
   { path: '*', element: <NotFound /> },
