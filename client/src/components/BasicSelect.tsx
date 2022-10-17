@@ -2,8 +2,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import './BasicSelect.css';
 
 interface Selector{
     id:number
@@ -22,23 +22,20 @@ const BasicSelect = ({ name, obj } :Props) => {
   };
 
   return (
-    <Box sx={{ minWidth: 1000 }}>
-      <InputLabel id="demo-simple-select-label">{name}</InputLabel>
-      <Select
-        sx={{
-          width: 300,
-          color: '#2D9B9B',
-        }}
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
-        className="demo-simple-select"
-        value={choice}
-        label="choice"
-        onChange={handleChange}
-      >
-        {obj.map<React.ReactNode>((tag:Selector) => (
-          <MenuItem key={tag.id} value={tag.id}>{tag.name}</MenuItem>))}
-      </Select>
+    <Box sx={{ minWidth: 150 }}>
+      <FormControl fullWidth>
+        <InputLabel id="basic-select-label">{name}</InputLabel>
+        <Select
+          labelId="basic-select-label"
+          id="basic-select"
+          value={choice}
+          label={name}
+          onChange={handleChange}
+        >
+          {obj.map((tag:Selector) => (
+            <MenuItem key={tag.id} value={tag.id}>{tag.name}</MenuItem>))}
+        </Select>
+      </FormControl>
     </Box>
   );
 };
