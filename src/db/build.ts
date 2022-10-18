@@ -1,7 +1,6 @@
 import { User, Post, Like, Animal, Tag, sequelize } from '.'
-import data from './seeds.json'
 import environment from '../config/environment'
-
+import data from './seeds.json'
 const buildDB = async () => {
   await sequelize.sync({ force: true })
   await Animal.bulkCreate(data.Animal)
