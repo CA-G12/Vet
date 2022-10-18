@@ -4,12 +4,13 @@ import Tooltip from '@mui/material/Tooltip';
 import {
   useState,
 } from 'react';
-import useOutsideClick from '../customHooks/UseOutsideClick ';
+import useOutsideClick from '../hooks/UseOutsideClick ';
 import BtnsPost from './BtnsPost';
 import HoverLikes from './HoverLikes';
 import IPost from '../../Interfaces/post/IPost';
-import UserPostInfo from './UserPostInfo';
+import UserPostInfo from '../customComponents/UserPostInfo';
 import Comments from './Comments';
+import EditAndDeleteBtn from './EditAndDeleteBtn';
 
 const comments = {
   id: 1,
@@ -38,20 +39,22 @@ const comments = {
 
 const Post = ({ post }:IPost) => {
   const [showComments, setShowComments] = useState(false);
-
+  const [isConnected, setIsConnected] = useState(false);
   const handleClick = () => {
     setShowComments(!showComments);
+    setIsConnected(!isConnected);
   };
   const handleClickOutside = () => {
     setShowComments(false);
+    setIsConnected(false);
   };
   const ref = useOutsideClick(handleClickOutside);
 
   return (
     <div ref={ref} className="post-card">
-      <article className="article">
+      <article className="article abusluot-btns">
         <section>
-          <UserPostInfo post={post} />
+          <UserPostInfo user={post.User} style={{ dimensions: 40, alignItems: 'center' }} />
           {post.image && (
           <div className="img-post-mobile">
             <img src={post.image} alt="" />
@@ -81,9 +84,10 @@ const Post = ({ post }:IPost) => {
           <img className="img-post" src={post.image} alt="" />
         </figure>
         ) }
-
+        <EditAndDeleteBtn />
       </article>
-      <BtnsPost />
+      <BtnsPost isConnected={isConnected} setIsConnected={setIsConnected} />
+
       {
         showComments && (
         <div>

@@ -1,4 +1,5 @@
 .post-card{
+  position: relative;
   max-width: 650px;
   border-radius: 12px;
   background-color:var(--background-post) ;
@@ -20,10 +21,11 @@
   gap: 10px;
   text-decoration: none;
   color: var(--font-color);
+  padding: 0 0 0 10px;
 
 }
 .content{
-padding-left: 70px;
+padding-left: 60px;
 font-size: 15px;
 font-family: Inter;
 font-weight: 700;
@@ -31,8 +33,6 @@ line-height: 21.78px
 ;
 }
 .user-info-post img{
-width: 40px;
-height: 40px;
 border-radius: 50%;
 object-fit: cover;
 }
@@ -59,7 +59,6 @@ object-fit: cover;
 }
 .BtnsPost{
   background:var(--sacredly-color);
-  border-radius:0 0 12px 12px;
   position: relative;
 
 }
@@ -100,7 +99,7 @@ object-fit: cover;
 }
 .likeItem {
   display: flex;
-  padding: 10px;
+  padding: 5px;
   gap: 5px;
   text-decoration: none;
   color: var(--font-color);
@@ -113,6 +112,8 @@ object-fit: cover;
 }
 .likeItem img{
   width: 20px;
+  height: 20px;
+  border-radius: 50%;
 }
 .likeItem h4{
 font-size: 12px;
@@ -128,7 +129,7 @@ font-size: 12px;
   gap: 10px;
   text-decoration: none;
   color: var(--font-color);
-  padding: 10px ;
+  padding: 10px 10px 10px 20px;
 
 }
 .content-comment{
@@ -151,6 +152,9 @@ border-radius: 12px;
 
 
 }
+.comment{
+  padding: 5px 0 0 15px;
+}
 .user-info-comment img{
 width: 30px;
 height: 30px;
@@ -164,7 +168,6 @@ object-fit: cover;
 .comment-container{
   background-color: var(--background-post);
   position: relative;
-  bottom: 4px;
   border-bottom: 1px solid #a3cfcf;
   display: flex;
   justify-content: space-between;
@@ -172,6 +175,16 @@ object-fit: cover;
 }
 .img-post-mobile{
   display: none;
+}
+.Edit-and-deleteBtn{
+  position: absolute;
+  display: none;
+  top: 0px;
+  right: 0px;
+  width: 30px;
+}
+.abusluot-btns:hover .Edit-and-deleteBtn{
+  display: block;
 }
 @media screen and (max-width: 600px) {
   .img-post-desctop{
@@ -193,4 +206,66 @@ object-fit: cover;
     text-align: center;
     font-size: 20px;
   }
+}
+.btns-list{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  right: 35px;
+  top: 3px;
+  background-color: var(--background-post) !important;
+  padding: 10px;
+  border-radius: 10px;
+
+}
+.btns-list button{
+  margin: 0 !important;
+  padding: 0;
+  display: flex;
+  padding: 5px;
+  width: 100%;
+  border-radius: 10px;
+
+  
+}
+.MuiButtonBase-root{
+  padding: 2px !important;
+}
+.btns-list span{
+  font-size: 11px !important;
+  line-height: 0;
+  
+}
+.Edit-and-deleteBtn .btns-container{
+  position: absolute;
+  top: 10px;
+  border-radius: 10px;
+}
+.addCommentInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #a3cfcf;
+}
+.addCommentInput input{
+  width: 95%;
+  padding: 5px;
+  border: none;
+  outline: none;
+}
+.addCommentInput button{
+width: 10%;
+border-radius: 0 !important;
+display: flex;
+justify-content: center;
+}
+.addCommentInput svg{
+  font-size: 25px !important;
+  color: var(--sacredly-color);
+}
+.addCommentInput label{
+cursor: pointer;
+}
+#upload-img-comment{
+  display: none;
 }
