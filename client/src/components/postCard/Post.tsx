@@ -4,7 +4,7 @@ import Tooltip from '@mui/material/Tooltip';
 import {
   useState,
 } from 'react';
-import useRefFunction from '../customHooks/UseRef';
+import useOutsideClick from '../customHooks/UseOutsideClick ';
 import BtnsPost from './BtnsPost';
 import HoverLikes from './HoverLikes';
 import IPost from '../../Interfaces/post/IPost';
@@ -45,7 +45,7 @@ const Post = ({ post }:IPost) => {
   const handleClickOutside = () => {
     setShowComments(false);
   };
-  const ref = useRefFunction(handleClickOutside);
+  const ref = useOutsideClick(handleClickOutside);
 
   return (
     <div ref={ref} className="post-card">
