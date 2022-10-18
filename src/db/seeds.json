@@ -77,14 +77,14 @@
       {
       "content":"Post 1111",
       "image": "https://www.petfoodindustry.com/ext/resources/Images-by-month-year/21_07/Russian-blue-cat.jpg?t=1627569905&width=700",
-      "TagID": 1,
+      "TagId": 1,
       "AnimalId":1,
       "UserId":1
   },
   {
       "content":"Post 222",
       "image": "https://www.petfoodindustry.com/ext/resources/Images-by-month-year/21_07/Russian-blue-cat.jpg?t=1627569905&width=700",
-      "TagID": 2,
+      "TagId": 2,
       "AnimalId":2,
       "UserId":2
   }

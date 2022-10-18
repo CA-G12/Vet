@@ -31,6 +31,6 @@
   },
   "include": [
       "src",
-      "__Tests__"
-  ]
+ "__tests__"
+]
 }

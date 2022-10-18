@@ -1,5 +1,8 @@
 import signInRouter from './users'
+import { Router } from 'express'
+import PostsController from '../controllers/PostsController'
 
-export default {
-  signInRouter
-}
+const router = Router()
+router.get('/posts', PostsController.index)
+router.use(signInRouter)
+export default router

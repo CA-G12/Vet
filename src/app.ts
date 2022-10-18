@@ -5,6 +5,7 @@ import environment from './config/environment'
 import passport from 'passport'
 import './config/auth'
 import { join } from 'path'
+import router from './routes'
 class App {
   public app: Application
   public nodeEnv: string
@@ -22,6 +23,7 @@ class App {
     this.app.use(express.urlencoded({ extended: false }))
     this.app.use(express.static(join(__dirname, '..', 'client', 'build')))
     this.app.use(passport.initialize())
+    this.app.use(router)
   }
 }
 
