@@ -2,11 +2,12 @@ import './post.css';
 import PetsIcon from '@mui/icons-material/Pets';
 import Tooltip from '@mui/material/Tooltip';
 import {
-  useEffect, useRef, useState,
+  useState,
 } from 'react';
+import useRefFunction from '../customHooks/UseRef';
 import BtnsPost from './BtnsPost';
 import HoverLikes from './HoverLikes';
-import IPost from '../../Interfaces/post/Ipost';
+import IPost from '../../Interfaces/post/IPost';
 import UserPostInfo from './UserPostInfo';
 import Comments from './Comments';
 
@@ -37,33 +38,14 @@ const comments = {
 
 const Post = ({ post }:IPost) => {
   const [showComments, setShowComments] = useState(false);
-  const useOutsideClick = (callback: Function) => {
-    const ref = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-      const handleClick = (event: any) => {
-        if (ref.current && !ref.current.contains(event.target)) {
-          callback();
-        }
-      };
-
-      document.addEventListener('click', handleClick);
-
-      return () => {
-        document.removeEventListener('click', handleClick);
-      };
-    }, []);
-
-    return ref;
-  };
   const handleClick = () => {
     setShowComments(!showComments);
   };
-
   const handleClickOutside = () => {
     setShowComments(false);
   };
-  const ref = useOutsideClick(handleClickOutside);
+  const ref = useRefFunction(handleClickOutside);
 
   return (
     <div ref={ref} className="post-card">

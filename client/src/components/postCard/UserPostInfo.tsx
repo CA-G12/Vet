@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import IPost from '../../Interfaces/post/Ipost';
+import IPost from '../../Interfaces/post/IPost';
 
 const UserPostInfo = ({ post }:IPost) => (
   <NavLink to={`/users/${post.User.id}`} className="user-info-post">

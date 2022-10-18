@@ -1,20 +1,9 @@
 import LikeItem from './LikeItem';
+import ILike from '../../Interfaces/post/ILike';
 
-interface Like{
-  id:number
-  User:User
-}
-interface User{
-  id:number
-  name:string
-  avatar:string
-}
-interface props{
-  likes:Array<Like>
-}
-const HoverLikes = ({ likes }:props) => (
+const HoverLikes = ({ likes }:{likes:Array<ILike>}) => (
   <div className="whoLike">
-    {likes.map((liked:Like) => <LikeItem key={liked.id} like={liked} />)}
+    {likes.map((liked:ILike) => <LikeItem key={liked.id} like={liked} />)}
   </div>
 );
 
