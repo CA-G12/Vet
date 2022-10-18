@@ -1,10 +1,11 @@
 import { Outlet } from 'react-router-dom';
+import Popup from './components/Popup/Popup';
 import Nav from './components/Nav';
 
 const App = () => (
   <div>
     <Nav />
-    <h1>kakashi is here</h1>
+    <Popup />
     <Outlet />
   </div>
 );

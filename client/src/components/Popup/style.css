@@ -1,0 +1,23 @@
+.SignBar{
+    border-bottom:1px #C4C4C4 solid;
+    width: 250px;
+    height: 60px;
+    display:flex;
+    justify-content: space-around;
+}
+
+ .TabActive button:focus  {
+   color :#356E6E
+}
+.Sign {
+    color:#356E6E;
+    font-weight: bold;
+    font-size: 25px;   
+    margin: 5px;
+}
+.formContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
