@@ -14,16 +14,6 @@ import * as React from 'react';
 import IAuth from '../../Interfaces/auth';
 import { SignUpValid } from '../../Validation';
 
-const FormControlStyle = {
-  m: 1,
-  width: '25ch',
-};
-const googleBtnStyle = {
-  display: 'flex',
-  justifyContent: 'center',
-  flexDirection: 'column',
-  alignItems: 'center',
-};
 const SignUp = () => {
   const [userData, setUserData] = React.useState<IAuth>({
     name: '',
@@ -54,25 +44,39 @@ const SignUp = () => {
 
   return (
     <form
+      style={{ marginLeft: '30px' }}
       className="formContainer"
       onSubmit={(e) => {
+        e.preventDefault();
         SignUpValid.validate(userData)
-          .then(() => toast('WellCome !'))
+          .then(() => toast.success('WellCome !'))
           .catch((err:any) => {
-            e.preventDefault();
-            toast(err.message);
+            toast.error(err.message);
           });
       }}
     >
       <p className="Sign"> Sign in to your Account</p>
-
-      <FormControl sx={googleBtnStyle} variant="outlined">
-        <Button sx={{ FormControlStyle }} fullWidth>
-          <img src="./google.png" alt="google" width="25px" height="25px" />
-          Continue with Google
-        </Button>
-      </FormControl>
       <FormControl>
+        <FormControl
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+          variant="outlined"
+        >
+          <Button
+            sx={{
+              color: '#356E6E',
+              border: '1px #356E6E  solid',
+            }}
+            fullWidth
+          >
+            <img src="./google.png" alt="google" width="25px" height="25px" />
+            Continue with Google
+          </Button>
+        </FormControl>
         <TextField
           size="small"
           fullWidth
@@ -80,7 +84,7 @@ const SignUp = () => {
           name="name"
           onChange={handleState}
           id="outlined-start-adornment"
-          sx={{ FormControlStyle }}
+          sx={{ m: 1, width: '25ch', color: '#356E6E' }}
         />
       </FormControl>
       <FormControl>
@@ -92,11 +96,17 @@ const SignUp = () => {
           type="email"
           name="email"
           onChange={handleState}
-          sx={{ FormControlStyle }}
+          sx={{ m: 1, width: '25ch', color: '#356E6E' }}
         />
       </FormControl>
-      <FormControl sx={{ FormControlStyle }} variant="outlined">
-        <InputLabel size="small" htmlFor="outlined-adornment-password">Password </InputLabel>
+      <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+        <InputLabel
+          size="small"
+          htmlFor="outlined-adornment-password"
+        >
+          Password
+
+        </InputLabel>
         <OutlinedInput
           name="password"
           size="small"
@@ -109,7 +119,7 @@ const SignUp = () => {
               <IconButton
                 aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
-                onMouseDown={(e) => { e.preventDefault(); }}
+                onMouseDown={(e) => e.preventDefault()}
                 edge="end"
                 name="password"
               >
@@ -120,8 +130,14 @@ const SignUp = () => {
           label="Password"
         />
       </FormControl>
-      <FormControl sx={{ FormControlStyle }} variant="outlined">
-        <InputLabel size="small" htmlFor="outlined-adornment-password">   Confirm Password  </InputLabel>
+      <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+        <InputLabel
+          size="small"
+          htmlFor="outlined-adornment-password"
+        >
+          Confirm Password
+
+        </InputLabel>
         <OutlinedInput
           size="small"
           fullWidth
@@ -146,8 +162,14 @@ const SignUp = () => {
         />
       </FormControl>
 
-      <FormControl sx={{ FormControlStyle }} variant="outlined">
-        <InputLabel size="small" id="demo-simple-select-helper-label"> Role </InputLabel>
+      <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+        <InputLabel
+          size="small"
+          id="demo-simple-select-helper-label"
+        >
+          Role
+
+        </InputLabel>
         <Select
           size="small"
           fullWidth
@@ -161,7 +183,7 @@ const SignUp = () => {
           <MenuItem value="DOCTOR">Doctor</MenuItem>
         </Select>
       </FormControl>
-      <FormControl sx={{ FormControlStyle }} variant="outlined">
+      <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
         <button type="submit">Sign up </button>
       </FormControl>
     </form>

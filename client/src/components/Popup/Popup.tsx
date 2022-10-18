@@ -17,7 +17,7 @@ const style = {
   bgcolor: 'background.paper',
   borderRadius: '2%',
   boxShadow: 24,
-  p: 4,
+  p: 1,
 };
 
 const PopUp = () => {

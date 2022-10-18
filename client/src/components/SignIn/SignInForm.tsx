@@ -44,9 +44,9 @@ const SignIn = () => {
     <form onSubmit={(e) => {
       e.preventDefault();
       SignInValid.validate(userData)
-        .then(() => toast('WellCome !'))
+        .then(() => toast.success('WellCome !'))
         .catch((err:any) => {
-          toast(err.message);
+          toast.error(err.message);
         });
     }}
     >
