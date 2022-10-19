@@ -1,4 +1,4 @@
-import express, { Application } from 'express'
+import express, { Application, NextFunction, Request ,Response} from 'express'
 import compression from 'compression'
 import cookieParser from 'cookie-parser'
 import environment from './config/environment'
@@ -22,6 +22,9 @@ class App {
     this.app.use(express.urlencoded({ extended: false }))
     this.app.use(express.static(join(__dirname, '..', 'client', 'build')))
     this.app.use('/api/v1', router)
+    this.app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+      res.status(err.status).json({msg: err.message})
+    })
   }
 }
 

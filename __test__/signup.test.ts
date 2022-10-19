@@ -1,8 +1,8 @@
-import app from '../app'
+import app from '../src/app'
 import { describe, expect, test } from '@jest/globals'
 import supertest from 'supertest'
-import build from '../db/build'
-import sequelize from '../db/connection'
+import build from '../src/db/build'
+import sequelize from '../src/db/connection'
 
 beforeAll(() => build())
 afterAll(() => sequelize.close())
@@ -16,7 +16,8 @@ describe('test the signup endpoint', () => {
           name: 'salsabeel',
           email: 'salsabeel12@gmail.com',
           role: 'DOCTOR',
-          password: '123456789'
+          password: '123456789',
+          confirmPassword: '123456789'
         })
       .end((err, res) => {
         if (err) return done(err)
@@ -32,11 +33,12 @@ describe('test the signup endpoint', () => {
           name: 'salsabeel',
           email: 'salsabeel12@gmail.com',
           role: 'DOCTOR',
-          password: '123456789'
+          password: '123456789',
+          confirmPassword: '123456789'
         })
       .end((err, res) => {
         if (err) return done(err)
-        expect(res.body.massage).toBe('You have account')
+        expect(res.body.msg).toBe('You have account')
         return done()
       })
   })
@@ -49,11 +51,12 @@ describe('test the signup endpoint', () => {
           name: 'salsabeel',
           email: 'salsabeel12gmail.com',
           role: 'DOCTOR',
-          password: '123456789'
+          password: '123456789',
+          confirmPassword: '123456789'
         })
       .end((err, res) => {
         if (err) return done(err)
-        expect(res.body.massage.details[0].message).toBe('"email" must be a valid email')
+        expect(res.body.msg).toBe('"email" must be a valid email')
         return done()
       })
   })

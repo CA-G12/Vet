@@ -1,18 +1,19 @@
 import { Request, Response } from 'express'
-import { DoctorInfo } from '../models'
+import { DoctorInfo, User } from '../models'
 import validation from '../validation/'
-import CustumError from '../helpers/errorsHandling/CustumError'
+import CustomError from '../helpers/errorsHandling/CustomError'
 
 export default class DoctorController {
   public static async doctorInfo (req :Request, res :Response) {
-    const { DoctorId, clinicLocation, workplace, hourRate } = req.body
-    try {
-      await validation.doctorInfoValid({ DoctorId, clinicLocation, workplace, hourRate })
-      await DoctorInfo.create({ DoctorId, clinicLocation, workplace, hourRate })
-      res.json({ status: 200, massage: 'Welcome' })
-    } catch (error) {
-      throw new CustumError(400,JSON.stringify(error) )
-      
-    }
+    const { doctorId, clinicLocation, workplace, hourRate } = req.body
+     const doctorFound =  await User.findAll({ where: { id:doctorId ,role :"DOCTOR"} })
+     if(doctorFound.length === 1){
+       await validation.doctorInfoValid({ doctorId, clinicLocation, workplace, hourRate })
+       await DoctorInfo.create({ doctorId, clinicLocation, workplace, hourRate })
+       res.json({ massage: 'Welcome' })
+     }else{
+      throw new CustomError(400, "you don't have account")
+     }
+   
   }
 }

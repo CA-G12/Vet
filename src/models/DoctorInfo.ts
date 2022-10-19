@@ -14,7 +14,7 @@ DoctorInfo.init({
     autoIncrement: true,
     primaryKey: true
   },
-  DoctorId: {
+  doctorId: {
     type: DataTypes.INTEGER,
     unique: true,
     allowNull: false
