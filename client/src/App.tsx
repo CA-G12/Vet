@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import Nav from './components/Nav';
-import AddPost from './components/AddPost';
+import AddPost from './components/AddPost/AddPost';
 
 const App = () => (
   <div>

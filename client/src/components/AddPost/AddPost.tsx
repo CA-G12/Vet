@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -7,8 +8,8 @@ import TextareaAutosize from '@mui/material/TextareaAutosize';
 import ImageIcon from '@mui/icons-material/Image';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import BasicSelect from './BasicSelect';
-import Animal from '../interfaces/Animal';
-import Tag from '../interfaces/Tag';
+import Animal from '../../Interfaces/Animal';
+import Tag from '../../Interfaces/Tag';
 
 const theme = createTheme({
   palette: {
@@ -64,8 +65,8 @@ const AddPost = () => {
   const handleClose = () => setOpen(false);
 
   return (
-    <ThemeProvider theme={theme}>
 
+    <ThemeProvider theme={theme}>
       <div>
         <Button onClick={handleOpen}>Add post</Button>
         <Modal
@@ -75,55 +76,61 @@ const AddPost = () => {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2" />
-            <TextareaAutosize
-              aria-label="empty textarea"
-              placeholder="What is going on?"
-              style={{
-                width: '90%', minHeight: '40%', fontSize: 16, padding: '2rem', borderStyle: 'none', backgroundColor: '#EFF2F2',
-              }}
-            />
-            <Box
-              id="modal-modal-description"
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                width: '100%',
-              }}
-            >
-              <Box sx={{
-                display: 'flex',
-                justifyContent: 'space-around',
-                width: '60%',
-              }}
-              >
-                <label htmlFor="upload-photo">
-                  <input
-                    style={{ display: 'none' }}
-                    id="upload-photo"
-                    name="upload-photo"
-                    type="file"
-                  />
-
-                  <Button variant="outlined" component="span" sx={{ minWidth: 150, minHeight: '100%' }}>
-                    add Image
-                    <ImageIcon />
-                  </Button>
-                </label>
-                <BasicSelect name="Tag" obj={TagList} />
-                <BasicSelect name="Animal" obj={AnimalList} />
-              </Box>
-              <Button
-                variant="contained"
+          <form action="">
+            <Box sx={style}>
+              <Typography id="modal-modal-title" variant="h6" component="h2" />
+              <TextareaAutosize
+                aria-label="empty textarea"
+                placeholder="What is going on?"
+                style={{
+                  width: '90%', minHeight: '40%', fontSize: 16, padding: '2rem', borderStyle: 'none', backgroundColor: '#EFF2F2',
+                }}
+              />
+              <Box
+                id="modal-modal-description"
                 sx={{
-                  width: 200,
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  width: '100%',
                 }}
               >
-                Post
-              </Button>
+                <Box sx={{
+                  display: 'flex',
+                  justifyContent: 'space-around',
+                  width: '60%',
+                }}
+                >
+                  <label htmlFor="upload-photo">
+                    <input
+                      style={{ display: 'none' }}
+                      id="upload-photo"
+                      name="upload-photo"
+                      type="file"
+                    />
+                    <Button variant="outlined" component="span" sx={{ minWidth: 150, minHeight: '100%' }} endIcon={<ImageIcon />}>
+                      add Image
+                    </Button>
+                  </label>
+                  <BasicSelect
+                    name="Tag"
+                    obj={TagList}
+                  />
+                  <BasicSelect
+                    name="Animal"
+                    obj={AnimalList}
+                  />
+                </Box>
+                <Button
+                  variant="contained"
+                  sx={{
+                    width: 200,
+                  }}
+                >
+                  Post
+                </Button>
+              </Box>
             </Box>
-          </Box>
+          </form>
         </Modal>
       </div>
     </ThemeProvider>
