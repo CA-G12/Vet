@@ -59,9 +59,7 @@
     "jsonwebtoken": "^8.5.1",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
-    "passport-google-oidc": "^0.1.0",
     "passport-jwt": "^4.0.0",
-    "passport-local": "^1.0.0",
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.24.0"
