@@ -24,7 +24,7 @@ const EditAndDeleteBtn = () => {
   return (
     <div ref={ref} className="Edit-and-deleteBtn">
       <ListItemButton onClick={handleClick}>
-        <ListItemIcon>
+        <ListItemIcon className="dots-icon">
           <MoreHorizIcon />
         </ListItemIcon>
       </ListItemButton>

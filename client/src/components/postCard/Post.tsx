@@ -1,16 +1,16 @@
 import './post.css';
-import PetsIcon from '@mui/icons-material/Pets';
-import Tooltip from '@mui/material/Tooltip';
+
 import {
   useState,
 } from 'react';
+
 import useOutsideClick from '../hooks/UseOutsideClick ';
 import BtnsPost from './BtnsPost';
-import HoverLikes from './HoverLikes';
 import IPost from '../../Interfaces/post/IPost';
 import UserPostInfo from '../customComponents/UserPostInfo';
 import Comments from './Comments';
 import EditAndDeleteBtn from './EditAndDeleteBtn';
+import StackCommentsAndLikes from './StackCommentsAndLikes';
 
 const comments = {
   id: 1,
@@ -64,20 +64,11 @@ const Post = ({ post }:IPost) => {
             {post.content}
 
           </p>
-          <div className="comments-likes-btn">
-            <div role="presentation" onClick={handleClick}>
-              <Tooltip title="Show Comments">
-                <i className="fa-solid fa-comment" />
-              </Tooltip>
-              {comments.Comments.length}
-            </div>
-            <div className="likesNum">
-              <PetsIcon />
-              {' '}
-              {post.Likes.length}
-              <HoverLikes likes={post.Likes} />
-            </div>
-          </div>
+          <StackCommentsAndLikes
+            commentNum={comments.Comments.length}
+            likes={post.Likes}
+            handleClick={handleClick}
+          />
         </section>
         {post.image && (
         <figure className="img-post-desctop">
