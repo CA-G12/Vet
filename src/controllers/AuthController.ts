@@ -13,11 +13,13 @@ export default class AuthController {
       const searchEmail = await User.findAll({ where: { email } })
       if (searchEmail.length === 0) {
         const newUser = await User.create({ name, email, role, password: await bcrypt.hash(password, 15) })
-        const token = await sign({ id: newUser.id, name, email }, environment.secretKey as Secret)
-        res.json({ token, name: newUser.name })
+        const token = await sign({ id: newUser.id, name, email ,avatar:newUser.avatar }, environment.secretKey as Secret)
+        res.json({ token, name: newUser.name ,avatar:newUser.avatar })
+      }else{
+        res.status(400).json({ massage: 'You have account' })
       }
     } catch (err) {
-      res.status(400).json({ status: 400, massage: err })
+      res.status(400).json({ massage: err })
     }
   }
 }

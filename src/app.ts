@@ -2,10 +2,9 @@ import express, { Application } from 'express'
 import compression from 'compression'
 import cookieParser from 'cookie-parser'
 import environment from './config/environment'
-import router from './routes/index'
-
-import { join } from 'path'
 import router from './routes'
+import { join } from 'path'
+
 class App {
   public app: Application
   public nodeEnv: string
@@ -22,11 +21,8 @@ class App {
     this.app.use(cookieParser())
     this.app.use(express.urlencoded({ extended: false }))
     this.app.use(express.static(join(__dirname, '..', 'client', 'build')))
-<<<<<<< HEAD
     this.app.use('/api/v1', router)
-=======
     this.app.use(router)
->>>>>>> 88543d0d5444316b467fab68ce5c028d1c46b3d3
   }
 }
 
