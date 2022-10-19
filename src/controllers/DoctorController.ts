@@ -7,7 +7,6 @@ export default class DoctorController {
     const { DoctorId, clinicLocation, workplace, hourRate } = req.body
     try {
       await validation.doctorInfoValid({ DoctorId, clinicLocation, workplace, hourRate })
-      console.log(DoctorId, clinicLocation, workplace, hourRate)
       await DoctorInfo.create({ DoctorId, clinicLocation, workplace, hourRate })
       res.json({ status: 200, massage: 'Welcome' })
     } catch (error) {
