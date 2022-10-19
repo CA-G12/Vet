@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { DoctorInfo } from '../models'
 import validation from '../validation/'
+import CustumError from '../helpers/errorsHandling/CustumError'
 
 export default class DoctorController {
   public static async doctorInfo (req :Request, res :Response) {
@@ -10,10 +11,8 @@ export default class DoctorController {
       await DoctorInfo.create({ DoctorId, clinicLocation, workplace, hourRate })
       res.json({ status: 200, massage: 'Welcome' })
     } catch (error) {
-      res.json({
-        status: 400,
-        massage: error
-      })
+      throw new CustumError(400,JSON.stringify(error) )
+      
     }
   }
 }

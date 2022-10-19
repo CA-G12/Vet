@@ -4,6 +4,7 @@ import { sign, Secret } from 'jsonwebtoken'
 import { Request, Response } from 'express'
 import { User } from '../models'
 import validation from '../validation/'
+import CustumError from '../helpers/errorsHandling/CustumError'
 
 export default class AuthController {
   public static async signup (req: Request, res: Response) {
@@ -16,10 +17,10 @@ export default class AuthController {
         const token = await sign({ id: newUser.id, name, email ,avatar:newUser.avatar }, environment.secretKey as Secret)
         res.json({ token, name: newUser.name ,avatar:newUser.avatar })
       }else{
-        res.status(400).json({ massage: 'You have account' })
+        throw new CustumError(400, 'You have account' )
       }
-    } catch (err) {
-      res.status(400).json({ massage: err })
+    } catch (error) {
+      throw new CustumError(400,JSON.stringify(error) )
     }
   }
 }
