@@ -60,7 +60,6 @@
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.24.0",
-    "ts-jest": "^29.0.3",
-    "typescript-module-alias": "^2.2.9"
+    "ts-jest": "^29.0.3"
   }
 }

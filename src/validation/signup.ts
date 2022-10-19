@@ -6,7 +6,8 @@ const signupValid = (data :object) => {
     name: Joi.string().min(4).max(50).required(),
     email: Joi.string().email().required(),
     role: Joi.string().valid('USER', 'DOCTOR').required(),
-    password: Joi.string().min(8).max(15).required()
+    password: Joi.string().min(8).max(15).required(),
+    confirmPassword: Joi.any().valid(Joi.ref('password')).required()
   })
   return schema.validateAsync(data)
 }

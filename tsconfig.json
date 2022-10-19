@@ -28,9 +28,6 @@
       "resolveJsonModule": true,
       "importHelpers": true,
       "baseUrl": "src",
-      "paths":{
-        "@interfaces": ["interfaces/*"]
-      },
   },
   "include": [
       "src",
