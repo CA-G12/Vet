@@ -1,15 +1,16 @@
-import ImageIcon from '@mui/icons-material/Image';
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
 const AddInputComment = () => (
-  <div className="addCommentInput">
+  <form className="addCommentInput">
     <input placeholder="Add Comment" id="add-comment-btn" type="text" />
 
     <label htmlFor="upload-img-comment">
       {' '}
-      <ImageIcon />
+      <AddPhotoAlternateIcon />
     </label>
     <input type="file" name="" id="upload-img-comment" />
-  </div>
+    <button className="add-comment-btn" type="submit">Comment</button>
+  </form>
 );
 
 export default AddInputComment;
