@@ -31,8 +31,5 @@
   },
   "include": [
       "src",
-      "client",
-      "test",
-  ],
-
+ "__test__"  ]
 }

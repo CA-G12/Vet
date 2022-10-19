@@ -1,6 +1,11 @@
+import { Outlet } from 'react-router-dom';
+import Nav from './components/Nav';
+
 const App = () => (
   <div>
-    <h1>Saeed</h1>
+    <Nav />
+    <h1>kakashi is here</h1>
+    <Outlet />
   </div>
 );
 
