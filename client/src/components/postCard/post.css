@@ -209,6 +209,9 @@ object-fit: cover;
     text-align: center;
     font-size: 20px;
   }
+  .article{
+    padding: 13px 0;
+  }
 }
 .btns-list{
   position: absolute;
@@ -301,4 +304,5 @@ cursor: pointer;
   color: var(--not-active-color);
   background-color: var(--font-color);
   border: 1px solid var(--font-color);
+  width: 120px !important;
 }
