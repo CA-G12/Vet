@@ -31,14 +31,14 @@ export default class AuthController {
       role: user.role
     }
     const token = sign(payload, secretKey as Secret)
-    res.cookie('token', token, { httpOnly: true }).json({
+
+    res.set('token', token).json({
       status: 200,
-      data: { id: user.id, userName: user.name, avatar: user.avatar }
+      data: { id: user.id, userName: user.name, avatar: user.avatar, token }
     })
   }
 
-  // Registration based on user providing a series of specific user information
   public static async signup (req: Request, res: Response) {
-  // code here
+    // code here
   }
 }

@@ -2,7 +2,6 @@ import express, { Application } from 'express'
 import compression from 'compression'
 import cookieParser from 'cookie-parser'
 import environment from './config/environment'
-import './config/auth'
 import { join } from 'path'
 import router from './routes'
 class App {
