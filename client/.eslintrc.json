@@ -68,8 +68,8 @@
       {
         "namedComponents": "arrow-function"
       }
-    ],
-    "eol-last": ["error", "always"]
+    ]
+    , "eol-last": ["error", "always"]
   },
   "settings": {
     "import/resolver": {
