@@ -1,9 +1,23 @@
-import { Response, Request } from 'express'
 import { User, Post, Like, Tag, Animal } from '../db'
+import { Request, Response } from 'express'
 import { Op } from 'sequelize'
+import postSchema from '../schemes'
 
 export default class PostsController {
-  // for getting all data
+  public static async store (req:Request, res:Response) {
+    try {
+      const { content, image, AnimalId, TagId, UserId } = req.body
+      await postSchema.validateAsync({ content, image, AnimalId, TagId, UserId })
+      const createPost = await Post.create({ content, image, AnimalId, TagId, UserId })
+      res.status(200).json({ status: res.status, msg: 'new post added successfully', data: createPost })
+    } catch (error) {
+      res.status(400).json({
+        msg: 'something went wrong',
+        error
+      })
+    }
+  }
+
   public static async index (req: Request, res: Response) {
     const { tagId, animalId, q } = req.query
     console.log(req.query)

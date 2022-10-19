@@ -1,3 +1,6 @@
-import { ISignup } from './ISignup'
+type CustomError = {
+    message :string
+    status?:number
+}
 
-export default ISignup
+export default CustomError
