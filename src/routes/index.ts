@@ -1,6 +1,7 @@
 import { Router } from 'express'
-import PostsController from '../controllers/PostsController'
+import PostRoutes from './posts'
+
 const router = Router()
-router.get('/posts', PostsController.index)
+router.use(PostRoutes)
 
 export default router
