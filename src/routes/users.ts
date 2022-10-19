@@ -1,6 +1,7 @@
 import { Router } from 'express'
-import UsersController from '../controllers/authController'
+import UsersController from '../controllers/AuthController'
 import passport from 'passport'
+import isAdmin from '../middlewares/auth/isAdmin'
 
 const signInRouter = Router()
 
@@ -19,5 +20,9 @@ signInRouter.get('/auth/google/failure', (req, res) => {
 })
 
 signInRouter.post('/signin', UsersController.signin)
+signInRouter.get('/hello', isAdmin, (req, res) => {
+  console.log(req.user)
+  res.send('heelloooo')
+})
 
 export default signInRouter
