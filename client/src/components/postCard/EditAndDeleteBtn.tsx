@@ -23,11 +23,11 @@ const EditAndDeleteBtn = () => {
 
   return (
     <div ref={ref} className="Edit-and-deleteBtn">
-      <ListItemButton onClick={handleClick}>
+      <button className="dots-btn" type="submit" onClick={handleClick}>
         <ListItemIcon className="dots-icon">
           <MoreHorizIcon />
         </ListItemIcon>
-      </ListItemButton>
+      </button>
       <Collapse className="btns-container" in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <ListItemButton className="btns-list" sx={{ pl: 4 }}>

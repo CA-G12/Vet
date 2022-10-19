@@ -6,7 +6,7 @@ import {
 
 import useOutsideClick from '../hooks/UseOutsideClick ';
 import BtnsPost from './BtnsPost';
-import IPost from '../../Interfaces/post/IPost';
+import IPost from '../../Interfaces/post/Ipost';
 import UserPostInfo from '../customComponents/UserPostInfo';
 import Comments from './Comments';
 import EditAndDeleteBtn from './EditAndDeleteBtn';
