@@ -5,5 +5,6 @@ import Post from './Post'
 import Like from './Like'
 import Comment from './Comment'
 import Animal from './Animal'
+import DoctorInfo from './DoctorInfo'
 
-export { User, Like, Comment, Animal, Post, Booking, Tag }
+export { User, Like, Comment, Animal, Post, Booking, Tag, DoctorInfo }
