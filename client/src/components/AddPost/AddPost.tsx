@@ -1,12 +1,15 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import ImageIcon from '@mui/icons-material/Image';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import postSchema from '../../Validation/addPost';
+import iPost from '../../Interfaces/Post';
+import Username from './Username';
 import BasicSelect from './BasicSelect';
 import Animal from '../../Interfaces/Animal';
 import Tag from '../../Interfaces/Tag';
@@ -47,7 +50,7 @@ const style = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  justifyContent: 'space-between',
+  justifyContent: 'space-around',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
@@ -63,40 +66,66 @@ const AddPost = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [postData, setPostData] = React.useState<iPost>({
+    content: '',
+    image: '',
+    TagId: 0,
+    AnimalId: 0,
+  });
 
+  const handleStateTextarea = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
+    const { name, value } = e.currentTarget;
+    setPostData((prev:iPost) => ({ ...prev, [name]: value }));
+  };
   return (
 
     <ThemeProvider theme={theme}>
-      <div>
-        <Button onClick={handleOpen}>Add post</Button>
-        <Modal
-          className="addPost"
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <form action="">
+      <Button onClick={handleOpen}>Add post</Button>
+      <Modal
+        className="addPost"
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div>
+
+          <form
+            action=""
+            onSubmit={(e) => {
+              e.preventDefault();
+              postSchema.validate(postData)
+                .then(() => {
+                  toast.success('New post added successfully');
+                })
+                .catch((err:any) => {
+                  toast.error(err.message);
+                });
+            }}
+          >
             <Box sx={style}>
-              <Typography id="modal-modal-title" variant="h6" component="h2" />
+              <Box sx={{ alignSelf: 'flex-start' }}>
+                <Username name="Aseel" avatar="my image" />
+              </Box>
               <TextareaAutosize
+                name="content"
+                onChange={handleStateTextarea}
                 aria-label="empty textarea"
                 placeholder="What is going on?"
                 style={{
-                  width: '90%', minHeight: '40%', fontSize: 16, padding: '2rem', borderStyle: 'none', backgroundColor: '#EFF2F2',
+                  width: '85%', minHeight: '40%', fontSize: 16, padding: '2rem', borderStyle: 'none', backgroundColor: '#EFF2F2',
                 }}
               />
               <Box
-                id="modal-modal-description"
                 sx={{
                   display: 'flex',
                   justifyContent: 'space-between',
-                  width: '100%',
+                  width: '90%',
                 }}
               >
                 <Box sx={{
                   display: 'flex',
-                  justifyContent: 'space-around',
+                  justifyContent: 'space-between',
                   width: '60%',
                 }}
                 >
@@ -112,15 +141,22 @@ const AddPost = () => {
                     </Button>
                   </label>
                   <BasicSelect
+                    id={postData}
                     name="Tag"
+                    itemId="TagId"
                     obj={TagList}
+                    callback={setPostData}
                   />
                   <BasicSelect
+                    id={postData}
                     name="Animal"
+                    itemId="AnimalId"
                     obj={AnimalList}
+                    callback={setPostData}
                   />
                 </Box>
                 <Button
+                  type="submit"
                   variant="contained"
                   sx={{
                     width: 200,
@@ -131,8 +167,8 @@ const AddPost = () => {
               </Box>
             </Box>
           </form>
-        </Modal>
-      </div>
+        </div>
+      </Modal>
     </ThemeProvider>
   );
 };
