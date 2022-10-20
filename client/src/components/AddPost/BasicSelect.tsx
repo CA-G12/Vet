@@ -1,24 +1,32 @@
-import * as React from 'react';
+// import * as React from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
+import addPostType from '../../Interfaces/Post';
 
 interface Selector{
     id:number
     name:string
 }
 interface Props{
+    itemId:string
+    id:addPostType
+    callback:Function
     name:string
     obj: Selector[]
 }
 
-const BasicSelect = ({ name, obj } :Props) => {
-  const [choice, setChoice] = React.useState('');
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setChoice(event.target.value as string);
+const BasicSelect = ({
+  name, obj, id, callback, itemId,
+} :Props) => {
+  const handleChange = (e:any) => {
+    if (itemId === 'TagId') {
+      callback({ ...id, TagId: e.target.value });
+    } else {
+      callback({ ...id, AnimalId: e.target.value });
+    }
   };
 
   return (
@@ -28,7 +36,7 @@ const BasicSelect = ({ name, obj } :Props) => {
         <Select
           labelId="basic-select-label"
           id="basic-select"
-          value={choice}
+          value={itemId === 'TagId' ? id.TagId : id.AnimalId}
           label={name}
           onChange={handleChange}
         >
