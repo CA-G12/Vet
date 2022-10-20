@@ -24,6 +24,7 @@
     "react-hooks"
   ],
   "rules": {
+    "eol-last": ["error", "always"],
     "no-nested-ternary": 0,
     "no-use-before-define": "off",
     "eol-last": ["error", "always"],
@@ -69,12 +70,12 @@
       {
         "namedComponents": "arrow-function"
       }
-    ],
-    "eol-last": ["error", "always"]
+    ]
   },
   "settings": {
     "import/resolver": {
       "typescript": {}
     }
   }
+
 }

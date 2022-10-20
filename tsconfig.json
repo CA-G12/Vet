@@ -27,9 +27,10 @@
       "esModuleInterop": true,
       "resolveJsonModule": true,
       "importHelpers": true,
-      "baseUrl": "src"
+      "baseUrl": "src",
   },
   "include": [
       "src",
- "__test__"  ]
+      "__test__"
+      ]
 }

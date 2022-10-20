@@ -1,4 +1,4 @@
-import { User, Post, Like, Animal, Tag, sequelize } from '.'
+import { User, Post, Like, Animal, Tag, DoctorInfo, sequelize } from '.'
 import environment from '../config/environment'
 import data from './seeds.json'
 const buildDB = async () => {
@@ -8,6 +8,7 @@ const buildDB = async () => {
   await User.bulkCreate(data.User)
   await Post.bulkCreate(data.Post)
   await Like.bulkCreate(data.Like)
+  await DoctorInfo.bulkCreate(data.DoctorInfo)
 }
 
 if (environment.nodeEnv !== 'test') {

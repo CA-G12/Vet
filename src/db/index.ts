@@ -1,5 +1,8 @@
-import { User, Like, Comment, Animal, Post, Booking, Tag } from '../models'
+import { User, Like, Comment, Animal, Post, Booking, Tag, DoctorInfo } from '../models'
 import sequelize from './connection'
+
+User.hasOne(DoctorInfo, { foreignKey: { name: 'DoctorId' } })
+DoctorInfo.belongsTo(User, { foreignKey: { name: 'DoctorId' } })
 
 User.hasMany(Post)
 Post.belongsTo(User)
@@ -26,4 +29,4 @@ Post.belongsTo(Tag)
 Animal.hasMany(Post)
 Post.belongsTo(Animal)
 
-export { sequelize, User, Like, Comment, Animal, Post, Booking, Tag }
+export { sequelize, User, Like, Comment, Animal, Post, Booking, Tag, DoctorInfo }
