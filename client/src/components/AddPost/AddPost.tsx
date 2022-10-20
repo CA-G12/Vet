@@ -8,11 +8,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import ImageIcon from '@mui/icons-material/Image';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import postSchema from '../../Validation/addPost';
-import iPost from '../../Interfaces/Post';
+import iPost from '../../Interfaces/IPost';
 import Username from './Username';
 import BasicSelect from './BasicSelect';
-import Animal from '../../Interfaces/Animal';
-import Tag from '../../Interfaces/Tag';
+import ISelector from '../../Interfaces/ISelector';
 
 const theme = createTheme({
   palette: {
@@ -31,14 +30,14 @@ const theme = createTheme({
   },
 });
 
-const AnimalList:Animal[] = [
+const AnimalList:ISelector[] = [
   { id: 1, name: 'Cats' },
   { id: 2, name: 'Dogs' },
   { id: 3, name: 'Turtles' },
 
 ];
 
-const TagList:Tag[] = [
+const TagList:ISelector[] = [
   { id: 1, name: 'Need help' },
   { id: 2, name: 'Advise' },
   { id: 3, name: 'Up for adoption' },
@@ -141,14 +140,14 @@ const AddPost = () => {
                     </Button>
                   </label>
                   <BasicSelect
-                    id={postData}
+                    post={postData}
                     name="Tag"
                     itemId="TagId"
                     obj={TagList}
                     callback={setPostData}
                   />
                   <BasicSelect
-                    id={postData}
+                    post={postData}
                     name="Animal"
                     itemId="AnimalId"
                     obj={AnimalList}

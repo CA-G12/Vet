@@ -1,5 +1,5 @@
 import Avatar from '@mui/material/Avatar';
-import User from '../../Interfaces/User';
+import User from '../../Interfaces/IUser';
 
 const Username = ({ name, avatar }:User) => (
   <div style={{ display: 'flex' }}>

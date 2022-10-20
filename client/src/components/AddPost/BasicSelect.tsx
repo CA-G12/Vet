@@ -2,8 +2,9 @@ import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import addPostType from '../../Interfaces/Post';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { ReactNode } from 'react';
+import IPost from '../../Interfaces/IPost';
 
 interface Selector{
     id:number
@@ -11,20 +12,20 @@ interface Selector{
 }
 interface Props{
     itemId:string
-    id:addPostType
+    post:IPost
     callback:Function
     name:string
     obj: Selector[]
 }
 
 const BasicSelect = ({
-  name, obj, id, callback, itemId,
+  name, obj, post, callback, itemId,
 } :Props) => {
-  const handleChange = (e:any) => {
+  const handleChange = (event: SelectChangeEvent<ReactNode>) => {
     if (itemId === 'TagId') {
-      callback({ ...id, TagId: e.target.value });
+      callback({ ...post, TagId: event.target.value });
     } else {
-      callback({ ...id, AnimalId: e.target.value });
+      callback({ ...post, AnimalId: event.target.value });
     }
   };
 
@@ -35,7 +36,7 @@ const BasicSelect = ({
         <Select
           labelId="basic-select-label"
           id="basic-select"
-          value={itemId === 'TagId' ? id.TagId : id.AnimalId}
+          value={itemId === 'TagId' ? post.TagId : post.AnimalId}
           label={name}
           onChange={handleChange}
         >
