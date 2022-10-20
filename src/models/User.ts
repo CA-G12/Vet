@@ -26,12 +26,14 @@ User.init({
     allowNull: false
   },
   avatar: {
-    type: DataTypes.STRING,
-    allowNull: false
+      type: DataTypes.STRING,
+      defaultValue: 'https://www.pngfind.com/pngs/m/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.png',
+      allowNull: false,
   },
   email: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    unique: true
   },
   password: {
     type: DataTypes.STRING

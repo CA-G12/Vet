@@ -1,3 +1,8 @@
+// code here
+
+import validation from '../validation/'
+import CustomError from '../helpers/errorsHandling/CustomError'
+
 import { NextFunction, Request, Response } from 'express'
 import environment from '../config/environment'
 import bcrypt from 'bcryptjs'
@@ -39,6 +44,15 @@ export default class AuthController {
   }
 
   public static async signup (req: Request, res: Response) {
-    // code here
+    const { name, email, role, password, confirmPassword } = req.body
+    await validation.signupValid({ name, email, role, password, confirmPassword })
+    const searchEmail = await User.findAll({ where: { email } })
+    if (searchEmail.length === 0) {
+      const newUser = await User.create({ name, email, role, password: await bcrypt.hash(password, 15) })
+      const token = await sign({ id: newUser.id, name, email, avatar: newUser.avatar }, environment.secretKey as Secret)
+      res.json({ token, name: newUser.name, avatar: newUser.avatar })
+    } else {
+      throw new CustomError(400, 'You have account')
+    }
   }
 }

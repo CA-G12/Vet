@@ -35,7 +35,14 @@
       "password" :"123456789",
       "role" :"ADMIN",
       "avatar": " "
+  },{
+      "name" : "hala",
+      "email" :"hala@gmail.com",
+      "password" :"123456789",
+      "role" :"DOCTOR",
+      "avatar": " "
   }
+  
     ],
     "Tag":[
       {
@@ -113,7 +120,15 @@
            "PostId": 2,
            "UserId": 2
          }
-  ]
+  ],
+"DoctorInfo":[
+  {
+    "clinicLocation":"Gaza - Naser",
+     "workplace" : "Salala",
+      "hourRate":"15-20 ",
+      "doctorId":6
+  }
+]
     
   
 
