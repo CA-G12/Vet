@@ -3,10 +3,6 @@
       "es2020": true,
       "node": true,
       "jest": true
-<<<<<<< HEAD
-=======
-
->>>>>>> 88543d0d5444316b467fab68ce5c028d1c46b3d3
   },
   "extends": [
       "standard"
