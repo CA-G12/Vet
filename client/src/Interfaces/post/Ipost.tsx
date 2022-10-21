@@ -3,7 +3,7 @@ import Like from './ILike';
 import Tag from './ITag';
 
 interface IPost{
-  post:{
+
     id:number
     content:string
     image:string
@@ -11,7 +11,6 @@ interface IPost{
     Likes:Array<Like>
     Tag:Tag
     Animal:Tag
-  }
 
 }
 export default IPost;

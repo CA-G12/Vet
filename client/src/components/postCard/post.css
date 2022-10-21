@@ -1,10 +1,19 @@
 .post-card{
   position: relative;
-  max-width: 650px;
+  width: 500px;
   border-radius: 12px;
   background-color:var(--background-post) ;
+  margin: 0 20px;
+  
 
 
+}
+.post-content-continuer{
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 60%;
 }
 .article{
   background-color:var(--background-post) ;
@@ -40,6 +49,10 @@ object-fit: cover;
   border-radius: 12px;
   max-width:284px ;
   max-height: 150px;
+  width: 100%;
+}
+.img-post-desctop{
+  width: 30%;
 }
 .comments-likes-btn{
   display: flex;
@@ -92,7 +105,7 @@ object-fit: cover;
   display: block !important;
   content: '';
   background-color: var(--not-active-color);
-  top: 20px;
+  top: 40px;
   border-radius: 10px;
   z-index: 5;
   border: 1px solid var(--font-color);
@@ -125,6 +138,8 @@ font-size: 12px;
   height: auto;
   z-index: 5;
   opacity: 1;
+  top: 25px;
+
 }
 .user-info-comment{
   display: flex;
@@ -189,7 +204,7 @@ object-fit: cover;
 .abusluot-btns:hover .Edit-and-deleteBtn{
   display: block;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
   .img-post-desctop{
     display: none;
   }
@@ -211,6 +226,16 @@ object-fit: cover;
   }
   .article{
     padding: 13px 0;
+  }
+  .post-card{
+    width: 100%;
+  }
+  .post-loading-info{
+    flex-direction: column-reverse;
+  }
+  .loading-img{
+    width: 100% !important;
+    height: 120px !important;
   }
 }
 .btns-list{
@@ -254,7 +279,7 @@ object-fit: cover;
   border-bottom: 1px solid #a3cfcf;
 }
 .addCommentInput input{
-  width: 95%;
+  width: 80%;
   padding: 5px;
   border: none;
   outline: none;
@@ -310,4 +335,46 @@ cursor: pointer;
   border: none;
   width: 5px;
   height: 0;
+}
+.posts{
+  width: 77%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+.loading-user-info{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  width: 40%;
+  padding: 10px;
+}
+.loading-post{
+  min-width: 350px;
+  background-color: var(--background-post);
+  min-height: 200px;
+  border-radius: 12px;
+  
+}
+.post-loading-info{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+.loading-content{
+  width: 100%;
+}
+.loading-posts{
+  margin-top: 50px;
+  width: 77%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.no-result{
+  text-align: center;
+  margin-top: 60px;
+  width: 100%;
 }

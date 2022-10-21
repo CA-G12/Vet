@@ -6,7 +6,7 @@ import {
 
 import useOutsideClick from '../hooks/UseOutsideClick ';
 import BtnsPost from './BtnsPost';
-import IPost from '../../Interfaces/post/Ipost';
+import IPost from '../../Interfaces/post/IPost';
 import UserPostInfo from '../customComponents/UserPostInfo';
 import Comments from './Comments';
 import EditAndDeleteBtn from './EditAndDeleteBtn';
@@ -37,7 +37,7 @@ const comments = {
   }],
 };
 
-const Post = ({ post }:IPost) => {
+const Post = ({ post }:{post:IPost}) => {
   const [showComments, setShowComments] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
   const handleClick = () => {
@@ -53,7 +53,7 @@ const Post = ({ post }:IPost) => {
   return (
     <div ref={ref} className="post-card">
       <article className="article abusluot-btns">
-        <section>
+        <section className="post-content-continuer">
           <UserPostInfo user={post.User} style={{ dimensions: 40, alignItems: 'center' }} />
           {post.image && (
           <div className="img-post-mobile">
