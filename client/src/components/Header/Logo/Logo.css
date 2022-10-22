@@ -1,0 +1,18 @@
+.logo {
+    color: #000116;
+    font-size: 1.8em;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 850px) {
+    .logo {
+        color: #000116;
+        font-size: 1em;
+        font-weight: 600;
+        letter-spacing: 2px;
+    }
+    
+}

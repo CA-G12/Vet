@@ -1,0 +1,87 @@
+.nav-bar {
+    position: relative;
+    background: rgba(90, 89, 89, 0);
+    backdrop-filter: blur(20px);
+    height:5em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 35px;
+    transition: 0.5s ease;
+    gap: 1rem;
+  }
+
+  .navigation .nav-items a {
+    color: #000116;
+    font-size: 1em;
+    text-decoration: none;
+    margin-left: 50px;
+  }
+  .navigation .nav-items a i {
+    display: none;
+  }
+
+  @media screen and (max-width: 850px) {
+    .nav-bar {
+      padding: 0 20px;
+      gap: 0.5rem;
+    }
+    /*=========== Navigation menu ===========*/
+    .nav-menu-btn {
+      display: block;
+      color: #000116;
+      font-size: 1.5em;
+      cursor: pointer;
+    }
+    .navigation {
+      z-index: 99999;
+      position: fixed;
+      background: rgba(223, 219, 219, 0.5);
+      width: 100%;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.3s ease;
+    }
+    .navigation.active {
+      visibility: visible;
+      opacity: 1;
+    }
+    .navigation .nav-items {
+      position: relative;
+      background: #fff;
+      width: 400px;
+      max-width: 400px;
+      display: grid;
+      place-content: center;
+      margin: 20px;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.8);
+      transform: translateY(-10px);
+      transition: 0.3s ease;
+    }
+    .navigation.active .nav-items {
+      transform: translateY(0);
+    }
+    .navigation .nav-items a {
+      color: #222;
+      font-size: 1em;
+      margin: 15px 50px;
+    }
+    .navigation .nav-items a i {
+      display: inline-block;
+      font-size: 1.5em;
+      margin-right: 5px;
+    }
+    
+  }
+  
