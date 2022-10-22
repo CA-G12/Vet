@@ -14,5 +14,8 @@
         font-weight: 600;
         letter-spacing: 2px;
     }
+    .logo img{
+      width: 4rem;
+    }
     
 }

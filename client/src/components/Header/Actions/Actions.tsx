@@ -21,9 +21,9 @@ const actionsStyle = {
   },
 };
 export const Actions = () => {
-  const fireCall = true;
-  const search = true;
-  const userTicket = false;
+  const fireCall = false;
+  const search = false;
+  const userTicket = true;
   const authButtons = true;
   return (
     <Box sx={actionsStyle}>

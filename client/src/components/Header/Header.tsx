@@ -1,9 +1,12 @@
-// @flow
-// import React from 'react';
-
+import './NavHeader/NavHeader.css';
+import { Logo } from './Logo/Logo';
+import { Actions } from './Actions/Actions';
 import { NavHeader } from './NavHeader/NavHeader';
-import './Header.css';
 
 export const Header = () => (
-  <NavHeader />
+  <header className="nav-bar">
+    <Logo />
+    <NavHeader />
+    <Actions />
+  </header>
 );
