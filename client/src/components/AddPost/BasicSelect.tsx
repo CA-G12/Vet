@@ -4,18 +4,15 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { ReactNode } from 'react';
-import IPost from '../../Interfaces/IPost';
+import IPost from '../../Interfaces/post/IAddPost';
+import ITag from '../../Interfaces/post/ITag';
 
-interface Selector{
-    id:number
-    name:string
-}
 interface Props{
     itemId:string
     post:IPost
     callback:Function
     name:string
-    obj: Selector[]
+    obj: ITag[]
 }
 
 const BasicSelect = ({
@@ -40,7 +37,7 @@ const BasicSelect = ({
           label={name}
           onChange={handleChange}
         >
-          {obj.map((tag:Selector) => (
+          {obj.map((tag:ITag) => (
             <MenuItem key={tag.id} value={tag.id}>{tag.name}</MenuItem>))}
         </Select>
       </FormControl>

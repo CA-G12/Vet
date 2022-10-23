@@ -6,38 +6,20 @@ import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ImageIcon from '@mui/icons-material/Image';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import postSchema from '../../Validation/addPost';
-import iPost from '../../Interfaces/IPost';
-import Username from './Username';
+import Username from '../UserInfo';
 import BasicSelect from './BasicSelect';
-import ISelector from '../../Interfaces/ISelector';
+import ITag from '../../Interfaces/post/ITag';
+import IAddPost from '../../Interfaces/post/IAddPost';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      light: '#66cccc',
-      main: '#2D9B9B',
-      dark: '#006c6d',
-      contrastText: '#fff',
-    },
-    secondary: {
-      light: '#ff6a74',
-      main: '#d53449',
-      dark: '#9e0022',
-      contrastText: '#fff',
-    },
-  },
-});
-
-const AnimalList:ISelector[] = [
+const AnimalList:ITag[] = [
   { id: 1, name: 'Cats' },
   { id: 2, name: 'Dogs' },
   { id: 3, name: 'Turtles' },
 
 ];
 
-const TagList:ISelector[] = [
+const TagList:ITag[] = [
   { id: 1, name: 'Need help' },
   { id: 2, name: 'Advise' },
   { id: 3, name: 'Up for adoption' },
@@ -65,7 +47,7 @@ const AddPost = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [postData, setPostData] = React.useState<iPost>({
+  const [postData, setPostData] = React.useState<IAddPost>({
     content: '',
     image: '',
     TagId: 0,
@@ -74,11 +56,10 @@ const AddPost = () => {
 
   const handleStateTextarea = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.currentTarget;
-    setPostData((prev:iPost) => ({ ...prev, [name]: value }));
+    setPostData((prev:IAddPost) => ({ ...prev, [name]: value }));
   };
   return (
-
-    <ThemeProvider theme={theme}>
+    <>
       <Button onClick={handleOpen}>Add post</Button>
       <Modal
         className="addPost"
@@ -104,7 +85,13 @@ const AddPost = () => {
           >
             <Box sx={style}>
               <Box sx={{ alignSelf: 'flex-start' }}>
-                <Username name="Aseel" avatar="my image" />
+                <Username user={{
+                  name: 'Kakashi',
+                  avatar: 'https://media.tenor.com/fR49OunP59UAAAAC/killua-killua-zoldyck.gif',
+                  id: 1,
+                  role: 'user',
+                }}
+                />
               </Box>
               <TextareaAutosize
                 name="content"
@@ -168,7 +155,8 @@ const AddPost = () => {
           </form>
         </div>
       </Modal>
-    </ThemeProvider>
+    </>
+
   );
 };
 export default AddPost;
