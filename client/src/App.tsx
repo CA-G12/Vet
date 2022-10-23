@@ -1,14 +1,14 @@
 import './App.css';
 import { Outlet } from 'react-router-dom';
 import PostsContext from './Context/PostsContext';
-import Nav from './components/Nav';
+// import Nav from './components/Nav';
+import { Header } from './components/Header/Header';
 
 const App = () => (
   <div>
     <PostsContext>
 
-      <Nav />
-
+      <Header />
       <Outlet />
     </PostsContext>
 
