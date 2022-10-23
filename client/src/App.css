@@ -1,6 +1,27 @@
-* {
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'poppins', sans-serif;
+}
+:root{
+  --background-post:#EFF2F2;
+  --font-color:#356E6E;
+  --sacredly-color:#356E6E;
+  --not-active-color:#ffff;
+  --gold-color:#FDD853;
+}
+.body{
+  background: #f9f8f8b3;
+}
+
+.home-page{
+  display: flex;
+
+}
+@media screen and (max-width: 650px) {
+  .home-page{
+flex-direction: column;  
+justify-content: center;
+align-items: center;
+  }
 }
