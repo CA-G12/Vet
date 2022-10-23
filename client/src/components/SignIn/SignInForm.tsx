@@ -3,10 +3,10 @@ import {
 } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import React from 'react';
+import React, { useContext } from 'react';
 // import { useNavigate } from 'react-router-dom';
 import IAuth from '../../Interfaces/IAuth';
-// import { authContext } from '../../hooks/useAuth';
+import { authContext } from '../../hooks/useAuth';
 
 const SignIn = () => {
   // const navigate = useNavigate();
@@ -15,7 +15,7 @@ const SignIn = () => {
     password: '',
     email: '',
   });
-  // const { signIn } = useContext(authContext);
+  const { signIn } = useContext(authContext);
   const handleState = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget;
     setUserData((prev: object) => ({ ...prev, [name]: value }));
@@ -40,7 +40,7 @@ const SignIn = () => {
   return (
     <form onSubmit={(event) => {
       event.preventDefault();
-      // signUp()
+      signIn(userData);
       // navigate('/');
     }}
     >
