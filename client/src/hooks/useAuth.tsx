@@ -6,7 +6,6 @@ import IAuth from '../Interfaces/IAuth';
 import IAuthCon from '../Interfaces/IAuthCon';
 import ApiServices from '../services/ApiServices';
 import JwtService from '../services/JwtService';
-// import { SignUpValid } from '../Validation';
 
 const authContext = createContext<IAuthCon>({} as IAuthCon);
 
@@ -14,7 +13,7 @@ const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<IAuth>();
   const signUp = async ({
     email, password, confirmPassword, name, role,
-  }: IAuth) => {
+  }: IAuth, callback:Function) => {
     try {
       const signInReq = await ApiServices.post('/sign-up', {
         email, password, confirmPassword, name, role,
@@ -27,8 +26,11 @@ const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
         avatar: signInReq.data.avatar,
       });
       toast.success(signInReq.data.name);
+      callback();
     } catch (err:any) {
-      toast.error(err.response.data.msg);
+      console.log(err);
+      toast.error(err.response);
+      callback();
     }
   };
   const signIn = ({ email, password }: IAuth) => {

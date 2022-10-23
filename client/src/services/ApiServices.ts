@@ -3,17 +3,13 @@ import axios, { AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios';
 import JwtService from './JwtService';
 
 export default class ApiServices {
-  private static axios: AxiosInstance | null;
+  private static axios = axios;
 
   public static init():void {
-    this.axios = axios.create({
-      baseURL: process.env.REACT_APP_BASE_URL,
-      headers: {
-        Authorization: `Bearer ${JwtService.getToken()}`,
-        accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+    this.axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
+    this.axios.defaults.headers.common.Authorization = `Bearer ${JwtService.getToken()}`;
+    this.axios.defaults.headers.common.Accept = 'application/json';
+    this.axios.defaults.headers.common['Content-Type'] = 'application/json';
   }
 
   public static get(endPoint:string, config?:AxiosRequestConfig):Promise<AxiosResponse> {

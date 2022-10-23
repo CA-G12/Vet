@@ -1,8 +1,8 @@
 import * as yup from 'yup';
 
 const SignUpValid = yup.object().shape({
-  name: yup.string().required('please enter your name '),
-  email: yup.string().required('Enter your email').email(),
+  name: yup.string().min(8).required('please enter your name '),
+  email: yup.string().min(8).required('Enter your email').email(),
   password: yup.string()
     .required('No password provided.')
     .min(8, 'Password is too short - should be 8 chars minimum.')

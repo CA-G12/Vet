@@ -2,10 +2,9 @@ import { useState } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import 'react-toastify/dist/ReactToastify.css';
 import {
-  Box, Button,
+  Box, Button, Typography, Modal,
 } from '@mui/material';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
+
 import LabTabs from './Tabs';
 
 const style = {
@@ -53,8 +52,7 @@ const PopUp = () => {
             <Typography id="modal-modal-title" variant="h6" component="h2">
               <img src="./pawsLogo.png" alt="logo" width="40px" height="40px" />
               <section className="tabs">
-
-                <LabTabs />
+                <LabTabs open={setOpen} />
               </section>
 
             </Typography>

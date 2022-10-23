@@ -8,7 +8,7 @@ import SignUp from '../SignUp/SignUpForm';
 import SignIn from '../SignIn/SignInForm';
 import './style.css';
 
-const LabTabs = () => {
+const LabTabs = ({ open }:{open :Function}) => {
   const [value, setValue] = React.useState('1');
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -25,10 +25,10 @@ const LabTabs = () => {
           </TabList>
         </Box>
         <TabPanel value="1">
-          <SignUp />
+          <SignUp open={open} />
         </TabPanel>
         <TabPanel value="2">
-          <SignIn />
+          <SignIn open={open} />
         </TabPanel>
       </TabContext>
     </Box>

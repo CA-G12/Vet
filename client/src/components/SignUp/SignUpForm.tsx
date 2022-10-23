@@ -10,7 +10,7 @@ import IAuth from '../../Interfaces/IAuth';
 import { authContext } from '../../hooks/useAuth';
 import { SignUpValid } from '../../Validation';
 
-const SignUp = () => {
+const SignUp = ({ open }:{open :Function}) => {
   const { signUp } = React.useContext(authContext);
 
   const [userData, setUserData] = React.useState<IAuth>({
@@ -46,7 +46,9 @@ const SignUp = () => {
         try {
           event.preventDefault();
           await SignUpValid.validate(userData);
-          signUp(userData);
+          signUp(userData, (err:any) => {
+            if (!err) open(false);
+          });
         } catch (err:any) {
           toast.error(err.message);
         }

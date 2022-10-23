@@ -4,13 +4,10 @@ import {
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import React, { useContext } from 'react';
-
-// import { useNavigate } from 'react-router-dom';
 import IAuth from '../../Interfaces/IAuth';
 import { authContext } from '../../hooks/useAuth';
 
-const SignIn = () => {
-  // const navigate = useNavigate();
+const SignIn = ({ open }:{open :Function}) => {
   const [userData, setUserData] = React.useState<IAuth>({
     showPassword: false,
     password: '',
@@ -37,12 +34,12 @@ const SignIn = () => {
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
-
   return (
     <form onSubmit={(event) => {
       event.preventDefault();
-      signIn(userData);
-      // navigate('/');
+      signIn(userData, (err:any) => {
+        if (!err) open(false);
+      });
     }}
     >
       <FormControl

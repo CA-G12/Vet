@@ -15,7 +15,7 @@ const App = () => (
       <Popup />
       <Outlet />
     </PostsContext>
-</ProvideAuth>
+  </ProvideAuth>
 
 );
 
