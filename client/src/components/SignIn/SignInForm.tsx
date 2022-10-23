@@ -4,6 +4,7 @@ import {
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import React, { useContext } from 'react';
+
 // import { useNavigate } from 'react-router-dom';
 import IAuth from '../../Interfaces/IAuth';
 import { authContext } from '../../hooks/useAuth';
@@ -56,7 +57,9 @@ const SignIn = () => {
         <Button
           sx={{
             color: '#356E6E',
-            border: '1px #356E6E  solid',
+            border: '1.5px #356E6E  solid',
+            m: 1,
+            width: '30ch',
           }}
           fullWidth
         >
@@ -64,7 +67,7 @@ const SignIn = () => {
           Sign-in with Google
         </Button>
       </FormControl>
-      <p className="Sign"> - Or -</p>
+      <p style={{ textAlign: 'center', marginBottom: '10px' }}> - Or -</p>
       <FormControl>
         <TextField
           label="Email"
@@ -74,10 +77,12 @@ const SignIn = () => {
           type="text"
           name="email"
           onChange={handleState}
-          sx={{ m: 1, width: '25ch', color: '#356E6E' }}
+          sx={{
+            m: 1, width: '25ch', color: '#356E6E',
+          }}
         />
       </FormControl>
-      <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+      <FormControl sx={{ m: 1, width: '25ch', marginBottom: '10px' }} variant="outlined">
         <InputLabel
           size="small"
           htmlFor="outlined-adornment-password"
@@ -109,7 +114,7 @@ const SignIn = () => {
         />
       </FormControl>
       <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-        <button type="submit"> Sign in </button>
+        <button type="submit" className="sign-Btn"> Sign in </button>
       </FormControl>
     </form>
   );

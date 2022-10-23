@@ -6,6 +6,7 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import SignUp from '../SignUp/SignUpForm';
 import SignIn from '../SignIn/SignInForm';
+import './style.css';
 
 const LabTabs = () => {
   const [value, setValue] = React.useState('1');
@@ -17,10 +18,10 @@ const LabTabs = () => {
   return (
     <Box sx={{ width: '100%', typography: 'body1' }}>
       <TabContext value={value}>
-        <Box sx={{ borderBottom: 1, borderColor: '#356E6E' }}>
-          <TabList onChange={handleChange} aria-label="lab API tabs example" className="TabActive">
-            <Tab label="Sign-up" value="1" sx={{ color: '#C4C4C4' }} />
-            <Tab label="Sign-in" value="2" sx={{ color: '#C4C4C4' }} />
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <TabList onChange={handleChange} className="TabActive">
+            <Tab sx={{ color: '#C4C4C4' }} label="Sign-up" value="1" />
+            <Tab sx={{ color: '#C4C4C4' }} label="Sign-in" value="2" />
           </TabList>
         </Box>
         <TabPanel value="1">
