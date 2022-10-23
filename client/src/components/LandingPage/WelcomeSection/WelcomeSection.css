@@ -1,0 +1,58 @@
+/* 2D9B9B */
+.wave-frame {
+    position: absolute;
+    /* background-color: #2D9B9B;
+    width: 100rem;
+    height: 100rem;
+    left: 60rem;
+    border-radius: 10rem 30rem; */
+    width: 1372.6px;
+    height: 1378.23px;
+    left: 826px;
+    top: -340px;
+    /* 10% / 50% */
+    border-radius:10% / 50% ;
+    background-color: #2D9B9B;
+    transform: rotate(10deg);
+}
+.landing{
+    height: 100vh;
+    width: 100vw;
+}
+.landing .heart{
+    position: absolute;
+    width: 551px;
+    height: 499px;
+    left: 615px;
+    top: 180px;
+    animation: animateHeart 3s infinite;
+}
+.landing .wemon{
+    position: absolute;
+    width: 1000px;
+    height: 768px;
+    left: -0px;
+    top: -50px;
+}
+
+@keyframes animateHeart {
+    0% {
+      transform:  scale(1);
+    }
+    5% {
+      transform:  scale(1.1);
+    }
+    10% {
+      transform:  scale(1);
+    }
+    15% {
+      transform:  scale(1.12);
+    }
+    50% {
+        transform:  scale(1);
+    }
+    100% {
+        transform:  scale(1);
+    }
+  }
+  
