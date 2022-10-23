@@ -1,13 +1,14 @@
 import {
-  FormControl, InputLabel, MenuItem, Button,
-  TextField, Select, InputAdornment, OutlinedInput, IconButton,
+  FormControl, InputLabel, MenuItem,
+  TextField, Select, InputAdornment, OutlinedInput, IconButton, Button,
 } from '@mui/material';
-import 'react-toastify/dist/ReactToastify.css';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import * as React from 'react';
+import { toast } from 'react-toastify';
 import IAuth from '../../Interfaces/IAuth';
 import { authContext } from '../../hooks/useAuth';
+import { SignUpValid } from '../../Validation';
 
 const SignUp = () => {
   const { signUp } = React.useContext(authContext);
@@ -43,33 +44,38 @@ const SignUp = () => {
     <form
       style={{ marginLeft: '30px' }}
       className="formContainer"
-      onSubmit={(event) => {
-        event.preventDefault();
-        signUp(userData);
+      onSubmit={async (event) => {
+        try {
+          event.preventDefault();
+          await SignUpValid.validate(userData);
+          signUp(userData);
+        } catch (err:any) {
+          toast.error(err.message);
+        }
       }}
     >
-      <p className="Sign"> Sign in to your Account</p>
-      <FormControl>
-        <FormControl
+      <FormControl
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+        variant="outlined"
+      >
+        <Button
           sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            flexDirection: 'column',
-            alignItems: 'center',
+            color: '#356E6E',
+            border: '1px #356E6E  solid',
           }}
-          variant="outlined"
+          fullWidth
         >
-          <Button
-            sx={{
-              color: '#356E6E',
-              border: '1px #356E6E  solid',
-            }}
-            fullWidth
-          >
-            <img src="./google.png" alt="google" width="25px" height="25px" />
-            Continue with Google
-          </Button>
-        </FormControl>
+          <img src="./google.png" alt="google" width="25px" height="25px" />
+          Sign-up with Google
+        </Button>
+      </FormControl>
+      <p className="Sign"> - Or -</p>
+      <FormControl>
         <TextField
           size="small"
           fullWidth
@@ -166,6 +172,7 @@ const SignUp = () => {
         <Select
           size="small"
           fullWidth
+          label="Role"
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
           name="role"

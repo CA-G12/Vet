@@ -1,5 +1,5 @@
 import {
-  FormControl, InputLabel, TextField, InputAdornment, OutlinedInput, IconButton,
+  FormControl, InputLabel, TextField, InputAdornment, OutlinedInput, IconButton, Button,
 } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -44,6 +44,27 @@ const SignIn = () => {
       // navigate('/');
     }}
     >
+      <FormControl
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+        variant="outlined"
+      >
+        <Button
+          sx={{
+            color: '#356E6E',
+            border: '1px #356E6E  solid',
+          }}
+          fullWidth
+        >
+          <img src="./google.png" alt="google" width="25px" height="25px" />
+          Sign-in with Google
+        </Button>
+      </FormControl>
+      <p className="Sign"> - Or -</p>
       <FormControl>
         <TextField
           label="Email"

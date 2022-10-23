@@ -10,6 +10,7 @@ import Doctors from './pages/Doctors';
 import Emergency from './pages/Emergency';
 import DoctorProfile from './pages/DoctorProfile';
 import NotFound from './pages/NotFound';
+import ApiServices from './services/ApiServices';
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
-
+ApiServices.init();
 root.render(
   <React.StrictMode>
     <RouterProvider router={router} />

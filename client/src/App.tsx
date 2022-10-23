@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import Popup from './components/Popup/Popup';
+import 'react-toastify/dist/ReactToastify.css';
 import Nav from './components/Nav';
 import { ProvideAuth } from './hooks/useAuth';
 
