@@ -1,6 +1,7 @@
 import './post.css';
 
 import {
+
   useState,
 } from 'react';
 
@@ -11,44 +12,35 @@ import UserPostInfo from '../UserInfo';
 import Comments from './Comments';
 import EditAndDeleteBtn from './EditAndDeleteBtn';
 import StackCommentsAndLikes from './StackCommentsAndLikes';
-
-const comments = {
-  id: 1,
-  Comments: [{
-    id: 1,
-    UserId: 3,
-    comment: 'Comment1',
-    image: null,
-    User: {
-      name: 'Kakashi',
-      avatar: 'https://media.tenor.com/fR49OunP59UAAAAC/killua-killua-zoldyck.gif',
-      id: 1,
-      role: 'user',
-    },
-  }, {
-    id: 2,
-    UserId: 2,
-    comment: 'Comment2',
-    User: {
-      name: 'Kakashi',
-      avatar: 'https://media.tenor.com/fR49OunP59UAAAAC/killua-killua-zoldyck.gif',
-      id: 1,
-      role: 'user',
-    },
-    image: 'https://i.pinimg.com/originals/8a/81/ec/8a81ecd8fdd266b3221da325875c0ea8.gif',
-  }],
-};
+import ApiServices from '../../services/ApiService';
 
 const Post = ({ post }:{post:IPost}) => {
   const [showComments, setShowComments] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
+  const [getComments, setGetComments] = useState([]);
+  const [page, setPage] = useState(1);
+  const showMore = () => {
+    ApiServices.get(`/api/v1/posts/${post.id}/comments?page=${page}`).then((res) => {
+      setPage(page + 1);
+      setGetComments(getComments.concat(res.data.rows));
+    });
+  };
   const handleClick = () => {
     setShowComments(!showComments);
     setIsConnected(!isConnected);
+    if (!showComments) {
+      showMore();
+    } else {
+      setPage(1);
+      setGetComments([]);
+    }
   };
+
   const handleClickOutside = () => {
     setShowComments(false);
     setIsConnected(false);
+    setPage(1);
+    setGetComments([]);
   };
   const ref = useOutsideClick(handleClickOutside);
 
@@ -67,7 +59,7 @@ const Post = ({ post }:{post:IPost}) => {
 
           </p>
           <StackCommentsAndLikes
-            commentNum={comments.Comments.length}
+            commentNum={4}
             likes={post.Likes}
             handleClick={handleClick}
           />
@@ -84,7 +76,7 @@ const Post = ({ post }:{post:IPost}) => {
       {
         showComments && (
         <div>
-          <Comments comments={comments.Comments} />
+          <Comments showMore={showMore} comments={getComments} />
 
         </div>
         )

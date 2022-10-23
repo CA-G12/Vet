@@ -2,13 +2,16 @@ import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrow
 import Comment from './Comment';
 import IComment from '../../Interfaces/post/IComment';
 
-const Comments = ({ comments }:{
-  comments:Array<IComment>
+const Comments = ({ comments, showMore }:{
+  comments:Array<IComment>, showMore:Function
   }) => (
     <div className="comments">
       {comments.map((comment) => <Comment key={comment.id} comment={comment} />)}
       <div className="show-more">
-        <p>
+        <p
+          role="presentation"
+          onClick={() => showMore()}
+        >
           Show More
         </p>
         <KeyboardDoubleArrowDownIcon />
