@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import Filters from '../layouts/Filters';
 import ApiServices from '../services/ApiService';
 import PostsList from '../components/PostCard/PostsList';
-import { AllPosts } from '../components/Context/GetPosts';
+import { AllPosts } from '../components/Context/PostsContext';
 import LoadingPosts from './LoadingPosts';
 
 const Home = () => {

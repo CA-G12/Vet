@@ -10,7 +10,7 @@ interface IStore{
   AnimalList?:Array<{name:string, id:number}>
 }
 export const AllPosts = createContext<IStore >({});
-const GetPosts = ({ children }:any) => {
+const PostsContext = ({ children }:any) => {
   const [filterObj, setFilterObj] = useState({
     content: '',
     TagId: 0,
@@ -43,4 +43,4 @@ const GetPosts = ({ children }:any) => {
 
   );
 };
-export default GetPosts;
+export default PostsContext;

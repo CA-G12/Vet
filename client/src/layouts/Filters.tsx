@@ -2,7 +2,7 @@ import './layouts.css';
 import { useContext } from 'react';
 import addPostAuth from '../Interfaces/post/IAddPost';
 import BasicSelect from '../BasicSelect';
-import { AllPosts } from '../components/Context/GetPosts';
+import { AllPosts } from '../components/Context/PostsContext';
 
 const Filters = ({ id, callback }:{id:addPostAuth, callback:Function}) => {
   const { TagList, AnimalList } = useContext(AllPosts);

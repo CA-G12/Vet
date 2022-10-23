@@ -1,7 +1,7 @@
 import { useContext, ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
 import { SelectChangeEvent } from '@mui/material/Select';
-import { AllPosts } from '../Context/GetPosts';
+import { AllPosts } from '../Context/PostsContext';
 
 const Nav = () => {
   const { filterObj, setFilterObj } = useContext(AllPosts);
