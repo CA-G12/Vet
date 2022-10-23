@@ -5,7 +5,7 @@ import EditAndDeleteBtn from './EditAndDeleteBtn';
 const Comment = ({ comment }:{ comment: IComment}) => (
   <div className="comment-container abusluot-btns">
     <div className="comment">
-      <UserPostInfo user={comment.User} style={{ dimensions: 30, alignItems: 'flex-start' }} />
+      <UserPostInfo user={comment.User} />
       <div className="content-comment">
         <p>{comment.comment}</p>
       </div>

@@ -56,7 +56,7 @@ const Post = ({ post }:{post:IPost}) => {
     <div ref={ref} className="post-card">
       <article className="article abusluot-btns">
         <section className="post-content-continuer">
-          <UserPostInfo user={post.User} style={{ dimensions: 40, alignItems: 'center' }} />
+          <UserPostInfo user={post.User} />
           {post.image && (
           <div className="img-post-mobile">
             <img src={post.image} alt="" />
