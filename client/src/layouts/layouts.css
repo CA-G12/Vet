@@ -1,0 +1,37 @@
+.filters{
+  width: 22%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #2D9B9B;
+  padding-top: 2%;
+}
+@media screen and (max-width: 650px) {
+  .filters{
+    min-height: auto;
+    display: flex;
+    margin: 20px 0;
+    flex-direction: row;
+    gap: 10px;
+    width: auto;
+    background-color: var(--not-active-color);
+
+  }
+
+}
+.filters  .filterInput{
+  border-radius: 20px !important;
+  background-color: var(--not-active-color) !important;
+  margin-top: 50px;
+  width: 50%;
+  border: 1px solid #2D9B9B;
+
+}
+.filters div{
+  border-radius: 20px !important;
+}
+
+.filters legend,.filters fieldset,.filters label{
+ display: none;
+  }

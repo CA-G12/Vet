@@ -1,9 +1,10 @@
-import express, { Application, NextFunction, Request ,Response} from 'express'
+import express, { Application, NextFunction, Request, Response } from 'express'
 import compression from 'compression'
 import cookieParser from 'cookie-parser'
 import environment from './config/environment'
 import router from './routes'
 import { join } from 'path'
+import cors from 'cors'
 
 class App {
   public app: Application
@@ -16,6 +17,7 @@ class App {
   }
 
   private initializeMiddlwares (): void {
+    this.app.use(cors())
     this.app.use(compression())
     this.app.use(express.json())
     this.app.use(cookieParser())
@@ -23,7 +25,7 @@ class App {
     this.app.use(express.static(join(__dirname, '..', 'client', 'build')))
     this.app.use('/api/v1', router)
     this.app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-      res.status(err.status).json({msg: err.message})
+      res.status(err.status).json({ msg: err.message })
     })
   }
 }

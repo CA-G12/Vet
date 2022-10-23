@@ -1,11 +1,17 @@
+import './App.css';
 import { Outlet } from 'react-router-dom';
+import PostsContext from './Context/PostsContext';
 import Nav from './components/Nav';
 
 const App = () => (
   <div>
-    <Nav />
-    <h1>kakashi is here</h1>
-    <Outlet />
+    <PostsContext>
+
+      <Nav />
+
+      <Outlet />
+    </PostsContext>
+
   </div>
 );
 
