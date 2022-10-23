@@ -237,6 +237,10 @@ object-fit: cover;
     width: 100% !important;
     height: 120px !important;
   }
+  .loading-post{
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }
 .btns-list{
   position: absolute;
