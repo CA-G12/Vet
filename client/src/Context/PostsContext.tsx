@@ -1,7 +1,7 @@
 import {
   createContext, useMemo, useState,
 } from 'react';
-import addPostAuth from '../../Interfaces/post/IAddPost';
+import addPostAuth from '../Interfaces/post/IAddPost';
 
 interface IStore{
   filterObj?:addPostAuth;

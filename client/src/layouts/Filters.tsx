@@ -1,8 +1,8 @@
 import './layouts.css';
 import { useContext } from 'react';
 import addPostAuth from '../Interfaces/post/IAddPost';
-import BasicSelect from '../BasicSelect';
-import { AllPosts } from '../components/Context/PostsContext';
+import BasicSelect from '../components/BasicSelect';
+import { AllPosts } from '../Context/PostsContext';
 
 const Filters = ({ id, callback }:{id:addPostAuth, callback:Function}) => {
   const { TagList, AnimalList } = useContext(AllPosts);

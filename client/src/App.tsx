@@ -1,6 +1,6 @@
 import './App.css';
 import { Outlet } from 'react-router-dom';
-import PostsContext from './components/Context/PostsContext';
+import PostsContext from './Context/PostsContext';
 import Nav from './components/Nav';
 
 const App = () => (

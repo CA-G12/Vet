@@ -20,13 +20,12 @@ export default class PostsController {
 
   public static async index (req: Request, res: Response) {
     const { tagId, animalId, q } = req.query
-    console.log(req.query)
 
     let filterData = { }
     if (tagId && animalId) {
       filterData = {
         content: {
-          [Op.substring]: q || ''
+          [Op.iLike]: `%${q}%`
         },
         TagId: tagId,
         AnimalId: animalId
@@ -34,27 +33,21 @@ export default class PostsController {
     } else if (animalId) {
       filterData = {
         content: {
-          [Op.substring]: q || ''
+          [Op.iLike]: `%${q}%`
         },
         AnimalId: animalId
       }
     } else if (tagId) {
       filterData = {
         content: {
-          [Op.substring]: q || ''
+          [Op.iLike]: `%${q}%`
         },
         TagId: tagId
-      }
-    } else if (q) {
-      filterData = {
-        content: {
-          [Op.substring]: q
-        }
       }
     } else {
       filterData = {
         content: {
-          [Op.substring]: ''
+          [Op.iLike]: `%${q}%`
         }
       }
     }
