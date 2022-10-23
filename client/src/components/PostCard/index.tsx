@@ -4,10 +4,10 @@ import {
   useState,
 } from 'react';
 
-import useOutsideClick from '../hooks/UseOutsideClick ';
+import useOutsideClick from '../../hooks/UseOutsideClick ';
 import BtnsPost from './BtnsPost';
 import IPost from '../../Interfaces/post/IPost';
-import UserPostInfo from '../customComponents/UserPostInfo';
+import UserPostInfo from '../UserInfo';
 import Comments from './Comments';
 import EditAndDeleteBtn from './EditAndDeleteBtn';
 import StackCommentsAndLikes from './StackCommentsAndLikes';
@@ -23,6 +23,7 @@ const comments = {
       name: 'Kakashi',
       avatar: 'https://media.tenor.com/fR49OunP59UAAAAC/killua-killua-zoldyck.gif',
       id: 1,
+      role: 'user',
     },
   }, {
     id: 2,
@@ -32,6 +33,7 @@ const comments = {
       name: 'Kakashi',
       avatar: 'https://media.tenor.com/fR49OunP59UAAAAC/killua-killua-zoldyck.gif',
       id: 1,
+      role: 'user',
     },
     image: 'https://i.pinimg.com/originals/8a/81/ec/8a81ecd8fdd266b3221da325875c0ea8.gif',
   }],

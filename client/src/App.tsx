@@ -1,16 +1,16 @@
 import './App.css';
 import { Outlet } from 'react-router-dom';
-import Context from './components/hooks/Contexts';
+import GetPosts from './components/Context/GetPosts';
 import Nav from './components/Nav';
 
 const App = () => (
   <div>
-    <Context>
+    <GetPosts>
 
       <Nav />
 
       <Outlet />
-    </Context>
+    </GetPosts>
 
   </div>
 );

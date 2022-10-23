@@ -4,7 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { ReactNode } from 'react';
-import addPostType from '../../Interfaces/post/IAddPost';
+import IAddPost from '../Interfaces/post/IAddPost';
 
 interface Selector{
     id:number
@@ -12,7 +12,7 @@ interface Selector{
 }
 interface Props{
   itemId:string
-  post:addPostType
+  post:IAddPost
   callback:Function
   name:string
   obj: Selector[]

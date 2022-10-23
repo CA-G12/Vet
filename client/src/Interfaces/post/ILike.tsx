@@ -1,8 +1,8 @@
-import User from './IUser';
+import IUser from './IUser';
 
-interface Like{
+interface ILike{
   id:number
-  User:User
+  User:IUser
 }
 
-export default Like;
+export default ILike;

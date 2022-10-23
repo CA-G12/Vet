@@ -1,10 +1,10 @@
-import User from './IUser';
+import IUser from './IUser';
 
 interface IComment{
     id:number
     UserId:number
     comment:string
     image:string|null
-    User:User
+    User:IUser
 }
 export default IComment;

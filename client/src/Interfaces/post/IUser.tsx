@@ -1,6 +1,7 @@
-interface User{
+interface IUser{
   id:number
   name:string
   avatar:string
+  role:string
 }
-export default User;
+export default IUser;

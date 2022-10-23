@@ -1,11 +1,11 @@
 import './layouts.css';
 import { useContext } from 'react';
 import addPostAuth from '../Interfaces/post/IAddPost';
-import BasicSelect from '../components/hooks/BasicSelect';
-import { AppCtx } from '../components/hooks/Contexts';
+import BasicSelect from '../BasicSelect';
+import { AllPosts } from '../components/Context/GetPosts';
 
 const Filters = ({ id, callback }:{id:addPostAuth, callback:Function}) => {
-  const { TagList, AnimalList } = useContext(AppCtx);
+  const { TagList, AnimalList } = useContext(AllPosts);
   return (
     <div className="filters">
       {TagList && <BasicSelect post={id} name="TagId" itemId="TagId" obj={TagList} callback={callback} />}

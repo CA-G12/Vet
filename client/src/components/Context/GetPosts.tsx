@@ -9,8 +9,8 @@ interface IStore{
   TagList?:Array<{name:string, id:number}>;
   AnimalList?:Array<{name:string, id:number}>
 }
-export const AppCtx = createContext<IStore >({});
-const Contexts = ({ children }:any) => {
+export const AllPosts = createContext<IStore >({});
+const GetPosts = ({ children }:any) => {
   const [filterObj, setFilterObj] = useState({
     content: '',
     TagId: 0,
@@ -36,11 +36,11 @@ const Contexts = ({ children }:any) => {
     filterObj, setFilterObj, TagList, AnimalList,
   }), [filterObj]);
   return (
-    <AppCtx.Provider value={filterPosts}>
+    <AllPosts.Provider value={filterPosts}>
       {children}
 
-    </AppCtx.Provider>
+    </AllPosts.Provider>
 
   );
 };
-export default Contexts;
+export default GetPosts;

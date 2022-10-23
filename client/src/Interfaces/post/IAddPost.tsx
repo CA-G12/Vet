@@ -1,7 +1,7 @@
-interface addPostAuth {
+interface IAddPost {
   content: string,
   image?:string,
   TagId:number,
   AnimalId:number
 }
-export default addPostAuth;
+export default IAddPost;

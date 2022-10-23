@@ -1,10 +1,10 @@
 import { useContext, ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
 import { SelectChangeEvent } from '@mui/material/Select';
-import { AppCtx } from './hooks/Contexts';
+import { AllPosts } from '../Context/GetPosts';
 
 const Nav = () => {
-  const { filterObj, setFilterObj } = useContext(AppCtx);
+  const { filterObj, setFilterObj } = useContext(AllPosts);
 
   return (
     <nav>

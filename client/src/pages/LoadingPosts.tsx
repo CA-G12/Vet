@@ -1,4 +1,4 @@
-import LoadingPost from '../components/postCard/LoadingPost';
+import LoadingPost from '../components/PostCard/LoadingPost';
 
 const LoadingPosts = () => (
   <div className="loading-posts">
