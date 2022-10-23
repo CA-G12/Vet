@@ -3,6 +3,7 @@ const actionsStyle = {
   'flex-direction': 'row',
   'align-items': 'center',
   'text-align': 'center',
+  'margin-right': '1rem',
   gap: '0.1rem',
   '@media screen and (max-width:450px)': {
     gap: '0.1rem',
