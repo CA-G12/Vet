@@ -1,19 +1,22 @@
+import './App.css';
 import { Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Popup from './components/Popup/Popup';
 import 'react-toastify/dist/ReactToastify.css';
+import PostsContext from './Context/PostsContext';
 import Nav from './components/Nav';
 import { ProvideAuth } from './hooks/useAuth';
 
 const App = () => (
   <ProvideAuth>
     <ToastContainer />
-    <div>
+    <PostsContext>
       <Nav />
       <Popup />
       <Outlet />
-    </div>
-  </ProvideAuth>
+    </PostsContext>
+</ProvideAuth>
+
 );
 
 export default App;

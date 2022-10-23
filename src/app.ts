@@ -5,6 +5,7 @@ import environment from './config/environment'
 import cors from 'cors'
 import router from './routes'
 import { join } from 'path'
+import cors from 'cors'
 
 class App {
   public app: Application
@@ -17,6 +18,7 @@ class App {
   }
 
   private initializeMiddlwares (): void {
+    this.app.use(cors())
     this.app.use(compression())
     this.app.use(express.json())
     this.app.use(cookieParser())
