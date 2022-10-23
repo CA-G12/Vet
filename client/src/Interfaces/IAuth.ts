@@ -1,5 +1,6 @@
 export default interface IAuth {
     name?: string;
+    avatar?:string;
     password?: string;
     confirmPassword?: string;
     role?: string;

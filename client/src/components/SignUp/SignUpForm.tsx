@@ -1,20 +1,17 @@
 import {
   FormControl, InputLabel, MenuItem, Button,
+  TextField, Select, InputAdornment, OutlinedInput, IconButton,
 } from '@mui/material';
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Select from '@mui/material/Select';
-import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import * as React from 'react';
-import IAuth from '../../Interfaces/auth';
-import { SignUpValid } from '../../Validation';
+import IAuth from '../../Interfaces/IAuth';
+import { authContext } from '../../hooks/useAuth';
 
 const SignUp = () => {
+  const { signUp } = React.useContext(authContext);
+
   const [userData, setUserData] = React.useState<IAuth>({
     name: '',
     password: '',
@@ -24,11 +21,11 @@ const SignUp = () => {
     showConfirmPassword: false,
     email: '',
   });
-  const handleState = (e:React.ChangeEvent<HTMLInputElement>) => {
+  const handleState = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget;
-    setUserData((prev:object) => ({ ...prev, [name]: value }));
+    setUserData((prev: object) => ({ ...prev, [name]: value }));
   };
-  const handleClickShowPassword = (e:React.MouseEvent<HTMLButtonElement>) => {
+  const handleClickShowPassword = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (e.currentTarget.name === 'password') {
       setUserData({
         ...userData,
@@ -46,13 +43,9 @@ const SignUp = () => {
     <form
       style={{ marginLeft: '30px' }}
       className="formContainer"
-      onSubmit={(e) => {
-        e.preventDefault();
-        SignUpValid.validate(userData)
-          .then(() => toast.success('WellCome !'))
-          .catch((err:any) => {
-            toast.error(err.message);
-          });
+      onSubmit={(event) => {
+        event.preventDefault();
+        signUp(userData);
       }}
     >
       <p className="Sign"> Sign in to your Account</p>
@@ -93,7 +86,7 @@ const SignUp = () => {
           size="small"
           fullWidth
           id="outlined-start-adornment"
-          type="email"
+          type="text"
           name="email"
           onChange={handleState}
           sx={{ m: 1, width: '25ch', color: '#356E6E' }}
@@ -126,7 +119,7 @@ const SignUp = () => {
                 {userData.showPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>
             </InputAdornment>
-            )}
+          )}
           label="Password"
         />
       </FormControl>
@@ -157,7 +150,7 @@ const SignUp = () => {
                 {userData.showConfirmPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>
             </InputAdornment>
-            )}
+          )}
           label=" confirm Password"
         />
       </FormControl>

@@ -1,29 +1,26 @@
 import {
-  FormControl, InputLabel,
+  FormControl, InputLabel, TextField, InputAdornment, OutlinedInput, IconButton,
 } from '@mui/material';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import * as React from 'react';
-import IAuth from '../../Interfaces/auth';
-import { SignInValid } from '../../Validation';
+import React from 'react';
+// import { useNavigate } from 'react-router-dom';
+import IAuth from '../../Interfaces/IAuth';
+// import { authContext } from '../../hooks/useAuth';
 
 const SignIn = () => {
+  // const navigate = useNavigate();
   const [userData, setUserData] = React.useState<IAuth>({
     showPassword: false,
     password: '',
     email: '',
   });
-  const handleState = (e:React.ChangeEvent<HTMLInputElement>) => {
+  // const { signIn } = useContext(authContext);
+  const handleState = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget;
-    setUserData((prev:object) => ({ ...prev, [name]: value }));
+    setUserData((prev: object) => ({ ...prev, [name]: value }));
   };
-  const handleClickShowPassword = (e:React.MouseEvent<HTMLButtonElement>) => {
+  const handleClickShowPassword = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (e.currentTarget.name === 'password') {
       setUserData({
         ...userData,
@@ -41,13 +38,10 @@ const SignIn = () => {
   };
 
   return (
-    <form onSubmit={(e) => {
-      e.preventDefault();
-      SignInValid.validate(userData)
-        .then(() => toast.success('WellCome !'))
-        .catch((err:any) => {
-          toast.error(err.message);
-        });
+    <form onSubmit={(event) => {
+      event.preventDefault();
+      // signUp()
+      // navigate('/');
     }}
     >
       <FormControl>
@@ -56,7 +50,7 @@ const SignIn = () => {
           size="small"
           fullWidth
           id="outlined-start-adornment"
-          type="email"
+          type="text"
           name="email"
           onChange={handleState}
           sx={{ m: 1, width: '25ch', color: '#356E6E' }}
@@ -89,12 +83,12 @@ const SignIn = () => {
                 {userData.showPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>
             </InputAdornment>
-            )}
+          )}
           label="Password"
         />
       </FormControl>
       <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-        <button type="submit"> Sign up </button>
+        <button type="submit"> Sign in </button>
       </FormControl>
     </form>
   );

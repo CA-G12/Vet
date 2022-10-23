@@ -9,6 +9,7 @@
     "@mui/lab": "^5.0.0-alpha.103",
     "@mui/material": "^5.10.9",
     "@mui/styled-engine-sc": "^5.10.6",
+    "@popperjs/core": "^2.11.6",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -36,12 +37,6 @@
     "lint": "eslint -c .eslintrc.json src/ --ext .ts,.tsx",
     "lint-fix": "eslint -c .eslintrc.json src/ --ext .ts,.tsx --fix"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -55,14 +50,14 @@
     ]
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.38.1",
-    "@typescript-eslint/parser": "^5.38.1",
-    "eslint": "^7.32.0",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
+    "eslint": "^8.25.0",
     "eslint-config-airbnb": "^19.0.4",
-    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-import-resolver-typescript": "^3.5.1",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
-    "eslint-plugin-react": "^7.31.8",
+    "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
     "typescript": "^4.8.4"
   }

@@ -1,7 +1,7 @@
 import { User, Post, Like, Tag, Animal } from '../db'
 import { Request, Response } from 'express'
 import { Op } from 'sequelize'
-import postSchema from '../schemes'
+import postSchema from '../schemes/post'
 
 export default class PostsController {
   public static async store (req:Request, res:Response) {
