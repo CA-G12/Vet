@@ -15,7 +15,7 @@ describe('sign in router', () => {
         password: '123asa456'
       })
       .expect(422)
-      .expect('Content-Type', /html/)
+      .expect('Content-Type', /json/)
       .end((err:any, res: any) => {
         console.log(err, 'hello her1')
         if (err) { done(err) } else {
@@ -32,7 +32,7 @@ describe('sign in router', () => {
         password: '123456'
       })
       .expect(422)
-      .expect('Content-Type', /html/)
+      .expect('Content-Type', /json/)
       .end((err:any, res: any) => {
         console.log(err, 'hello her1')
 

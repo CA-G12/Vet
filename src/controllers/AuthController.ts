@@ -17,17 +17,15 @@ export default class AuthController {
     const { secretKey } = environment
     const { email, password } = req.body
 
-    const { error } = await signInSchema({ email, password })
-    if (error) {
-      throw new Error(error)
-    }
+    await signInSchema({ email, password })
+
     const user = await User.findOne({ where: { email } })
     if (!user) {
-      throw new Error('The email address you entered isn\'t connected to an account')
+      throw new CustomError(422, 'The email address you entered isn\'t connected to an account')
     }
     const isValid:Boolean = await bcrypt.compare(password, user.password ?? '')
     if (!isValid) {
-      throw new Error('The password that you\'ve entered is incorrect')
+      throw new CustomError(422, 'The password that you\'ve entered is incorrect')
     }
     const payload = {
       id: user.id,
