@@ -14,7 +14,7 @@ interface IDoctorInfo{
      hourRate ?:string,
      uploadPhoto?:string
 }
-const Doctor = () => {
+const Doctor = ({ open }:{open :Function}) => {
   const { user } = React.useContext(authContext);
   const [doctorInfo, setDoctorInfo] = React.useState<IDoctorInfo>({
     clinicLocation: '',
@@ -33,6 +33,7 @@ const Doctor = () => {
       try {
         await DoctorInfo.validate(doctorInfo);
         await ApiServices.post('/doctor-info', doctorInfo);
+        open(false);
         toast.success('done');
       } catch (error:any) {
         toast.error(error.message);

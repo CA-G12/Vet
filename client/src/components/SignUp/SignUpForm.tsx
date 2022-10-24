@@ -209,7 +209,7 @@ const SignUp = ({ open }:{open :Function}) => {
             </FormControl>
           </div>
         </form>
-      ) : <Doctor />
+      ) : <Doctor open={open} />
   );
 };
 export default SignUp;
