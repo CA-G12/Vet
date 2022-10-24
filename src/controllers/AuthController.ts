@@ -31,13 +31,14 @@ export default class AuthController {
       id: user.id,
       username: user.name,
       email: user.email,
-      role: user.role
+      role: user.role,
+      avatar: user.avatar
     }
     const token = sign(payload, secretKey as Secret)
 
     res.set('token', token).json({
       status: 200,
-      data: { id: user.id, userName: user.name, avatar: user.avatar, token }
+      data: { id: user.id, email: user.email, role: user.role, name: user.name, avatar: user.avatar, token }
     })
   }
 

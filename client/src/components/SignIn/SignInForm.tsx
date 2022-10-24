@@ -4,8 +4,10 @@ import {
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import React, { useContext } from 'react';
+import { toast } from 'react-toastify';
 import IAuth from '../../Interfaces/IAuth';
 import { authContext } from '../../hooks/useAuth';
+import { SignInValid } from '../../Validation';
 
 const SignIn = ({ open }:{open :Function}) => {
   const [userData, setUserData] = React.useState<IAuth>({
@@ -35,11 +37,16 @@ const SignIn = ({ open }:{open :Function}) => {
     event.preventDefault();
   };
   return (
-    <form onSubmit={(event) => {
+    <form onSubmit={async (event) => {
       event.preventDefault();
-      signIn(userData, (err:any) => {
-        if (!err) open(false);
-      });
+      try {
+        await SignInValid.validate(userData);
+        signIn(userData, (err:any) => {
+          if (!err) open(false);
+        });
+      } catch (error:any) {
+        toast.error(error.message);
+      }
     }}
     >
       <FormControl

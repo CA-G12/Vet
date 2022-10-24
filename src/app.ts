@@ -25,6 +25,7 @@ class App {
     this.app.use(express.urlencoded({ extended: false }))
     this.app.use(express.static(join(__dirname, '..', 'client', 'build')))
     this.app.use('/api/v1', router)
+
     this.app.use((err: any, req: Request, res: Response, next: NextFunction) => {
       res.status(err.status).json({ msg: err.message })
     })
