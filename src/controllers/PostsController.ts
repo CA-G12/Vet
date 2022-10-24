@@ -19,9 +19,10 @@ export default class PostsController {
   }
 
   public static async index (req: Request, res: Response) {
-    const { tagId, animalId, q } = req.query
+    const { tagId, animalId, q = '' } = req.query
 
     let filterData = { }
+
     if (tagId && animalId) {
       filterData = {
         content: {
@@ -62,6 +63,6 @@ export default class PostsController {
         }],
       where: filterData
     })
-    res.json((posts))
+    res.json(posts)
   }
 }
