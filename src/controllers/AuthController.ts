@@ -13,8 +13,8 @@ export default class AuthController {
     const searchEmail = await User.findAll({ where: { email } })
     if (searchEmail.length === 0) {
       const newUser = await User.create({ name, email, role, password: await bcrypt.hash(password, 15) })
-      const token = await sign({ id: newUser.id, name, email, avatar: newUser.avatar }, environment.secretKey as Secret)
-      res.json({ token, name: newUser.name, avatar: newUser.avatar, email })
+      const token = await sign({ id: newUser.id, name: newUser.name, avatar: newUser.avatar, role: newUser.role }, environment.secretKey as Secret)
+      res.json({ token, id: newUser.id, name: newUser.name, avatar: newUser.avatar, role: newUser.role, email: newUser.email })
     } else {
       throw new CustomError(400, 'You have account')
     }
