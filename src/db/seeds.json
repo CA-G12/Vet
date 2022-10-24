@@ -43,6 +43,41 @@
       "avatar": " "
     }
   ],
+  "Comment":[
+    {
+      "comment": "Comment1",
+      "image": "https://i.pinimg.com/originals/aa/02/78/aa02780bbc7e6c5e2d52d9b0e919fbf6.jpg",
+       "PostId": 1,
+       "UserId": 3
+     }, 
+     {
+      "comment": "Comment12",
+      "image": "https://i.pinimg.com/originals/aa/02/78/aa02780bbc7e6c5e2d52d9b0e919fbf6.jpg",
+       "PostId": 1,
+       "UserId": 3
+     }, 
+     {
+      "comment": "Comment13",
+      "image": "https://i.pinimg.com/originals/aa/02/78/aa02780bbc7e6c5e2d52d9b0e919fbf6.jpg",
+       "PostId": 1,
+       "UserId": 3
+     }, 
+     {
+      "comment": "Comment14",
+      "image": "https://i.pinimg.com/originals/aa/02/78/aa02780bbc7e6c5e2d52d9b0e919fbf6.jpg",
+       "PostId": 1,
+       "UserId": 3
+     },   {
+      "comment": "Comment15",
+       "PostId": 1,
+       "UserId": 3
+     }, 
+      {
+          "comment": "Comment2",
+          "image": "https://i.pinimg.com/originals/aa/02/78/aa02780bbc7e6c5e2d52d9b0e919fbf6.jpg",
+          "PostId": 2,
+           "UserId": 2
+         }],
   "Tag": [
     {
       "name": "All"
@@ -128,20 +163,7 @@
       "PostId": 1
     }
   ],
-  "Comment": [
-    {
-      "comment": "Comment1",
-      "image": "https://www.petfoodindustry.com/ext/resources/Images-by-month-year/21_07/Russian-blue-cat.jpg?t=1627569905&width=700",
-      "PostId": 1,
-      "UserId": 3
-    },
-    {
-      "comment": "Comment2",
-      "image": "https://www.petfoodindustry.com/ext/resources/Images-by-month-year/21_07/Russian-blue-cat.jpg?t=1627569905&width=700",
-      "PostId": 2,
-      "UserId": 2
-    }
-  ],
+ 
   "DoctorInfo": [
     {
       "clinicLocation": "Gaza - Naser",
