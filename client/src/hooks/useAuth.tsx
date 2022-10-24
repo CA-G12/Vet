@@ -20,6 +20,7 @@ const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
       });
       JwtService.setToken(signInReq.data.token);
       setUser({
+        id: signInReq.data.id,
         name: signInReq.data.name,
         role: signInReq.data.role,
         email: signInReq.data.email,
@@ -28,7 +29,6 @@ const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
       toast.success(signInReq.data.name);
       callback();
     } catch (err:any) {
-      console.log(err);
       toast.error(err.response);
       callback();
     }
