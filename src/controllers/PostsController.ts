@@ -22,6 +22,7 @@ export default class PostsController {
     const { tagId, animalId, q = '' } = req.query
 
     let filterData = { }
+
     if (tagId && animalId) {
       filterData = {
         content: {
@@ -71,6 +72,6 @@ export default class PostsController {
       ],
       where: filterData
     })
-    res.json((posts))
+    res.json(posts)
   }
 }
