@@ -4,7 +4,7 @@ import {
 import addPostAuth from '../Interfaces/post/IAddPost';
 
 interface IStore{
-  filterObj?:addPostAuth;
+  filterObj?:Omit<addPostAuth, 'UserId'>;
   setFilterObj?:Function;
   TagList?:Array<{name:string, id:number}>;
   AnimalList?:Array<{name:string, id:number}>

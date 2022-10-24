@@ -5,7 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme from './helpers/theme';
 import PostsContext from './Context/PostsContext';
 import Nav from './components/Nav';
-
+import AddPost from './components/AddPost/AddPost';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => (
@@ -14,6 +14,7 @@ const App = () => (
       <PostsContext>
         <ToastContainer />
         <Nav />
+        <AddPost />
         <Outlet />
       </PostsContext>
     </ThemeProvider>

@@ -11,6 +11,7 @@ import Username from '../UserInfo';
 import BasicSelect from './BasicSelect';
 import ITag from '../../Interfaces/post/ITag';
 import IAddPost from '../../Interfaces/post/IAddPost';
+import ApiServices from '../../services/ApiService';
 
 const AnimalList:ITag[] = [
   { id: 1, name: 'Cats' },
@@ -48,11 +49,22 @@ const AddPost = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [postData, setPostData] = React.useState<IAddPost>({
+    UserId: 1,
     content: '',
     image: '',
     TagId: 0,
     AnimalId: 0,
   });
+
+  const handleClick = async () => {
+    ApiServices.init();
+    try {
+      const result = await ApiServices.post('/posts', postData);
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleStateTextarea = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.currentTarget;
@@ -69,14 +81,17 @@ const AddPost = () => {
         aria-describedby="modal-modal-description"
       >
         <div>
-
           <form
             action=""
             onSubmit={(e) => {
               e.preventDefault();
               postSchema.validate(postData)
                 .then(() => {
+                  handleClick();
+                })
+                .then(() => {
                   toast.success('New post added successfully');
+                  handleClose();
                 })
                 .catch((err:any) => {
                   toast.error(err.message);
