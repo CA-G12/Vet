@@ -4,7 +4,7 @@ import '../Popup/style.css';
 import ImageIcon from '@mui/icons-material/Image';
 import { toast } from 'react-toastify';
 import { DoctorInfo } from '../../Validation';
-import ApiServices from '../../services/ApiServices';
+import ApiService from '../../services/ApiService';
 import { authContext } from '../../hooks/useAuth';
 
 interface IDoctorInfo{
@@ -32,7 +32,7 @@ const Doctor = ({ open }:{open :Function}) => {
       event.preventDefault();
       try {
         await DoctorInfo.validate(doctorInfo);
-        await ApiServices.post('/doctor-info', doctorInfo);
+        await ApiService.post('/doctor-info', doctorInfo);
         open(false);
         toast.success('done');
       } catch (error:any) {

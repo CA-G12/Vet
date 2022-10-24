@@ -4,19 +4,19 @@ import React, {
 import { toast } from 'react-toastify';
 import IAuth from '../Interfaces/IAuth';
 import IAuthCon from '../Interfaces/IAuthCon';
-import ApiServices from '../services/ApiServices';
+import ApiService from '../services/ApiService';
 import JwtService from '../services/JwtService';
 
 const authContext = createContext<IAuthCon>({} as IAuthCon);
 
 const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<IAuth>();
+  const [user, setUser] = useState<IAuth|null>();
 
   const signUp = async ({
     email, password, confirmPassword, name, role,
   }: IAuth, callback:Function) => {
     try {
-      const signUpReq = await ApiServices.post('/sign-up', {
+      const signUpReq = await ApiService.post('/sign-up', {
         email, password, confirmPassword, name, role,
       });
       JwtService.setToken(signUpReq.data.token);
@@ -28,15 +28,15 @@ const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
         avatar: signUpReq.data.avatar,
       });
       toast.success(signUpReq.data.name);
-      callback();
+      if (callback) { callback(); }
     } catch (err:any) {
       toast.error(err.response);
-      callback();
+      if (callback) { callback(); }
     }
   };
-  const signIn = async ({ email, password }: IAuth, callback:Function) => {
+  const signIn = async ({ email, password }: IAuth, callback?:Function) => {
     try {
-      const signInReq = await ApiServices.post('/sign-in', { email, password });
+      const signInReq = await ApiService.post('/sign-in', { email, password });
       setUser({
         id: signInReq.data.data.id,
         name: signInReq.data.data.name,
@@ -46,23 +46,23 @@ const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
       });
       JwtService.setToken(signInReq.data.data.token);
       toast.success(signInReq.data.data.name);
-      callback();
+      if (callback) { callback(); }
     } catch (err:any) {
       toast.error(err.response);
-      callback();
+      if (callback) { callback(); }
     }
   };
   const signOut = () => {
     JwtService.destroyToken();
-    setUser({});
+    setUser(null);
   };
   useEffect(() => {
     const userReq = async () => {
       try {
-        const dataUnMount = await ApiServices.get('/user/me');
+        const dataUnMount = await ApiService.get('/user/me');
         setUser(dataUnMount.data.user);
       } catch (error:any) {
-        setUser({});
+        setUser(null);
       }
     };
     userReq();

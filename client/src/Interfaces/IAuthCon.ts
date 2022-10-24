@@ -4,7 +4,7 @@ interface IAuthCon{
     signUp :Function,
     signIn :Function,
     signOut:Function,
-    user?:IAuth
+    user?:IAuth|null
   }
 
 export default IAuthCon;
