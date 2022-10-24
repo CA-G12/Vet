@@ -19,10 +19,13 @@ const Post = ({ post }:{post:IPost}) => {
   const [isConnected, setIsConnected] = useState(false);
   const [getComments, setGetComments] = useState([]);
   const [page, setPage] = useState(1);
+  const [isShowMore, setIsShowMore] = useState(false);
   const showMore = () => {
+    setIsShowMore(true);
     ApiServices.get(`/api/v1/posts/${post.id}/comments?page=${page}`).then((res) => {
       setPage(page + 1);
       setGetComments(getComments.concat(res.data.rows));
+      setIsShowMore(false);
     });
   };
   const handleClick = () => {
@@ -59,7 +62,7 @@ const Post = ({ post }:{post:IPost}) => {
 
           </p>
           <StackCommentsAndLikes
-            commentNum={4}
+            commentNum={post.Comments.length}
             likes={post.Likes}
             handleClick={handleClick}
           />
@@ -76,7 +79,12 @@ const Post = ({ post }:{post:IPost}) => {
       {
         showComments && (
         <div>
-          <Comments showMore={showMore} comments={getComments} />
+          <Comments
+            isShowMore={isShowMore}
+            showMore={showMore}
+            commentNum={post.Comments.length}
+            comments={getComments}
+          />
 
         </div>
         )

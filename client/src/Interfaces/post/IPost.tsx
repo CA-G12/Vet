@@ -11,6 +11,7 @@ interface IPost{
     Likes:Array<ILike>
     Tag:ITag
     Animal:ITag
+    Comments:Array<{id:number}>
 
 }
 export default IPost;
