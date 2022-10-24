@@ -4,13 +4,9 @@ dotenv.config()
 
 const googleClientId = process.env.GOOGLE_CLIENT_ID
 const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET
-const port = process.env.PORT
+const port = process.env.PORT || 8080
 const secretKey = process.env.SECRET_KEY
 const nodeEnv = process.env.NODE_ENV
-
-if (!port) {
-  throw new Error('invalid port')
-}
 
 if (!secretKey) {
   throw new Error('invalid Secret Key')
