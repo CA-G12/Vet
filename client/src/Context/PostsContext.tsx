@@ -1,13 +1,14 @@
 import {
   createContext, useMemo, useState,
 } from 'react';
-import addPostAuth from '../Interfaces/post/IAddPost';
+import PostInfo from '../Interfaces/post/IAddPost';
+import ITag from '../Interfaces/post/ITag';
 
 interface IStore{
-  filterObj?:addPostAuth;
+  filterObj?:PostInfo;
   setFilterObj?:Function;
-  TagList?:Array<{name:string, id:number}>;
-  AnimalList?:Array<{name:string, id:number}>
+  TagList?:Array<ITag>;
+  AnimalList?:Array<ITag>
 }
 export const AllPosts = createContext<IStore >({});
 const PostsContext = ({ children }:any) => {

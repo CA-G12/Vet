@@ -163,8 +163,8 @@ justify-content: space-between;
 gap: 30px;
 }
 .comment-container img{
-width: 80px;
-height: 80px;
+width: 60px;
+height: 60px;
 object-fit: cover;
 border-radius: 12px;
 
@@ -182,6 +182,7 @@ object-fit: cover;
 
 .comments{
   border-radius: 0 0 10px 10px;
+  padding-bottom: 12px;
 }
 .comment-container{
   background-color: var(--background-post);
@@ -189,7 +190,7 @@ object-fit: cover;
   border-bottom: 1px solid #a3cfcf;
   display: flex;
   justify-content: space-between;
-  padding: 10px 20px 10px 0;
+  padding: 5px 20px 5px 0;
 }
 .img-post-mobile{
   display: none;
@@ -381,4 +382,11 @@ cursor: pointer;
   text-align: center;
   margin-top: 60px;
   width: 100%;
+}
+.content-comment p{
+  font-size: 12px !important;
+  font-weight: 200;
+}
+.comment-img{
+  margin-right: 20px;
 }
