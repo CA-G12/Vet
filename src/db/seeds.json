@@ -1,135 +1,153 @@
-
 {
-    "User" : [
-      {
-      "name" : "abdallah",
-      "email" :"abdallah@gmail.com",
-      "password" :"123456789",
-      "role" :"ADMIN",
+  "User": [
+    {
+      "name": "abdallah",
+      "email": "abdallah@gmail.com",
+      "password": "123456789",
+      "role": "ADMIN",
       "avatar": " "
-      }
-     ,{
-      "name" : "salsabeel",
-      "email" :"salsabeel@gmail.com",
-      "password" :"123456789",
-      "role" :"ADMIN",
+    },
+    {
+      "name": "salsabeel",
+      "email": "salsabeel@gmail.com",
+      "password": "123456789",
+      "role": "ADMIN",
       "avatar": " "
-  },
-  {
-      "name" : "aseel",
-      "email" :"aseel@gmail.com",
-      "password" :"123456789",
-      "role" :"ADMIN",
+    },
+    {
+      "name": "aseel",
+      "email": "aseel@gmail.com",
+      "password": "123456789",
+      "role": "ADMIN",
       "avatar": " "
-  } 
-  ,{ 
-      "name" : "saeed",
-      "email" :"saeed@gmail.com",
-      "password" :"$2a$15$V8W8dLCuFuAIPhQY.vEZ9uHSphY5xr.t0d/Jq7JTCwpPLyn8cpARW",
-      "role" :"ADMIN",
+    },
+    {
+      "name": "saeed",
+      "email": "saeed@gmail.com",
+      "password": "$2a$15$V8W8dLCuFuAIPhQY.vEZ9uHSphY5xr.t0d/Jq7JTCwpPLyn8cpARW",
+      "role": "ADMIN",
       "avatar": " "
-  },
-  {
-      "name" : "mohammed",
-      "email" :"mohammed@gmail.com",
-      "password" :"123456789",
-      "role" :"ADMIN",
+    },
+    {
+      "name": "mohammed",
+      "email": "mohammed@gmail.com",
+      "password": "123456789",
+      "role": "ADMIN",
       "avatar": " "
-  },{
-      "name" : "hala",
-      "email" :"hala@gmail.com",
-      "password" :"123456789",
-      "role" :"DOCTOR",
+    },
+    {
+      "name": "hala",
+      "email": "hala@gmail.com",
+      "password": "123456789",
+      "role": "DOCTOR",
       "avatar": " "
-  }
-  
-    ],
-    "Tag":[
-      {
-          "name":"All"
-      },
-      {
-          "name":"Need help"
-      },
-      {
-          "name":"Advise"
-      },
-      {
-          "name":"Up for adoption"
-      },
-      {
-          "name":"Memes"
-      },
-      {
-          "name":"Up for sale"
-      }
-      
-    ],
-    "Animal":[
-
-      {
-          "name":"All"
-      },
-      {
-          "name":"Cat"
-      },
-      {
-          "name":"Dog"
-      },
-      {
-          "name":"Turtle"
-      }
-    ],
-    "Post":[
-      {
-      "content":"Post 1111",
-      "image": "https://www.petfoodindustry.com/ext/resources/Images-by-month-year/21_07/Russian-blue-cat.jpg?t=1627569905&width=700",
-      "TagId": 1,
-      "AnimalId":1,
-      "UserId":1
-  },
-  {
-      "content":"Post 222",
-      "image": "https://www.petfoodindustry.com/ext/resources/Images-by-month-year/21_07/Russian-blue-cat.jpg?t=1627569905&width=700",
-      "TagId": 2,
-      "AnimalId":2,
-      "UserId":2
-  }
-    ],
-    "Like":[{
-      "UserId":2,
-      "PostId":1
-    },{
-      "UserId":1,
-      "PostId":2
-    },{
-      "UserId":3,
-      "PostId":1
     }
   ],
-  "Comment":[
-      {
-       "comment": "Comment1",
-       "image": "https://www.petfoodindustry.com/ext/resources/Images-by-month-year/21_07/Russian-blue-cat.jpg?t=1627569905&width=700",
-        "PostId": 1,
-        "UserId": 3
-      }, 
-      {
-          "comment": "Comment2",
-          "image": "https://www.petfoodindustry.com/ext/resources/Images-by-month-year/21_07/Russian-blue-cat.jpg?t=1627569905&width=700",
-           "PostId": 2,
-           "UserId": 2
-         }
+  "Tag": [
+    {
+      "name": "All"
+    },
+    {
+      "name": "Need help"
+    },
+    {
+      "name": "Advise"
+    },
+    {
+      "name": "Up for adoption"
+    },
+    {
+      "name": "Memes"
+    },
+    {
+      "name": "Up for sale"
+    }
   ],
-"DoctorInfo":[
-  {
-    "clinicLocation":"Gaza - Naser",
-     "workplace" : "Salala",
-      "hourRate":"15-20 ",
-      "doctorId":6
-  }
-]
-    
-  
-
+  "Animal": [
+    {
+      "name": "All"
+    },
+    {
+      "name": "Cat"
+    },
+    {
+      "name": "Dog"
+    },
+    {
+      "name": "Turtle"
+    }
+  ],
+  "Post": [
+    {
+      "content": "Post 1111",
+      "image": "https://i.pinimg.com/originals/aa/02/78/aa02780bbc7e6c5e2d52d9b0e919fbf6.jpg",
+      "TagId": 1,
+      "AnimalId": 1,
+      "UserId": 1
+    },
+    {
+      "content": "Post 222",
+      "image": "https://i.pinimg.com/736x/01/6f/72/016f72c5812e1b8f71bdbf19d8c7558b.jpg",
+      "TagId": 2,
+      "AnimalId": 2,
+      "UserId": 2
+    },
+    {
+      "content": "Post 222",
+      "image": "https://i.pinimg.com/originals/bd/59/14/bd5914df69a865b3f3169a36c8507005.jpg",
+      "TagId": 2,
+      "AnimalId": 2,
+      "UserId": 2
+    },
+    {
+      "content": "Post 222",
+      "image": "https://img-9gag-fun.9cache.com/photo/aeg6L6B_460swp.webp",
+      "TagId": 2,
+      "AnimalId": 2,
+      "UserId": 2
+    },
+    {
+      "content": "Post 222",
+      "image": "http://iheartcats.com/wp-content/uploads/2015/02/shutterstock_150585071.jpg",
+      "TagId": 2,
+      "AnimalId": 2,
+      "UserId": 2
+    }
+  ],
+  "Like": [
+    {
+      "UserId": 2,
+      "PostId": 1
+    },
+    {
+      "UserId": 1,
+      "PostId": 2
+    },
+    {
+      "UserId": 3,
+      "PostId": 1
+    }
+  ],
+  "Comment": [
+    {
+      "comment": "Comment1",
+      "image": "https://www.petfoodindustry.com/ext/resources/Images-by-month-year/21_07/Russian-blue-cat.jpg?t=1627569905&width=700",
+      "PostId": 1,
+      "UserId": 3
+    },
+    {
+      "comment": "Comment2",
+      "image": "https://www.petfoodindustry.com/ext/resources/Images-by-month-year/21_07/Russian-blue-cat.jpg?t=1627569905&width=700",
+      "PostId": 2,
+      "UserId": 2
+    }
+  ],
+  "DoctorInfo": [
+    {
+      "clinicLocation": "Gaza - Naser",
+      "workplace": "Salala",
+      "hourRate": "15-20 ",
+      "doctorId": 6
+    }
+  ]
 }

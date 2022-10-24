@@ -19,14 +19,14 @@ export default class PostsController {
   }
 
   public static async index (req: Request, res: Response) {
-    const { tagId, animalId, q } = req.query
-    console.log(req.query)
+    const { tagId, animalId, q = '' } = req.query
 
     let filterData = { }
+
     if (tagId && animalId) {
       filterData = {
         content: {
-          [Op.substring]: q || ''
+          [Op.iLike]: `%${q}%`
         },
         TagId: tagId,
         AnimalId: animalId
@@ -34,41 +34,35 @@ export default class PostsController {
     } else if (animalId) {
       filterData = {
         content: {
-          [Op.substring]: q || ''
+          [Op.iLike]: `%${q}%`
         },
         AnimalId: animalId
       }
     } else if (tagId) {
       filterData = {
         content: {
-          [Op.substring]: q || ''
+          [Op.iLike]: `%${q}%`
         },
         TagId: tagId
-      }
-    } else if (q) {
-      filterData = {
-        content: {
-          [Op.substring]: q
-        }
       }
     } else {
       filterData = {
         content: {
-          [Op.substring]: ''
+          [Op.iLike]: `%${q}%`
         }
       }
     }
 
     const posts = await Post.findAll({
       attributes: ['id', 'content', 'image'],
-      include: [{ model: User, attributes: ['name', 'avatar', 'id'] },
-        { model: Like, attributes: ['id'], include: [{ model: User, attributes: ['name', 'id', 'avatar'] }] }, {
+      include: [{ model: User, attributes: ['name', 'avatar', 'id', 'role'] },
+        { model: Like, attributes: ['id'], include: [{ model: User, attributes: ['name', 'id', 'avatar', 'role'] }] }, {
           model: Tag, attributes: ['id', 'name']
         }, {
           model: Animal, attributes: ['id', 'name']
         }],
       where: filterData
     })
-    res.json((posts))
+    res.json(posts)
   }
 }
