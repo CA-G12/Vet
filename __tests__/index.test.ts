@@ -120,7 +120,7 @@ describe('all post ', () => {
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err)
-        expect(res.body.length).toEqual(2)
+        expect(res.body.length).toEqual(5)
         return done()
       })
   })
