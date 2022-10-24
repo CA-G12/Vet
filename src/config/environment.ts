@@ -8,10 +8,6 @@ const port = process.env.PORT
 const secretKey = process.env.SECRET_KEY
 const nodeEnv = process.env.NODE_ENV
 
-if (!googleClientId && !googleClientSecret) {
-  throw new Error('invalid google client id')
-}
-
 if (!port) {
   throw new Error('invalid port')
 }
