@@ -6,9 +6,8 @@ const errorWrapper = (controller:Function) => {
     try {
       await controller(req, res, next)
     } catch (error:any) {
-      // handle error types
-      if(error.message === "ValidationError"){
-        error.status = 422;
+      if (error.name === 'ValidationError') {
+        error.status = 422
       }
       next(new CustomError(error.status || 500, error.message || 'Internal Server Error'))
     }

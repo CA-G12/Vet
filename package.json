@@ -7,7 +7,8 @@
     "test": "cross-env NODE_ENV=test jest --runInBand",
     "buildDB": " cross-env NODE_ENV=development ts-node src/db/build.ts",
     "dev": "cross-env NODE_ENV=development nodemon --config nodemon.json src/index.ts",
-    "start": "cross-env NODE_ENV=development node src/index.ts",
+    "start": "cross-env NODE_ENV=development node dist",
+    "build": "tsc -p .",
     "lint": "eslint src/** --ext .ts"
   },
   "repository": {
@@ -50,6 +51,7 @@
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.2",
+    "@types/cors": "^2.8.12",
     "@types/jest": "^29.1.2",
     "@types/jsonwebtoken": "^8.5.9",
     "@types/passport-jwt": "^3.0.7",
