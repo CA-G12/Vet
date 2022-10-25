@@ -1,9 +1,9 @@
 import './App.css';
 import { Outlet } from 'react-router-dom';
-import Popup from './components/Popup/Popup';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { ThemeProvider } from '@mui/material/styles';
+import Popup from './components/Popup/Popup';
 import theme from './helpers/theme';
 import PostsContext from './Context/PostsContext';
 import Nav from './components/Nav';
