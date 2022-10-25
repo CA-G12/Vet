@@ -1,24 +1,18 @@
-/* 2D9B9B */
+
+body{
+  overflow-x: hidden;
+}
 .wave-frame {
     position: absolute;
-    /* background-color: #2D9B9B;
-    width: 100rem;
-    height: 100rem;
-    left: 60rem;
-    border-radius: 10rem 30rem; */
     width: 1372.6px;
     height: 1378.23px;
     left: 826px;
     top: -340px;
-    /* 10% / 50% */
     border-radius:10% / 50% ;
     background-color: #2D9B9B;
     transform: rotate(10deg);
 }
-.landing{
-    height: 100vh;
-    width: 100vw;
-}
+
 .landing .heart{
     position: absolute;
     width: 551px;
