@@ -11,7 +11,7 @@ export const FooterLinks = () => (
       {' '}
       |
       {' '}
-      <a href="/">Services</a>
+      <a href="/">Doctors</a>
       {' '}
       |
       {' '}
