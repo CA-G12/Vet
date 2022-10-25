@@ -12,6 +12,8 @@ import BasicSelect from './BasicSelect';
 import ITag from '../../Interfaces/post/ITag';
 import IAddPost from '../../Interfaces/post/IAddPost';
 import ApiServices from '../../services/ApiService';
+import UploadPic from '../UploadPic';
+import handleUpload from '../handleUpload';
 
 const AnimalList:ITag[] = [
   { id: 1, name: 'Cats' },
@@ -45,6 +47,10 @@ const style = {
 };
 
 const AddPost = () => {
+  const [file, setFile] = React.useState<any>('');
+
+  const [percent, setPercent] = React.useState(0);
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -65,6 +71,12 @@ const AddPost = () => {
       console.log(err);
     }
   };
+  React.useEffect(() => {
+    if (postData.image) {
+      handleClick();
+      console.log(postData, '1111111111111111111111');
+    }
+  }, [postData.image]);
 
   const handleStateTextarea = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.currentTarget;
@@ -87,9 +99,13 @@ const AddPost = () => {
               e.preventDefault();
               postSchema.validate(postData)
                 .then(() => {
-                  handleClick();
+                  console.log(postData);
+                  handleUpload({
+                    postData, setPostData, file, setPercent,
+                  });
                 })
                 .then(() => {
+                  console.log('are we here?');
                   toast.success('New post added successfully');
                   handleClose();
                 })
@@ -155,6 +171,8 @@ const AddPost = () => {
                     obj={AnimalList}
                     callback={setPostData}
                   />
+                  <UploadPic setFile={setFile} />
+                  <p>{percent}</p>
                 </Box>
                 <Button
                   type="submit"
