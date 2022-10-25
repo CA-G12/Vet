@@ -1,7 +1,7 @@
-import { User, Post, Like, Tag, Animal } from '../db'
+import { User, Post, Like, Tag, Animal, Comment } from '../db'
 import { Request, Response } from 'express'
 import { Op } from 'sequelize'
-import postSchema from '../schemes'
+import postSchema from '../schemes/post'
 
 export default class PostsController {
   public static async store (req:Request, res:Response) {
@@ -55,12 +55,21 @@ export default class PostsController {
 
     const posts = await Post.findAll({
       attributes: ['id', 'content', 'image'],
-      include: [{ model: User, attributes: ['name', 'avatar', 'id', 'role'] },
-        { model: Like, attributes: ['id'], include: [{ model: User, attributes: ['name', 'id', 'avatar', 'role'] }] }, {
+      include: [
+        { model: User, attributes: ['name', 'avatar', 'id', 'role'] },
+        {
+          model: Like,
+          attributes: ['id'],
+          include: [{ model: User, attributes: ['name', 'id', 'avatar', 'role'] }]
+        },
+        {
           model: Tag, attributes: ['id', 'name']
-        }, {
+        },
+        { model: Comment, attributes: ['id'] },
+        {
           model: Animal, attributes: ['id', 'name']
-        }],
+        }
+      ],
       where: filterData
     })
     res.json(posts)

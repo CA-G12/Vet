@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 import environment from '../../config/environment'
 
 export default (req:Request, res:Response, next:NextFunction) => {
-  const token = req.header('Authorization')
+  const token = req.header('Authorization')?.split(' ')[1]
   if (!token) {
     throw new Error('Unauthorized')
   } else {

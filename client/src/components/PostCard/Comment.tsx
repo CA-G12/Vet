@@ -10,7 +10,7 @@ const Comment = ({ comment }:{ comment: IComment}) => (
         <p>{comment.comment}</p>
       </div>
     </div>
-    { comment.image && <img src={comment.image} alt="" />}
+    { comment.image && <img className="comment-img" src={comment.image} alt="" />}
     <EditAndDeleteBtn />
   </div>
 

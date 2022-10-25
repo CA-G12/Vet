@@ -10,9 +10,10 @@ import Doctors from './pages/Doctors';
 import Emergency from './pages/Emergency';
 import DoctorProfile from './pages/DoctorProfile';
 import NotFound from './pages/NotFound';
-import ApiServices from './services/ApiService';
+import ApiService from './services/ApiService';
 
-ApiServices.init();
+ApiService.init();
+
 const router = createBrowserRouter([
   {
     path: '/',
