@@ -1,0 +1,23 @@
+.SignBar{
+    border-bottom:1px #C4C4C4 solid;
+    width: 250px;
+    height: 60px;
+    display:flex;
+    justify-content: space-around;
+}
+
+.sign-Btn , .sign-Doctor{
+    height: 40px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    background-color: rgb(45, 155, 155);
+}
+.sign-Doctor{
+    width: 150px;
+    padding: 2px;
+    margin: auto;
+    display: block;
+    font-size: 20px;
+
+}
