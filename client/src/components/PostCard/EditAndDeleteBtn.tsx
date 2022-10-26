@@ -20,10 +20,13 @@ interface ICommentIdAndPostId{
    deleteCallback?:Function
    numComments?:number
     setNumComments?:Function
+    setEdit?:Function
+    edit?:boolean
 }
 
 const EditAndDeleteBtn = ({
-  commentId, postId, deleteData, deleteCallback, numComments, setNumComments,
+  commentId, postId, deleteData, deleteCallback, numComments, setNumComments, setEdit,
+  edit,
 }:ICommentIdAndPostId) => {
   const [open, setOpen] = useState(false);
 
@@ -34,6 +37,8 @@ const EditAndDeleteBtn = ({
     setOpen(!open);
   };
   const deleteComment = async () => {
+    setOpen(false);
+
     let url = `post/${postId}`;
     if (commentId) {
       url += `/comment/${commentId}`;
@@ -53,6 +58,13 @@ const EditAndDeleteBtn = ({
       console.log(err);
     }
   };
+  const handelEdit = () => {
+    setOpen(false);
+
+    if (setEdit) {
+      setEdit(!edit);
+    }
+  };
   const ref = useOutsideClick(handleClickOutside);
 
   return (
@@ -65,7 +77,7 @@ const EditAndDeleteBtn = ({
       <Collapse className="btns-container" in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <ListItemButton className="btns-list" sx={{ pl: 4 }}>
-            <IconButton>
+            <IconButton onClick={handelEdit}>
               <EditIcon />
               <ListItemText primary="Edit" />
             </IconButton>

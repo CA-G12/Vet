@@ -16,7 +16,8 @@ interface IComments
     }
 
 const Comments = ({
-  comments, showMore, commentNum, isShowMore, setGetComments, numComments, setNumComments,
+  comments, showMore, commentNum, isShowMore, setGetComments, numComments,
+  setNumComments,
 }:IComments) => (
   <div className="comments">
     {comments.map((comment) => (

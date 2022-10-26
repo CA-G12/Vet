@@ -6,11 +6,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
 import AddInputComment from './AddInputComment';
 import useOutsideClick from '../../hooks/UseOutsideClick ';
+import IComment from '../../Interfaces/post/IComment';
 
 const BtnsPost = ({
-  isConnected, setIsConnected, numComments, setNumComments, postId,
+  isConnected, setIsConnected, numComments, setNumComments, postId, showComments,
+  getComments, setGetComments,
 }:{isConnected:boolean, numComments:number, setNumComments:Function,
-  postId:number,
+  postId:number, showComments:boolean, getComments:Array<IComment>, setGetComments:Function
 
    setIsConnected:Function}) => {
   const [showCommentInput, setShowCommentInput] = useState(false);
@@ -19,7 +21,7 @@ const BtnsPost = ({
     setIsConnected(true);
   };
   const handleClickOutside = () => {
-    setShowCommentInput(false);
+    // setShowCommentInput(false);
   };
   const ref = useOutsideClick(handleClickOutside);
   return (
@@ -45,6 +47,9 @@ const BtnsPost = ({
         numComments={numComments}
         setNumComments={setNumComments}
         postId={postId}
+        showComments={showComments}
+        getComments={getComments}
+        setGetComments={setGetComments}
       />
       )}
     </div>

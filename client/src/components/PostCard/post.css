@@ -172,6 +172,7 @@ border-radius: 12px;
 }
 .comment{
   padding: 5px 0 0 15px;
+  width: 70%;
 }
 .user-info-comment img{
 width: 30px;
@@ -242,6 +243,10 @@ object-fit: cover;
     width: 100%;
     margin-bottom: 20px;
   }
+  .edit-comment button,.edit-comment input{
+    width: 100% !important;
+  }
+
 }
 .btns-list{
   position: absolute;
@@ -401,4 +406,29 @@ cursor: pointer;
   width: 25px !important;
   height: 25px !important;
   margin: 2px 5px;
+}
+.edit-img-comment-icons div{
+  width: 100%;
+  height: 132%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  position: absolute;
+  top: -9px;
+  right: -7px;
+}
+.edit-img-comment-icons svg{
+width: 15px;
+color: var(--font-color);
+}
+.edit-comment{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.edit-comment input{
+width: 80%;
+outline: none;
+border: none;background-color: #bdd9d9;
 }

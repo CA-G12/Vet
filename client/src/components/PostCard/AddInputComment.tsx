@@ -8,21 +8,25 @@ import { toast } from 'react-toastify';
 import handleUpload from '../../helpers/handleUpload';
 import ApiServices from '../../services/ApiService';
 import deleteImgFromFirEBase from '../../helpers/DeleteImgFrom FireBse';
+import IComment from '../../Interfaces/post/IComment';
 
-const AddInputComment = ({ numComments, setNumComments, postId }:
-  {numComments:number, setNumComments:Function, postId:number}) => {
-  const [addComment, setAddComment] = useState({
+const AddInputComment = ({
+  numComments, setNumComments, postId, showComments, getComments,
+  setGetComments,
+}:
+  {numComments:number, setNumComments:Function, postId:number,
+     showComments:boolean, getComments:Array<IComment>, setGetComments:Function}) => {
+  const [data, callback] = useState({
     comment: '',
     image: '',
     UserId: 1,
   });
-  const [percent, setPercent] = useState(0);
-  const [file, setFile] = useState<any>('');
+  const [file, setFile] = useState<File|null>(null);
   const [isUpLoadImg, setIsUpLoadImg] = useState(false);
   const sendComment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      if (!isUpLoadImg && addComment.comment) {
+      if (!isUpLoadImg && data.comment) {
         toast.success('Add comment is success ', {
           position: 'bottom-left',
           autoClose: 5000,
@@ -33,7 +37,11 @@ const AddInputComment = ({ numComments, setNumComments, postId }:
           progress: undefined,
           theme: 'colored',
         });
-        const result = await ApiServices.post(`post/${postId}/comment`, addComment);
+        const result = await ApiServices.post(`post/${postId}/comment`, data).then((newComment) => {
+          if (showComments) {
+            setGetComments([newComment.data.data, ...getComments]);
+          }
+        });
         setNumComments(numComments + 1);
 
         console.log(result);
@@ -54,14 +62,14 @@ const AddInputComment = ({ numComments, setNumComments, postId }:
     }
   };
   const handelDeleteImg = () => {
-    setAddComment({ ...addComment, image: '' });
-    setFile('');
+    callback({ ...data, image: '' });
+    setFile(null);
 
-    deleteImgFromFirEBase({ file });
+    deleteImgFromFirEBase(file);
   };
   const handelOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setAddComment({
-      ...addComment,
+    callback({
+      ...data,
       comment: e.currentTarget.value,
     });
   };
@@ -70,14 +78,15 @@ const AddInputComment = ({ numComments, setNumComments, postId }:
       return;
     }
     setFile(event.target.files[0]);
-
-    console.log(percent);
   }
   React.useEffect(() => {
     if (file) {
-      handleUpload({
-        addComment, setAddComment, file, setPercent, setIsUpLoadImg,
-      });
+      handleUpload(
+        data,
+        callback,
+        file,
+        setIsUpLoadImg,
+      );
     }
   }, [file]);
 
@@ -85,7 +94,7 @@ const AddInputComment = ({ numComments, setNumComments, postId }:
     <form onSubmit={sendComment} className="addCommentInput">
 
       <input
-        value={addComment.comment}
+        value={data.comment}
         onChange={handelOnChange}
         placeholder="Add Comment"
         id="add-comment-btn"
@@ -95,14 +104,14 @@ const AddInputComment = ({ numComments, setNumComments, postId }:
         <CircularProgress />
       </div>
       <div
-        style={{ display: addComment.image ? 'block' : 'none' }}
+        style={{ display: data.image ? 'block' : 'none' }}
         role="presentation"
         onClick={handelDeleteImg}
       >
         <HideImageIcon />
       </div>
       <label
-        style={{ display: !addComment.image && !isUpLoadImg ? 'block' : 'none' }}
+        style={{ display: !data.image && !isUpLoadImg ? 'block' : 'none' }}
         htmlFor="upload-img-comment"
       >
         <AddPhotoAlternateIcon />

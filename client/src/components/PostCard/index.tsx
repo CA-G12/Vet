@@ -45,15 +45,16 @@ const Post = ({ post }:{post:IPost}) => {
   };
 
   const handleClickOutside = () => {
-    setShowComments(false);
     setIsConnected(false);
     setPage(1);
-    setGetComments([]);
   };
   const ref = useOutsideClick(handleClickOutside);
 
   return (
-    <div ref={ref} className="post-card">
+    <div
+      ref={ref}
+      className="post-card"
+    >
       <article className="article abusluot-btns">
         <section className="post-content-continuer">
           <UserPostInfo user={post.User} style={{ dimensions: 40, alignItems: 'center' }} />
@@ -91,6 +92,9 @@ const Post = ({ post }:{post:IPost}) => {
         numComments={numComments}
         setNumComments={setNumComments}
         postId={post.id}
+        showComments={showComments}
+        getComments={getComments}
+        setGetComments={setGetComments}
 
       />
 
@@ -105,7 +109,6 @@ const Post = ({ post }:{post:IPost}) => {
             setGetComments={setGetComments}
             numComments={numComments}
             setNumComments={setNumComments}
-
           />
 
         </div>
