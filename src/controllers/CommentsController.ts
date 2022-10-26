@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import { Comment, User } from '../db'
+import { commentSchema } from '../schemes'
 
 export default class CommentsController {
   public static async index (req: Request, res: Response) {
@@ -20,5 +21,35 @@ export default class CommentsController {
     })
 
     res.json(comments)
+  }
+
+  public static async store (req:Request, res:Response) {
+    try {
+      const {
+        comment,
+        image,
+        UserId
+      } = req.body
+      const PostId = req.params.postId
+      console.log(req.params)
+
+      await commentSchema.validateAsync({ comment, image, PostId, UserId })
+      const createComment = await Comment.create({ comment, image, PostId, UserId })
+      console.log(JSON.parse(JSON.stringify(createComment)))
+
+      res.status(200).json({ status: res.status, msg: 'new post added successfully', data: createComment })
+    } catch (error) {
+      res.status(400).json({
+        msg: 'something went wrong',
+        error
+      })
+    }
+  }
+
+  public static async dstroy (req: Request, res: Response) {
+    Comment.destroy({
+      where: req.params
+    }).then(() => res.json(req.params)
+    )
   }
 }

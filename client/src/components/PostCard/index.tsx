@@ -15,14 +15,19 @@ import StackCommentsAndLikes from './StackCommentsAndLikes';
 import ApiServices from '../../services/ApiService';
 
 const Post = ({ post }:{post:IPost}) => {
+  const user = {
+    id: 2,
+  };
+
   const [showComments, setShowComments] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
   const [getComments, setGetComments] = useState([]);
   const [page, setPage] = useState(1);
   const [isShowMore, setIsShowMore] = useState(false);
+  const [numComments, setNumComments] = useState(post.Comments.length);
   const showMore = () => {
     setIsShowMore(true);
-    ApiServices.get(`/api/v1/posts/${post.id}/comments?page=${page}`).then((res) => {
+    ApiServices.get(`posts/${post.id}/comments?page=${page}`).then((res) => {
       setPage(page + 1);
       setGetComments(getComments.concat(res.data.rows));
       setIsShowMore(false);
@@ -61,20 +66,33 @@ const Post = ({ post }:{post:IPost}) => {
             {post.content}
 
           </p>
+
           <StackCommentsAndLikes
-            commentNum={post.Comments.length}
+            commentNum={numComments}
             likes={post.Likes}
             handleClick={handleClick}
           />
+
         </section>
         {post.image && (
         <figure className="img-post-desctop">
           <img className="img-post" src={post.image} alt="" />
         </figure>
         ) }
-        <EditAndDeleteBtn />
+        {
+        user.id === post.User.id
+          && <EditAndDeleteBtn />
+}
       </article>
-      <BtnsPost isConnected={isConnected} setIsConnected={setIsConnected} />
+
+      <BtnsPost
+        isConnected={isConnected}
+        setIsConnected={setIsConnected}
+        numComments={numComments}
+        setNumComments={setNumComments}
+        postId={post.id}
+
+      />
 
       {
         showComments && (
@@ -82,8 +100,12 @@ const Post = ({ post }:{post:IPost}) => {
           <Comments
             isShowMore={isShowMore}
             showMore={showMore}
-            commentNum={post.Comments.length}
+            commentNum={numComments}
             comments={getComments}
+            setGetComments={setGetComments}
+            numComments={numComments}
+            setNumComments={setNumComments}
+
           />
 
         </div>

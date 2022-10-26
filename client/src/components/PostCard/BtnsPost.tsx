@@ -7,7 +7,11 @@ import { faComment } from '@fortawesome/free-solid-svg-icons';
 import AddInputComment from './AddInputComment';
 import useOutsideClick from '../../hooks/UseOutsideClick ';
 
-const BtnsPost = ({ isConnected, setIsConnected }:{isConnected:boolean,
+const BtnsPost = ({
+  isConnected, setIsConnected, numComments, setNumComments, postId,
+}:{isConnected:boolean, numComments:number, setNumComments:Function,
+  postId:number,
+
    setIsConnected:Function}) => {
   const [showCommentInput, setShowCommentInput] = useState(false);
   const handleClick = () => {
@@ -36,7 +40,13 @@ const BtnsPost = ({ isConnected, setIsConnected }:{isConnected:boolean,
           <PetsIcon />
         </IconButton>
       </div>
-      {showCommentInput && <AddInputComment />}
+      {showCommentInput && (
+      <AddInputComment
+        numComments={numComments}
+        setNumComments={setNumComments}
+        postId={postId}
+      />
+      )}
     </div>
   );
 };
