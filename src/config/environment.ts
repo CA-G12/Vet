@@ -2,11 +2,21 @@
 import dotenv from 'dotenv'
 dotenv.config()
 
-const port = process.env.PORT ?? 8080
-let dbUrl: string | undefined
-const nodeEnv = process.env.NODE_ENV ?? ''
-const secretKey = process.env.SECRET_KEY ?? ''
+const googleClientId = process.env.GOOGLE_CLIENT_ID
+const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET
+const port = process.env.PORT || 8080
+const secretKey = process.env.SECRET_KEY
+const nodeEnv = process.env.NODE_ENV
 
+if (!secretKey) {
+  throw new Error('invalid Secret Key')
+}
+
+if (!nodeEnv) {
+  throw new Error('invalid Node Environment')
+}
+
+let dbUrl: string | undefined
 switch (nodeEnv) {
   case 'development':
     dbUrl = process.env.DEV_DB_URL
@@ -18,12 +28,14 @@ switch (nodeEnv) {
     dbUrl = process.env.TEST_URL
     break
   default:
-    dbUrl = 'postgres://mss_user:root@localhost:5432/mss'
+    throw new Error('DataBase Connection Url Error')
 }
 
 export default {
   port,
   dbUrl,
   nodeEnv,
-  secretKey
+  secretKey,
+  googleClientId,
+  googleClientSecret
 }

@@ -28,10 +28,14 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   },
 }));
 
-const StackCommentsAndLikes = ({ commentNum, likes, handleClick }:ICommentsAndLikesNum) => (
+const StackCommentsAndLikes = ({
+  commentNum, likes, handleClick,
+}:ICommentsAndLikesNum) => (
   <Stack spacing={2} direction="row" className="comments-likes-btn">
     <StyledBadge
-      onClick={() => handleClick()}
+      onClick={() => {
+        handleClick();
+      }}
       badgeContent={commentNum}
       role="presentation"
     >
