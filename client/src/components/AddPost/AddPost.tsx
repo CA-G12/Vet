@@ -14,7 +14,6 @@ import BasicSelect from './BasicSelect';
 import ITag from '../../Interfaces/post/ITag';
 import IAddPost from '../../Interfaces/post/IAddPost';
 import ApiServices from '../../services/ApiService';
-// import UploadPic from '../UploadPic';
 import { authContext } from '../../hooks/useAuth';
 
 const AnimalList: ITag[] = [

@@ -1,5 +1,5 @@
 interface IAddPost {
-  UserId:number,
+  UserId?:number|null,
   content: string,
   image?:string,
   TagId:number,
