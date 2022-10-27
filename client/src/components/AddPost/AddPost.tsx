@@ -1,19 +1,21 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 import Modal from '@mui/material/Modal';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ImageIcon from '@mui/icons-material/Image';
+import uploadImage from '../../helpers/uploadImage';
 import postSchema from '../../Validation/addPost';
 import Username from '../UserInfo';
 import BasicSelect from './BasicSelect';
 import ITag from '../../Interfaces/post/ITag';
 import IAddPost from '../../Interfaces/post/IAddPost';
 import ApiServices from '../../services/ApiService';
-import UploadPic from '../UploadPic';
-import handleUpload from '../handleUpload';
+// import UploadPic from '../UploadPic';
+import { authContext } from '../../hooks/useAuth';
 
 const AnimalList:ITag[] = [
   { id: 1, name: 'Cats' },
@@ -47,12 +49,10 @@ const style = {
 };
 
 const AddPost = () => {
-  const [file, setFile] = React.useState<any>('');
-
-  const [percent, setPercent] = React.useState(0);
-
+  const { user } = React.useContext(authContext);
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const [progress, setProgress] = React.useState(100);
+  const [imageUrl, setImageUrl] = React.useState<string>('');
   const handleClose = () => setOpen(false);
   const [postData, setPostData] = React.useState<IAddPost>({
     UserId: 1,
@@ -61,8 +61,24 @@ const AddPost = () => {
     TagId: 0,
     AnimalId: 0,
   });
+  async function handleImageUpload(event:React.ChangeEvent<HTMLInputElement>) {
+    try {
+      if (event.target.files) {
+        setImageUrl(await uploadImage(event.target.files[0], setProgress));
+      }
+    } catch (err) {
+      console.log('upload failed');
+    }
+  }
+  const handleOpen = () => {
+    if (user) {
+      setOpen(true);
+    } else {
+      toast.error('you have to be logged in to post');
+    }
+  };
 
-  const handleClick = async () => {
+  const handlePost = async () => {
     ApiServices.init();
     try {
       const result = await ApiServices.post('/posts', postData);
@@ -71,16 +87,26 @@ const AddPost = () => {
       console.log(err);
     }
   };
-  React.useEffect(() => {
-    if (postData.image) {
-      handleClick();
-      console.log(postData, '1111111111111111111111');
-    }
-  }, [postData.image]);
 
   const handleStateTextarea = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.currentTarget;
     setPostData((prev:IAddPost) => ({ ...prev, [name]: value }));
+  };
+  const handleSubmit = (e:React.ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(imageUrl);
+    postSchema.validate(postData)
+      .then(() => {
+        setPostData({ ...postData, image: imageUrl });
+      })
+      .then(() => {
+        handlePost();
+        toast.success('New post added successfully');
+        // handleClose();
+      })
+      .catch((err:any) => {
+        toast.error(err.message);
+      });
   };
   return (
     <>
@@ -95,34 +121,11 @@ const AddPost = () => {
         <div>
           <form
             action=""
-            onSubmit={(e) => {
-              e.preventDefault();
-              postSchema.validate(postData)
-                .then(() => {
-                  console.log(postData);
-                  handleUpload({
-                    postData, setPostData, file, setPercent,
-                  });
-                })
-                .then(() => {
-                  console.log('are we here?');
-                  toast.success('New post added successfully');
-                  handleClose();
-                })
-                .catch((err:any) => {
-                  toast.error(err.message);
-                });
-            }}
+            onSubmit={handleSubmit}
           >
             <Box sx={style}>
               <Box sx={{ alignSelf: 'flex-start' }}>
-                <Username user={{
-                  name: 'Kakashi',
-                  avatar: 'https://media.tenor.com/fR49OunP59UAAAAC/killua-killua-zoldyck.gif',
-                  id: 1,
-                  role: 'user',
-                }}
-                />
+                <Username user={user} />
               </Box>
               <TextareaAutosize
                 name="content"
@@ -148,10 +151,12 @@ const AddPost = () => {
                 >
                   <label htmlFor="upload-photo">
                     <input
+                      type="file"
+                      onChange={handleImageUpload}
+                      accept="/image/*"
                       style={{ display: 'none' }}
                       id="upload-photo"
                       name="upload-photo"
-                      type="file"
                     />
                     <Button variant="outlined" component="span" sx={{ minWidth: 150, minHeight: '100%' }} endIcon={<ImageIcon />}>
                       add Image
@@ -171,10 +176,9 @@ const AddPost = () => {
                     obj={AnimalList}
                     callback={setPostData}
                   />
-                  <UploadPic setFile={setFile} />
-                  <p>{percent}</p>
                 </Box>
-                <Button
+                <LoadingButton
+                  loading={progress !== 100}
                   type="submit"
                   variant="contained"
                   sx={{
@@ -182,7 +186,7 @@ const AddPost = () => {
                   }}
                 >
                   Post
-                </Button>
+                </LoadingButton>
               </Box>
             </Box>
           </form>
