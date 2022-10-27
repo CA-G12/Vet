@@ -32,7 +32,7 @@ export const Actions = () => {
   useEffect(() => {
     // condition to change isLandingPage
     if (location.pathname === '/') {
-      setIsLandingPage(true);
+      setIsLandingPage(false);
     } else {
       setIsLandingPage(true);
     }
