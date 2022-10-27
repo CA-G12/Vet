@@ -17,14 +17,13 @@ import ApiServices from '../../services/ApiService';
 // import UploadPic from '../UploadPic';
 import { authContext } from '../../hooks/useAuth';
 
-const AnimalList:ITag[] = [
+const AnimalList: ITag[] = [
   { id: 1, name: 'Cats' },
   { id: 2, name: 'Dogs' },
   { id: 3, name: 'Turtles' },
-
 ];
 
-const TagList:ITag[] = [
+const TagList: ITag[] = [
   { id: 1, name: 'Need help' },
   { id: 2, name: 'Advise' },
   { id: 3, name: 'Up for adoption' },
@@ -51,25 +50,18 @@ const style = {
 const AddPost = () => {
   const { user } = React.useContext(authContext);
   const [open, setOpen] = React.useState(false);
-  const [progress, setProgress] = React.useState(100);
-  const [imageUrl, setImageUrl] = React.useState<string>('');
+  const [progress, setProgress] = React.useState(0);
+  const [file, setFile] = React.useState<File|null>(null);
   const handleClose = () => setOpen(false);
-  const [postData, setPostData] = React.useState<IAddPost>({
-    UserId: 1,
-    content: '',
-    image: '',
-    TagId: 0,
-    AnimalId: 0,
-  });
-  async function handleImageUpload(event:React.ChangeEvent<HTMLInputElement>) {
-    try {
-      if (event.target.files) {
-        setImageUrl(await uploadImage(event.target.files[0], setProgress));
-      }
-    } catch (err) {
-      console.log('upload failed');
+  React.useEffect(() => {
+    if (progress === 100)handleClose();
+  }, [progress]);
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      setFile(event.target.files[0]);
     }
-  }
+  };
+
   const handleOpen = () => {
     if (user) {
       setOpen(true);
@@ -78,36 +70,33 @@ const AddPost = () => {
     }
   };
 
-  const handlePost = async () => {
-    ApiServices.init();
+  const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
+    const formData = Object.fromEntries(new FormData(e.target).entries());
+    e.preventDefault();
     try {
+      const validated = await postSchema.validate(formData);
+      let imageUrl = '';
+      if (file) {
+        imageUrl = await uploadImage(file, setProgress);
+      }
+
+      const postData:IAddPost = {
+        ...validated,
+        UserId: user?.id,
+        image: imageUrl,
+      };
+
+      ApiServices.init();
       const result = await ApiServices.post('/posts', postData);
+      toast.success('new post added successfully');
+      handleClose();
       console.log(result);
-    } catch (err) {
+    } catch (err:any) {
       console.log(err);
+      toast.error(err.message);
     }
   };
 
-  const handleStateTextarea = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
-    const { name, value } = e.currentTarget;
-    setPostData((prev:IAddPost) => ({ ...prev, [name]: value }));
-  };
-  const handleSubmit = (e:React.ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(imageUrl);
-    postSchema.validate(postData)
-      .then(() => {
-        setPostData({ ...postData, image: imageUrl });
-      })
-      .then(() => {
-        handlePost();
-        toast.success('New post added successfully');
-        // handleClose();
-      })
-      .catch((err:any) => {
-        toast.error(err.message);
-      });
-  };
   return (
     <>
       <Button onClick={handleOpen}>Add post</Button>
@@ -119,21 +108,22 @@ const AddPost = () => {
         aria-describedby="modal-modal-description"
       >
         <div>
-          <form
-            action=""
-            onSubmit={handleSubmit}
-          >
+          <form action="" onSubmit={handleSubmit}>
             <Box sx={style}>
               <Box sx={{ alignSelf: 'flex-start' }}>
                 <Username user={user} />
               </Box>
               <TextareaAutosize
                 name="content"
-                onChange={handleStateTextarea}
                 aria-label="empty textarea"
                 placeholder="What is going on?"
                 style={{
-                  width: '85%', minHeight: '40%', fontSize: 16, padding: '2rem', borderStyle: 'none', backgroundColor: '#EFF2F2',
+                  width: '85%',
+                  minHeight: '40%',
+                  fontSize: 16,
+                  padding: '2rem',
+                  borderStyle: 'none',
+                  backgroundColor: '#EFF2F2',
                 }}
               />
               <Box
@@ -143,42 +133,42 @@ const AddPost = () => {
                   width: '90%',
                 }}
               >
-                <Box sx={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  width: '60%',
-                }}
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    width: '60%',
+                  }}
                 >
                   <label htmlFor="upload-photo">
                     <input
                       type="file"
-                      onChange={handleImageUpload}
                       accept="/image/*"
+                      onChange={handleFileChange}
                       style={{ display: 'none' }}
                       id="upload-photo"
                       name="upload-photo"
                     />
-                    <Button variant="outlined" component="span" sx={{ minWidth: 150, minHeight: '100%' }} endIcon={<ImageIcon />}>
+                    <Button
+                      variant="outlined"
+                      component="span"
+                      sx={{ minWidth: 150, minHeight: '100%' }}
+                      endIcon={<ImageIcon />}
+                    >
                       add Image
                     </Button>
                   </label>
                   <BasicSelect
-                    post={postData}
-                    name="Tag"
-                    itemId="TagId"
-                    obj={TagList}
-                    callback={setPostData}
+                    name="TagId"
+                    options={TagList}
                   />
                   <BasicSelect
-                    post={postData}
-                    name="Animal"
-                    itemId="AnimalId"
-                    obj={AnimalList}
-                    callback={setPostData}
+                    name="AnimalId"
+                    options={AnimalList}
                   />
                 </Box>
                 <LoadingButton
-                  loading={progress !== 100}
+                  loading={progress > 0 && progress < 100}
                   type="submit"
                   variant="contained"
                   sx={{
@@ -193,7 +183,6 @@ const AddPost = () => {
         </div>
       </Modal>
     </>
-
   );
 };
 export default AddPost;

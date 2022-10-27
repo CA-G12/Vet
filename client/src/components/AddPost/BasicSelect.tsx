@@ -2,46 +2,32 @@ import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { ReactNode } from 'react';
-import IPost from '../../Interfaces/post/IAddPost';
+import Select from '@mui/material/Select';
 import ITag from '../../Interfaces/post/ITag';
 
 interface Props{
-    itemId:string
-    post:IPost
-    callback:Function
-    name:string
-    obj: ITag[]
+    name: string;
+    options: ITag[];
 }
 
 const BasicSelect = ({
-  name, obj, post, callback, itemId,
-} :Props) => {
-  const handleChange = (event: SelectChangeEvent<ReactNode>) => {
-    if (itemId === 'TagId') {
-      callback({ ...post, TagId: event.target.value });
-    } else {
-      callback({ ...post, AnimalId: event.target.value });
-    }
-  };
+  name, options,
+} :Props) => (
+  <Box sx={{ minWidth: 150 }}>
+    <FormControl fullWidth>
+      <InputLabel id="basic-select-label">{name}</InputLabel>
+      <Select
+        defaultValue={0}
+        labelId="basic-select-label"
+        id="basic-select"
+        name={name}
+        label={name}
+      >
+        {options.map((tag:ITag) => (
+          <MenuItem key={tag.id} value={tag.id}>{tag.name}</MenuItem>))}
+      </Select>
+    </FormControl>
+  </Box>
+);
 
-  return (
-    <Box sx={{ minWidth: 150 }}>
-      <FormControl fullWidth>
-        <InputLabel id="basic-select-label">{name}</InputLabel>
-        <Select
-          labelId="basic-select-label"
-          id="basic-select"
-          value={itemId === 'TagId' ? post.TagId : post.AnimalId}
-          label={name}
-          onChange={handleChange}
-        >
-          {obj.map((tag:ITag) => (
-            <MenuItem key={tag.id} value={tag.id}>{tag.name}</MenuItem>))}
-        </Select>
-      </FormControl>
-    </Box>
-  );
-};
 export default BasicSelect;
