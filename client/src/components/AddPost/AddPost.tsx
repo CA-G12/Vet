@@ -7,6 +7,7 @@ import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ImageIcon from '@mui/icons-material/Image';
+import Stack from '@mui/material/Stack';
 import uploadImage from '../../helpers/uploadImage';
 import postSchema from '../../Validation/addPost';
 import Username from '../UserInfo';
@@ -132,12 +133,9 @@ const AddPost = () => {
                   width: '90%',
                 }}
               >
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    width: '60%',
-                  }}
+                <Stack
+                  direction="row"
+                  spacing={4}
                 >
                   <label htmlFor="upload-photo">
                     <input
@@ -165,7 +163,7 @@ const AddPost = () => {
                     name="AnimalId"
                     options={AnimalList}
                   />
-                </Box>
+                </Stack>
                 <LoadingButton
                   loading={progress > 0 && progress < 100}
                   type="submit"
