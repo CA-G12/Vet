@@ -2,6 +2,7 @@ import './post.css';
 
 import {
 
+  useContext,
   useState,
 } from 'react';
 
@@ -13,11 +14,10 @@ import Comments from './Comments';
 import EditAndDeleteBtn from './EditAndDeleteBtn';
 import StackCommentsAndLikes from './StackCommentsAndLikes';
 import ApiServices from '../../services/ApiService';
+import { authContext } from '../../hooks/useAuth';
 
 const Post = ({ post }:{post:IPost}) => {
-  const user = {
-    id: 2,
-  };
+  const { user } = useContext(authContext);
 
   const [showComments, setShowComments] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
@@ -81,7 +81,7 @@ const Post = ({ post }:{post:IPost}) => {
         </figure>
         ) }
         {
-        user.id === post.User.id
+        user?.id === post.User.id
           && <EditAndDeleteBtn />
 }
       </article>

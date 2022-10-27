@@ -7,6 +7,7 @@ import ApiServices from '../../services/ApiService';
 import UserPostInfo from '../UserInfo';
 import EditAndDeleteBtn from './EditAndDeleteBtn';
 import EditImageComment from './EditImageComment';
+import { authContext } from '../../hooks/useAuth';
 
 const Comment = ({
   comment, comments, setGetComments, numComments, setNumComments,
@@ -16,9 +17,8 @@ const Comment = ({
      numComments:number
     setNumComments:Function,
   }) => {
-  const user = {
-    id: 1,
-  };
+  const { user } = React.useContext(authContext);
+
   const [edit, setEdit] = useState(false);
   const [changeComment, setChangeComment] = useState(comment);
   const handeleChangeCommentContent = (e:React.ChangeEvent<HTMLInputElement>): void => {
@@ -92,7 +92,7 @@ const Comment = ({
 
       </div>
       {
-user.id === comment.User?.id
+user?.id === comment.User?.id
 
       && (
       <EditAndDeleteBtn

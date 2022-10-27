@@ -9,6 +9,7 @@ import handleUpload from '../../helpers/handleUpload';
 import ApiServices from '../../services/ApiService';
 import deleteImgFromFirEBase from '../../helpers/DeleteImgFrom FireBse';
 import IComment from '../../Interfaces/post/IComment';
+import { authContext } from '../../hooks/useAuth';
 
 const AddInputComment = ({
   numComments, setNumComments, postId, showComments, getComments,
@@ -16,10 +17,11 @@ const AddInputComment = ({
 }:
   {numComments:number, setNumComments:Function, postId:number, setShowCommentInput:Function,
      showComments:boolean, getComments:Array<IComment>, setGetComments:Function}) => {
+  const { user } = React.useContext(authContext);
   const [data, callback] = useState({
     comment: '',
     image: '',
-    UserId: 1,
+    UserId: user?.id,
   });
   const [file, setFile] = useState<File|null>(null);
   const [isUpLoadImg, setIsUpLoadImg] = useState(false);
