@@ -8,7 +8,6 @@ import * as React from 'react';
 import { toast } from 'react-toastify';
 import IAuth from '../../Interfaces/IAuth';
 import { authContext } from '../../hooks/useAuth';
-import { SignUpValid } from '../../Validation';
 import Doctor from './DoctorInfo';
 
 const SignUp = ({ open }:{open :Function}) => {

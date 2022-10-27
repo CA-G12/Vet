@@ -15,4 +15,17 @@ export default class DoctorController {
       throw new CustomError(400, "you don't have account")
     }
   }
+
+  public static async getAllDoctor (req :Request, res :Response) {
+    const doctors = await User.findAll({
+      attributes: ['avatar', 'email', 'id', 'name', 'role'],
+      include: {
+        model: DoctorInfo, attributes: ['workplace']
+      },
+      where: {
+        role: 'DOCTOR'
+      }
+    })
+    res.json(doctors)
+  }
 }

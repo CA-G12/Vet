@@ -8,16 +8,12 @@ class DoctorInfo extends Model {
   declare clinicLocation:string
   declare workplace:string
 }
+
 DoctorInfo.init({
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true
-  },
-  doctorId: {
-    type: DataTypes.INTEGER,
-    unique: true,
-    allowNull: false
   },
   hourRate: {
     type: DataTypes.STRING,
