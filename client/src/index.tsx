@@ -13,6 +13,7 @@ import NotFound from './pages/NotFound';
 import ApiService from './services/ApiService';
 
 ApiService.init();
+ApiService.setHeader();
 
 const router = createBrowserRouter([
   {

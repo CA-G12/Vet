@@ -29,7 +29,7 @@ export default class AuthController {
     }
     const payload = {
       id: user.id,
-      username: user.name,
+      name: user.name,
       email: user.email,
       role: user.role,
       avatar: user.avatar
