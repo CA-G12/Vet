@@ -5,7 +5,6 @@ const navItemsStyle = {
     'font-size': '1.5em',
     'margin-right': '5px',
   },
-
 };
 
 const apps = {
@@ -31,4 +30,5 @@ const closeIcon = {
     cursor: 'pointer',
   },
 };
+
 export default { closeIcon, apps, navItemsStyle };
