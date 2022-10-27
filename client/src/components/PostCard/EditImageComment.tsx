@@ -3,12 +3,13 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { IconButton } from '@mui/material';
 import { useState } from 'react';
 import * as React from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
 import IComment from '../../Interfaces/post/IComment';
 import handleUpload from '../../helpers/handleUpload';
 
 const EditImageComment = ({ data, callback }:
-  {data:IComment, callback:Function}) => {
-  const [, setIsUpLoadImg] = useState(false);
+  {data:IComment, callback:Function, }) => {
+  const [isUpLoadImg, setIsUpLoadImg] = useState(false);
   const deleteImg = () => {
     callback({ ...data, image: null });
   };
@@ -44,7 +45,7 @@ const EditImageComment = ({ data, callback }:
     >
       <div>
 
-        <IconButton>
+        <IconButton className="mangment-img-comment-btn">
           <label htmlFor={`${data.id}`}>
             <input
               onChange={editImg}
@@ -60,12 +61,20 @@ const EditImageComment = ({ data, callback }:
         </IconButton>
 
         {data.image && (
-        <IconButton onClick={deleteImg}>
+        <IconButton className="mangment-img-comment-btn" onClick={deleteImg}>
           <DeleteIcon />
         </IconButton>
         ) }
       </div>
+      {
+        isUpLoadImg && (
+        <div className="progress-edit">
+          {' '}
+          <CircularProgress />
+        </div>
+        )
 
+      }
       {' '}
 
     </div>

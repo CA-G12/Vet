@@ -175,5 +175,131 @@ describe('all post ', () => {
       })
   })
 })
+describe('add a new comment', () => {
+  test('add a comment successfully', (done) => {
+    supertest(app)
+      .post('/api/v1/post/1/comments')
+      .send({
+        UserId: 1,
+        comment: 'hey im a legitimate content that should work',
+        image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cute-cat-photos-1593441022.jpg?crop=0.669xw:1.00xh;0.166xw,0&resize=640:*'
 
+      })
+      .end((err, res) => {
+        if (err) return done(err)
+        expect(res.status).toBe(200)
+        expect(res.body.msg).toBe('new post added successfully')
+        return done()
+      })
+  })
+  test('add a comment successfully', (done) => {
+    supertest(app)
+      .post('/api/v1/post/1/comments')
+      .send({
+        UserId: 1,
+        comment: 'hey im a legitimate content that should work',
+        image: ''
+
+      })
+      .end((err, res) => {
+        if (err) return done(err)
+        expect(res.status).toBe(200)
+        expect(res.body.msg).toBe('new post added successfully')
+        return done()
+      })
+  })
+  test('add a comment fail', (done) => {
+    supertest(app)
+      .post('/api/v1/post/1/comments')
+      .send({
+        UserId: 1,
+        comment: '',
+        image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cute-cat-photos-1593441022.jpg?crop=0.669xw:1.00xh;0.166xw,0&resize=640:*'
+
+      })
+      .end((err, res) => {
+        if (err) return done(err)
+        expect(res.status).toBe(400)
+        expect(res.body.msg).toBe('something went wrong')
+        return done()
+      })
+  })
+  test('add a comment fail', (done) => {
+    supertest(app)
+      .post('/api/v1/post/1/comments')
+      .send({
+        UserId: 1,
+        comment: 'xxxxxxxxxx',
+        image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cute-cat-photos-1593441022?crop=0.669xw:1.00xh;0.166xw,0&resize=640:*'
+
+      })
+      .end((err, res) => {
+        if (err) return done(err)
+        expect(res.status).toBe(400)
+        expect(res.body.msg).toBe('something went wrong')
+        return done()
+      })
+  })
+
+  test('edit a comment success', (done) => {
+    supertest(app)
+      .put('/api/v1/post/1/comments/1')
+      .send({
+        comment: 'xxxxxxxxxx',
+        image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cute-cat-photos-1593441022.jpg?crop=0.669xw:1.00xh;0.166xw,0&resize=640:*'
+
+      })
+      .end((err, res) => {
+        if (err) return done(err)
+        expect(res.status).toBe(200)
+        expect(res.body.msg).toBe('edit comment successfully')
+        return done()
+      })
+  })
+
+  test('edit a comment fail', (done) => {
+    supertest(app)
+      .put('/api/v1/post/1/comments/1')
+      .send({
+        comment: '',
+        image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cute-cat-photos-1593441022.jpg?crop=0.669xw:1.00xh;0.166xw,0&resize=640:*'
+
+      })
+      .end((err, res) => {
+        if (err) return done(err)
+        expect(res.status).toBe(400)
+        expect(res.body.msg).toBe('something went wrong')
+        return done()
+      })
+  })
+  test('edit a comment success', (done) => {
+    supertest(app)
+      .put('/api/v1/post/1/comments/1')
+      .send({
+        comment: 'xxxxxxxxxx',
+        image: ''
+
+      })
+      .end((err, res) => {
+        if (err) return done(err)
+        expect(res.status).toBe(200)
+        expect(res.body.msg).toBe('edit comment successfully')
+        return done()
+      })
+  })
+
+  test('delete a comment success', (done) => {
+    supertest(app)
+      .delete('/api/v1/post/1/comments/1')
+      .send()
+      .end((err, res) => {
+        if (err) return done(err)
+        expect(res.status).toBe(200)
+        expect(res.body.msg).toBe('delete comment successfully')
+        return done()
+      })
+  })
+
+  // final test here for passport
+})
 afterAll(() => sequelize.close())

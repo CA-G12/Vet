@@ -12,9 +12,9 @@ import IComment from '../../Interfaces/post/IComment';
 
 const AddInputComment = ({
   numComments, setNumComments, postId, showComments, getComments,
-  setGetComments,
+  setGetComments, setShowCommentInput,
 }:
-  {numComments:number, setNumComments:Function, postId:number,
+  {numComments:number, setNumComments:Function, postId:number, setShowCommentInput:Function,
      showComments:boolean, getComments:Array<IComment>, setGetComments:Function}) => {
   const [data, callback] = useState({
     comment: '',
@@ -37,7 +37,8 @@ const AddInputComment = ({
           progress: undefined,
           theme: 'colored',
         });
-        const result = await ApiServices.post(`post/${postId}/comment`, data).then((newComment) => {
+        const result = await ApiServices.post(`post/${postId}/comments`, data).then((newComment) => {
+          setShowCommentInput(false);
           if (showComments) {
             setGetComments([newComment.data.data, ...getComments]);
           }

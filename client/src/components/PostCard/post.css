@@ -422,6 +422,9 @@ cursor: pointer;
 width: 15px;
 color: var(--font-color);
 }
+.edit-img-comment-icons{
+  position: relative;
+}
 .edit-comment{
   width: 100%;
   display: flex;
@@ -441,4 +444,24 @@ border-radius: 8px ;
   color: var(--not-active-color);
   padding: 5px;
   border-radius: 8px;
+}
+.progress-edit{
+  position: absolute;
+  top: 13px !important;
+  left: 37%;
+  transform: translateX(-50%);
+  width: 35px;
+height: 35px;
+}
+.progress-edit span,.progress-edit svg{
+  
+
+width: 35px !important;
+height: 30px !important;
+}
+
+.mangment-img-comment-btn svg{
+  background-color: rgba(255, 0, 0, 0.199);
+  border-radius: 50%;
+  padding: 0 1px;
 }

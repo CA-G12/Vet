@@ -47,7 +47,9 @@ const Comment = ({
         deleteImgFromFirEBase(file);
       }
 
-      const url = `post/${changeComment.PostId}/comment/${changeComment.id}`;
+      const url = `post/${changeComment.PostId}/comments/${changeComment.id}`;
+      console.log(url);
+
       ApiServices.put(url, changeComment).then(() => setEdit(!edit)).catch(() => {
         console.log('err');
       });

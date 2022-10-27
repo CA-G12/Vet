@@ -41,7 +41,7 @@ const EditAndDeleteBtn = ({
 
     let url = `post/${postId}`;
     if (commentId) {
-      url += `/comment/${commentId}`;
+      url += `/comments/${commentId}`;
     }
     try {
       const result = await ApiServices.destroy(url).then(() => {

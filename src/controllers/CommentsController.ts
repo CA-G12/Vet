@@ -33,7 +33,6 @@ export default class CommentsController {
         UserId
       } = req.body
       const PostId = req.params.postId
-      console.log(req.params)
 
       await commentSchema.validateAsync({ comment, image, PostId, UserId })
       const createComment = await Comment.create({ comment, image, PostId, UserId })
@@ -56,16 +55,38 @@ export default class CommentsController {
   }
 
   public static async dstroy (req: Request, res: Response) {
-    Comment.destroy({
-      where: req.params
-    }).then(() => res.json(req.params)
-    )
+    try {
+      const deleteComment = Comment.destroy({
+        where: req.params
+      })
+      res.status(200).json({ status: res.status, msg: 'delete comment successfully', data: deleteComment })
+    } catch (error) {
+      res.status(400).json({
+        msg: 'something went wrong',
+        error
+      })
+    }
   }
 
   public static async put (req: Request, res: Response) {
-    Comment.update({ comment: req.body.comment, image: req.body.image }, {
-      where: { id: req.params.id }
-    }).then(() => res.json(req.params)
-    )
+    try {
+      const {
+        comment,
+        image,
+        UserId
+      } = req.body
+      const PostId = req.params.postId
+
+      await commentSchema.validateAsync({ comment, image, PostId, UserId })
+      const editComment = await Comment.update({ comment, image }, {
+        where: { id: req.params.id }
+      })
+      res.status(200).json({ status: res.status, msg: 'edit comment successfully', data: editComment })
+    } catch (error) {
+      res.status(400).json({
+        msg: 'something went wrong',
+        error
+      })
+    }
   }
 }

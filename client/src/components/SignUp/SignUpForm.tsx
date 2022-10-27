@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import IAuth from '../../Interfaces/IAuth';
 import { authContext } from '../../hooks/useAuth';
 import Doctor from './DoctorInfo';
+import { SignInValid } from '../../Validation';
 
 const SignUp = ({ open }:{open :Function}) => {
   const { signUp } = React.useContext(authContext);
@@ -29,7 +30,7 @@ const SignUp = ({ open }:{open :Function}) => {
   const handleSubmit = async (event:React.SyntheticEvent) => {
     try {
       event.preventDefault();
-
+      await SignInValid.validate(userData);
       signUp(userData, (err:any) => {
         if (userData.role === 'DOCTOR') { setNext(true); }
         if (!err && userData.role === 'USER') open(false);

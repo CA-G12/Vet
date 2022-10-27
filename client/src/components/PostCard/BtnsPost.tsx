@@ -50,6 +50,7 @@ const BtnsPost = ({
         showComments={showComments}
         getComments={getComments}
         setGetComments={setGetComments}
+        setShowCommentInput={setShowCommentInput}
       />
       )}
     </div>
