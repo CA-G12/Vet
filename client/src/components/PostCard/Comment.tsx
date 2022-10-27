@@ -63,6 +63,8 @@ const Comment = ({
         theme: 'colored',
       });
       setEdit(true);
+    } else {
+      setEdit(false);
     }
   };
 

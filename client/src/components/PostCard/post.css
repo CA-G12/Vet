@@ -426,9 +426,19 @@ color: var(--font-color);
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  gap: 5px;
 }
 .edit-comment input{
 width: 80%;
 outline: none;
 border: none;background-color: #bdd9d9;
+padding: 5px;
+border-radius: 8px ;
+}
+.edit-comment button{
+  border: none;
+  background: var(--sacredly-color);
+  color: var(--not-active-color);
+  padding: 5px;
+  border-radius: 8px;
 }
