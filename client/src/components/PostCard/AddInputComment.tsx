@@ -29,16 +29,7 @@ const AddInputComment = ({
     e.preventDefault();
     try {
       if (!isUpLoadImg && data.comment) {
-        toast.success('Add comment is success ', {
-          position: 'bottom-left',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'colored',
-        });
+        toast.success('Add comment is success ');
         const result = await ApiServices.post(`post/${postId}/comments`, data).then((newComment) => {
           setShowCommentInput(false);
           if (showComments) {
@@ -49,26 +40,20 @@ const AddInputComment = ({
 
         console.log(result);
       } else {
-        toast.error('please Add Comment', {
-          position: 'bottom-left',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'colored',
-        });
+        toast.error('please Add Comment');
       }
     } catch (err) {
       console.log(err);
     }
   };
   const handelDeleteImg = () => {
+    const nameFile = {
+      name: data.image?.slice(data.image.indexOf('%2F') + 3, data.image?.indexOf('?')),
+    };
     callback({ ...data, image: '' });
     setFile(null);
 
-    deleteImgFromFirEBase(file);
+    deleteImgFromFirEBase(nameFile);
   };
   const handelOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     callback({

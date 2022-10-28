@@ -10,9 +10,12 @@ import EditImageComment from './EditImageComment';
 import { authContext } from '../../hooks/useAuth';
 
 const Comment = ({
-  comment, comments, setGetComments, numComments, setNumComments,
+  comment, comments,
+  setGetComments, numComments,
+  setNumComments,
 }:
-  { comment: IComment, comments:Array<IComment>,
+  { comment: IComment,
+     comments:Array<IComment>,
      setGetComments:Function,
      numComments:number
     setNumComments:Function,
@@ -30,16 +33,7 @@ const Comment = ({
     if (changeComment.comment
       && (comment.comment !== changeComment.comment || comment.image !== changeComment.image)) {
       setEdit(!edit);
-      toast.success('Update comment is success ', {
-        position: 'bottom-left',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'colored',
-      });
+      toast.success('Update comment is success ');
       if (comment.image !== changeComment.image) {
         const file = {
           name: comment.image?.slice(comment.image.indexOf('%2F') + 3, comment.image?.indexOf('?')),
@@ -54,16 +48,7 @@ const Comment = ({
         console.log('err');
       });
     } else if (!changeComment.comment) {
-      toast.error('the Comment is empty', {
-        position: 'bottom-left',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'colored',
-      });
+      toast.error('the Comment is empty');
       setEdit(true);
     } else {
       setEdit(false);

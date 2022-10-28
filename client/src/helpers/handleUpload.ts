@@ -1,4 +1,5 @@
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { v4 as uuidv4 } from 'uuid';
 import { storage } from './firebaseConfig';
 
 const handleUpload = (
@@ -9,7 +10,8 @@ const handleUpload = (
 
 ) => {
   setIsUpLoadImg(true);
-  const storageRef = ref(storage, `/files/${file.name}`);
+
+  const storageRef = ref(storage, `/files/${uuidv4()}`);
 
   const uploadTask = uploadBytesResumable(storageRef, file);
 
