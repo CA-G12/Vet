@@ -17,7 +17,7 @@ const Home = () => {
       animalId: filterObj?.AnimalId === 0 ? '' : filterObj?.AnimalId,
       q: filterObj?.content,
     };
-    ApiServices.get('/api/v1/posts', { params: urlParams }).then(({ data }) => {
+    ApiServices.get('/posts', { params: urlParams }).then(({ data }) => {
       setLoding(true);
 
       setPost(data);

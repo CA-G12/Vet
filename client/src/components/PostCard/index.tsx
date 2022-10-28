@@ -22,7 +22,7 @@ const Post = ({ post }:{post:IPost}) => {
   const [isShowMore, setIsShowMore] = useState(false);
   const showMore = () => {
     setIsShowMore(true);
-    ApiServices.get(`/api/v1/posts/${post.id}/comments?page=${page}`).then((res) => {
+    ApiServices.get(`posts/${post.id}/comments?page=${page}`).then((res) => {
       setPage(page + 1);
       setGetComments(getComments.concat(res.data.rows));
       setIsShowMore(false);

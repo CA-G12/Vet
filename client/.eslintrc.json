@@ -27,6 +27,7 @@
     "eol-last": ["error", "always"],
     "no-nested-ternary": 0,
     "no-use-before-define": "off",
+    "linebreak-style":"off",
     "@typescript-eslint/no-use-before-define": [
       "error"
     ],

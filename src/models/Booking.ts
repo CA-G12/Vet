@@ -6,6 +6,10 @@ class Booking extends Model {
   declare userId: number
   declare doctorId: number
   declare description: string
+  declare title :string
+  declare start : Date
+  declare end:Date
+  declare status:'ACCEPTED'|'REJECTED'|'PENDING'
 }
 
 Booking.init({
@@ -14,13 +18,24 @@ Booking.init({
     autoIncrement: true,
     primaryKey: true
   },
-
+  title: {
+    type: DataTypes.TEXT,
+    allowNull: false
+  },
+  status: {
+    type: DataTypes.ENUM('ACCEPTED', 'REJECTED', 'PENDING'),
+    allowNull: false
+  },
   description: {
     type: DataTypes.TEXT,
     allowNull: false
-
+  },
+  start: {
+    type: DataTypes.DATE
+  },
+  end: {
+    type: DataTypes.DATE
   }
-
 },
 {
   sequelize

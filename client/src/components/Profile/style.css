@@ -1,0 +1,12 @@
+.user-avatar{
+    height: 100px;
+    width:100px;
+    border-radius:50%
+}
+.profile-content{
+    display: flex;
+    flex-direction: row;
+}
+span{
+    font-size: 20px;
+}

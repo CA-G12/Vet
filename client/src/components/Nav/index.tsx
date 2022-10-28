@@ -2,10 +2,11 @@ import { useContext, ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
 import { SelectChangeEvent } from '@mui/material/Select';
 import { AllPosts } from '../../Context/PostsContext';
+import { authContext } from '../../hooks/useAuth';
 
 const Nav = () => {
   const { filterObj, setFilterObj } = useContext(AllPosts);
-
+  const { user } = useContext(authContext);
   return (
     <nav>
       <NavLink to="/">
@@ -20,7 +21,7 @@ const Nav = () => {
       <NavLink to="/emergency">
         emergency
       </NavLink>
-      <NavLink to="/users/1">
+      <NavLink to={`/profile/${user?.id}`}>
         my profile
       </NavLink>
       <input
