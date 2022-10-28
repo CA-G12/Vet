@@ -25,14 +25,15 @@ const Post = ({ post }:{post:IPost}) => {
   const [page, setPage] = useState(1);
   const [isShowMore, setIsShowMore] = useState(false);
   const [numComments, setNumComments] = useState(post.Comments.length);
-  const showMore = () => {
+
+  const showMore = async () => {
     setIsShowMore(true);
-    ApiServices.get(`posts/${post.id}/comments?page=${page}`).then((res) => {
-      setPage(page + 1);
-      setGetComments(getComments.concat(res.data.rows));
-      setIsShowMore(false);
-    });
+    const getTowComments = await ApiServices.get(`posts/${post.id}/comments?page=${page}`);
+    setPage(page + 1);
+    setGetComments(getComments.concat(getTowComments.data.rows));
+    setIsShowMore(false);
   };
+
   const handleClick = () => {
     setShowComments(!showComments);
     setIsConnected(!isConnected);
