@@ -59,7 +59,6 @@ const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const userReq = async () => {
       try {
-        ApiService.setHeader();
         const dataUnMount = await ApiService.get('/user/me');
         setUser(dataUnMount.data.user);
       } catch (error:any) {
