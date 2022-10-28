@@ -1,5 +1,5 @@
 import Stack from '@mui/material/Stack';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Doctor from '../components/Doctor';
 import IUser from '../Interfaces/post/IUser';
 import ApiServices from '../services/ApiService';
@@ -11,7 +11,10 @@ const Doctors = () => {
     const allDoctors = await ApiServices.get('doctors');
     setDoctors(allDoctors.data);
   };
-  getDoctors();
+  useEffect(() => {
+    getDoctors();
+  }, []);
+
   return (
     <Stack spacing={3} direction="column">
       {doctors.map((doctor:IUser) => <Doctor key={doctor.id} user={doctor} />)}
