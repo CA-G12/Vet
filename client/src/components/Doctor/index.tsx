@@ -8,14 +8,11 @@ const Index = ({ user }:{user:IUser}) => (
   <Box sx={{ width: '80%' }}>
     <Grid sx={{ alignItems: 'center' }} container rowSpacing={1}>
       <Grid xs={6}>
-
         <UserPostInfo user={user} />
       </Grid>
       <Grid xs={2}>
-
         <ButtonDoctor user={user} />
       </Grid>
-
     </Grid>
   </Box>
 );
