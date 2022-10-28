@@ -5,11 +5,13 @@ import IUser from '../../Interfaces/post/IUser';
 
 const UserPostInfo = ({ user }:{user:IUser|null|undefined}) => (
   <NavLink to={`/users/${user?.id}`} className="user-info-post">
-    <Box sx={{ display: 'flex' }}>
+    <Box display="flex">
       <Avatar sx={{ width: '60px', height: '60px' }} alt={user?.name} src={user?.avatar} />
-      <Box sx={{
-        display: 'flex', alignItems: 'flex-start', flexDirection: 'column', justifyContent: 'space-around',
-      }}
+      <Box
+        display="flex"
+        alignItems="flex-start"
+        flexDirection="column"
+        justifyContent="space-around"
       >
         <h3 style={{ paddingLeft: '10px' }}>
           {user?.name}
@@ -18,7 +20,6 @@ const UserPostInfo = ({ user }:{user:IUser|null|undefined}) => (
           {user?.DoctorInfo?.workplace}
         </span>
       </Box>
-
     </Box>
   </NavLink>
 );
