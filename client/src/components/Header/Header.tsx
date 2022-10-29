@@ -1,6 +1,6 @@
 import './NavHeader/NavHeader.css';
-import { Logo } from './Logo/Logo';
-import { Actions } from './Actions/Actions';
+import { Logo } from './Logo';
+import { Actions } from './Actions';
 import { NavHeader } from './NavHeader/NavHeader';
 
 export const Header = () => (
