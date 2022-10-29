@@ -1,12 +1,13 @@
-import './NavHeader/NavHeader.css';
+// import './NavHeader/styles.css';
 import { Logo } from './Logo';
 import { Actions } from './Actions';
-import { NavHeader } from './NavHeader/NavHeader';
+import { NavHeader } from './NavHeader';
+import { StyledHeader } from './components.styled';
 
 export const Header = () => (
-  <header className="nav-bar">
+  <StyledHeader>
     <Logo />
     <NavHeader />
     <Actions />
-  </header>
+  </StyledHeader>
 );
