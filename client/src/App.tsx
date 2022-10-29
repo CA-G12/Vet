@@ -16,7 +16,6 @@ const App = () => (
       <Outlet />
     </PostsContext>
   </ProvideAuth>
-
 );
 
 export default App;

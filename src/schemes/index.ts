@@ -1,2 +1,2 @@
-import postSchema from './post'
-export default postSchema
+import postSchema from './post';
+export default postSchema;

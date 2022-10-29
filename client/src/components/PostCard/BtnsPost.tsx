@@ -7,8 +7,13 @@ import { faComment } from '@fortawesome/free-solid-svg-icons';
 import AddInputComment from './AddInputComment';
 import useOutsideClick from '../../hooks/UseOutsideClick ';
 
-const BtnsPost = ({ isConnected, setIsConnected }:{isConnected:boolean,
-   setIsConnected:Function}) => {
+const BtnsPost = ({
+  isConnected,
+  setIsConnected,
+}: {
+  isConnected: boolean;
+  setIsConnected: Function;
+}) => {
   const [showCommentInput, setShowCommentInput] = useState(false);
   const handleClick = () => {
     setShowCommentInput(!showCommentInput);
@@ -20,16 +25,17 @@ const BtnsPost = ({ isConnected, setIsConnected }:{isConnected:boolean,
   const ref = useOutsideClick(handleClickOutside);
   return (
     <div ref={ref}>
-      <div style={{ borderRadius: isConnected ? '0' : '0 0 10px 10px' }} className="BtnsPost">
+      <div
+        style={{ borderRadius: isConnected ? '0' : '0 0 10px 10px' }}
+        className="BtnsPost"
+      >
         <Tooltip title="Add new comment">
           <label htmlFor="add-comment-btn">
             {' '}
             <IconButton className="comment-btn" onClick={handleClick}>
               <FontAwesomeIcon icon={faComment} />
             </IconButton>
-
           </label>
-
         </Tooltip>
 
         <IconButton>

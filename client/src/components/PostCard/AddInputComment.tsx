@@ -9,7 +9,9 @@ const AddInputComment = () => (
       <AddPhotoAlternateIcon />
     </label>
     <input type="file" name="" id="upload-img-comment" />
-    <button className="add-comment-btn" type="submit">Comment</button>
+    <button className="add-comment-btn" type="submit">
+      Comment
+    </button>
   </form>
 );
 

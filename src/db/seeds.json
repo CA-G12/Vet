@@ -43,41 +43,43 @@
       "avatar": " "
     }
   ],
-  "Comment":[
+  "Comment": [
     {
       "comment": "Comment1",
       "image": "https://i.pinimg.com/originals/aa/02/78/aa02780bbc7e6c5e2d52d9b0e919fbf6.jpg",
-       "PostId": 1,
-       "UserId": 3
-     }, 
-     {
+      "PostId": 1,
+      "UserId": 3
+    },
+    {
       "comment": "Comment12",
       "image": "https://i.pinimg.com/originals/aa/02/78/aa02780bbc7e6c5e2d52d9b0e919fbf6.jpg",
-       "PostId": 1,
-       "UserId": 3
-     }, 
-     {
+      "PostId": 1,
+      "UserId": 3
+    },
+    {
       "comment": "Comment13",
       "image": "https://i.pinimg.com/originals/aa/02/78/aa02780bbc7e6c5e2d52d9b0e919fbf6.jpg",
-       "PostId": 1,
-       "UserId": 3
-     }, 
-     {
+      "PostId": 1,
+      "UserId": 3
+    },
+    {
       "comment": "Comment14",
       "image": "https://i.pinimg.com/originals/aa/02/78/aa02780bbc7e6c5e2d52d9b0e919fbf6.jpg",
-       "PostId": 1,
-       "UserId": 3
-     },   {
+      "PostId": 1,
+      "UserId": 3
+    },
+    {
       "comment": "Comment15",
-       "PostId": 1,
-       "UserId": 3
-     }, 
-      {
-          "comment": "Comment2",
-          "image": "https://i.pinimg.com/originals/aa/02/78/aa02780bbc7e6c5e2d52d9b0e919fbf6.jpg",
-          "PostId": 2,
-           "UserId": 2
-         }],
+      "PostId": 1,
+      "UserId": 3
+    },
+    {
+      "comment": "Comment2",
+      "image": "https://i.pinimg.com/originals/aa/02/78/aa02780bbc7e6c5e2d52d9b0e919fbf6.jpg",
+      "PostId": 2,
+      "UserId": 2
+    }
+  ],
   "Tag": [
     {
       "name": "All"
@@ -163,7 +165,7 @@
       "PostId": 1
     }
   ],
- 
+
   "DoctorInfo": [
     {
       "clinicLocation": "Gaza - Naser",

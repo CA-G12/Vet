@@ -1,5 +1,11 @@
 import {
-  FormControl, InputLabel, TextField, InputAdornment, OutlinedInput, IconButton, Button,
+  FormControl,
+  InputLabel,
+  TextField,
+  InputAdornment,
+  OutlinedInput,
+  IconButton,
+  Button,
 } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -9,7 +15,7 @@ import IAuth from '../../Interfaces/IAuth';
 import { authContext } from '../../hooks/useAuth';
 import { SignInValid } from '../../Validation';
 
-const SignIn = ({ open }:{open :Function}) => {
+const SignIn = ({ open }: { open: Function }) => {
   const [userData, setUserData] = React.useState<IAuth>({
     showPassword: false,
     password: '',
@@ -33,21 +39,24 @@ const SignIn = ({ open }:{open :Function}) => {
       });
     }
   };
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => {
     event.preventDefault();
   };
   return (
-    <form onSubmit={async (event) => {
-      event.preventDefault();
-      try {
-        await SignInValid.validate(userData);
-        signIn(userData, (err:any) => {
-          if (!err) open(false);
-        });
-      } catch (error:any) {
-        toast.error(error.message);
-      }
-    }}
+    <form
+      onSubmit={async event => {
+        event.preventDefault();
+        try {
+          await SignInValid.validate(userData);
+          signIn(userData, (err: any) => {
+            if (!err) open(false);
+          });
+        } catch (error: any) {
+          toast.error(error.message);
+        }
+      }}
     >
       <FormControl
         sx={{
@@ -82,17 +91,18 @@ const SignIn = ({ open }:{open :Function}) => {
           name="email"
           onChange={handleState}
           sx={{
-            m: 1, width: '25ch', color: '#356E6E',
+            m: 1,
+            width: '25ch',
+            color: '#356E6E',
           }}
         />
       </FormControl>
-      <FormControl sx={{ m: 1, width: '25ch', marginBottom: '10px' }} variant="outlined">
-        <InputLabel
-          size="small"
-          htmlFor="outlined-adornment-password"
-        >
+      <FormControl
+        sx={{ m: 1, width: '25ch', marginBottom: '10px' }}
+        variant="outlined"
+      >
+        <InputLabel size="small" htmlFor="outlined-adornment-password">
           Password
-
         </InputLabel>
         <OutlinedInput
           name="password"
@@ -101,7 +111,7 @@ const SignIn = ({ open }:{open :Function}) => {
           id="outlined-adornment-password"
           type={userData.showPassword ? 'text' : 'password'}
           onChange={handleState}
-          endAdornment={(
+          endAdornment={
             <InputAdornment position="end">
               <IconButton
                 aria-label="toggle password visibility"
@@ -113,12 +123,15 @@ const SignIn = ({ open }:{open :Function}) => {
                 {userData.showPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>
             </InputAdornment>
-          )}
+          }
           label="Password"
         />
       </FormControl>
       <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-        <button type="submit" className="sign-Btn"> Sign in </button>
+        <button type="submit" className="sign-Btn">
+          {' '}
+          Sign in{' '}
+        </button>
       </FormControl>
     </form>
   );

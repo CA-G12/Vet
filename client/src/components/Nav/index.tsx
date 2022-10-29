@@ -8,21 +8,11 @@ const Nav = () => {
 
   return (
     <nav>
-      <NavLink to="/">
-        Landing
-      </NavLink>
-      <NavLink to="/home">
-        home
-      </NavLink>
-      <NavLink to="/doctors">
-        doctors
-      </NavLink>
-      <NavLink to="/emergency">
-        emergency
-      </NavLink>
-      <NavLink to="/users/1">
-        my profile
-      </NavLink>
+      <NavLink to="/">Landing</NavLink>
+      <NavLink to="/home">home</NavLink>
+      <NavLink to="/doctors">doctors</NavLink>
+      <NavLink to="/emergency">emergency</NavLink>
+      <NavLink to="/users/1">my profile</NavLink>
       <input
         value={filterObj?.content}
         onChange={(event: SelectChangeEvent<ReactNode>) => {

@@ -28,27 +28,30 @@ const EditAndDeleteBtn = () => {
           <MoreHorizIcon />
         </ListItemIcon>
       </button>
-      <Collapse className="btns-container" in={open} timeout="auto" unmountOnExit>
+      <Collapse
+        className="btns-container"
+        in={open}
+        timeout="auto"
+        unmountOnExit
+      >
         <List component="div" disablePadding>
           <ListItemButton className="btns-list" sx={{ pl: 4 }}>
             <IconButton>
               <EditIcon />
               <ListItemText primary="Edit" />
             </IconButton>
-
           </ListItemButton>
           <ListItemButton className="btns-list" sx={{ pl: 4 }}>
             <IconButton>
               <DeleteIcon />
               <ListItemText primary="Delete" />
             </IconButton>
-
           </ListItemButton>
         </List>
       </Collapse>
 
       {/*
-      */}
+       */}
     </div>
   );
 };

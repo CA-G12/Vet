@@ -26,11 +26,16 @@ const Home = () => {
 
   return (
     <main className="home-page">
-
-      {filterObj && setFilterObj && <Filters id={filterObj} callback={setFilterObj} />}
-      {loading && posts.length !== 0 ? <PostsList posts={posts} /> : loading && posts.length === 0
-        ? <h2 className="no-result">No Result</h2>
-        : <LoadingPosts />}
+      {filterObj && setFilterObj && (
+        <Filters id={filterObj} callback={setFilterObj} />
+      )}
+      {loading && posts.length !== 0 ? (
+        <PostsList posts={posts} />
+      ) : loading && posts.length === 0 ? (
+        <h2 className="no-result">No Result</h2>
+      ) : (
+        <LoadingPosts />
+      )}
     </main>
   );
 };

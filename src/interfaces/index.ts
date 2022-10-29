@@ -1,6 +1,6 @@
 type CustomError = {
-    message :string
-    status?:number
-}
+  message: string;
+  status?: number;
+};
 
-export default CustomError
+export default CustomError;

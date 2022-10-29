@@ -1,7 +1,7 @@
-import { Request, Response } from 'express'
+import { Request, Response } from 'express';
 
-export const isAuthenticated = (req:Request, res:Response) => {
+export const isAuthenticated = (req: Request, res: Response) => {
   res.json({
-    user: req.user
-  })
-}
+    user: req.user,
+  });
+};

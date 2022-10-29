@@ -1,6 +1,4 @@
-import React, {
-  useState, createContext, useMemo, useEffect,
-} from 'react';
+import React, { useState, createContext, useMemo, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import IAuth from '../Interfaces/IAuth';
 import IAuthCon from '../Interfaces/IAuthCon';
@@ -10,14 +8,19 @@ import JwtService from '../services/JwtService';
 const authContext = createContext<IAuthCon>({} as IAuthCon);
 
 const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<IAuth|null>();
+  const [user, setUser] = useState<IAuth | null>();
 
-  const signUp = async ({
-    email, password, confirmPassword, name, role,
-  }: IAuth, callback:Function) => {
+  const signUp = async (
+    { email, password, confirmPassword, name, role }: IAuth,
+    callback: Function,
+  ) => {
     try {
       const signUpReq = await ApiService.post('/sign-up', {
-        email, password, confirmPassword, name, role,
+        email,
+        password,
+        confirmPassword,
+        name,
+        role,
       });
       JwtService.setToken(signUpReq.data.token);
       setUser({
@@ -28,13 +31,17 @@ const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
         avatar: signUpReq.data.avatar,
       });
       toast.success(signUpReq.data.name);
-      if (callback) { callback(); }
-    } catch (err:any) {
+      if (callback) {
+        callback();
+      }
+    } catch (err: any) {
       toast.error(err.response);
-      if (callback) { callback(); }
+      if (callback) {
+        callback();
+      }
     }
   };
-  const signIn = async ({ email, password }: IAuth, callback?:Function) => {
+  const signIn = async ({ email, password }: IAuth, callback?: Function) => {
     try {
       const signInReq = await ApiService.post('/sign-in', { email, password });
       setUser({
@@ -46,10 +53,14 @@ const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
       });
       JwtService.setToken(signInReq.data.data.token);
       toast.success(signInReq.data.data.name);
-      if (callback) { callback(); }
-    } catch (err:any) {
+      if (callback) {
+        callback();
+      }
+    } catch (err: any) {
       toast.error(err.response);
-      if (callback) { callback(); }
+      if (callback) {
+        callback();
+      }
     }
   };
   const signOut = () => {
@@ -61,15 +72,23 @@ const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
       try {
         const dataUnMount = await ApiService.get('/user/me');
         setUser(dataUnMount.data.user);
-      } catch (error:any) {
+      } catch (error: any) {
         setUser(null);
       }
     };
     userReq();
   }, []);
-  const authValues = useMemo(() => ({
-    user, signUp, signIn, signOut,
-  }), [user]);
-  return <authContext.Provider value={authValues}>{children}</authContext.Provider>;
+  const authValues = useMemo(
+    () => ({
+      user,
+      signUp,
+      signIn,
+      signOut,
+    }),
+    [user],
+  );
+  return (
+    <authContext.Provider value={authValues}>{children}</authContext.Provider>
+  );
 };
 export { ProvideAuth, authContext };
