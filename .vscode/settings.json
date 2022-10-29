@@ -1,11 +1,15 @@
 {
+    "[typescriptreact]": {
+        "editor.formatOnSave": false,
+    },
+    "[typescript]": {
+        "editor.formatOnSave": false,
+    },
+    "[javascript]": {
+        "editor.formatOnSave": false,
+    },
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },
-    "editor.formatOnSave": false,
-    "files.eol": "\n",
-    "cSpell.words": [
-        "Middlwares",
-        "signin"
-    ],
+    "editor.formatOnSave": true,
 }
