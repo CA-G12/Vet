@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
+import Box from '@mui/material/Box';
 
-import { ToastContainer } from 'react-toastify';
 import ApiServices from '../services/ApiService';
 import PostsList from '../components/PostCard/PostsList';
 import { AllPosts } from '../Context/PostsContext';
@@ -30,40 +30,35 @@ const Home = () => {
 
   return (
     <main className="home-page">
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-      {/* Same as */}
-      <ToastContainer />{' '}
-      {filter && setFilter && (
-        <div className="filters">
-          {TagList && (
+      <Box
+        p={5}
+        width="25%"
+        minHeight="90vh"
+        component="div"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        sx={{ backgroundColor: 'primary.main' }}
+      >
+        {TagList && (
+          <Box mt={2} width="100%" sx={{ backgroundColor: 'common.white' }}>
             <BasicSelect
-              name="TagId"
               value={filter.TagId}
               options={TagList}
               setValue={value => setFilter(prev => ({ ...prev, TagId: value }))}
             />
-          )}
-          {AnimalList && (
+          </Box>
+        )}
+        {AnimalList && (
+          <Box mt={2} width="100%">
             <BasicSelect
-              name="AnimalId"
               value={filter.AnimalId}
               options={AnimalList}
               setValue={value => setFilter(prev => ({ ...prev, TagId: value }))}
             />
-          )}
-        </div>
-      )}
+          </Box>
+        )}
+      </Box>
       {loading && posts.length !== 0 ? (
         <PostsList posts={posts} />
       ) : loading && posts.length === 0 ? (

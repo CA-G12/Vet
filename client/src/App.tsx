@@ -12,7 +12,18 @@ import { Header } from './components/Header/Header';
 const App = () => (
   <ThemeProvider theme={theme}>
     <ProvideAuth>
-      <ToastContainer />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <PostsContext>
         <Header />
         <Popup />
