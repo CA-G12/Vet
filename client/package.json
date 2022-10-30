@@ -51,7 +51,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint -c ./.eslintrc.js src/ --ext .ts,.tsx",
-    "lint-fix": "eslint -c ./.eslintrc.js src/ --ext .ts,.tsx --fix"
+    "lint-fix": "eslint -c ./.eslintrc.js src/ --ext .ts,.tsx --fix --max-warnings=0"
   },
   "browserslist": {
     "production": [

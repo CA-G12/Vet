@@ -10,7 +10,7 @@
     "start": "cross-env NODE_ENV=development node dist",
     "build": "tsc -p .",
     "lint": "eslint src/** --ext .ts",
-    "lint-fix": "eslint src/**/*.ts --fix",
+    "lint-fix": "eslint src/**/*.ts --fix --max-warnings=0",
     "prepare": "husky install",
     "postinstall": "cd client && npm i"
   },
