@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import * as React from 'react';
 import { toast } from 'react-toastify';
-import deleteImgFromFirEBase from '../../helpers/DeleteImgFrom FireBse';
+import deleteImageFromStorage from '../../helpers/deleteImageFromStorage';
 import IComment from '../../Interfaces/post/IComment';
 import ApiServices from '../../services/ApiService';
 import UserPostInfo from '../UserInfo';
@@ -38,7 +38,7 @@ const Comment = ({
         const file = {
           name: comment.image?.slice(comment.image.indexOf('%2F') + 3, comment.image?.indexOf('?')),
         };
-        deleteImgFromFirEBase(file);
+        deleteImageFromStorage(file);
       }
 
       const url = `post/${changeComment.PostId}/comments/${changeComment.id}`;

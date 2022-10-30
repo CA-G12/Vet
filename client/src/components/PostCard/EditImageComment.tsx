@@ -5,28 +5,23 @@ import { useState } from 'react';
 import * as React from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import IComment from '../../Interfaces/post/IComment';
-import handleUpload from '../../helpers/handleUpload';
+import uploadImage from '../../helpers/uploadImage';
 
 const EditImageComment = ({ data, callback }:
   {data:IComment, callback:Function, }) => {
-  const [isUpLoadImg, setIsUpLoadImg] = useState(false);
+  const [isUploadImg, setIsUploadImg] = useState(false);
   const deleteImg = () => {
     callback({ ...data, image: null });
   };
-  const editImg = (event:React.ChangeEvent<HTMLInputElement>) => {
+  const editImg = async (event:React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) {
       return;
     }
     const file = event.target.files[0];
     if (file) {
-      setTimeout(() => {
-        handleUpload(
-          data,
-          callback,
-          file,
-          setIsUpLoadImg,
-        );
-      }, 0);
+      await uploadImage(file, () => {});
+
+      setIsUploadImg(true);
     }
   };
 
@@ -67,7 +62,7 @@ const EditImageComment = ({ data, callback }:
         ) }
       </div>
       {
-        isUpLoadImg && (
+        isUploadImg && (
         <div className="progress-edit">
           {' '}
           <CircularProgress />

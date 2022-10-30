@@ -17,11 +17,10 @@ class App {
   }
 
   private initializeMiddlwares (): void {
-    this.app.use(cors())
+    this.app.use(cors({ origin: '*', allowedHeaders: ['http://localhost:3000'] }))
     this.app.use(compression())
     this.app.use(express.json())
     this.app.use(cookieParser())
-    this.app.use(cors())
     this.app.use(express.urlencoded({ extended: false }))
     this.app.use(express.static(join(__dirname, '..', 'client', 'build')))
     this.app.use('/api/v1', router)

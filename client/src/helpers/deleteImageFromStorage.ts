@@ -1,10 +1,11 @@
 import { getStorage, ref, deleteObject } from 'firebase/storage';
 
-function deleteImgFromFirEBase(file :any) {
+function deleteImageFromStorage(file :any) {
   const storage = getStorage();
 
   const desertRef = ref(storage, `/files/${file.name}`);
 
-  deleteObject(desertRef);
+  return deleteObject(desertRef);
 }
-export default deleteImgFromFirEBase;
+
+export default deleteImageFromStorage;

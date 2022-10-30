@@ -5,11 +5,11 @@ import CircularProgress from '@mui/material/CircularProgress';
 import HideImageIcon from '@mui/icons-material/HideImage';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { toast } from 'react-toastify';
-import handleUpload from '../../helpers/handleUpload';
 import ApiServices from '../../services/ApiService';
-import deleteImgFromFirEBase from '../../helpers/DeleteImgFrom FireBse';
+import deleteImageFromStorage from '../../helpers/deleteImageFromStorage';
 import IComment from '../../Interfaces/post/IComment';
 import { authContext } from '../../hooks/useAuth';
+import uploadImage from '../../helpers/uploadImage';
 
 const AddInputComment = ({
   numComments, setNumComments, postId, showComments, getComments,
@@ -24,11 +24,11 @@ const AddInputComment = ({
     UserId: user?.id,
   });
   const [file, setFile] = useState<File|null>(null);
-  const [isUpLoadImg, setIsUpLoadImg] = useState(false);
+  const [isUploadImg, setIsUploadImg] = useState(false);
   const sendComment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      if (!isUpLoadImg && data.comment) {
+      if (!isUploadImg && data.comment) {
         toast.success('Add comment is success ');
         const result = await ApiServices.post(`post/${postId}/comments`, data).then((newComment) => {
           setShowCommentInput(false);
@@ -53,7 +53,7 @@ const AddInputComment = ({
     callback({ ...data, image: '' });
     setFile(null);
 
-    deleteImgFromFirEBase(nameFile);
+    deleteImageFromStorage(nameFile);
   };
   const handelOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     callback({
@@ -68,14 +68,13 @@ const AddInputComment = ({
     setFile(event.target.files[0]);
   }
   React.useEffect(() => {
-    if (file) {
-      handleUpload(
-        data,
-        callback,
-        file,
-        setIsUpLoadImg,
-      );
-    }
+    (async () => {
+      if (file) {
+        await uploadImage(file, () => {});
+
+        setIsUploadImg(true);
+      }
+    })();
   }, [file]);
 
   return (
@@ -88,7 +87,7 @@ const AddInputComment = ({
         id="add-comment-btn"
         type="text"
       />
-      <div style={{ display: isUpLoadImg ? 'block' : 'none' }}>
+      <div style={{ display: isUploadImg ? 'block' : 'none' }}>
         <CircularProgress />
       </div>
       <div
@@ -99,7 +98,7 @@ const AddInputComment = ({
         <HideImageIcon />
       </div>
       <label
-        style={{ display: !data.image && !isUpLoadImg ? 'block' : 'none' }}
+        style={{ display: !data.image && !isUploadImg ? 'block' : 'none' }}
         htmlFor="upload-img-comment"
       >
         <AddPhotoAlternateIcon />
