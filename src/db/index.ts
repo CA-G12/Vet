@@ -1,8 +1,8 @@
 import { User, Like, Comment, Animal, Post, Booking, Tag, DoctorInfo } from '../models'
 import sequelize from './connection'
 
-User.hasOne(DoctorInfo, { foreignKey: { name: 'DoctorId' } })
-DoctorInfo.belongsTo(User, { foreignKey: { name: 'DoctorId' } })
+User.hasOne(DoctorInfo, { as: 'Doctor' })
+DoctorInfo.belongsTo(User, { as: 'Doctor' })
 
 User.hasMany(Post)
 Post.belongsTo(User)

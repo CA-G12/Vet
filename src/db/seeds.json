@@ -169,7 +169,25 @@
       "clinicLocation": "Gaza - Naser",
       "workplace": "Salala",
       "hourRate": "15-20 ",
-      "doctorId": 6
+      "DoctorId": 6
     }
-  ]
+  ],
+  "Booking" :[{
+    "DoctorId":6,
+    "UserId":2,
+    "title":"test",
+    "description":"hehehehehhehe",
+    "start":"2022-10-26T20:00:00+03:00",
+    "end":"2022-10-26T20:00:00+03:00",
+    "status":"ACCEPTED"
+  },{
+    "DoctorId":6,
+    "UserId":2,
+    "title":"test",
+    "description":"hehehehehhehe",
+    "start":"2022-10-26T20:00:00+03:00",
+    "end":"2022-10-26T20:00:00+03:00",
+    "status":"PENDING"
+  }
+]
 }

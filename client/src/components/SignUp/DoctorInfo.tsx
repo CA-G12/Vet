@@ -8,7 +8,7 @@ import ApiService from '../../services/ApiService';
 import { authContext } from '../../hooks/useAuth';
 
 interface IDoctorInfo{
-     doctorId?:number,
+     DoctorId?:number,
      clinicLocation?:string,
      workplace?: string,
      hourRate ?:string,
@@ -20,18 +20,18 @@ const Doctor = ({ open }:{open :Function}) => {
     clinicLocation: '',
     workplace: '',
     hourRate: '',
-    doctorId: 0,
+    DoctorId: 0,
   });
   const handleState = (event:React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.currentTarget;
-    setDoctorInfo((prev:object) => ({ ...prev, [name]: value }));
-    doctorInfo.doctorId = user?.id;
+    setDoctorInfo((prev:object) => ({ ...prev, [name]: value, DoctorId: user?.id }));
   };
   return (
     <form onSubmit={async (event) => {
       event.preventDefault();
       try {
         await DoctorInfo.validate(doctorInfo);
+        console.log(doctorInfo);
         await ApiService.post('/doctor-info', doctorInfo);
         open(false);
         toast.success('done');

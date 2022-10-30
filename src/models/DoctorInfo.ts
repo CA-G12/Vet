@@ -14,11 +14,6 @@ DoctorInfo.init({
     autoIncrement: true,
     primaryKey: true
   },
-  doctorId: {
-    type: DataTypes.INTEGER,
-    unique: true,
-    allowNull: false
-  },
   hourRate: {
     type: DataTypes.STRING,
     allowNull: false
