@@ -54,6 +54,7 @@ const HomeRepairServiceIconNav = styled(HomeRepairServiceIcon)(IconsStyle);
 const Diversity1IconNav = styled(Diversity1Icon)(IconsStyle);
 
 const StyledHeader = styled('header')({
+  zIndex: '9999',
   position: 'relative',
   background: 'rgba(90, 89, 89, 0)',
   'backdrop-filter': 'blur(20px)',
@@ -109,7 +110,6 @@ const Navigations = styled(Box)(({
       visibility: 'visible',
       opacity: '1',
     },
-
     '&.active .nav-items': {
       transform: 'translateY(0)',
     },
