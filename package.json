@@ -9,7 +9,8 @@
     "dev": "cross-env NODE_ENV=development nodemon --config nodemon.json src/index.ts",
     "start": "cross-env NODE_ENV=development node dist",
     "build": "tsc -p .",
-    "lint": "eslint src/** --ext .ts"
+    "lint": "eslint src/** --ext .ts",
+    "postinstall": "cd client && npm i"
   },
   "repository": {
     "type": "git",
