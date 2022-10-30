@@ -6,20 +6,17 @@ import { ThemeProvider } from '@mui/material/styles';
 import Popup from './components/Popup/Popup';
 import theme from './helpers/theme';
 import PostsContext from './Context/PostsContext';
-import Nav from './components/Nav';
+// import Nav from './components/Nav';
 import { ProvideAuth } from './hooks/useAuth';
-import AddPost from './components/AddPost/AddPost';
+import { Header } from './components/Header/Header';
 
 const App = () => (
   <ThemeProvider theme={theme}>
-
     <ProvideAuth>
       <ToastContainer />
       <PostsContext>
-        <Nav />
+        <Header />
         <Popup />
-        <AddPost />
-
         <Outlet />
       </PostsContext>
     </ProvideAuth>
