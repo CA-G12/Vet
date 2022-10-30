@@ -87,12 +87,10 @@ const AddPost = () => {
       };
 
       ApiServices.init();
-      const result = await ApiServices.post('/posts', postData);
+      await ApiServices.post('/posts', postData);
       toast.success('new post added successfully');
       handleClose();
-      console.log(result);
     } catch (err: any) {
-      console.log(err);
       toast.error(err.message);
     }
   };

@@ -1,4 +1,4 @@
-const depounce = (fn:Function, delay:number):Function => {
+const depounce = (fn: Function, delay: number): Function => {
   const timer = setTimeout(() => {
     fn();
   }, delay);

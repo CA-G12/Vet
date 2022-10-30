@@ -4,23 +4,27 @@ import Comment from './Comment';
 import IComment from '../../Interfaces/post/IComment';
 import LoadingComments from './LoadingComment';
 
-interface IComments
-  {
-    comments:Array<IComment>,
-     showMore:Function,
-      commentNum:number,
-      isShowMore:boolean,
-      setGetComments:Function
-      numComments:number
-      setNumComments:Function
-    }
+interface IComments {
+  comments: Array<IComment>;
+  showMore: Function;
+  commentNum: number;
+  isShowMore: boolean;
+  setGetComments: Function;
+  numComments: number;
+  setNumComments: Function;
+}
 
 const Comments = ({
-  comments, showMore, commentNum, isShowMore, setGetComments, numComments,
+  comments,
+  showMore,
+  commentNum,
+  isShowMore,
+  setGetComments,
+  numComments,
   setNumComments,
-}:IComments) => (
+}: IComments) => (
   <div className="comments">
-    {comments.map((comment) => (
+    {comments.map(comment => (
       <Comment
         setGetComments={setGetComments}
         comments={comments}
@@ -34,17 +38,12 @@ const Comments = ({
 
     {commentNum > comments.length && (
       <div className="show-more">
-        <p
-          role="presentation"
-          onClick={() => showMore()}
-        >
+        <p role="presentation" onClick={() => showMore()}>
           Show More
         </p>
         <KeyboardDoubleArrowDownIcon />
       </div>
-
     )}
-
   </div>
 );
 

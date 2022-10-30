@@ -9,21 +9,11 @@ const Nav = () => {
   const { user } = useContext(authContext);
   return (
     <nav>
-      <NavLink to="/">
-        Landing
-      </NavLink>
-      <NavLink to="/home">
-        home
-      </NavLink>
-      <NavLink to="/doctors">
-        doctors
-      </NavLink>
-      <NavLink to="/emergency">
-        emergency
-      </NavLink>
-      <NavLink to={`/profile/${user?.id}`}>
-        my profile
-      </NavLink>
+      <NavLink to="/">Landing</NavLink>
+      <NavLink to="/home">home</NavLink>
+      <NavLink to="/doctors">doctors</NavLink>
+      <NavLink to="/emergency">emergency</NavLink>
+      <NavLink to={`/profile/${user?.id}`}>my profile</NavLink>
       <input
         value={filterObj?.content}
         onChange={(event: SelectChangeEvent<ReactNode>) => {

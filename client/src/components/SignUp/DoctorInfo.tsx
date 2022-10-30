@@ -7,14 +7,14 @@ import { DoctorInfo } from '../../Validation';
 import ApiService from '../../services/ApiService';
 import { authContext } from '../../hooks/useAuth';
 
-interface IDoctorInfo{
-     DoctorId?:number,
-     clinicLocation?:string,
-     workplace?: string,
-     hourRate ?:string,
-     uploadPhoto?:string
+interface IDoctorInfo {
+  DoctorId?: number;
+  clinicLocation?: string;
+  workplace?: string;
+  hourRate?: string;
+  uploadPhoto?: string;
 }
-const Doctor = ({ open }:{open :Function}) => {
+const Doctor = ({ open }: { open: Function }) => {
   const { user } = React.useContext(authContext);
   const [doctorInfo, setDoctorInfo] = React.useState<IDoctorInfo>({
     clinicLocation: '',
@@ -22,23 +22,27 @@ const Doctor = ({ open }:{open :Function}) => {
     hourRate: '',
     DoctorId: 0,
   });
-  const handleState = (event:React.ChangeEvent<HTMLInputElement>) => {
+  const handleState = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.currentTarget;
-    setDoctorInfo((prev:object) => ({ ...prev, [name]: value, DoctorId: user?.id }));
+    setDoctorInfo((prev: object) => ({
+      ...prev,
+      [name]: value,
+      DoctorId: user?.id,
+    }));
   };
   return (
-    <form onSubmit={async (event) => {
-      event.preventDefault();
-      try {
-        await DoctorInfo.validate(doctorInfo);
-        console.log(doctorInfo);
-        await ApiService.post('/doctor-info', doctorInfo);
-        open(false);
-        toast.success('done');
-      } catch (error:any) {
-        toast.error(error.message);
-      }
-    }}
+    <form
+      onSubmit={async event => {
+        event.preventDefault();
+        try {
+          await DoctorInfo.validate(doctorInfo);
+          await ApiService.post('/doctor-info', doctorInfo);
+          open(false);
+          toast.success('done');
+        } catch (error: any) {
+          toast.error(error.message);
+        }
+      }}
     >
       <FormControl>
         <TextField
@@ -50,7 +54,9 @@ const Doctor = ({ open }:{open :Function}) => {
           name="clinicLocation"
           onChange={handleState}
           sx={{
-            m: 1, width: '25ch', color: '#356E6E',
+            m: 1,
+            width: '25ch',
+            color: '#356E6E',
           }}
         />
       </FormControl>
@@ -64,7 +70,9 @@ const Doctor = ({ open }:{open :Function}) => {
           name="workplace"
           onChange={handleState}
           sx={{
-            m: 1, width: '25ch', color: '#356E6E',
+            m: 1,
+            width: '25ch',
+            color: '#356E6E',
           }}
         />
       </FormControl>
@@ -78,7 +86,9 @@ const Doctor = ({ open }:{open :Function}) => {
           name="hourRate"
           onChange={handleState}
           sx={{
-            m: 1, width: '25ch', color: '#356E6E',
+            m: 1,
+            width: '25ch',
+            color: '#356E6E',
           }}
         />
       </FormControl>
@@ -94,7 +104,11 @@ const Doctor = ({ open }:{open :Function}) => {
             variant="outlined"
             component="span"
             sx={{
-              m: 1, width: '29ch', backgroundColor: '#FDD853', border: 'none', borderRadius: '5px',
+              m: 1,
+              width: '29ch',
+              backgroundColor: '#FDD853',
+              border: 'none',
+              borderRadius: '5px',
             }}
             endIcon={<ImageIcon />}
           >
@@ -103,7 +117,9 @@ const Doctor = ({ open }:{open :Function}) => {
         </label>
       </FormControl>
       <br />
-      <button type="submit" className="sign-Doctor">Sign up </button>
+      <button type="submit" className="sign-Doctor">
+        Sign up{' '}
+      </button>
     </form>
   );
 };

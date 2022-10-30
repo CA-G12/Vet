@@ -1,10 +1,6 @@
 import './post.css';
 
-import {
-
-  useContext,
-  useState,
-} from 'react';
+import { useContext, useState } from 'react';
 
 import useOutsideClick from '../../hooks/UseOutsideClick ';
 import BtnsPost from './BtnsPost';
@@ -16,7 +12,7 @@ import StackCommentsAndLikes from './StackCommentsAndLikes';
 import ApiServices from '../../services/ApiService';
 import { authContext } from '../../hooks/useAuth';
 
-const Post = ({ post }:{post:IPost}) => {
+const Post = ({ post }: { post: IPost }) => {
   const { user } = useContext(authContext);
 
   const [showComments, setShowComments] = useState(false);
@@ -28,7 +24,9 @@ const Post = ({ post }:{post:IPost}) => {
 
   const showMore = async () => {
     setIsShowMore(true);
-    const getTowComments = await ApiServices.get(`posts/${post.id}/comments?page=${page}`);
+    const getTowComments = await ApiServices.get(
+      `posts/${post.id}/comments?page=${page}`,
+    );
     setPage(page + 1);
     setGetComments(getComments.concat(getTowComments.data.rows));
     setIsShowMore(false);
@@ -52,39 +50,29 @@ const Post = ({ post }:{post:IPost}) => {
   const ref = useOutsideClick(handleClickOutside);
 
   return (
-    <div
-      ref={ref}
-      className="post-card"
-    >
+    <div ref={ref} className="post-card">
       <article className="article abusluot-btns">
         <section className="post-content-continuer">
           <UserPostInfo user={post.User} />
           {post.image && (
-          <div className="img-post-mobile">
-            <img src={post.image} alt="" />
-          </div>
-          ) }
-          <p className="content">
-            {post.content}
-
-          </p>
+            <div className="img-post-mobile">
+              <img src={post.image} alt="" />
+            </div>
+          )}
+          <p className="content">{post.content}</p>
 
           <StackCommentsAndLikes
             commentNum={numComments}
             likes={post.Likes}
             handleClick={handleClick}
           />
-
         </section>
         {post.image && (
-        <figure className="img-post-desctop">
-          <img className="img-post" src={post.image} alt="" />
-        </figure>
-        ) }
-        {
-        user?.id === post.User.id
-          && <EditAndDeleteBtn />
-}
+          <figure className="img-post-desctop">
+            <img className="img-post" src={post.image} alt="" />
+          </figure>
+        )}
+        {user?.id === post.User.id && <EditAndDeleteBtn />}
       </article>
 
       <BtnsPost
@@ -96,11 +84,9 @@ const Post = ({ post }:{post:IPost}) => {
         showComments={showComments}
         getComments={getComments}
         setGetComments={setGetComments}
-
       />
 
-      {
-        showComments && (
+      {showComments && (
         <div>
           <Comments
             isShowMore={isShowMore}
@@ -111,10 +97,8 @@ const Post = ({ post }:{post:IPost}) => {
             numComments={numComments}
             setNumComments={setNumComments}
           />
-
         </div>
-        )
-      }
+      )}
     </div>
   );
 };

@@ -1,8 +1,6 @@
 import { styled } from '@mui/system';
 
-import {
-  Avatar, Box, Button, Input, Typography,
-} from '@mui/material';
+import { Avatar, Box, Button, Input, Typography } from '@mui/material';
 
 import PhoneForwardedIcon from '@mui/icons-material/PhoneForwarded';
 import SearchIcon from '@mui/icons-material/Search';
@@ -67,8 +65,7 @@ const StyledHeader = styled('header')({
   padding: '0 35px',
   transition: '0.5s ease',
   gap: '1rem',
-  '@media screen and (max-width: 850px)':
-  {
+  '@media screen and (max-width: 850px)': {
     padding: '0 20px',
     gap: '0.5rem',
   },
@@ -86,7 +83,7 @@ const NavigationAnchor = styled(Link)({
   },
 });
 
-const Navigations = styled(Box)(({
+const Navigations = styled(Box)({
   '.nav-items': {
     'justify-content': 'center',
   },
@@ -127,21 +124,16 @@ const Navigations = styled(Box)(({
       'box-shadow': '0 5px 25px rgba(0, 0, 0, 0.8)',
       transform: 'translateY(-10px)',
       transition: '0.3s ease',
-      '@media screen and (max-width: 850px)':
-         { transform: 'translateY(0)' },
+      '@media screen and (max-width: 850px)': { transform: 'translateY(0)' },
     },
   },
-}));
-
-const NavItems = styled('nav')({
-
 });
+
+const NavItems = styled('nav')({});
 
 const LogoImage = styled('img')({
   width: '6.8rem',
-  '@media screen and (max-width: 850px)':
-     { width: '4rem' },
-
+  '@media screen and (max-width: 850px)': { width: '4rem' },
 });
 
 const ActionsBox = styled(Box)({
@@ -218,17 +210,15 @@ const UserAvatar = styled(Avatar)({
   },
 });
 
-const UserNameText = styled(Typography)(
-  {
-    'padding-top': '0.4rem',
-    '@media screen and (max-width:850px)': {
-      'font-size': '1rem',
-    },
-    '@media screen and (max-width:450px)': {
-      'font-size': '0.5rem',
-    },
+const UserNameText = styled(Typography)({
+  'padding-top': '0.4rem',
+  '@media screen and (max-width:850px)': {
+    'font-size': '1rem',
   },
-);
+  '@media screen and (max-width:450px)': {
+    'font-size': '0.5rem',
+  },
+});
 
 const AuthButtonsBox = styled(Box)({
   display: 'flex',

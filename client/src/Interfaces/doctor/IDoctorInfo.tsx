@@ -1,4 +1,4 @@
-interface IDoctorInfo{
-  workplace:string
+interface IDoctorInfo {
+  workplace: string;
 }
 export default IDoctorInfo;

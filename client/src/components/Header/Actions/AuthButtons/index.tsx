@@ -1,4 +1,8 @@
-import { AuthButtonsBox, LoginButton, SignUpButton } from '../../components.styled';
+import {
+  AuthButtonsBox,
+  LoginButton,
+  SignUpButton,
+} from '../../components.styled';
 
 export const AuthButtons = () => (
   <AuthButtonsBox>

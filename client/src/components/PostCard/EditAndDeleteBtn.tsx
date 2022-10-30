@@ -13,21 +13,27 @@ import useOutsideClick from '../../hooks/UseOutsideClick ';
 import ApiServices from '../../services/ApiService';
 import IComment from '../../Interfaces/post/IComment';
 
-interface ICommentIdAndPostId{
-  commentId?:number
-   postId?:number
-   deleteData?:Array<IComment>
-   deleteCallback?:Function
-   numComments?:number
-    setNumComments?:Function
-    setEdit?:Function
-    edit?:boolean
+interface ICommentIdAndPostId {
+  commentId?: number;
+  postId?: number;
+  deleteData?: Array<IComment>;
+  deleteCallback?: Function;
+  numComments?: number;
+  setNumComments?: Function;
+  setEdit?: Function;
+  edit?: boolean;
 }
 
 const EditAndDeleteBtn = ({
-  commentId, postId, deleteData, deleteCallback, numComments, setNumComments, setEdit,
+  commentId,
+  postId,
+  deleteData,
+  deleteCallback,
+  numComments,
+  setNumComments,
+  setEdit,
   edit,
-}:ICommentIdAndPostId) => {
+}: ICommentIdAndPostId) => {
   const [open, setOpen] = useState(false);
 
   const handleClickOutside = () => {
@@ -43,20 +49,14 @@ const EditAndDeleteBtn = ({
     if (commentId) {
       url += `/comments/${commentId}`;
     }
-    try {
-      const result = await ApiServices.destroy(url).then(() => {
-        if (deleteCallback) {
-          deleteCallback(deleteData?.filter((item) => item.id !== commentId));
-          if (setNumComments && numComments) {
-            setNumComments(numComments - 1);
-          }
+    await ApiServices.destroy(url).then(() => {
+      if (deleteCallback) {
+        deleteCallback(deleteData?.filter(item => item.id !== commentId));
+        if (setNumComments && numComments) {
+          setNumComments(numComments - 1);
         }
-      });
-
-      console.log(result);
-    } catch (err) {
-      console.log(err);
-    }
+      }
+    });
   };
   const handelEdit = () => {
     setOpen(false);
@@ -74,27 +74,30 @@ const EditAndDeleteBtn = ({
           <MoreHorizIcon />
         </ListItemIcon>
       </button>
-      <Collapse className="btns-container" in={open} timeout="auto" unmountOnExit>
+      <Collapse
+        className="btns-container"
+        in={open}
+        timeout="auto"
+        unmountOnExit
+      >
         <List component="div" disablePadding>
           <ListItemButton className="btns-list" sx={{ pl: 4 }}>
             <IconButton onClick={handelEdit}>
               <EditIcon />
               <ListItemText primary="Edit" />
             </IconButton>
-
           </ListItemButton>
           <ListItemButton className="btns-list" sx={{ pl: 4 }}>
             <IconButton onClick={deleteComment}>
               <DeleteIcon />
               <ListItemText primary="Delete" />
             </IconButton>
-
           </ListItemButton>
         </List>
       </Collapse>
 
       {/*
-      */}
+       */}
     </div>
   );
 };

@@ -8,7 +8,7 @@ import SignUp from '../SignUp/SignUpForm';
 import SignIn from '../SignIn/SignInForm';
 import './style.css';
 
-const LabTabs = ({ open }:{open :Function}) => {
+const LabTabs = ({ open }: { open: Function }) => {
   const [value, setValue] = React.useState('1');
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {

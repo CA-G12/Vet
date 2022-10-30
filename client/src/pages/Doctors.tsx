@@ -17,7 +17,9 @@ const Doctors = () => {
 
   return (
     <Stack spacing={3} direction="column">
-      {doctors.map((doctor:IUser) => <Doctor key={doctor.id} user={doctor} />)}
+      {doctors.map((doctor: IUser) => (
+        <Doctor key={doctor.id} user={doctor} />
+      ))}
     </Stack>
   );
 };

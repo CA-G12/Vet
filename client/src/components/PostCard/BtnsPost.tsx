@@ -10,22 +10,26 @@ import { authContext } from '../../hooks/useAuth';
 import PopUp from '../Popup/Popup';
 
 interface IBtnsPost {
-  isConnected:boolean,
-  numComments:number,
-  setNumComments:Function,
-  postId:number,
-  showComments:boolean,
-  getComments:Array<IComment>,
-  setGetComments:Function
-  setIsConnected:Function
+  isConnected: boolean;
+  numComments: number;
+  setNumComments: Function;
+  postId: number;
+  showComments: boolean;
+  getComments: Array<IComment>;
+  setGetComments: Function;
+  setIsConnected: Function;
 }
 
 const BtnsPost = ({
-  isConnected, setIsConnected,
-  numComments, setNumComments,
-  postId, showComments,
-  getComments, setGetComments,
-}:IBtnsPost) => {
+  isConnected,
+  setIsConnected,
+  numComments,
+  setNumComments,
+  postId,
+  showComments,
+  getComments,
+  setGetComments,
+}: IBtnsPost) => {
   const { user } = useContext(authContext);
   const [showCommentInput, setShowCommentInput] = useState(false);
   const handleClick = () => {
@@ -35,16 +39,17 @@ const BtnsPost = ({
 
   return (
     <div>
-      <div style={{ borderRadius: isConnected ? '0' : '0 0 10px 10px' }} className="BtnsPost">
+      <div
+        style={{ borderRadius: isConnected ? '0' : '0 0 10px 10px' }}
+        className="BtnsPost"
+      >
         <Tooltip title="Add new comment">
           <label htmlFor="add-comment-btn">
             {' '}
             <IconButton className="comment-btn" onClick={handleClick}>
               <FontAwesomeIcon icon={faComment} />
             </IconButton>
-
           </label>
-
         </Tooltip>
 
         <IconButton>
@@ -62,9 +67,7 @@ const BtnsPost = ({
           setShowCommentInput={setShowCommentInput}
         />
       )}
-      {
-       showCommentInput && !user && <PopUp />
-      }
+      {showCommentInput && !user && <PopUp />}
     </div>
   );
 };

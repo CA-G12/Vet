@@ -6,21 +6,19 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { ReactNode } from 'react';
 import addPostAuth from '../../Interfaces/post/IAddPost';
 
-interface Selector{
-    id:number
-    name:string
+interface Selector {
+  id: number;
+  name: string;
 }
-interface Props{
-  itemId:string
-  post:Omit<addPostAuth, 'UserId'>
-  callback:Function
-  name:string
-  obj: Selector[]
+interface Props {
+  itemId: string;
+  post: Omit<addPostAuth, 'UserId'>;
+  callback: Function;
+  name: string;
+  obj: Selector[];
 }
 
-const BasicSelect = ({
-  name, obj, post, callback, itemId,
-} :Props) => {
+const BasicSelect = ({ name, obj, post, callback, itemId }: Props) => {
   const handleChange = (event: SelectChangeEvent<ReactNode>) => {
     if (itemId === 'TagId') {
       callback({ ...post, TagId: event.target.value });
@@ -30,10 +28,7 @@ const BasicSelect = ({
   };
 
   return (
-    <Box
-      className="filterInput"
-      sx={{ minWidth: 150 }}
-    >
+    <Box className="filterInput" sx={{ minWidth: 150 }}>
       <FormControl fullWidth>
         <InputLabel id="basic-select-label">{name}</InputLabel>
         <Select
@@ -43,8 +38,11 @@ const BasicSelect = ({
           label={name}
           onChange={handleChange}
         >
-          {obj.map((tag:Selector) => (
-            <MenuItem key={tag.id} value={tag.id}>{tag.name}</MenuItem>))}
+          {obj.map((tag: Selector) => (
+            <MenuItem key={tag.id} value={tag.id}>
+              {tag.name}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
     </Box>

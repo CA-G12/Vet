@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import IUser from '../../Interfaces/post/IUser';
 
-const ButtonDoctor = ({ user }:{user:IUser}) => (
+const ButtonDoctor = ({ user }: { user: IUser }) => (
   <Link
     style={{
       textDecoration: 'none',
