@@ -16,7 +16,8 @@
       "@typescript-eslint"
   ],
   "rules": {
-    "no-nested-ternary": "error"
+    "no-nested-ternary": "error",
+    "linebreak-style": "off"
 
   }
 }
