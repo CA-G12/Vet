@@ -51,10 +51,10 @@ const AddPost = () => {
   const { user } = React.useContext(authContext);
   const [open, setOpen] = React.useState(false);
   const [progress, setProgress] = React.useState(0);
-  const [file, setFile] = React.useState<File|null>(null);
+  const [file, setFile] = React.useState<File | null>(null);
   const handleClose = () => setOpen(false);
   React.useEffect(() => {
-    if (progress === 100)handleClose();
+    if (progress === 100) handleClose();
   }, [progress]);
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -80,7 +80,7 @@ const AddPost = () => {
         imageUrl = await uploadImage(file, setProgress);
       }
 
-      const postData:IAddPost = {
+      const postData: IAddPost = {
         ...validated,
         UserId: user?.id,
         image: imageUrl,
@@ -91,7 +91,7 @@ const AddPost = () => {
       toast.success('new post added successfully');
       handleClose();
       console.log(result);
-    } catch (err:any) {
+    } catch (err: any) {
       console.log(err);
       toast.error(err.message);
     }
@@ -133,10 +133,7 @@ const AddPost = () => {
                   width: '90%',
                 }}
               >
-                <Stack
-                  direction="row"
-                  spacing={4}
-                >
+                <Stack direction="row" spacing={4}>
                   <label htmlFor="upload-photo">
                     <input
                       type="file"
@@ -155,14 +152,8 @@ const AddPost = () => {
                       add Image
                     </Button>
                   </label>
-                  <BasicSelect
-                    name="TagId"
-                    options={TagList}
-                  />
-                  <BasicSelect
-                    name="AnimalId"
-                    options={AnimalList}
-                  />
+                  <BasicSelect name="TagId" options={TagList} />
+                  <BasicSelect name="AnimalId" options={AnimalList} />
                 </Stack>
                 <LoadingButton
                   loading={progress > 0 && progress < 100}

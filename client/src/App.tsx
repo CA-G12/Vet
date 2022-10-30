@@ -21,7 +21,6 @@ const App = () => (
       </PostsContext>
     </ProvideAuth>
   </ThemeProvider>
-
 );
 
 export default App;

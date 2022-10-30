@@ -1,18 +1,21 @@
-import { NextFunction, Request, Response } from 'express';
-import CustomError from './CustomError';
+import { NextFunction, Request, RequestHandler, Response } from 'express';
+import CustomError, { isCustomError } from './CustomError';
 
-const errorWrapper = (controller: Function) => {
+const errorWrapper = (controller: RequestHandler) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
       await controller(req, res, next);
-    } catch (error: any) {
-      if (error.name === 'ValidationError') {
-        error.status = 422;
+    } catch (error: unknown) {
+      if (isCustomError(error)) {
+        if (error.name === 'ValidationError') {
+          error.status = 422;
+        }
+        next(error);
       }
       next(
         new CustomError(
-          error.status || 500,
-          error.message || 'Internal Server Error',
+          500,
+          (error as Error).message || 'Internal Server Error',
         ),
       );
     }

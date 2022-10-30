@@ -3,7 +3,7 @@
 import validation from '../validation/';
 import CustomError from '../helpers/errorsHandling/CustomError';
 
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
 import environment from '../config/environment';
 import bcrypt from 'bcryptjs';
 import { Secret, sign } from 'jsonwebtoken';
@@ -13,7 +13,7 @@ import { User } from '../models';
 // AuthController.ts file
 export default class AuthController {
   // login based on user providing a series of specific user information
-  public static async signin(req: Request, res: Response, next: NextFunction) {
+  public static async signin(req: Request, res: Response) {
     const { secretKey } = environment;
     const { email, password } = req.body;
 

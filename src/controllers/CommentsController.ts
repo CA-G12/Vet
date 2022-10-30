@@ -5,7 +5,7 @@ import { commentSchema } from '../schemes';
 export default class CommentsController {
   public static async index(req: Request, res: Response) {
     const { postId } = req.params;
-    const page: any = req.query.page || 1;
+    const page = Number(req.query.page || 1);
     const comments = await Comment.findAndCountAll({
       where: {
         PostId: postId,
