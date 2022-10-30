@@ -1,4 +1,4 @@
-import Stack from '@mui/material/Stack';
+import { Box } from '@mui/system';
 import { useState, useEffect } from 'react';
 import Doctor from '../components/Doctor';
 import IUser from '../Interfaces/post/IUser';
@@ -16,11 +16,17 @@ const Doctors = () => {
   }, []);
 
   return (
-    <Stack spacing={3} direction="column">
+    <Box
+      display="flex"
+      justifyContent="center"
+      flexDirection="column"
+      alignItems="center"
+      sx={{ width: '50%', margin: ' 40px auto' }}
+    >
       {doctors.map((doctor: IUser) => (
-        <Doctor key={doctor.id} user={doctor} />
+        <Doctor isEmergency={false} key={doctor.id} user={doctor} />
       ))}
-    </Stack>
+    </Box>
   );
 };
 
