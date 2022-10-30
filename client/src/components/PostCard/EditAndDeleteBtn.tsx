@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -9,8 +10,24 @@ import Collapse from '@mui/material/Collapse';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { useState } from 'react';
 import useOutsideClick from '../../hooks/UseOutsideClick ';
+import ApiServices from '../../services/ApiService';
+import IComment from '../../Interfaces/post/IComment';
 
-const EditAndDeleteBtn = () => {
+interface ICommentIdAndPostId{
+  commentId?:number
+   postId?:number
+   deleteData?:Array<IComment>
+   deleteCallback?:Function
+   numComments?:number
+    setNumComments?:Function
+    setEdit?:Function
+    edit?:boolean
+}
+
+const EditAndDeleteBtn = ({
+  commentId, postId, deleteData, deleteCallback, numComments, setNumComments, setEdit,
+  edit,
+}:ICommentIdAndPostId) => {
   const [open, setOpen] = useState(false);
 
   const handleClickOutside = () => {
@@ -18,6 +35,35 @@ const EditAndDeleteBtn = () => {
   };
   const handleClick = () => {
     setOpen(!open);
+  };
+  const deleteComment = async () => {
+    setOpen(false);
+
+    let url = `post/${postId}`;
+    if (commentId) {
+      url += `/comments/${commentId}`;
+    }
+    try {
+      const result = await ApiServices.destroy(url).then(() => {
+        if (deleteCallback) {
+          deleteCallback(deleteData?.filter((item) => item.id !== commentId));
+          if (setNumComments && numComments) {
+            setNumComments(numComments - 1);
+          }
+        }
+      });
+
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handelEdit = () => {
+    setOpen(false);
+
+    if (setEdit) {
+      setEdit(!edit);
+    }
   };
   const ref = useOutsideClick(handleClickOutside);
 
@@ -31,14 +77,14 @@ const EditAndDeleteBtn = () => {
       <Collapse className="btns-container" in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <ListItemButton className="btns-list" sx={{ pl: 4 }}>
-            <IconButton>
+            <IconButton onClick={handelEdit}>
               <EditIcon />
               <ListItemText primary="Edit" />
             </IconButton>
 
           </ListItemButton>
           <ListItemButton className="btns-list" sx={{ pl: 4 }}>
-            <IconButton>
+            <IconButton onClick={deleteComment}>
               <DeleteIcon />
               <ListItemText primary="Delete" />
             </IconButton>

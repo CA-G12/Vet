@@ -172,6 +172,7 @@ border-radius: 12px;
 }
 .comment{
   padding: 5px 0 0 15px;
+  width: 70%;
 }
 .user-info-comment img{
 width: 30px;
@@ -242,6 +243,10 @@ object-fit: cover;
     width: 100%;
     margin-bottom: 20px;
   }
+  .edit-comment button,.edit-comment input{
+    width: 100% !important;
+  }
+
 }
 .btns-list{
   position: absolute;
@@ -389,4 +394,74 @@ cursor: pointer;
 }
 .comment-img{
   margin-right: 20px;
+}
+.postion-progress-add-img{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+}
+.MuiCircularProgress-root {
+  width: 25px !important;
+  height: 25px !important;
+  margin: 2px 5px;
+}
+.edit-img-comment-icons div{
+  width: 100%;
+  height: 132%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  position: absolute;
+  top: -9px;
+  right: -7px;
+}
+.edit-img-comment-icons svg{
+width: 15px;
+color: var(--font-color);
+}
+.edit-img-comment-icons{
+  position: relative;
+}
+.edit-comment{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.edit-comment input{
+width: 80%;
+outline: none;
+border: none;background-color: #bdd9d9;
+padding: 5px;
+border-radius: 8px ;
+}
+.edit-comment button{
+  border: none;
+  background: var(--sacredly-color);
+  color: var(--not-active-color);
+  padding: 5px;
+  border-radius: 8px;
+}
+.progress-edit{
+  position: absolute;
+  top: 13px !important;
+  left: 37%;
+  transform: translateX(-50%);
+  width: 35px;
+height: 35px;
+}
+.progress-edit span,.progress-edit svg{
+  
+
+width: 35px !important;
+height: 30px !important;
+}
+
+.mangment-img-comment-btn svg{
+  background-color: rgba(255, 0, 0, 0.199);
+  border-radius: 50%;
+  padding: 0 1px;
 }

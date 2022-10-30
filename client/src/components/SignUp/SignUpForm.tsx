@@ -8,8 +8,8 @@ import * as React from 'react';
 import { toast } from 'react-toastify';
 import IAuth from '../../Interfaces/IAuth';
 import { authContext } from '../../hooks/useAuth';
-import { SignUpValid } from '../../Validation';
 import Doctor from './DoctorInfo';
+import { SignUpValid } from '../../Validation';
 
 const SignUp = ({ open }:{open :Function}) => {
   const { signUp } = React.useContext(authContext);

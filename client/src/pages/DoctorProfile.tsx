@@ -1,7 +1,7 @@
 const DoctorProfile = () => (
-  <h1>
-    this is my doctor page !!
-  </h1>
+  <div>
+    hi
+  </div>
 );
 
 export default DoctorProfile;
