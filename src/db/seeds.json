@@ -1,6 +1,34 @@
 {
   "User": [
     {
+      "name": "Kakashi",
+      "email": "abdallssah@gmail.com",
+      "password": "123456789",
+      "role": "DOCTOR",
+      "avatar": "https://pa1.narvii.com/5916/19349513210c99cff378feb0f7c57f2b7a123aea_hq.gif"
+    },
+    {
+      "name": "Itashi",
+      "email": "abdalcclah@gmail.com",
+      "password": "123456789",
+      "role": "DOCTOR",
+      "avatar": "https://www.icegif.com/wp-content/uploads/2022/08/icegif-1356.gif"
+    },
+    {
+      "name": "Kelwi",
+      "email": "abdadddllah@gmail.com",
+      "password": "123456789",
+      "role": "DOCTOR",
+      "avatar": "http://31.media.tumblr.com/39eadd071b2ac4b8b2baf317050cd7fa/tumblr_msghtjbuu91qizslmo1_500.gif"
+    },
+    {
+      "name": "Tamer Hosni",
+      "email": "abdaxxxxllah@gmail.com",
+      "password": "123456789",
+      "role": "DOCTOR",
+      "avatar": "https://64.media.tumblr.com/0f1ae73d9dcbbfb415863d1f9f42b069/tumblr_n91r0a64zG1tfw6e0o1_500.gif"
+    },
+    {
       "name": "abdallah",
       "email": "abdallah@gmail.com",
       "password": "123456789",
@@ -34,50 +62,71 @@
       "password": "123456789",
       "role": "ADMIN",
       "avatar": " "
-    },
-    {
-      "name": "hala",
-      "email": "hala@gmail.com",
-      "password": "123456789",
-      "role": "DOCTOR",
-      "avatar": " "
     }
   ],
-  "Comment":[
+  "DoctorInfo": [
+    {
+      "DoctorId": 1,
+      "hourRate": "xx",
+      "clinicLocation": "xx",
+      "workplace": "canda"
+    },
+    {
+      "DoctorId": 2,
+      "hourRate": "xx",
+      "clinicLocation": "xx",
+      "workplace": "canda"
+    },
+    {
+      "DoctorId": 3,
+      "hourRate": "xx",
+      "clinicLocation": "xx",
+      "workplace": "canda"
+    },
+    {
+      "DoctorId": 4,
+      "hourRate": "xx",
+      "clinicLocation": "xx",
+      "workplace": "canda"
+    }
+  ],
+  "Comment": [
     {
       "comment": "Comment1",
       "image": "https://i.pinimg.com/originals/aa/02/78/aa02780bbc7e6c5e2d52d9b0e919fbf6.jpg",
-       "PostId": 1,
-       "UserId": 3
-     }, 
-     {
+      "PostId": 1,
+      "UserId": 3
+    },
+    {
       "comment": "Comment12",
       "image": "https://i.pinimg.com/originals/aa/02/78/aa02780bbc7e6c5e2d52d9b0e919fbf6.jpg",
-       "PostId": 1,
-       "UserId": 3
-     }, 
-     {
+      "PostId": 1,
+      "UserId": 3
+    },
+    {
       "comment": "Comment13",
       "image": "https://i.pinimg.com/originals/aa/02/78/aa02780bbc7e6c5e2d52d9b0e919fbf6.jpg",
-       "PostId": 1,
-       "UserId": 3
-     }, 
-     {
+      "PostId": 1,
+      "UserId": 3
+    },
+    {
       "comment": "Comment14",
       "image": "https://i.pinimg.com/originals/aa/02/78/aa02780bbc7e6c5e2d52d9b0e919fbf6.jpg",
-       "PostId": 1,
-       "UserId": 3
-     },   {
+      "PostId": 1,
+      "UserId": 3
+    },
+    {
       "comment": "Comment15",
-       "PostId": 1,
-       "UserId": 3
-     }, 
-      {
-          "comment": "Comment2",
-          "image": "https://i.pinimg.com/originals/aa/02/78/aa02780bbc7e6c5e2d52d9b0e919fbf6.jpg",
-          "PostId": 2,
-           "UserId": 2
-         }],
+      "PostId": 1,
+      "UserId": 3
+    },
+    {
+      "comment": "Comment2",
+      "image": "https://i.pinimg.com/originals/aa/02/78/aa02780bbc7e6c5e2d52d9b0e919fbf6.jpg",
+      "PostId": 2,
+      "UserId": 2
+    }
+  ],
   "Tag": [
     {
       "name": "All"
@@ -163,31 +212,24 @@
       "PostId": 1
     }
   ],
- 
-  "DoctorInfo": [
+  "Booking": [
     {
-      "clinicLocation": "Gaza - Naser",
-      "workplace": "Salala",
-      "hourRate": "15-20 ",
-      "DoctorId": 6
+      "DoctorId": 6,
+      "UserId": 2,
+      "title": "test",
+      "description": "hehehehehhehe",
+      "start": "2022-10-26T20:00:00+03:00",
+      "end": "2022-10-26T20:00:00+03:00",
+      "status": "ACCEPTED"
+    },
+    {
+      "DoctorId": 6,
+      "UserId": 2,
+      "title": "test",
+      "description": "hehehehehhehe",
+      "start": "2022-10-26T20:00:00+03:00",
+      "end": "2022-10-26T20:00:00+03:00",
+      "status": "PENDING"
     }
-  ],
-  "Booking" :[{
-    "DoctorId":6,
-    "UserId":2,
-    "title":"test",
-    "description":"hehehehehhehe",
-    "start":"2022-10-26T20:00:00+03:00",
-    "end":"2022-10-26T20:00:00+03:00",
-    "status":"ACCEPTED"
-  },{
-    "DoctorId":6,
-    "UserId":2,
-    "title":"test",
-    "description":"hehehehehhehe",
-    "start":"2022-10-26T20:00:00+03:00",
-    "end":"2022-10-26T20:00:00+03:00",
-    "status":"PENDING"
-  }
-]
+  ]
 }

@@ -1,4 +1,4 @@
-export default interface IAuth {
+interface IAuth {
     id?:number,
     name?: string;
     avatar?:string;
@@ -9,3 +9,4 @@ export default interface IAuth {
     showConfirmPassword?: boolean;
     email?: string;
   }
+export default IAuth;

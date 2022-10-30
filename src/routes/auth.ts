@@ -10,4 +10,6 @@ router.post('/sign-up', errorWrapper(AuthController.signup))
 router.post('/sign-in', errorWrapper(AuthController.signin))
 router.post('/doctor-info', errorWrapper(DoctorController.doctorInfo))
 router.get('/user/me', errorWrapper(auth), errorWrapper(isAuthenticated))
+router.get('/doctors', DoctorController.getAllDoctor)
+
 export default router

@@ -8,6 +8,7 @@ class DoctorInfo extends Model {
   declare clinicLocation:string
   declare workplace:string
 }
+
 DoctorInfo.init({
   id: {
     type: DataTypes.INTEGER,
