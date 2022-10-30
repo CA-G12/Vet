@@ -4,9 +4,7 @@
   border-radius: 12px;
   background-color:var(--background-post) ;
   margin: 0 20px;
-  
-
-
+  z-index: -1;
 }
 .post-content-continuer{
   height: auto;
