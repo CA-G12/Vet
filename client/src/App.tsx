@@ -8,6 +8,7 @@ import theme from './helpers/theme';
 import PostsContext from './Context/PostsContext';
 import { ProvideAuth } from './hooks/useAuth';
 import { Header } from './components/Header/Header';
+import { Footer } from './components/Footer';
 
 const App = () => (
   <ThemeProvider theme={theme}>
@@ -28,6 +29,7 @@ const App = () => (
         <Header />
         <Popup />
         <Outlet />
+        <Footer />
       </PostsContext>
     </ProvideAuth>
   </ThemeProvider>
