@@ -33,6 +33,7 @@ export default class DoctorController {
       attributes: ['avatar', 'email', 'id', 'name', 'role'],
       include: {
         model: DoctorInfo,
+        as: 'Doctor',
         attributes: ['workplace'],
       },
       where: {
