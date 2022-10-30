@@ -79,7 +79,7 @@ module.exports = {
         namedComponents: 'arrow-function',
       },
     ],
-    'promise/prefer-await-to-then': ['error'],
+    'promise/prefer-await-to-then': 'error',
     'promise/prefer-await-to-callbacks': 'error',
   },
   settings: {

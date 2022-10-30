@@ -15,7 +15,7 @@ module.exports = {
     ecmaVersion: 11,
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'promise'],
   rules: {
     'no-nested-ternary': 'error',
     'prettier/prettier': [
@@ -31,5 +31,7 @@ module.exports = {
         endOfLine: 'lf',
       },
     ],
+    'promise/prefer-await-to-then': 'error',
+    'promise/prefer-await-to-callbacks': 'error',
   },
 };

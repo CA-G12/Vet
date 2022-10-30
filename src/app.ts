@@ -29,7 +29,7 @@ class App {
     this.app.use('/api/v1', router);
 
     this.app.use(
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars, promise/prefer-await-to-callbacks
       (err: CustomError, req: Request, res: Response, _: NextFunction) => {
         res.status(err.status ?? 500).json({ msg: err.message });
       },
