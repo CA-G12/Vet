@@ -18,17 +18,17 @@ const AddInputComment = ({
   {numComments:number, setNumComments:Function, postId:number, setShowCommentInput:Function,
      showComments:boolean, getComments:Array<IComment>, setGetComments:Function}) => {
   const { user } = React.useContext(authContext);
-  const [data, callback] = useState({
+  const [data, setData] = useState({
     comment: '',
     image: '',
     UserId: user?.id,
   });
   const [file, setFile] = useState<File|null>(null);
-  const [isUploadImg, setIsUploadImg] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const sendComment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      if (!isUploadImg && data.comment) {
+      if (!isUploading && data.comment) {
         toast.success('Add comment is success ');
         const result = await ApiServices.post(`post/${postId}/comments`, data).then((newComment) => {
           setShowCommentInput(false);
@@ -50,13 +50,13 @@ const AddInputComment = ({
     const nameFile = {
       name: data.image?.slice(data.image.indexOf('%2F') + 3, data.image?.indexOf('?')),
     };
-    callback({ ...data, image: '' });
+    setData({ ...data, image: '' });
     setFile(null);
 
     deleteImageFromStorage(nameFile);
   };
   const handelOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    callback({
+    setData({
       ...data,
       comment: e.currentTarget.value,
     });
@@ -70,9 +70,10 @@ const AddInputComment = ({
   React.useEffect(() => {
     (async () => {
       if (file) {
-        await uploadImage(file, () => {});
-
-        setIsUploadImg(true);
+        setIsUploading(true);
+        const imageUrl = await uploadImage(file, () => {});
+        setData((prevData) => ({ ...prevData, image: imageUrl }));
+        setIsUploading(false);
       }
     })();
   }, [file]);
@@ -87,7 +88,7 @@ const AddInputComment = ({
         id="add-comment-btn"
         type="text"
       />
-      <div style={{ display: isUploadImg ? 'block' : 'none' }}>
+      <div style={{ display: isUploading ? 'block' : 'none' }}>
         <CircularProgress />
       </div>
       <div
@@ -98,7 +99,7 @@ const AddInputComment = ({
         <HideImageIcon />
       </div>
       <label
-        style={{ display: !data.image && !isUploadImg ? 'block' : 'none' }}
+        style={{ display: !data.image && !isUploading ? 'block' : 'none' }}
         htmlFor="upload-img-comment"
       >
         <AddPhotoAlternateIcon />

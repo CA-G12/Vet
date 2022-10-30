@@ -7,9 +7,13 @@ import CircularProgress from '@mui/material/CircularProgress';
 import IComment from '../../Interfaces/post/IComment';
 import uploadImage from '../../helpers/uploadImage';
 
-const EditImageComment = ({ data, callback }:
-  {data:IComment, callback:Function, }) => {
-  const [isUploadImg, setIsUploadImg] = useState(false);
+type Props ={
+  data: IComment;
+  callback: React.Dispatch<React.SetStateAction<IComment>>
+}
+
+const EditImageComment = ({ data, callback }:Props) => {
+  const [isUploading, setIsUploading] = useState(false);
   const deleteImg = () => {
     callback({ ...data, image: null });
   };
@@ -19,9 +23,10 @@ const EditImageComment = ({ data, callback }:
     }
     const file = event.target.files[0];
     if (file) {
-      await uploadImage(file, () => {});
-
-      setIsUploadImg(true);
+      setIsUploading(true);
+      const imageUrl = await uploadImage(file, () => {});
+      callback((prevData) => ({ ...prevData, image: imageUrl }));
+      setIsUploading(false);
     }
   };
 
@@ -62,7 +67,7 @@ const EditImageComment = ({ data, callback }:
         ) }
       </div>
       {
-        isUploadImg && (
+        isUploading && (
         <div className="progress-edit">
           {' '}
           <CircularProgress />
