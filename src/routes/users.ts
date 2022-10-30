@@ -1,9 +1,9 @@
-import { Router } from 'express'
-import errorWrapper from '../helpers/errorsHandling/customErrorWrapper'
-import UsersController from '../controllers/AuthController'
+import { Router } from 'express';
+import errorWrapper from '../helpers/errorsHandling/customErrorWrapper';
+import UsersController from '../controllers/AuthController';
 
-const signInRouter = Router()
+const signInRouter = Router();
 
-signInRouter.post('/signin', errorWrapper(UsersController.signin))
+signInRouter.post('/signin', errorWrapper(UsersController.signin));
 
-export default signInRouter
+export default signInRouter;

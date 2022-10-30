@@ -6,7 +6,6 @@ import { ThemeProvider } from '@mui/material/styles';
 import Popup from './components/Popup/Popup';
 import theme from './helpers/theme';
 import PostsContext from './Context/PostsContext';
-// import Nav from './components/Nav';
 import { ProvideAuth } from './hooks/useAuth';
 import { Header } from './components/Header/Header';
 
@@ -21,7 +20,6 @@ const App = () => (
       </PostsContext>
     </ProvideAuth>
   </ThemeProvider>
-
 );
 
 export default App;

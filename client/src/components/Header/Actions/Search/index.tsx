@@ -1,6 +1,4 @@
-import {
-  useContext, ChangeEvent, useState, useEffect,
-} from 'react';
+import { useContext, ChangeEvent, useState, useEffect } from 'react';
 
 import InputAdornment from '@mui/material/InputAdornment';
 
@@ -10,10 +8,12 @@ import { AllPosts } from '../../../../Context/PostsContext';
 import { SearchInput, SearchInputIcon } from '../../components.styled';
 
 export const Search = () => {
-  const { filterObj, setFilterObj } = useContext(AllPosts);
+  const { filter: filterObj, setFilter: setFilterObj } = useContext(AllPosts);
   const [searchInput, setSearchInput] = useState('');
 
-  const handleSearchInputChange = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+  const handleSearchInputChange = (
+    event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+  ) => {
     setSearchInput(event.target.value);
   };
   // change Context value
@@ -23,17 +23,17 @@ export const Search = () => {
         setFilterObj({ ...filterObj, content: searchInput });
       }
     }, 1500);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchInput]);
   return (
     <SearchInput
       value={searchInput}
       onChange={handleSearchInputChange}
-      startAdornment={(
+      startAdornment={
         <InputAdornment position="start">
           <SearchInputIcon />
         </InputAdornment>
-    )}
+      }
     />
   );
 };

@@ -1,12 +1,17 @@
-import { NextFunction, Request, Response } from 'express'
-import CustomError from 'interfaces'
+import { NextFunction, Request, Response } from 'express';
+import CustomError from '../helpers/errorsHandling/CustomError';
 
-const errorHandler = (req:Request, res:Response, next:NextFunction, error: CustomError) => {
+const errorHandler = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+  error: CustomError,
+) => {
   if (error.status) {
-    res.status(error.status).json(error)
+    res.status(error.status).json(error);
   } else {
-    res.status(500).json(error)
+    res.status(500).json(error);
   }
-}
+};
 
-export default errorHandler
+export default errorHandler;

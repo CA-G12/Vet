@@ -1,8 +1,6 @@
 import { styled } from '@mui/system';
 
-import {
-  Avatar, Box, Button, Input, Typography,
-} from '@mui/material';
+import { Avatar, Box, Button, Input, Typography } from '@mui/material';
 
 import PhoneForwardedIcon from '@mui/icons-material/PhoneForwarded';
 import SearchIcon from '@mui/icons-material/Search';
@@ -18,8 +16,8 @@ const IconsStyle = {
   display: 'none',
   '@media screen and (max-width: 850px)': {
     display: 'inline-block',
-    'font-size': '1.5em',
-    'margin-right': '5px',
+    fontSize: '1.5em',
+    marginRight: '5px',
   },
 };
 
@@ -31,7 +29,7 @@ const CloseIconNav = styled(CloseIcon)({
     position: 'absolute',
     top: '0',
     right: '0',
-    'font-size': '1.3em',
+    fontSize: '1.3em',
     margin: '10px',
     cursor: 'pointer',
   },
@@ -41,8 +39,8 @@ const AppsIconNav = styled(AppsIcon)({
   display: 'none',
   '@media screen and (max-width: 850px)': {
     display: 'block',
-    'font-size': '1.5em',
-    'margin-right': '5px',
+    fontSize: '1.5em',
+    marginRight: '5px',
     order: '10',
   },
 });
@@ -56,19 +54,18 @@ const Diversity1IconNav = styled(Diversity1Icon)(IconsStyle);
 const StyledHeader = styled('header')({
   position: 'relative',
   background: 'rgba(90, 89, 89, 0)',
-  'backdrop-filter': 'blur(20px)',
+  backdropFilter: 'blur(20px)',
   height: '5em',
-  'border-bottom': '1px solid rgba(255, 255, 255, 0.1)',
+  borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
   top: '0',
   left: '0',
   display: 'flex',
-  'justify-content': 'space-between',
-  'align-items': 'center',
+  justifyContent: 'space-between',
+  alignItems: 'center',
   padding: '0 35px',
   transition: '0.5s ease',
   gap: '1rem',
-  '@media screen and (max-width: 850px)':
-  {
+  '@media screen and (max-width: 850px)': {
     padding: '0 20px',
     gap: '0.5rem',
   },
@@ -76,22 +73,22 @@ const StyledHeader = styled('header')({
 
 const NavigationAnchor = styled(Link)({
   color: '#000116',
-  'font-size': '1em',
-  'text-decoration': 'none',
-  'margin-left': '50px',
+  fontSize: '1em',
+  textDecoration: 'none',
+  marginLeft: '50px',
   '@media screen and (max-width: 850px)': {
     color: '#222',
-    'font-size': '1em',
+    fontSize: '1em',
     margin: '15px 50px',
   },
 });
 
-const Navigations = styled(Box)(({
+const Navigations = styled(Box)({
   '.nav-items': {
-    'justify-content': 'center',
+    justifyContent: 'center',
   },
   '@media screen and (max-width: 850px)': {
-    'z-index': '99999',
+    zIndex: '99999',
     position: 'fixed',
     background: 'rgba(223, 219, 219, 0.5)',
     width: '100%',
@@ -99,8 +96,8 @@ const Navigations = styled(Box)(({
     top: '0',
     left: '0',
     display: 'flex',
-    'justify-content': 'center',
-    'align-items': 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
     visibility: 'hidden',
     opacity: '0',
     transition: '0.3s ease',
@@ -118,59 +115,54 @@ const Navigations = styled(Box)(({
       position: 'relative',
       background: '#fff',
       width: '400px',
-      'max-width': '400px',
+      maxWidth: '400px',
       display: 'grid',
-      'place-content': 'center',
+      placeContent: 'center',
       margin: '20px',
       padding: '40px',
-      'border-radius': '20px',
-      'box-shadow': '0 5px 25px rgba(0, 0, 0, 0.8)',
+      borderRadius: '20px',
+      boxShadow: '0 5px 25px rgba(0, 0, 0, 0.8)',
       transform: 'translateY(-10px)',
       transition: '0.3s ease',
-      '@media screen and (max-width: 850px)':
-         { transform: 'translateY(0)' },
+      '@media screen and (max-width: 850px)': { transform: 'translateY(0)' },
     },
   },
-}));
-
-const NavItems = styled('nav')({
-
 });
+
+const NavItems = styled('nav')({});
 
 const LogoImage = styled('img')({
   width: '6.8rem',
-  '@media screen and (max-width: 850px)':
-     { width: '4rem' },
-
+  '@media screen and (max-width: 850px)': { width: '4rem' },
 });
 
 const ActionsBox = styled(Box)({
   display: 'flex',
-  'flex-direction': 'row',
-  'justify-content': 'space-between',
-  'align-items': 'center',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
   gap: '1rem',
   '@media screen and (max-width:850px)': {
-    'margin-left': 'auto',
+    marginLeft: 'auto',
     gap: '0.5rem',
   },
 });
 
 const SearchInput = styled(Input)({
   '@media screen and (max-width:450px)': {
-    'font-size': '0.5rem',
+    fontSize: '0.5rem',
   },
 });
 
 const SearchInputIcon = styled(SearchIcon)({
   '@media screen and (max-width:450px)': {
-    'font-size': '0.5rem',
+    fontSize: '0.5rem',
   },
 });
 
 const EmergencyAvatar = styled(Avatar)({
   margin: '0 2rem',
-  'background-color': '#D53449',
+  backgroundColor: '#D53449',
   width: 40,
   height: 40,
   cursor: 'pointer',
@@ -178,7 +170,7 @@ const EmergencyAvatar = styled(Avatar)({
     margin: '0 0.5rem',
     width: 25,
     height: 25,
-    'margin-right': 'auto',
+    marginRight: 'auto',
   },
   '@media screen and (max-width:450px)': {
     width: 23,
@@ -188,20 +180,20 @@ const EmergencyAvatar = styled(Avatar)({
 
 const EmergencyPhoneIcon = styled(PhoneForwardedIcon)({
   '@media screen and (max-width:850px)': {
-    'font-size': '1rem',
+    fontSize: '1rem',
   },
 });
 
 const UserTicketBox = styled(Box)({
   display: 'flex',
-  'flex-direction': 'row',
-  'align-items': 'center',
-  'text-align': 'center',
-  'margin-right': '1rem',
+  flexDirection: 'row',
+  alignItems: 'center',
+  textAlign: 'center',
+  marginRight: '1rem',
   gap: '0.1rem',
   '@media screen and (max-width:450px)': {
     gap: '0.1rem',
-    'font-size': '0.5rem',
+    fontSize: '0.5rem',
   },
 });
 
@@ -218,43 +210,41 @@ const UserAvatar = styled(Avatar)({
   },
 });
 
-const UserNameText = styled(Typography)(
-  {
-    'padding-top': '0.4rem',
-    '@media screen and (max-width:850px)': {
-      'font-size': '1rem',
-    },
-    '@media screen and (max-width:450px)': {
-      'font-size': '0.5rem',
-    },
+const UserNameText = styled(Typography)({
+  paddingTop: '0.4rem',
+  '@media screen and (max-width:850px)': {
+    fontSize: '1rem',
   },
-);
+  '@media screen and (max-width:450px)': {
+    fontSize: '0.5rem',
+  },
+});
 
 const AuthButtonsBox = styled(Box)({
   display: 'flex',
-  'flex-direction': 'row',
-  'justify-content': 'space-between',
-  'align-items': 'center',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
   gap: '1rem',
   '@media screen and (max-width:850px)': {
     gap: '0.5rem',
-    'padding-left': '0.3rem',
+    paddingLeft: '0.3rem',
   },
 });
 
 const LoginButton = styled(Button)({
   color: '#D53449',
-  'border-color': '#D53449',
+  borderColor: '#D53449',
   '@media screen and (max-width:450px)': {
-    'font-size': '0.45rem',
+    fontSize: '0.45rem',
     padding: '0.1rem',
   },
 });
 
 const SignUpButton = styled(Button)({
-  'background-color': '#D53449',
+  backgroundColor: '#D53449',
   '@media screen and (max-width:450px)': {
-    'font-size': '0.5rem',
+    fontSize: '0.5rem',
     padding: '0.1rem',
   },
 });

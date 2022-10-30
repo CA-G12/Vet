@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import 'react-toastify/dist/ReactToastify.css';
-import {
-  Box, Button, Typography, Modal,
-} from '@mui/material';
+import { Box, Button, Typography, Modal } from '@mui/material';
 
 import LabTabs from './Tabs';
 
@@ -54,10 +52,8 @@ const PopUp = () => {
               <section className="tabs">
                 <LabTabs open={setOpen} />
               </section>
-
             </Typography>
           </Box>
-
         </Modal>
       </div>
     </ThemeProvider>

@@ -46,9 +46,7 @@ const LoadingPost = () => (
         animation="wave"
         variant="rectangular"
       />
-
     </div>
-
   </div>
 );
 

@@ -1,5 +1,4 @@
-export default interface ISignInAuthSchema
-{
+export default interface ISignInAuthSchema {
   email: string;
   password: string;
 }

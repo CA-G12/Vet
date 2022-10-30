@@ -1,11 +1,15 @@
 import IAuth from '../../../../Interfaces/IAuth';
-import { UserAvatar, UserNameText, UserTicketBox } from '../../components.styled';
+import {
+  UserAvatar,
+  UserNameText,
+  UserTicketBox,
+} from '../../components.styled';
 
-type props = {
-  user:IAuth | null | undefined
-}
+type Props = {
+  user: IAuth | null | undefined;
+};
 
-export const UserTicket = ({ user }:props) => (
+export const UserTicket = ({ user }: Props) => (
   <UserTicketBox>
     <UserAvatar alt="Reem" src={user?.avatar} />
     <UserNameText gutterBottom variant="h5">

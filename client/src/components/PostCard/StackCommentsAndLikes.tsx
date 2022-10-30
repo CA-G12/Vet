@@ -1,4 +1,4 @@
-import Badge, { BadgeProps } from '@mui/material/Badge';
+import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import PetsIcon from '@mui/icons-material/Pets';
@@ -8,12 +8,13 @@ import { faComment } from '@fortawesome/free-solid-svg-icons';
 import Like from '../../Interfaces/post/ILike';
 import HoverLikes from './HoverLikes';
 
-interface ICommentsAndLikesNum{
-  commentNum:number,
-   likes:Array<Like>
-   handleClick:Function
+interface ICommentsAndLikesNum {
+  commentNum: number;
+  likes: Array<Like>;
+  handleClick: Function;
 }
-const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
     right: -5,
     top: 13,
@@ -24,13 +25,14 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
     fontSize: '10px',
     width: '5px',
     marginTop: '8px',
-
   },
 }));
 
 const StackCommentsAndLikes = ({
-  commentNum, likes, handleClick,
-}:ICommentsAndLikesNum) => (
+  commentNum,
+  likes,
+  handleClick,
+}: ICommentsAndLikesNum) => (
   <Stack spacing={2} direction="row" className="comments-likes-btn">
     <StyledBadge
       onClick={() => {
@@ -39,19 +41,13 @@ const StackCommentsAndLikes = ({
       badgeContent={commentNum}
       role="presentation"
     >
-
       <Tooltip title="Show Comments">
-
         <FontAwesomeIcon icon={faComment} />
       </Tooltip>
-
     </StyledBadge>
 
     <StyledBadge badgeContent={likes.length} className="likesNum">
-      <PetsIcon />
-      {' '}
-
-      <HoverLikes likes={likes} />
+      <PetsIcon /> <HoverLikes likes={likes} />
     </StyledBadge>
   </Stack>
 );

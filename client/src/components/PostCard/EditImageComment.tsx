@@ -7,17 +7,17 @@ import CircularProgress from '@mui/material/CircularProgress';
 import IComment from '../../Interfaces/post/IComment';
 import uploadImage from '../../helpers/uploadImage';
 
-type Props ={
+type Props = {
   data: IComment;
-  callback: React.Dispatch<React.SetStateAction<IComment>>
-}
+  setData: React.Dispatch<React.SetStateAction<IComment>>;
+};
 
-const EditImageComment = ({ data, callback }:Props) => {
+const EditImageComment = ({ data, setData }: Props) => {
   const [isUploading, setIsUploading] = useState(false);
   const deleteImg = () => {
-    callback({ ...data, image: null });
+    setData({ ...data, image: null });
   };
-  const editImg = async (event:React.ChangeEvent<HTMLInputElement>) => {
+  const editImg = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) {
       return;
     }
@@ -25,7 +25,7 @@ const EditImageComment = ({ data, callback }:Props) => {
     if (file) {
       setIsUploading(true);
       const imageUrl = await uploadImage(file, () => {});
-      callback((prevData) => ({ ...prevData, image: imageUrl }));
+      setData(prevData => ({ ...prevData, image: imageUrl }));
       setIsUploading(false);
     }
   };
@@ -36,7 +36,9 @@ const EditImageComment = ({ data, callback }:Props) => {
       style={{
         width: '60px',
         height: '60px',
-        backgroundImage: data.image ? `url(${data.image})` : 'url(https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/2560px-Placeholder_view_vector.svg.png)',
+        backgroundImage: data.image
+          ? `url(${data.image})`
+          : 'url(https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/2560px-Placeholder_view_vector.svg.png)',
         backgroundSize: 'contain',
         margin: '0 20px 0 0',
         borderRadius: '8px',
@@ -44,7 +46,6 @@ const EditImageComment = ({ data, callback }:Props) => {
       }}
     >
       <div>
-
         <IconButton className="mangment-img-comment-btn">
           <label htmlFor={`${data.id}`}>
             <input
@@ -55,28 +56,21 @@ const EditImageComment = ({ data, callback }:Props) => {
               id={`${data.id}`}
             />
             <EditIcon />
-
           </label>
-
         </IconButton>
 
         {data.image && (
-        <IconButton className="mangment-img-comment-btn" onClick={deleteImg}>
-          <DeleteIcon />
-        </IconButton>
-        ) }
+          <IconButton className="mangment-img-comment-btn" onClick={deleteImg}>
+            <DeleteIcon />
+          </IconButton>
+        )}
       </div>
-      {
-        isUploading && (
+      {isUploading && (
         <div className="progress-edit">
           {' '}
           <CircularProgress />
         </div>
-        )
-
-      }
-      {' '}
-
+      )}{' '}
     </div>
   );
 };

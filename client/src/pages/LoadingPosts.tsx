@@ -5,7 +5,6 @@ const LoadingPosts = () => (
     <LoadingPost />
     <LoadingPost />
     <LoadingPost />
-
   </div>
 );
 

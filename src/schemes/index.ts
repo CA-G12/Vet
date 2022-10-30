@@ -1,3 +1,3 @@
-import postSchema from './post'
-import commentSchema from './comment'
-export { postSchema, commentSchema }
+import postSchema from './post';
+import commentSchema from './comment';
+export { postSchema, commentSchema };

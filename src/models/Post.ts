@@ -1,10 +1,10 @@
-import sequelize from '../db/connection'
-import { Model, DataTypes } from 'sequelize'
+import sequelize from '../db/connection';
+import { Model, DataTypes } from 'sequelize';
 
 class Post extends Model {
-  declare id?: number
-  declare content: string
-  declare image: string
+  declare id?: number;
+  declare content: string;
+  declare image: string;
 }
 
 Post.init(
@@ -12,19 +12,19 @@ Post.init(
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
-      primaryKey: true
+      primaryKey: true,
     },
     content: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     image: {
-      type: DataTypes.STRING
-    }
+      type: DataTypes.STRING,
+    },
   },
   {
-    sequelize
-  }
-)
+    sequelize,
+  },
+);
 
-export default Post
+export default Post;
