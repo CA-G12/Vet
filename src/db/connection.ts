@@ -1,11 +1,11 @@
-import { Sequelize } from 'sequelize'
-import environment from '../config/environment'
+import { Sequelize } from 'sequelize';
+import environment from '../config/environment';
 
 const sequelize = new Sequelize(environment.dbUrl ?? '', {
   define: {
-    timestamps: true
+    timestamps: true,
   },
-  logging: false
-})
+  logging: false,
+});
 
-export default sequelize
+export default sequelize;

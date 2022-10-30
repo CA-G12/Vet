@@ -1,56 +1,72 @@
-import { User, Post, Like, Tag, Animal, Comment } from '../db'
-import { Request, Response } from 'express'
-import { Op } from 'sequelize'
-import postSchema from '../schemes/post'
+import { User, Post, Like, Tag, Animal, Comment } from '../db';
+import { Request, Response } from 'express';
+import { Op } from 'sequelize';
+import { postSchema } from '../schemes';
 
 export default class PostsController {
-  public static async store (req:Request, res:Response) {
+  public static async store(req: Request, res: Response) {
     try {
-      const { content, image, AnimalId, TagId, UserId } = req.body
-      await postSchema.validateAsync({ content, image, AnimalId, TagId, UserId })
-      const createPost = await Post.create({ content, image, AnimalId, TagId, UserId })
-      res.status(200).json({ status: res.status, msg: 'new post added successfully', data: createPost })
+      const { content, image, AnimalId, TagId, UserId } = req.body;
+      await postSchema.validateAsync({
+        content,
+        image,
+        AnimalId,
+        TagId,
+        UserId,
+      });
+      const createPost = await Post.create({
+        content,
+        image,
+        AnimalId,
+        TagId,
+        UserId,
+      });
+      res.status(200).json({
+        status: res.status,
+        msg: 'new post added successfully',
+        data: createPost,
+      });
     } catch (error) {
       res.status(400).json({
         msg: 'something went wrong',
-        error
-      })
+        error,
+      });
     }
   }
 
-  public static async index (req: Request, res: Response) {
-    const { tagId, animalId, q = '' } = req.query
+  public static async index(req: Request, res: Response) {
+    const { tagId, animalId, q = '' } = req.query;
 
-    let filterData = { }
+    let filterData = {};
 
     if (tagId && animalId) {
       filterData = {
         content: {
-          [Op.iLike]: `%${q}%`
+          [Op.iLike]: `%${q}%`,
         },
         TagId: tagId,
-        AnimalId: animalId
-      }
+        AnimalId: animalId,
+      };
     } else if (animalId) {
       filterData = {
         content: {
-          [Op.iLike]: `%${q}%`
+          [Op.iLike]: `%${q}%`,
         },
-        AnimalId: animalId
-      }
+        AnimalId: animalId,
+      };
     } else if (tagId) {
       filterData = {
         content: {
-          [Op.iLike]: `%${q}%`
+          [Op.iLike]: `%${q}%`,
         },
-        TagId: tagId
-      }
+        TagId: tagId,
+      };
     } else {
       filterData = {
         content: {
-          [Op.iLike]: `%${q}%`
-        }
-      }
+          [Op.iLike]: `%${q}%`,
+        },
+      };
     }
 
     const posts = await Post.findAll({
@@ -60,18 +76,22 @@ export default class PostsController {
         {
           model: Like,
           attributes: ['id'],
-          include: [{ model: User, attributes: ['name', 'id', 'avatar', 'role'] }]
+          include: [
+            { model: User, attributes: ['name', 'id', 'avatar', 'role'] },
+          ],
         },
         {
-          model: Tag, attributes: ['id', 'name']
+          model: Tag,
+          attributes: ['id', 'name'],
         },
         { model: Comment, attributes: ['id'] },
         {
-          model: Animal, attributes: ['id', 'name']
-        }
+          model: Animal,
+          attributes: ['id', 'name'],
+        },
       ],
-      where: filterData
-    })
-    res.json(posts)
+      where: filterData,
+    });
+    res.json(posts);
   }
 }

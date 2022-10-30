@@ -4,7 +4,7 @@ import addPostAuth from '../Interfaces/post/IAddPost';
 import BasicSelect from '../components/BasicSelect';
 import { AllPosts } from '../Context/PostsContext';
 
-const Filters = ({ id, callback }:{id:addPostAuth, callback:Function}) => {
+const Filters = ({ id, callback }:{id:Omit<addPostAuth, 'UserId'>, callback:Function}) => {
   const { TagList, AnimalList } = useContext(AllPosts);
   return (
     <div className="filters">

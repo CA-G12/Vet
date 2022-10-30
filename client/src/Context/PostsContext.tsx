@@ -1,17 +1,17 @@
 import {
-  createContext, useMemo, useState,
+  createContext, ReactNode, useMemo, useState,
 } from 'react';
 import PostInfo from '../Interfaces/post/IAddPost';
 import ITag from '../Interfaces/post/ITag';
 
 interface IStore{
-  filterObj?:PostInfo;
+  filterObj?:Omit<PostInfo, 'UserId'>;
   setFilterObj?:Function;
   TagList?:Array<ITag>;
   AnimalList?:Array<ITag>
 }
 export const AllPosts = createContext<IStore >({});
-const PostsContext = ({ children }:any) => {
+const PostsContext = ({ children }:{children:ReactNode | ReactNode[]}) => {
   const [filterObj, setFilterObj] = useState({
     content: '',
     TagId: 0,

@@ -1,20 +1,20 @@
-import { Router } from 'express'
-import PostRoutes from './posts'
-import CommentsRoutes from './comments'
+import { Router } from 'express';
+import PostRoutes from './posts';
+import CommentsRoutes from './comments';
+import appointment from './appointment';
+import signInRouter from './users';
+import PostsController from '../controllers/PostsController';
 
-import signInRouter from './users'
-import PostsController from '../controllers/PostsController'
+import auth from './auth';
 
-import auth from './auth'
+const router = Router();
 
-const router = Router()
+router.get('/posts', PostsController.index);
 
-router.get('/posts', PostsController.index)
+router.use(signInRouter);
+router.use(PostRoutes);
+router.use(CommentsRoutes);
+router.use(appointment);
+router.use(auth);
 
-router.use(signInRouter)
-router.use(PostRoutes)
-router.use(CommentsRoutes)
-
-router.use(auth)
-
-export default router
+export default router;

@@ -11,7 +11,8 @@
     "build": "tsc -p .",
     "lint": "eslint src/** --ext .ts",
     "lint-fix": "eslint src/** --ext .ts --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "cd client && npm i"
   },
   "repository": {
     "type": "git",

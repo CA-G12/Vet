@@ -37,17 +37,19 @@ const SignIn = ({ open }:{open :Function}) => {
     event.preventDefault();
   };
   return (
-    <form onSubmit={async (event) => {
-      event.preventDefault();
-      try {
-        await SignInValid.validate(userData);
-        signIn(userData, (err:any) => {
-          if (!err) open(false);
-        });
-      } catch (error:any) {
-        toast.error(error.message);
-      }
-    }}
+    <form
+      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+      onSubmit={async (event) => {
+        event.preventDefault();
+        try {
+          await SignInValid.validate(userData);
+          signIn(userData, (err:any) => {
+            if (!err) open(false);
+          });
+        } catch (error:any) {
+          toast.error(error.message);
+        }
+      }}
     >
       <FormControl
         sx={{
