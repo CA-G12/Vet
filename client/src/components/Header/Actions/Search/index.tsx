@@ -8,7 +8,7 @@ import { AllPosts } from '../../../../Context/PostsContext';
 import { SearchInput, SearchInputIcon } from '../../components.styled';
 
 export const Search = () => {
-  const { filter: filterObj, setFilter: setFilterObj } = useContext(AllPosts);
+  const { filter, setFilter } = useContext(AllPosts);
   const [searchInput, setSearchInput] = useState('');
 
   const handleSearchInputChange = (
@@ -16,15 +16,17 @@ export const Search = () => {
   ) => {
     setSearchInput(event.target.value);
   };
+
   // change Context value
   useEffect(() => {
     depounce(() => {
-      if (setFilterObj) {
-        setFilterObj({ ...filterObj, content: searchInput });
+      if (setFilter) {
+        setFilter({ ...filter, content: searchInput });
       }
     }, 1500);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchInput]);
+
   return (
     <SearchInput
       value={searchInput}
