@@ -1,5 +1,5 @@
 import joi from 'joi';
-import ISignInAuthSchema from 'interfaces/auth/signIn';
+import ISignInAuthSchema from '../../interfaces/auth/signIn';
 
 const signInSchemaValidation = (body: ISignInAuthSchema) => {
   const schema = joi.object({

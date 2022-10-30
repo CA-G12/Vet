@@ -33,6 +33,7 @@ const BtnsPost = ({
   const { user } = useContext(authContext);
   const [showCommentInput, setShowCommentInput] = useState(false);
   const handleClick = () => {
+    console.log('hi');
     setShowCommentInput(!showCommentInput);
     setIsConnected(true);
   };

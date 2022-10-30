@@ -1,4 +1,4 @@
-import Badge, { BadgeProps } from '@mui/material/Badge';
+import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import PetsIcon from '@mui/icons-material/Pets';
@@ -13,7 +13,8 @@ interface ICommentsAndLikesNum {
   likes: Array<Like>;
   handleClick: Function;
 }
-const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
     right: -5,
     top: 13,

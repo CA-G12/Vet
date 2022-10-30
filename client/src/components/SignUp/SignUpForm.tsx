@@ -38,14 +38,13 @@ const SignUp = ({ open }: { open: Function }) => {
     try {
       event.preventDefault();
       await SignUpValid.validate(userData);
-      signUp(userData, (err: any) => {
-        if (userData.role === 'DOCTOR') {
-          setNext(true);
-        }
-        if (!err && userData.role === 'USER') open(false);
-      });
-    } catch (err: any) {
-      toast.error(err.message);
+      await signUp(userData);
+      if (userData.role === 'DOCTOR') {
+        setNext(true);
+      }
+      if (userData.role === 'USER') open(false);
+    } catch (err) {
+      toast.error((err as Error).message);
     }
   };
   const handleClickShowPassword = (e: React.MouseEvent<HTMLButtonElement>) => {

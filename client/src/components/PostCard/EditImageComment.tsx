@@ -9,13 +9,13 @@ import uploadImage from '../../helpers/uploadImage';
 
 type Props = {
   data: IComment;
-  callback: React.Dispatch<React.SetStateAction<IComment>>;
+  setData: React.Dispatch<React.SetStateAction<IComment>>;
 };
 
-const EditImageComment = ({ data, callback }: Props) => {
+const EditImageComment = ({ data, setData }: Props) => {
   const [isUploading, setIsUploading] = useState(false);
   const deleteImg = () => {
-    callback({ ...data, image: null });
+    setData({ ...data, image: null });
   };
   const editImg = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) {
@@ -25,7 +25,7 @@ const EditImageComment = ({ data, callback }: Props) => {
     if (file) {
       setIsUploading(true);
       const imageUrl = await uploadImage(file, () => {});
-      callback(prevData => ({ ...prevData, image: imageUrl }));
+      setData(prevData => ({ ...prevData, image: imageUrl }));
       setIsUploading(false);
     }
   };

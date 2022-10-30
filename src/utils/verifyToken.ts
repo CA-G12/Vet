@@ -1,4 +1,4 @@
-import environment from 'config/environment';
+import environment from '../config/environment';
 import jwt from 'jsonwebtoken';
 
 export const verifyJWT = <T>(token: string): Promise<T> =>

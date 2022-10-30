@@ -1,13 +1,16 @@
-import { createContext, ReactNode, useMemo, useState } from 'react';
+import React, { createContext, ReactNode, useMemo, useState } from 'react';
 import PostInfo from '../Interfaces/post/IAddPost';
 import ITag from '../Interfaces/post/ITag';
 
+type Filter = Pick<PostInfo, 'content' | 'AnimalId' | 'TagId'>;
+
 interface IStore {
-  filterObj?: Omit<PostInfo, 'UserId'>;
-  setFilterObj?: Function;
-  TagList?: Array<ITag>;
-  AnimalList?: Array<ITag>;
+  AnimalList: ITag[];
+  TagList: ITag[];
+  filter: Filter;
+  setFilter: React.Dispatch<React.SetStateAction<Filter>>;
 }
+
 const TagList = [
   { id: 0, name: 'All' },
   { id: 1, name: 'Need help' },
@@ -22,9 +25,18 @@ const AnimalList = [
   { id: 2, name: 'Dogs' },
   { id: 3, name: 'Turtles' },
 ];
-export const AllPosts = createContext<IStore>({});
+export const AllPosts = createContext<IStore>({
+  AnimalList,
+  TagList,
+  filter: {
+    AnimalId: -1,
+    content: '',
+    TagId: -1,
+  },
+  setFilter: () => {},
+});
 const PostsContext = ({ children }: { children: ReactNode | ReactNode[] }) => {
-  const [filterObj, setFilterObj] = useState({
+  const [filter, setFilter] = useState({
     content: '',
     TagId: 0,
     AnimalId: 0,
@@ -32,12 +44,12 @@ const PostsContext = ({ children }: { children: ReactNode | ReactNode[] }) => {
 
   const filterPosts = useMemo(
     () => ({
-      filterObj,
-      setFilterObj,
+      filter,
+      setFilter,
       TagList,
       AnimalList,
     }),
-    [filterObj],
+    [filter],
   );
 
   return <AllPosts.Provider value={filterPosts}>{children}</AllPosts.Provider>;

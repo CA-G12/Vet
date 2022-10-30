@@ -11,13 +11,14 @@ const errorWrapper = (controller: RequestHandler) => {
           error.status = 422;
         }
         next(error);
+      } else {
+        next(
+          new CustomError(
+            500,
+            (error as Error).message || 'Internal Server Error',
+          ),
+        );
       }
-      next(
-        new CustomError(
-          500,
-          (error as Error).message || 'Internal Server Error',
-        ),
-      );
     }
   };
 };

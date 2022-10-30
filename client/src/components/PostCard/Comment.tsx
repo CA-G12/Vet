@@ -31,7 +31,8 @@ const Comment = ({
   ): void => {
     setChangeComment({ ...changeComment, comment: e.currentTarget.value });
   };
-  const saveChange = (e: React.FormEvent<HTMLFormElement>) => {
+
+  const saveChange = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (
@@ -53,7 +54,9 @@ const Comment = ({
 
       const url = `post/${changeComment.PostId}/comments/${changeComment.id}`;
 
-      ApiServices.put(url, changeComment).then(() => setEdit(!edit));
+      await ApiServices.put(url, changeComment);
+
+      setEdit(!edit);
     } else if (!changeComment.comment) {
       toast.error('the Comment is empty');
       setEdit(true);
@@ -88,7 +91,7 @@ const Comment = ({
         alt=""
       />
       <div style={{ display: edit ? 'block' : 'none' }}>
-        <EditImageComment callback={setChangeComment} data={changeComment} />
+        <EditImageComment setData={setChangeComment} data={changeComment} />
       </div>
       {user?.id === comment.User?.id && (
         <EditAndDeleteBtn

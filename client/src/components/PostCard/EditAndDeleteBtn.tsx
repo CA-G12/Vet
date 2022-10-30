@@ -9,7 +9,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { useState } from 'react';
-import useOutsideClick from '../../hooks/UseOutsideClick ';
+import useOutsideClick from '../../hooks/UseOutsideClick';
 import ApiServices from '../../services/ApiService';
 import IComment from '../../Interfaces/post/IComment';
 

@@ -8,6 +8,7 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb',
+    'airbnb-typescript',
     'plugin:react/jsx-runtime',
     'prettier',
     'plugin:prettier/recommended',
@@ -19,8 +20,15 @@ module.exports = {
     },
     ecmaVersion: 12,
     sourceType: 'module',
+    project: './tsconfig.json',
   },
-  plugins: ['react', '@typescript-eslint', 'react-hooks', 'prettier'],
+  plugins: [
+    'react',
+    '@typescript-eslint',
+    'react-hooks',
+    'promise',
+    'prettier',
+  ],
   rules: {
     'prettier/prettier': [
       'error',
@@ -71,6 +79,8 @@ module.exports = {
         namedComponents: 'arrow-function',
       },
     ],
+    'promise/prefer-await-to-then': ['error'],
+    'promise/prefer-await-to-callbacks': 'error',
   },
   settings: {
     'import/resolver': {

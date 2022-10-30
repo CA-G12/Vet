@@ -2,7 +2,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
 import { storage } from './Firebase.config';
 
-const uploadImage = (file: File, callback: Function) => {
+const uploadImage = (file: File, onProgressChange: (num: number) => void) => {
   const storageRef = ref(
     storage,
     `/files/${uuidv4()}.${file.name.split('.').pop()}`,
@@ -15,11 +15,12 @@ const uploadImage = (file: File, callback: Function) => {
       snapshot => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        callback(progress);
+        onProgressChange(progress);
       },
       err => reject(err),
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then(url => resolve(url));
+      async () => {
+        const url = await getDownloadURL(uploadTask.snapshot.ref);
+        resolve(url);
       },
     );
   });

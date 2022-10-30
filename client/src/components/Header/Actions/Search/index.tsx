@@ -8,7 +8,7 @@ import { AllPosts } from '../../../../Context/PostsContext';
 import { SearchInput, SearchInputIcon } from '../../components.styled';
 
 export const Search = () => {
-  const { filterObj, setFilterObj } = useContext(AllPosts);
+  const { filter: filterObj, setFilter: setFilterObj } = useContext(AllPosts);
   const [searchInput, setSearchInput] = useState('');
 
   const handleSearchInputChange = (

@@ -2,7 +2,7 @@ import './post.css';
 
 import { useContext, useState } from 'react';
 
-import useOutsideClick from '../../hooks/UseOutsideClick ';
+import useOutsideClick from '../../hooks/UseOutsideClick';
 import BtnsPost from './BtnsPost';
 import IPost from '../../Interfaces/post/IPost';
 import UserPostInfo from '../UserInfo';

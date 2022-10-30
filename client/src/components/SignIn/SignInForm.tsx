@@ -51,9 +51,8 @@ const SignIn = ({ open }: { open: Function }) => {
         event.preventDefault();
         try {
           await SignInValid.validate(userData);
-          signIn(userData, (err: any) => {
-            if (!err) open(false);
-          });
+          await signIn(userData);
+          open(false);
         } catch (error: any) {
           toast.error(error.message);
         }

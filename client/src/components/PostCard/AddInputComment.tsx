@@ -40,14 +40,14 @@ const AddInputComment = ({
     e.preventDefault();
     if (!isUploading && data.comment) {
       toast.success('Add comment is success ');
-      await ApiServices.post(`post/${postId}/comments`, data).then(
-        newComment => {
-          setShowCommentInput(false);
-          if (showComments) {
-            setGetComments([newComment.data.data, ...getComments]);
-          }
-        },
+      const newComment = await ApiServices.post(
+        `post/${postId}/comments`,
+        data,
       );
+      setShowCommentInput(false);
+      if (showComments) {
+        setGetComments([newComment.data.data, ...getComments]);
+      }
       setNumComments(numComments + 1);
     } else {
       toast.error('please Add Comment');

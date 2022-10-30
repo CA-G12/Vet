@@ -1,11 +1,12 @@
-import express, { Application, Request, Response } from 'express';
+import express, { Application, NextFunction, Request, Response } from 'express';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import environment from './config/environment';
 import cors from 'cors';
+import morgan from 'morgan';
 import router from './routes';
 import { join } from 'path';
-import CustomError from 'helpers/errorsHandling/CustomError';
+import CustomError from './helpers/errorsHandling/CustomError';
 
 class App {
   public app: Application;
@@ -18,6 +19,7 @@ class App {
   }
 
   private initializeMiddlwares(): void {
+    this.app.use(morgan('dev'));
     this.app.use(cors());
     this.app.use(compression());
     this.app.use(express.json());
@@ -26,9 +28,12 @@ class App {
     this.app.use(express.static(join(__dirname, '..', 'client', 'build')));
     this.app.use('/api/v1', router);
 
-    this.app.use((err: CustomError, req: Request, res: Response) => {
-      res.status(err.status).json({ msg: err.message });
-    });
+    this.app.use(
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      (err: CustomError, req: Request, res: Response, _: NextFunction) => {
+        res.status(err.status ?? 500).json({ msg: err.message });
+      },
+    );
   }
 }
 
