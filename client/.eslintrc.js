@@ -81,6 +81,7 @@ module.exports = {
     ],
     'promise/prefer-await-to-then': 'error',
     'promise/prefer-await-to-callbacks': 'error',
+    '@typescript-eslint/no-unused-vars': 'warn',
   },
   settings: {
     'import/resolver': {
