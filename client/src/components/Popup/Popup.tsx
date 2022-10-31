@@ -6,6 +6,7 @@ import LabTabs from './Tabs';
 import 'react-toastify/dist/ReactToastify.css';
 
 const style = {
+  zIndex: '99999',
   position: 'absolute' as 'absolute',
   top: '50%',
   left: '50%',
@@ -44,6 +45,7 @@ const PopUp = (propss: Propss) => {
     <ThemeProvider theme={theme}>
       <div>
         <Modal
+          sx={{ zIndex: '99999' }}
           open={open}
           onClose={handleClose}
           aria-labelledby="modal-modal-title"

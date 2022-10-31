@@ -26,7 +26,7 @@ export const NavHeader = () => {
       <Navigations className={active ? 'navigation active' : 'navigation'}>
         <NavItems className="nav-items">
           <CloseIconNav onClick={menuDisActive} />
-          <NavigationAnchor to="/">
+          <NavigationAnchor to="/home">
             <HomeIconNav />
             Home
           </NavigationAnchor>
