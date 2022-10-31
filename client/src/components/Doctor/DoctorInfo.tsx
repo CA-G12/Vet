@@ -33,7 +33,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     },
   },
 }));
-const UserPostInfo = ({
+const UserAvatar = ({
   user,
   isEmergency,
 }: {
@@ -87,4 +87,4 @@ const UserPostInfo = ({
     </NavLink>
   );
 };
-export default UserPostInfo;
+export default UserAvatar;

@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box';
-import ButtonDoctor from './ButtonDoctor';
+import ButtonDoctor from './DoctorButton';
 import UserPostInfo from './DoctorInfo';
 import IUser from '../../Interfaces/post/IUser';
 
@@ -20,7 +20,7 @@ const Index = ({
       <UserPostInfo isEmergency={isEmergency} user={user} />
     </Box>
     <Box>
-      <ButtonDoctor isEmergency={isEmergency} user={user} />
+      <ButtonDoctor isEmergency={isEmergency} id={user.id} />
     </Box>
   </Box>
 );

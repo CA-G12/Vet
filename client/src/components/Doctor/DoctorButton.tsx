@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom';
-import IUser from '../../Interfaces/post/IUser';
 
 const ButtonDoctor = ({
-  user,
+  id,
   isEmergency,
 }: {
-  user: IUser;
+  id: number;
   isEmergency: boolean;
 }) => (
   <Link
@@ -16,7 +15,7 @@ const ButtonDoctor = ({
       background: '#2D9B9B',
       borderRadius: 8,
     }}
-    to={!isEmergency ? `/users/${user?.id}` : '/livechat'}
+    to={!isEmergency ? `/users/${id}` : '/livechat'}
   >
     {!isEmergency ? `Visit` : 'Connect'}
   </Link>
