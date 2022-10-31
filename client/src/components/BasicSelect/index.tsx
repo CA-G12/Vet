@@ -21,7 +21,7 @@ const BasicSelect = ({ options, setValue, value }: Props) => {
   return (
     <FormControl
       sx={{
-        borderRadius: '8px',
+        borderRadius: 1,
       }}
       fullWidth
       hiddenLabel
@@ -29,10 +29,6 @@ const BasicSelect = ({ options, setValue, value }: Props) => {
       <Select
         sx={{
           border: 'none',
-          margen: {
-            sm: '100px',
-            xs: '50px',
-          },
         }}
         labelId="basic-select-label"
         id="basic-select"
