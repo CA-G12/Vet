@@ -1,6 +1,6 @@
 import { Box } from '@mui/system';
 import { useState, useEffect } from 'react';
-import Doctor from '../components/Doctor';
+import Doctor from '../components/Emergency';
 import IUser from '../Interfaces/post/IUser';
 import ApiServices from '../services/ApiService';
 
@@ -34,7 +34,7 @@ const Emergency = () => {
         Available Emergency Doctors
       </p>
       {doctors.map((doctor: IUser) => (
-        <Doctor isEmergency key={doctor.id} user={doctor} />
+        <Doctor key={doctor.id} user={doctor} />
       ))}
     </Box>
   );

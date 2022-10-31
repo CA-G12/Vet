@@ -33,36 +33,22 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     },
   },
 }));
-const UserAvatar = ({
-  user,
-  isEmergency,
-}: {
-  user: IUser | null | undefined;
-  isEmergency: boolean;
-}) => {
+const EmergencyUserAvatar = ({ user }: { user: IUser | null | undefined }) => {
   return (
     <NavLink to={`/users/${user?.id}`} className="user-info-post">
       <Box display="flex">
         <Box>
-          {isEmergency ? (
-            <StyledBadge
-              overlap="circular"
-              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-              variant="dot"
-            >
-              <Avatar
-                sx={{ width: '50px', height: '50px' }}
-                alt={user?.name}
-                src={user?.avatar}
-              />
-            </StyledBadge>
-          ) : (
+          <StyledBadge
+            overlap="circular"
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            variant="dot"
+          >
             <Avatar
               sx={{ width: '50px', height: '50px' }}
               alt={user?.name}
               src={user?.avatar}
             />
-          )}
+          </StyledBadge>
         </Box>
 
         <Box
@@ -87,4 +73,4 @@ const UserAvatar = ({
     </NavLink>
   );
 };
-export default UserAvatar;
+export default EmergencyUserAvatar;

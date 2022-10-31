@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const ButtonDoctor = ({ id }: { id: number }) => (
+const ConnectBtn = ({ id }: { id: number }) => (
   <Link
     style={{
       textDecoration: 'none',
@@ -9,10 +9,10 @@ const ButtonDoctor = ({ id }: { id: number }) => (
       background: '#2D9B9B',
       borderRadius: 8,
     }}
-    to={`/users/${id}`}
+    to={`/livechat/${id}`}
   >
-    Visit
+    Connect
   </Link>
 );
 
-export default ButtonDoctor;
+export default ConnectBtn;

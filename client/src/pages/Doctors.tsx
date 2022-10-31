@@ -24,7 +24,7 @@ const Doctors = () => {
       sx={{ width: { xs: '100%', sm: '50%' }, margin: ' 40px auto' }}
     >
       {doctors.map((doctor: IUser) => (
-        <Doctor isEmergency={false} key={doctor.id} user={doctor} />
+        <Doctor key={doctor.id} user={doctor} />
       ))}
     </Box>
   );
