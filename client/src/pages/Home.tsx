@@ -31,17 +31,29 @@ const Home = () => {
   return (
     <main className="home-page">
       <Box
-        p={5}
-        width="25%"
-        minHeight="90vh"
+        width={{ lg: '25%', sm: '50%' }}
+        minHeight="100vh"
         component="div"
         display="flex"
-        flexDirection="column"
+        flexDirection={{ sm: 'column', xs: 'row' }}
         alignItems="center"
-        sx={{ backgroundColor: 'primary.main' }}
+        sx={{
+          minHeight: {
+            lg: '100vh',
+            sm: '0',
+          },
+          backgroundColor: { sm: 'primary.main', xs: '#ffff' },
+          position: 'relative',
+          top: { sm: '-97px' },
+          padding: { sm: '120px 50px', xs: '20px 0 0 0' },
+        }}
       >
         {TagList && (
-          <Box mt={2} width="100%" sx={{ backgroundColor: 'common.white' }}>
+          <Box
+            mt={2}
+            width="100%"
+            sx={{ backgroundColor: 'common.white', borderRadius: '8px' }}
+          >
             <BasicSelect
               value={filter.TagId}
               options={TagList}
@@ -50,7 +62,11 @@ const Home = () => {
           </Box>
         )}
         {AnimalList && (
-          <Box mt={2} width="100%">
+          <Box
+            mt={2}
+            width="100%"
+            sx={{ backgroundColor: 'common.white', borderRadius: '8px' }}
+          >
             <BasicSelect
               value={filter.AnimalId}
               options={AnimalList}
