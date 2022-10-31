@@ -5,6 +5,8 @@ interface IAuthCon {
   signIn: (info: IAuth) => Promise<void>;
   signOut: (info: IAuth) => void;
   user?: IAuth;
+  open: Boolean;
+  setOpen: any;
 }
 
 export default IAuthCon;
