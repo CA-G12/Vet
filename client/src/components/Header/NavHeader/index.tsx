@@ -26,15 +26,15 @@ export const NavHeader = () => {
       <Navigations className={active ? 'navigation active' : 'navigation'}>
         <NavItems className="nav-items">
           <CloseIconNav onClick={menuDisActive} />
-          <NavigationAnchor to="/home">
+          <NavigationAnchor to="/">
             <HomeIconNav />
             Home
           </NavigationAnchor>
-          <NavigationAnchor to="/home">
+          <NavigationAnchor to="/doctors">
             <Diversity1IconNav />
             Doctors
           </NavigationAnchor>
-          <NavigationAnchor to="/home">
+          <NavigationAnchor to="/">
             <HomeRepairServiceIconNav />
             Services
           </NavigationAnchor>
