@@ -6,7 +6,6 @@ import LabTabs from './Tabs';
 import 'react-toastify/dist/ReactToastify.css';
 
 const style = {
-  zIndex: '99999',
   position: 'absolute' as 'absolute',
   top: '50%',
   left: '50%',
