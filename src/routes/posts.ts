@@ -6,6 +6,10 @@ import errorWrapper from '../helpers/errorsHandling/customErrorWrapper';
 const router = Router();
 router.post('/posts', PostsController.store);
 router.get('/posts', PostsController.index);
-router.put('/post/:postId', errorWrapper(isAuth), PostsController.update);
+router.put(
+  '/post/:postId',
+  errorWrapper(isAuth),
+  errorWrapper(PostsController.update),
+);
 
 export default router;

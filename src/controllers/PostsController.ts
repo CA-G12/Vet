@@ -2,6 +2,7 @@ import { User, Post, Like, Tag, Animal, Comment } from '../db';
 import { Request, Response, NextFunction } from 'express';
 import { Op } from 'sequelize';
 import { postSchema } from '../schemes';
+import CustomError from '../helpers/errorsHandling/CustomError';
 
 export default class PostsController {
   public static async store(req: Request, res: Response) {
@@ -96,36 +97,25 @@ export default class PostsController {
   }
 
   public static async update(req: Request, res: Response, next: NextFunction) {
-    try {
-      // if (req.user) {
-      //   console.log(req.user);
-      // }
-      console.log(req.user);
-
-      const { content, image, AnimalId, TagId } = req.body;
-      await postSchema.validateAsync({
-        content,
-        image,
-        AnimalId,
-        TagId,
-      });
-      const [, [updatePost]] = await Post.update(
-        {
-          content,
-          image,
-          AnimalId,
-          TagId,
-        },
-        { where: { id: req.params.postId }, returning: true },
-      );
-
-      res.status(200).json({
-        status: res.status,
-        msg: 'post updated successfully',
-        data: updatePost,
-      });
-    } catch (error) {
-      next(error);
+    const { content, image, AnimalId, TagId } = req.body;
+    const validatedUpdate = await postSchema.validateAsync({
+      content,
+      image,
+      AnimalId,
+      TagId,
+      UserId: req.user?.id,
+    });
+    const [, [updatePost]] = await Post.update(validatedUpdate, {
+      where: { id: req.params.postId, UserId: req.user?.id },
+      returning: true,
+    });
+    if (!updatePost) {
+      throw new CustomError(400, 'you cannot update this post');
     }
+    res.status(200).json({
+      status: res.status,
+      msg: 'post updated successfully',
+      data: updatePost,
+    });
   }
 }
