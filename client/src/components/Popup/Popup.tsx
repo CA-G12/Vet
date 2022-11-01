@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Box, Typography, Modal } from '@mui/material';
 
@@ -33,8 +35,8 @@ const theme = createTheme({
   },
 });
 type Propss = {
-  open: any;
-  setOpen: any;
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
 };
 const PopUp = (propss: Propss) => {
   const { open, setOpen } = propss;
