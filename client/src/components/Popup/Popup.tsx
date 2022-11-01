@@ -45,7 +45,7 @@ const PopUp = (propss: Propss) => {
     <ThemeProvider theme={theme}>
       <div>
         <Modal
-          sx={{ zIndex: '99999' }}
+          sx={{ top: '6rem' }}
           open={open}
           onClose={handleClose}
           aria-labelledby="modal-modal-title"
