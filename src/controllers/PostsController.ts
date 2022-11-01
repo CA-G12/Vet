@@ -1,6 +1,6 @@
 import { User, Post, Like, Tag, Animal, Comment } from '../db';
 import { Request, Response } from 'express';
-import { Op } from 'sequelize';
+import { json, Op } from 'sequelize';
 import { postSchema } from '../schemes';
 
 export default class PostsController {
@@ -93,5 +93,36 @@ export default class PostsController {
       where: filterData,
     });
     res.json(posts);
+  }
+
+  public static async update(req: Request, res: Response) {
+    try {
+      const { content, image, AnimalId, TagId, UserId } = req.body;
+      await postSchema.validateAsync({
+        content,
+        image,
+        AnimalId,
+        TagId,
+        UserId,
+      });
+      const updatePost = await Post.upsert({
+        id: req.params.id,
+        content,
+        image,
+        AnimalId,
+        TagId,
+      });
+
+      res.status(200).json({
+        status: res.status,
+        msg: 'post updated successfully',
+        data: updatePost,
+      });
+    } catch (error) {
+      res.status(400).json({
+        msg: 'something went wrong',
+        error,
+      });
+    }
   }
 }
