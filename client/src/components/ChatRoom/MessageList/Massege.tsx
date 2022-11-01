@@ -13,7 +13,6 @@ const Message = ({
 }) => {
   const { text } = message;
   const { user } = useContext(authContext);
-  console.log(message, isOwnMessage);
 
   return (
     <Box

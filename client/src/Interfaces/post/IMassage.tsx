@@ -1,5 +1,3 @@
-import IDoctorInfo from '../doctor/IDoctorInfo';
-
 interface IMassage {
   name?: string;
   username?: string;

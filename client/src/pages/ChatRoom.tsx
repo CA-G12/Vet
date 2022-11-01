@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Box } from '@mui/system';
 import Room from '../components/ChatRoom';
 import { useAuth } from '../services/UseAuthar';
@@ -21,13 +21,12 @@ const ChatRoom = () => {
     user?.id && Number(params.id) > user?.id
       ? `${user?.id}-${params.id}`
       : `${params?.id}-${user?.id}`;
-  const getResever = async () => {
-    const resever = await ApiServices.get(`users/chat/${params.id}`);
-    setResever(resever.data);
-  };
   useEffect(() => {
-    getResever();
-  }, []);
+    (async () => {
+      const resever = await ApiServices.get(`users/chat/${params.id}`);
+      setResever(resever.data);
+    })();
+  }, [params]);
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center">

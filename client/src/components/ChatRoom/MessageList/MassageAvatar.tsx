@@ -14,8 +14,6 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 const MassageAvatar = ({ user }: { user: IUser | IMassage | undefined }) => {
-  console.log(user, 33333);
-
   return (
     <NavLink
       style={{ width: '57px' }}

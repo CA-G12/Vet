@@ -3,7 +3,6 @@ import React from 'react';
 import IMassage from '../../../Interfaces/post/IMassage';
 import { useAuth } from '../../../services/UseAuthar';
 import { useMessages } from '../../../services/useMessages';
-import MassageAvatar from './MassageAvatar';
 import Massage from './Massege';
 
 const MessageList = ({ roomId }: { roomId: string }) => {
