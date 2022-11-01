@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
+
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import 'react-toastify/dist/ReactToastify.css';
-import { Box, Button, Typography, Modal } from '@mui/material';
+import { Box, Typography, Modal } from '@mui/material';
 
 import LabTabs from './Tabs';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -32,15 +34,19 @@ const theme = createTheme({
     },
   },
 });
-const PopUp = () => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+type Propss = {
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+};
+const PopUp = (propss: Propss) => {
+  const { open, setOpen } = propss;
   const handleClose = () => setOpen(false);
+
   return (
     <ThemeProvider theme={theme}>
       <div>
-        <Button onClick={handleOpen}>Open modal</Button>
         <Modal
+          sx={{ top: '6rem' }}
           open={open}
           onClose={handleClose}
           aria-labelledby="modal-modal-title"
