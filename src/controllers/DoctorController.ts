@@ -42,4 +42,20 @@ export default class DoctorController {
     });
     res.json(doctors);
   }
+
+  public static async getOneDoctor(req: Request, res: Response) {
+    const id = req.params.id;
+    const doctors = await User.findOne({
+      attributes: ['avatar', 'email', 'id', 'name', 'role'],
+      include: {
+        model: DoctorInfo,
+        as: 'Doctor',
+        attributes: ['workplace'],
+      },
+      where: {
+        id,
+      },
+    });
+    res.json(doctors);
+  }
 }
