@@ -97,7 +97,9 @@ const AddPost = () => {
 
   return (
     <>
-      <Button onClick={handleOpen}>Add post</Button>
+      <Button onClick={handleOpen} color="secondary" variant="contained">
+        Add post
+      </Button>
       <Modal
         className="addPost"
         open={open}
