@@ -94,4 +94,34 @@ export default class PostsController {
     });
     res.json(posts);
   }
+
+  public static async userPosts(req: Request, res: Response) {
+    const { id } = req.params;
+
+    const posts = await Post.findAll({
+      attributes: ['id', 'content', 'image'],
+      include: [
+        { model: User, attributes: ['name', 'avatar', 'id', 'role'] },
+        {
+          model: Like,
+          attributes: ['id'],
+          include: [
+            { model: User, attributes: ['name', 'id', 'avatar', 'role'] },
+          ],
+        },
+        {
+          model: Tag,
+          attributes: ['id', 'name'],
+        },
+        { model: Comment, attributes: ['id'] },
+        {
+          model: Animal,
+          attributes: ['id', 'name'],
+        },
+      ],
+      where: { UserId: id },
+    });
+    console.log(posts);
+    res.json({ posts });
+  }
 }

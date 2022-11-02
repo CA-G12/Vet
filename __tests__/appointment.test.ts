@@ -26,6 +26,7 @@ describe(' Appointments for success', () => {
             id: 3,
             start: '2022-10-27T15:00:00.000Z',
             title: 'test2 test3',
+            description: 'test 1test2 ,test3 test 1 ,test2 ,test3   ',
           });
           return done();
         }
@@ -39,15 +40,19 @@ describe(' Appointments for success', () => {
         DoctorId: 6,
         start: '2022-10-29T18:00:00+03:00',
         end: '2022-10-29T20:00:00+03:00',
+        description: 'dmddkdkdkkdkdkdkkdkd',
+        title: 'dmddkdkdkkdkdkdkkdkd',
       })
       .end((err, res) => {
         if (err) return done(err);
         else {
           expect(res.body).toEqual({
             id: 2,
-            start: '2022-10-29T15:00:00.000Z',
-            end: '2022-10-29T17:00:00.000Z',
+            start: '2022-10-26T17:00:00.000Z',
+            end: '2022-10-26T17:00:00.000Z',
+            description: 'dmddkdkdkkdkdkdkkdkd',
             DoctorId: 6,
+            title: 'dmddkdkdkkdkdkdkkdkd',
           });
           return done();
         }
@@ -64,6 +69,7 @@ describe(' Appointments for success', () => {
             id: 1,
             title: 'test',
             start: '2022-10-26T17:00:00.000Z',
+            description: 'hehehehehhehe',
           });
           return done();
         }
@@ -98,6 +104,7 @@ describe(' Appointments for success', () => {
             end: '2022-10-26T17:00:00.000Z',
             status: 'ACCEPTED',
             DoctorId: 6,
+            title: 'test',
           });
           return done();
         }

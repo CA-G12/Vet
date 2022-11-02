@@ -8,7 +8,7 @@ export default class Appointment {
   public static async doctorAppointment(req: Request, res: Response) {
     const { id } = req.params;
     const doctorAppointment = await Booking.findAll({
-      attributes: ['id', 'title', 'start'],
+      attributes: ['id', 'title', 'start', 'description'],
       where: { DoctorId: id, status: 'ACCEPTED' },
     });
     if (doctorAppointment) {
@@ -60,6 +60,7 @@ export default class Appointment {
           id: doctorAppointment.id,
           title: doctorAppointment.title,
           start: doctorAppointment.start,
+          description: doctorAppointment.description,
         });
       }
     } else {
@@ -82,8 +83,36 @@ export default class Appointment {
   }
 
   public static async updateDoctorAppointment(req: Request, res: Response) {
+    const { DoctorId, id, title, description } = req.body;
+    await AppointmentValid.updateAppointmentValid({
+      DoctorId,
+      id,
+      title,
+      description,
+    });
+
+    const findBook = await Booking.findOne({ where: { id, DoctorId } });
+    if (findBook) {
+      findBook.title = title;
+      findBook.description = description;
+
+      await findBook.save();
+      res.json({
+        id: findBook.id,
+        description: findBook.description,
+        title: findBook.title,
+        start: findBook.start,
+        end: findBook.end,
+        DoctorId,
+      });
+    } else {
+      throw new CustomError(404, 'Booking not found ');
+    }
+  }
+
+  public static async dragDoctorAppointment(req: Request, res: Response) {
     const { DoctorId, id, start, end } = req.body;
-    await AppointmentValid.updateAppointmentValid({ DoctorId, id, start, end });
+    await AppointmentValid.dragAppointmentValid({ DoctorId, id, start, end });
 
     const findBook = await Booking.findOne({ where: { id, DoctorId } });
     if (findBook) {
@@ -105,6 +134,11 @@ export default class Appointment {
     const { DoctorId } = req.params;
     const findBook = await Booking.findAll({
       attributes: ['id', 'DoctorId', 'start', 'end', 'description', 'title'],
+      include: {
+        model: User,
+        as: 'User',
+        attributes: ['name', 'avatar'],
+      },
       where: { DoctorId, status: 'PENDING' },
     });
     if (findBook) {
@@ -127,6 +161,7 @@ export default class Appointment {
         id: findBook.id,
         start: findBook.start,
         end: findBook.end,
+        title: findBook.title,
         status: findBook.status,
         DoctorId,
       });

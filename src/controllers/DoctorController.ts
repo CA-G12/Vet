@@ -42,4 +42,15 @@ export default class DoctorController {
     });
     res.json(doctors);
   }
+
+  public static async getDoctorInfo(req: Request, res: Response) {
+    const { id } = req.params;
+    const doctorInfo = await DoctorInfo.findOne({
+      attributes: ['hourRate', 'clinicLocation', 'workplace'],
+      where: {
+        DoctorId: id,
+      },
+    });
+    res.json({ doctorInfo });
+  }
 }
