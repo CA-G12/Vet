@@ -9,7 +9,7 @@ beforeAll(() => dbBuild());
 describe('sign in router', () => {
   test('incorrect password', done => {
     supertest(router)
-      .post('/api/v1/signin')
+      .post('/api/v1/sign-in')
       .send({
         email: 'saeed@gmail.com',
         password: '123asa456',
@@ -28,7 +28,7 @@ describe('sign in router', () => {
 
   test('email is not exist', done => {
     supertest(router)
-      .post('/api/v1/signin')
+      .post('/api/v1/sign-in')
       .send({
         email: 'most0717883@gmail.com',
         password: '123456',
@@ -46,7 +46,7 @@ describe('sign in router', () => {
   });
   test('check if the user logged in successfully', done => {
     supertest(router)
-      .post('/api/v1/signin')
+      .post('/api/v1/sign-in')
       .send({
         email: 'saeed@gmail.com',
         password: '123456',
