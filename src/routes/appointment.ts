@@ -16,4 +16,5 @@ router.get(
   errorWrapper(Appointment.pendingAppointment),
 );
 router.put('/pending-appointment', errorWrapper(Appointment.acceptAppointment));
+
 export default router;
