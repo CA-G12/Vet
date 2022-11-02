@@ -97,8 +97,17 @@ const AddPost = () => {
 
   return (
     <>
-      <Button onClick={handleOpen} color="secondary" variant="contained">
-        Add post
+      <Button
+        onClick={handleOpen}
+        color="secondary"
+        variant="contained"
+        sx={{
+          alignSelf: 'flex-end',
+          marginRight: '30px',
+          borderRadius: '50px',
+        }}
+      >
+        create post
       </Button>
       <Modal
         className="addPost"
