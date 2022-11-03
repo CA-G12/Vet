@@ -1,7 +1,7 @@
 import Appointment from '../controllers/Appointment';
 import express from 'express';
 import errorWrapper from '../helpers/errorsHandling/customErrorWrapper';
-import { isAuth, isRole } from '../middlewares/auth.middleware';
+import { isAuth } from '../middlewares/auth.middleware';
 
 const router = express.Router();
 router.get(
@@ -21,18 +21,18 @@ router.post(
 );
 router.put(
   '/Appointment',
-  errorWrapper(isRole('DOCTOR')),
+  errorWrapper(isAuth),
   errorWrapper(Appointment.updateDoctorAppointment),
 );
 
 router.get(
   '/pending-appointment/:DoctorId',
-  errorWrapper(isRole('DOCTOR')),
+  errorWrapper(isAuth),
   errorWrapper(Appointment.pendingAppointment),
 );
 router.put(
   '/pending-appointment',
-  errorWrapper(isRole('DOCTOR')),
+  errorWrapper(isAuth),
   errorWrapper(Appointment.acceptAppointment),
 );
 
