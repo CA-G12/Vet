@@ -53,4 +53,11 @@ export default class DoctorController {
     });
     res.json({ doctorInfo });
   }
+
+  public static async updateDoctorInfo(req: Request, res: Response) {
+    const doctorInfo = await DoctorInfo.findOne({
+      attributes: ['hourRate', 'clinicLocation', 'workplace'],
+    });
+    res.json({ doctorInfo });
+  }
 }

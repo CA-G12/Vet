@@ -5,21 +5,15 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import { Box, Typography } from '@mui/material/';
 import { authContext } from '../../hooks/useAuth';
+import IDoctorInfo from '../../Interfaces/IDoctorInfo';
 import { ProfileTabs } from './ProfileTabs';
 import './style.css';
 import ApiServices from '../../services/ApiService';
 
-interface IDoctorInfo {
-  workplace: string;
-  clinicLocation: string;
-  hourRate: string;
-}
 const style = {
   display: 'flex',
-  width: '450px',
-  justifyContent: 'space-between',
-  flexDirection: 'row',
-  alignItems: 'center',
+  width: '350px',
+  flexDirection: 'column',
 };
 export const Profile = () => {
   const { user } = React.useContext(authContext);
@@ -49,7 +43,6 @@ export const Profile = () => {
             <Box
               display="flex"
               justifyContent="space-between"
-              flexDirection="column"
               alignItems="center"
             >
               <Box sx={style}>
@@ -58,15 +51,15 @@ export const Profile = () => {
                   {docInfo.clinicLocation}
                 </Typography>
                 <Typography>
-                  <LocationCityIcon color="disabled" />
-                  {docInfo.workplace}
+                  {' '}
+                  <AttachMoneyIcon color="disabled" />
+                  {docInfo.hourRate}
                 </Typography>
               </Box>
               <Box sx={style}>
                 <Typography>
-                  {' '}
-                  <AttachMoneyIcon color="disabled" />
-                  {docInfo.hourRate}
+                  <LocationCityIcon color="disabled" />
+                  {docInfo.workplace}
                 </Typography>
                 <Typography>
                   <MailOutlineIcon color="disabled" /> {user?.email}

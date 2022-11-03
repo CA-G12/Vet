@@ -7,7 +7,6 @@ import TabPanel from '@mui/lab/TabPanel';
 import { Calender } from './Calender/Calender';
 import { UserAppointment } from './UserAppointment';
 import { authContext } from '../../hooks/useAuth';
-import { ProviderAppointment } from '../../Context/AppointmentContext';
 import { UserPosts } from './UserPosts';
 
 export const ProfileTabs = () => {
@@ -26,13 +25,7 @@ export const ProfileTabs = () => {
           </TabList>
         </Box>
         <TabPanel value="1">
-          {user?.role === 'DOCTOR' ? (
-            <ProviderAppointment>
-              <Calender />
-            </ProviderAppointment>
-          ) : (
-            <UserAppointment />
-          )}
+          {user?.role === 'DOCTOR' ? <Calender /> : <UserAppointment />}
         </TabPanel>
         <TabPanel value="2">
           <UserPosts />
