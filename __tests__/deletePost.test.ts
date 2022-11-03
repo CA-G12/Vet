@@ -3,7 +3,7 @@ import app from '../src/app';
 import supertest from 'supertest';
 import build from '../src/db/build';
 import sequelize from '../src/db/connection';
-import { User } from '../src/models';
+
 let token = '';
 beforeAll(() => build());
 beforeEach(async () => {
