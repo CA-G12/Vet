@@ -1,5 +1,4 @@
 import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
-import INotification from '../Interfaces/notification/INotification';
 import { db } from './Firebase.config';
 
 // eslint-disable-next-line promise/prefer-await-to-callbacks
@@ -20,7 +19,6 @@ function getNotifications(
           ...doc.data(),
         }))
         .filter((ele: any) => !ele.chatRoomId.includes(params));
-      console.log('notifications');
 
       // eslint-disable-next-line promise/prefer-await-to-callbacks
       callback(notifications);

@@ -12,7 +12,7 @@ const Notifcation = ({ notification }: { notification: INotification }) => {
     if (params.id === `${notification.uid}`) {
       deleteNotification(user?.id, notification.id);
     }
-  }, [params]);
+  }, [params, user?.id, notification]);
   return (
     <Box>
       <button

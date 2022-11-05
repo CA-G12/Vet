@@ -1,5 +1,4 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import { useAuth } from '../../../hooks/UseAuthar';
 import { sendMessage } from '../../../helpers/SendMassege';
 import { updateMessage } from '../../../helpers/UpdateMessage';
@@ -12,8 +11,6 @@ const MessageInput = ({
   roomId: string;
   resverId: string | undefined;
 }) => {
-  const Params = useParams();
-
   const { user } = useAuth();
   const [value, setValue] = React.useState('');
 
@@ -26,8 +23,6 @@ const MessageInput = ({
     if (user) {
       sendMessage(roomId, user, value);
       if (resverId) {
-        console.log(Params, resverId);
-
         sendNotifications(resverId, user, roomId);
       }
     }
