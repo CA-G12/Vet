@@ -13,6 +13,8 @@ function getNotifications(
       orderBy('timestamp', 'asc'),
     ),
     querySnapshot => {
+      const newNotifications: any = [];
+
       const notifications = querySnapshot.docs
         .map(doc => ({
           id: doc.id,
@@ -27,3 +29,7 @@ function getNotifications(
 }
 
 export { getNotifications };
+
+// ;
+//       const newNotifications: any = [];
+//       notifications.
