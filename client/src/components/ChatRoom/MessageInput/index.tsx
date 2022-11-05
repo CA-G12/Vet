@@ -1,7 +1,6 @@
 import React from 'react';
 import { useAuth } from '../../../hooks/UseAuthar';
 import { sendMessage } from '../../../helpers/SendMassege';
-import { updateMessage } from '../../../helpers/UpdateMessage';
 import { sendNotifications } from '../../../helpers/sendNotifications';
 
 const MessageInput = ({
@@ -31,9 +30,6 @@ const MessageInput = ({
 
   return (
     <form onSubmit={handleSubmit} className="message-input-container">
-      <button type="submit" onClick={updateMessage}>
-        test
-      </button>
       <input
         type="text"
         placeholder="Enter a message"
