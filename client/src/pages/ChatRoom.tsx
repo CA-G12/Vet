@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Box } from '@mui/system';
 import Room from '../components/ChatRoom';
-import { useAuth } from '../services/UseAuthar';
+import { useAuth } from '../hooks/UseAuthar';
 import { MessageList } from '../components/ChatRoom/MessageList';
 import ApiServices from '../services/ApiService';
 import MassageAvatar from '../components/ChatRoom/MessageList/MassageAvatar';
@@ -50,7 +50,7 @@ const ChatRoom = () => {
         }}
       >
         <MessageList roomId={roomId} />
-        <Room roomId={roomId} />
+        <Room resverId={params && params?.id} roomId={roomId} />
       </Box>
     </Box>
   );

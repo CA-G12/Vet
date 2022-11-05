@@ -1,8 +1,8 @@
 import { Box } from '@mui/system';
 import React from 'react';
 import IMassage from '../../../Interfaces/post/IMassage';
-import { useAuth } from '../../../services/UseAuthar';
-import { useMessages } from '../../../services/useMessages';
+import { useAuth } from '../../../hooks/UseAuthar';
+import { useMessages } from '../../../hooks/useMessages';
 import Massage from './Massege';
 
 const MessageList = ({ roomId }: { roomId: string }) => {
@@ -13,7 +13,7 @@ const MessageList = ({ roomId }: { roomId: string }) => {
   return (
     <Box
       sx={{
-        height: '400px',
+        height: '300px',
         overflowY: 'auto ',
         overflowX: 'hidden',
       }}

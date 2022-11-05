@@ -1,7 +1,7 @@
 import React from 'react';
 import { getMessages } from '../helpers/getMessages';
 
-function useMessages(roomId: any) {
+function useMessages(roomId: string) {
   const [messages, setMessages] = React.useState([]);
 
   React.useEffect(() => {

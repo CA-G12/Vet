@@ -8,6 +8,7 @@ import theme from './helpers/theme';
 import PostsContext from './Context/PostsContext';
 import { ProvideAuth } from './hooks/useAuth';
 import { Header } from './components/Header/Header';
+import Nndex from './components/Notification';
 
 const App = () => (
   <ThemeProvider theme={theme}>
@@ -26,6 +27,7 @@ const App = () => (
       />
       <PostsContext>
         <Header />
+        <Nndex />
         <Popup />
         <Outlet />
       </PostsContext>

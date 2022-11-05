@@ -1,8 +1,19 @@
 import React from 'react';
-import { useAuth } from '../../../services/UseAuthar';
+import { useParams } from 'react-router-dom';
+import { useAuth } from '../../../hooks/UseAuthar';
 import { sendMessage } from '../../../helpers/SendMassege';
+import { updateMessage } from '../../../helpers/UpdateMessage';
+import { sendNotifications } from '../../../helpers/sendNotifications';
 
-const MessageInput = ({ roomId }: { roomId: string }) => {
+const MessageInput = ({
+  roomId,
+  resverId,
+}: {
+  roomId: string;
+  resverId: string | undefined;
+}) => {
+  const Params = useParams();
+
   const { user } = useAuth();
   const [value, setValue] = React.useState('');
 
@@ -14,12 +25,20 @@ const MessageInput = ({ roomId }: { roomId: string }) => {
     event.preventDefault();
     if (user) {
       sendMessage(roomId, user, value);
+      if (resverId) {
+        console.log(Params, resverId);
+
+        sendNotifications(resverId, user, roomId);
+      }
     }
     setValue('');
   };
 
   return (
     <form onSubmit={handleSubmit} className="message-input-container">
+      <button type="submit" onClick={updateMessage}>
+        test
+      </button>
       <input
         type="text"
         placeholder="Enter a message"

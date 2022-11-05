@@ -1,5 +1,5 @@
 import React from 'react';
-import { authContext } from '../hooks/useAuth';
+import { authContext } from './useAuth';
 
 function useAuth() {
   const value = React.useContext(authContext);
