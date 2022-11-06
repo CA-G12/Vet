@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react';
 import IAuth from './IAuth';
 
 interface IAuthCon {
@@ -5,6 +6,8 @@ interface IAuthCon {
   signIn: (info: IAuth) => Promise<void>;
   signOut: (info: IAuth) => void;
   user?: IAuth;
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export default IAuthCon;

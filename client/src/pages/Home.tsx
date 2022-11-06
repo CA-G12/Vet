@@ -7,6 +7,7 @@ import { AllPosts } from '../Context/PostsContext';
 import LoadingPosts from './LoadingPosts';
 import 'react-toastify/dist/ReactToastify.css';
 import BasicSelect from '../components/BasicSelect';
+import AddPost from '../components/AddPost/AddPost';
 
 const Home = () => {
   const { TagList, AnimalList } = useContext(AllPosts);
@@ -77,13 +78,17 @@ const Home = () => {
           </Box>
         )}
       </Box>
-      {loading && posts.length !== 0 ? (
-        <PostsList posts={posts} />
-      ) : loading && posts.length === 0 ? (
-        <h2 className="no-result">No Result</h2>
-      ) : (
-        <LoadingPosts />
-      )}
+      <Box className="posts">
+        <AddPost />
+
+        {loading && posts.length !== 0 ? (
+          <PostsList posts={posts} />
+        ) : loading && posts.length === 0 ? (
+          <h2 className="no-result">No Result</h2>
+        ) : (
+          <LoadingPosts />
+        )}
+      </Box>
     </main>
   );
 };

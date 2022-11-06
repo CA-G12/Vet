@@ -4,12 +4,20 @@ import supertest from 'supertest';
 import build from '../src/db/build';
 import sequelize from '../src/db/connection';
 
-beforeEach(() => build());
-
+let token = '';
+beforeAll(() => build());
+beforeEach(async () => {
+  const response = await supertest(app).post('/api/v1/sign-in').send({
+    email: 'saeed@gmail.com',
+    password: '123456',
+  });
+  token = response.body.data.token;
+});
 describe('add a post', () => {
   test('add a post successfully', done => {
     supertest(app)
       .post('/api/v1/posts')
+      .set('Authorization', `Bearer ${token}`)
       .send({
         UserId: 1,
         AnimalId: 1,
@@ -28,6 +36,7 @@ describe('add a post', () => {
   test('add a post with empty content', done => {
     supertest(app)
       .post('/api/v1/posts')
+      .set('Authorization', `Bearer ${token}`)
       .send({
         UserId: null,
         AnimalId: null,
@@ -44,6 +53,7 @@ describe('add a post', () => {
   test('add a post with empty image', done => {
     supertest(app)
       .post('/api/v1/posts')
+      .set('Authorization', `Bearer ${token}`)
       .send({
         UserId: 1,
         AnimalId: 1,
@@ -61,6 +71,7 @@ describe('add a post', () => {
   test("add a post with a link that isn'nt an image", done => {
     supertest(app)
       .post('/api/v1/posts')
+      .set('Authorization', `Bearer ${token}`)
       .send({
         UserId: 1,
         AnimalId: 1,
@@ -80,6 +91,7 @@ describe('add a post', () => {
   test("add a post with a link that isn'nt an image", done => {
     supertest(app)
       .post('/api/v1/posts')
+      .set('Authorization', `Bearer ${token}`)
       .send({
         UserId: 1,
         AnimalId: 1,
@@ -99,6 +111,7 @@ describe('add a post', () => {
   test('add a post with one id missing', done => {
     supertest(app)
       .post('/api/v1/posts')
+      .set('Authorization', `Bearer ${token}`)
       .send({
         UserId: 1,
         AnimalId: null,
@@ -124,7 +137,7 @@ describe('all post ', () => {
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err);
-        expect(res.body.length).toEqual(5);
+        expect(res.body).toHaveLength(8);
         return done();
       });
   });
@@ -134,7 +147,7 @@ describe('all post ', () => {
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err);
-        expect(res.body.length).toEqual(1);
+        expect(res.body.length).toEqual(3);
         return done();
       });
   });
@@ -144,7 +157,7 @@ describe('all post ', () => {
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err);
-        expect(res.body.length).toEqual(1);
+        expect(res.body.length).toEqual(3);
         return done();
       });
   });
@@ -183,6 +196,7 @@ describe('add a new comment', () => {
   test('add a comment successfully', done => {
     supertest(app)
       .post('/api/v1/post/1/comments')
+      .set('Authorization', `Bearer ${token}`)
       .send({
         UserId: 1,
         comment: 'hey im a legitimate content that should work',
@@ -199,6 +213,7 @@ describe('add a new comment', () => {
   test('add a comment successfully', done => {
     supertest(app)
       .post('/api/v1/post/1/comments')
+      .set('Authorization', `Bearer ${token}`)
       .send({
         UserId: 1,
         comment: 'hey im a legitimate content that should work',
@@ -214,6 +229,7 @@ describe('add a new comment', () => {
   test('add a comment fail', done => {
     supertest(app)
       .post('/api/v1/post/1/comments')
+      .set('Authorization', `Bearer ${token}`)
       .send({
         UserId: 1,
         comment: '',
@@ -230,6 +246,7 @@ describe('add a new comment', () => {
   test('add a comment fail', done => {
     supertest(app)
       .post('/api/v1/post/1/comments')
+      .set('Authorization', `Bearer ${token}`)
       .send({
         UserId: 1,
         comment: 'xxxxxxxxxx',
@@ -247,6 +264,7 @@ describe('add a new comment', () => {
   test('edit a comment success', done => {
     supertest(app)
       .put('/api/v1/post/1/comments/1')
+      .set('Authorization', `Bearer ${token}`)
       .send({
         comment: 'xxxxxxxxxx',
         image:
@@ -263,6 +281,7 @@ describe('add a new comment', () => {
   test('edit a comment fail', done => {
     supertest(app)
       .put('/api/v1/post/1/comments/1')
+      .set('Authorization', `Bearer ${token}`)
       .send({
         comment: '',
         image:
@@ -278,6 +297,7 @@ describe('add a new comment', () => {
   test('edit a comment success', done => {
     supertest(app)
       .put('/api/v1/post/1/comments/1')
+      .set('Authorization', `Bearer ${token}`)
       .send({
         comment: 'xxxxxxxxxx',
         image: '',
@@ -293,6 +313,7 @@ describe('add a new comment', () => {
   test('delete a comment success', done => {
     supertest(app)
       .delete('/api/v1/post/1/comments/1')
+      .set('Authorization', `Bearer ${token}`)
       .send()
       .end((err, res) => {
         if (err) return done(err);
@@ -301,7 +322,6 @@ describe('add a new comment', () => {
         return done();
       });
   });
-
-  // final test here for passport
 });
+
 afterAll(() => sequelize.close());
