@@ -5,7 +5,7 @@ import { LogoImage } from '../components.styled';
 export const Logo = () => (
   <Box className="logo">
     <Link to="/">
-      <LogoImage src="./logo.png" alt="hello" />
+      <LogoImage src="./213.png" alt="hello" />
     </Link>
   </Box>
 );

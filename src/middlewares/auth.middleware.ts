@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { verifyJWT } from '../utils/verifyToken';
 import { User } from '../models';
 
-type UserJWT = Pick<User, 'id' | 'name' | 'avatar' | 'role'>;
+export type UserJWT = Required<Pick<User, 'id' | 'name' | 'avatar' | 'role'>>;
 
 export const isRole =
   (role: User['role']) =>

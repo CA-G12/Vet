@@ -23,5 +23,8 @@
   "include": [
     "src",
     "__tests__"
-  ]
+  ],
+  "files": [
+    "src/types/express/index.d.ts"
+  ],
 }
