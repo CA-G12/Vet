@@ -5,6 +5,6 @@ interface IUser {
   name: string;
   avatar: string;
   role: string;
-  DoctorInfo?: IDoctorInfo;
+  Doctor?: IDoctorInfo;
 }
 export default IUser;

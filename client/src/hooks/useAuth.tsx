@@ -5,9 +5,12 @@ import React, {
   useEffect,
   useCallback,
 } from 'react';
+
 import { toast } from 'react-toastify';
+
 import IAuth from '../Interfaces/IAuth';
 import IAuthCon from '../Interfaces/IAuthCon';
+
 import ApiService from '../services/ApiService';
 import JwtService from '../services/JwtService';
 
@@ -15,6 +18,9 @@ const authContext = createContext<IAuthCon>({} as IAuthCon);
 
 const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<IAuthCon['user']>();
+
+  // signing pop up
+  const [open, setOpen] = useState(false);
 
   const signUp = useCallback(
     async ({ email, password, confirmPassword, name, role }: IAuth) => {
@@ -77,8 +83,15 @@ const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const authValues = useMemo(
-    () => ({ user, signUp, signIn, signOut }),
-    [signIn, signOut, signUp, user],
+    () => ({
+      user,
+      signUp,
+      signIn,
+      signOut,
+      open,
+      setOpen,
+    }),
+    [user, signUp, signIn, signOut, open, setOpen],
   );
 
   return (
