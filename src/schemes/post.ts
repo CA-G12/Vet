@@ -4,8 +4,8 @@ const postSchema = Joi.object({
   image: Joi.string()
     .regex(/(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/i)
     .allow(''),
-  AnimalId: Joi.number().required(),
-  TagId: Joi.number().required(),
+  Animal: { id: Joi.number().required(), name: Joi.string().required() },
+  Tag: { id: Joi.number().required(), name: Joi.string().required() },
   UserId: Joi.number().required(),
 });
 

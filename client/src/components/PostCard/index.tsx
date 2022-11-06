@@ -55,7 +55,7 @@ const Post = ({ post }: { post: IPost }) => {
       <article className="article abusluot-btns">
         <section style={{ width: '100%' }} className="post-content-continuer">
           <UserPostInfo user={post.User} />
-          {post.image && !editPost && (
+          {postContent.image && !editPost && (
             <div className="img-post-mobile">
               <img src={postContent.image} alt="" />
             </div>
@@ -77,7 +77,7 @@ const Post = ({ post }: { post: IPost }) => {
         </section>
         {postContent.image && !editPost && (
           <figure className="img-post-desctop">
-            <img className="img-post" src={post.image} alt="" />
+            <img className="img-post" src={postContent.image} alt="" />
           </figure>
         )}
         {user?.id === post.User.id && (

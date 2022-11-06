@@ -1,6 +1,7 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import IPost from '../../Interfaces/post/IPost';
 import EditImagePost from './EditImagePost';
 import ApiServices from '../../services/ApiService';
@@ -41,7 +42,9 @@ const EditPost = ({
           />
           <EditImagePost data={postContent} setData={setPostContent} />
         </Box>
-        <button type="submit">Save</button>
+        <Button type="submit" variant="contained">
+          Save
+        </Button>
       </Box>
     </form>
   );
