@@ -54,16 +54,17 @@ const ServicesList = styled(Box)({
 
 const WelcomeLandSection = styled(Box)({
   position: 'absolute',
-  top: '-10px',
+  top: '0',
   background: 'url(./catBackground.png)',
   width: '100%',
-  minHeight: '74rem',
+  minHeight: '100%',
   backgroundRepeat: 'no-repeat',
-  backgroundSize: 'contain',
+  backgroundSize: 'cover',
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'center',
+  alignItems: 'end',
   '@media screen and (max-width:450px)': {
+    backgroundSize: 'contain',
     height: '26rem',
     marginBottom: '5rem',
   },
@@ -71,17 +72,15 @@ const WelcomeLandSection = styled(Box)({
 
 const WelcomePargraph = styled(Typography)({
   background: 'rgba(90, 89, 89, 0)',
-  top: '31rem',
-  left: '42%',
+  textAlign: 'center',
   fontSize: '2.5rem',
   fontFamily: 'Inter',
-  letterSpacing: '.59rem',
-  marginTop: '6rem',
+  letterSpacing: '.6rem',
+  paddingBottom: '1.5rem',
   '@media screen and (max-width:450px)': {
-    top: '13rem',
     fontSize: '1rem',
     letterSpacing: '.2rem',
-    paddingTop: '1.5rem',
+    marginBottom: '25rem',
   },
 });
 
