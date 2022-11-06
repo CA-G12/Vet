@@ -1,5 +1,5 @@
 import { User, Post, Like, Tag, Animal, Comment } from '../db';
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 import { Op } from 'sequelize';
 import { postSchema } from '../schemes';
 import CustomError from '../helpers/errorsHandling/CustomError';
@@ -95,7 +95,7 @@ export default class PostsController {
     res.json(posts);
   }
 
-  public static async update(req: Request, res: Response, next: NextFunction) {
+  public static async update(req: Request, res: Response) {
     const { content, image, AnimalId, TagId } = req.body;
     const validatedUpdate = await postSchema.validateAsync({
       content,
