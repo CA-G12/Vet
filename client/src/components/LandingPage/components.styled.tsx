@@ -54,10 +54,10 @@ const ServicesList = styled(Box)({
 
 const WelcomeLandSection = styled(Box)({
   position: 'absolute',
-  top: '0',
+  top: '-10px',
   background: 'url(./catBackground.png)',
   width: '100%',
-  height: '60rem',
+  minHeight: '74rem',
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'contain',
   display: 'flex',
@@ -70,12 +70,13 @@ const WelcomeLandSection = styled(Box)({
 });
 
 const WelcomePargraph = styled(Typography)({
+  background: 'rgba(90, 89, 89, 0)',
   top: '31rem',
   left: '42%',
   fontSize: '2.5rem',
   fontFamily: 'Inter',
   letterSpacing: '.59rem',
-  paddingTop: '6rem',
+  marginTop: '6rem',
   '@media screen and (max-width:450px)': {
     top: '13rem',
     fontSize: '1rem',
