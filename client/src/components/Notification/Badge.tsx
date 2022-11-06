@@ -1,6 +1,5 @@
 import Badge, { BadgeProps } from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -32,11 +31,9 @@ const NotificationBadge = ({
     });
   }, [params, user?.id, notifications]);
   return (
-    <IconButton aria-label="cart">
-      <StyledBadge badgeContent={notifications.length} color="secondary">
-        <NotificationsIcon />
-      </StyledBadge>
-    </IconButton>
+    <StyledBadge badgeContent={notifications.length} color="secondary">
+      <NotificationsIcon />
+    </StyledBadge>
   );
 };
 export default NotificationBadge;
