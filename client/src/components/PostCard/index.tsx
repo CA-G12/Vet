@@ -21,6 +21,7 @@ const Post = ({ post }: { post: IPost }) => {
   const [isShowMore, setIsShowMore] = useState(false);
   const [numComments, setNumComments] = useState(post.Comments.length);
   const [editPost, setEditPost] = useState(false);
+  const [postContent, setPostContent] = useState(post);
 
   const showMore = async () => {
     setIsShowMore(true);
@@ -56,11 +57,17 @@ const Post = ({ post }: { post: IPost }) => {
           <UserPostInfo user={post.User} />
           {post.image && !editPost && (
             <div className="img-post-mobile">
-              <img src={post.image} alt="" />
+              <img src={postContent.image} alt="" />
             </div>
           )}
-          {!editPost && <p className="content">{post.content}</p>}
-          {editPost && <EditPost post={post} />}
+          {!editPost && <p className="content">{postContent.content}</p>}
+          {editPost && (
+            <EditPost
+              postContent={postContent}
+              setPostContent={setPostContent}
+              setEditPost={setEditPost}
+            />
+          )}
 
           <StackCommentsAndLikes
             commentNum={numComments}
@@ -68,7 +75,7 @@ const Post = ({ post }: { post: IPost }) => {
             handleClick={handleClick}
           />
         </section>
-        {post.image && !editPost && (
+        {postContent.image && !editPost && (
           <figure className="img-post-desctop">
             <img className="img-post" src={post.image} alt="" />
           </figure>

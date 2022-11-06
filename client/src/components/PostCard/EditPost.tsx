@@ -3,14 +3,27 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import IPost from '../../Interfaces/post/IPost';
 import EditImagePost from './EditImagePost';
+import ApiServices from '../../services/ApiService';
 
-const EditPost = ({ post }: { post: IPost }) => {
-  const [postContent, setPostContent] = useState(post);
+const EditPost = ({
+  postContent,
+  setPostContent,
+  setEditPost,
+}: {
+  postContent: IPost;
+  setPostContent: Function;
+  setEditPost: Function;
+}) => {
   const handelPostContent = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setPostContent({ ...postContent, content: e.currentTarget.value });
   };
+  const handEleditPost = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    ApiServices.put(`post/${postContent.id}`, postContent);
+    setEditPost(false);
+  };
   return (
-    <form style={{ width: '100%' }}>
+    <form onSubmit={handEleditPost} style={{ width: '100%' }}>
       <Box>
         <Box
           flexWrap={{ sm: 'nowrap', xs: 'wrap-reverse' }}
@@ -28,9 +41,7 @@ const EditPost = ({ post }: { post: IPost }) => {
           />
           <EditImagePost data={postContent} setData={setPostContent} />
         </Box>
-        <button onClick={() => {}} type="submit">
-          Save
-        </button>
+        <button type="submit">Save</button>
       </Box>
     </form>
   );

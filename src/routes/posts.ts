@@ -8,7 +8,7 @@ router.get('/posts', PostsController.index);
 router.post('/posts', PostsController.store);
 router.put(
   '/post/:postId',
-  errorWrapper(isAuth),
+  // errorWrapper(isAuth),
   errorWrapper(PostsController.update),
 );
 

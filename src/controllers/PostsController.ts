@@ -104,6 +104,8 @@ export default class PostsController {
       TagId,
       UserId: req.user?.id,
     });
+    console.log(1111111);
+
     const [, [updatePost]] = await Post.update(validatedUpdate, {
       where: { id: req.params.postId, UserId: req.user?.id },
       returning: true,
