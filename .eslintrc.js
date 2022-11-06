@@ -34,4 +34,13 @@ module.exports = {
     'promise/prefer-await-to-then': 'error',
     'promise/prefer-await-to-callbacks': 'error',
   },
+  overrides: [
+    {
+      files: ['__tests__/*.test.ts'],
+      rules: {
+        'promise/prefer-await-to-then': 'off',
+        'promise/prefer-await-to-callbacks': 'off',
+      },
+    },
+  ],
 };

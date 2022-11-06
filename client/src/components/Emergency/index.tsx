@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
-import ButtonDoctor from './DoctorButton';
-import UserAvatar from './UserAvatar';
+import ConnectBtn from './ConnectBtn';
+import EmergencyUserAvatar from './EmergencyUserAvatar';
 import IUser from '../../Interfaces/post/IUser';
 
 const Index = ({ user }: { user: IUser }) => (
@@ -11,10 +11,10 @@ const Index = ({ user }: { user: IUser }) => (
     sx={{ width: '80%', marginTop: '20px' }}
   >
     <Box>
-      <UserAvatar user={user} />
+      <EmergencyUserAvatar user={user} />
     </Box>
     <Box>
-      <ButtonDoctor id={user.id} />
+      <ConnectBtn id={user.id} />
     </Box>
   </Box>
 );

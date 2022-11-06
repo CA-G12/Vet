@@ -129,8 +129,7 @@ const SignIn = ({ open }: { open: Function }) => {
       </FormControl>
       <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
         <button type="submit" className="sign-Btn">
-          {' '}
-          Sign in{' '}
+          Sign in
         </button>
       </FormControl>
     </form>
