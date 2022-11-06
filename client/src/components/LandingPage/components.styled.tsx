@@ -74,11 +74,13 @@ const WelcomePargraph = styled(Typography)({
   left: '42%',
   fontSize: '2.5rem',
   fontFamily: 'Inter',
-  letterSpacing: '.5rem',
+  letterSpacing: '.59rem',
+  paddingTop: '6rem',
   '@media screen and (max-width:450px)': {
     top: '13rem',
     fontSize: '1rem',
     letterSpacing: '.2rem',
+    paddingTop: '1.5rem',
   },
 });
 
