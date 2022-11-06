@@ -30,11 +30,11 @@ export const NavHeader = () => {
             <HomeIconNav />
             Home
           </NavigationAnchor>
-          <NavigationAnchor to="/home">
+          <NavigationAnchor to="/doctors">
             <Diversity1IconNav />
             Doctors
           </NavigationAnchor>
-          <NavigationAnchor to="/home">
+          <NavigationAnchor to="/">
             <HomeRepairServiceIconNav />
             Services
           </NavigationAnchor>

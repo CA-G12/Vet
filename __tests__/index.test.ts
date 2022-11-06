@@ -137,7 +137,7 @@ describe('all post ', () => {
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err);
-        // expect(res.body.length).toEqual(7);
+        expect(res.body).toHaveLength(8);
         return done();
       });
   });
@@ -157,7 +157,7 @@ describe('all post ', () => {
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err);
-        expect(1).toEqual(1);
+        expect(res.body.length).toEqual(3);
         return done();
       });
   });
