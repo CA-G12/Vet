@@ -1,13 +1,13 @@
 import React from 'react';
 import { getNotifications } from '../helpers/getNotifications';
 
-function useNotifications(roomId: string, params: string | undefined) {
+function useNotifications(roomId: string) {
   const [notifications, setNotifications] = React.useState([]);
 
   React.useEffect(() => {
-    const unsubscribe = getNotifications(roomId, setNotifications, params);
+    const unsubscribe = getNotifications(roomId, setNotifications);
     return unsubscribe;
-  }, [roomId, params]);
+  }, [roomId]);
 
   return notifications;
 }

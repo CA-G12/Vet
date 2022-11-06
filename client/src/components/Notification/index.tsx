@@ -1,5 +1,4 @@
 import { Box } from '@mui/system';
-import { useParams } from 'react-router-dom';
 import * as React from 'react';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
@@ -10,9 +9,8 @@ import { useAuth } from '../../hooks/UseAuthar';
 
 const Notifications = () => {
   const { user } = useAuth();
-  const params = useParams();
 
-  const notifications = useNotifications(`${user?.id}`, params?.id);
+  const notifications = useNotifications(`${user?.id}`);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -43,6 +41,7 @@ const Notifications = () => {
           </IconButton>
         </Tooltip>
       </Box>
+
       <NotificationList
         open={open}
         anchorEl={anchorEl}

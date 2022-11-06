@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useParams, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { deleteNotification } from '../../helpers/DeleteNotification';
 import { useAuth } from '../../hooks/UseAuthar';
 import INotification from '../../Interfaces/notification/INotification';
@@ -7,12 +6,7 @@ import AvatarNotification from './AvatarNotification';
 
 const Notifcation = ({ notification }: { notification: INotification }) => {
   const { user } = useAuth();
-  const params = useParams();
-  useEffect(() => {
-    if (params.id === `${notification.uid}`) {
-      deleteNotification(user?.id, notification.id);
-    }
-  }, [params, user?.id, notification]);
+
   return (
     <NavLink
       style={{

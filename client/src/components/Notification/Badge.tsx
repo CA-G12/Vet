@@ -2,7 +2,11 @@ import Badge, { BadgeProps } from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import INotification from '../../Interfaces/notification/INotification';
+import { deleteNotification } from '../../helpers/DeleteNotification';
+import { useAuth } from '../../hooks/UseAuthar';
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -18,6 +22,15 @@ const NotificationBadge = ({
 }: {
   notifications: Array<INotification>;
 }) => {
+  const params = useParams();
+  const { user } = useAuth();
+  useEffect(() => {
+    notifications.forEach(notification => {
+      if (params.id === `${notification.uid}`) {
+        deleteNotification(user?.id, notification.id);
+      }
+    });
+  }, [params, user?.id, notifications]);
   return (
     <IconButton aria-label="cart">
       <StyledBadge badgeContent={notifications.length} color="secondary">
