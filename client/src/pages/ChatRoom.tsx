@@ -10,27 +10,25 @@ import IUser from '../Interfaces/post/IUser';
 
 const ChatRoom = () => {
   const { user } = useAuth();
-  const params = useParams();
-  const [resver, setResever] = useState<IUser>({
-    id: 0,
-    name: '',
-    avatar: '',
-    role: '',
-  });
-  const roomId =
-    user?.id && Number(params.id) > user?.id
-      ? `${user?.id}-${params.id}`
-      : `${params?.id}-${user?.id}`;
+  const params = useParams<{ id: string }>();
+  const [receiver, setReceiver] = useState<IUser | null>(null);
+
   useEffect(() => {
     (async () => {
-      const resever = await ApiServices.get(`users/chat/${params.id}`);
-      setResever(resever.data);
+      const { data } = await ApiServices.get(`users/chat/${params?.id}`);
+      setReceiver(data);
     })();
-  }, [params]);
+  }, [params, user]);
+
+  if (!user || !receiver) return null;
+  const roomId =
+    user.id && Number(params.id) > user.id
+      ? `${user.id}-${params.id}`
+      : `${params.id}-${user.id}`;
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
-      <h2 style={{ marginBottom: '50px' }}>Chat Room with {resver.name}</h2>
+      <h2 style={{ marginBottom: '50px' }}>Chat Room with {receiver.name}</h2>
       <Box
         sx={{
           width: { xs: '100%', sm: '50%' },
@@ -40,7 +38,7 @@ const ChatRoom = () => {
           color: '#ffff',
         }}
       >
-        <MassageAvatar user={resver} />
+        <MassageAvatar user={receiver} />
       </Box>
       <Box
         sx={{

@@ -8,8 +8,7 @@ import React, {
 
 import { toast } from 'react-toastify';
 
-import IAuth from '../Interfaces/IAuth';
-import IAuthCon from '../Interfaces/IAuthCon';
+import IAuthCon, { SignIn, SignUp } from '../Interfaces/IAuthCon';
 
 import ApiService from '../services/ApiService';
 import JwtService from '../services/JwtService';
@@ -17,13 +16,13 @@ import JwtService from '../services/JwtService';
 const authContext = createContext<IAuthCon>({} as IAuthCon);
 
 const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<IAuthCon['user']>();
+  const [user, setUser] = useState<IAuthCon['user']>(null);
 
   // signing pop up
   const [open, setOpen] = useState(false);
 
   const signUp = useCallback(
-    async ({ email, password, confirmPassword, name, role }: IAuth) => {
+    async ({ email, password, confirmPassword, name, role }: SignUp) => {
       try {
         const signUpReq = await ApiService.post('/sign-up', {
           email,
@@ -48,7 +47,7 @@ const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
     [],
   );
 
-  const signIn = useCallback(async ({ email, password }: IAuth) => {
+  const signIn = useCallback(async ({ email, password }: SignIn) => {
     try {
       const signInReq = await ApiService.post('/sign-in', { email, password });
       setUser({
@@ -67,7 +66,7 @@ const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
 
   const signOut = useCallback(() => {
     JwtService.destroyToken();
-    setUser(undefined);
+    setUser(null);
   }, []);
 
   useEffect(() => {
@@ -76,7 +75,7 @@ const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
         const dataUnMount = await ApiService.get('/user/me');
         setUser(dataUnMount.data.user);
       } catch (error: any) {
-        setUser(undefined);
+        setUser(null);
       }
     };
     userReq();

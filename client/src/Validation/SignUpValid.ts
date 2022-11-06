@@ -10,7 +10,8 @@ const SignUpValid = yup.object().shape({
     .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
   confirmPassword: yup
     .string()
-    .oneOf([yup.ref('password'), null], 'Passwords must match'),
+    .oneOf([yup.ref('password'), null], 'Passwords must match')
+    .required('Passwords must match.'),
   role: yup.string().oneOf(['USER', 'DOCTOR']).required('role is not exits'),
 });
 export default SignUpValid;

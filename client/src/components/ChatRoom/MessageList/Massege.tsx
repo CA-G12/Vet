@@ -1,6 +1,4 @@
 import { Box } from '@mui/system';
-import { useContext } from 'react';
-import { authContext } from '../../../hooks/useAuth';
 import IMassage from '../../../Interfaces/post/IMassage';
 import MassageAvatar from './MassageAvatar';
 
@@ -12,7 +10,6 @@ const Message = ({
   isOwnMessage: boolean;
 }) => {
   const { text } = message;
-  const { user } = useContext(authContext);
 
   return (
     <Box
@@ -38,7 +35,7 @@ const Message = ({
         >
           {text}
         </p>
-        <MassageAvatar user={isOwnMessage ? user : message} />
+        <MassageAvatar user={message} />
       </Box>
     </Box>
   );
