@@ -70,7 +70,9 @@ const Home = () => {
             <BasicSelect
               value={filter.AnimalId}
               options={AnimalList}
-              setValue={value => setFilter(prev => ({ ...prev, TagId: value }))}
+              setValue={value =>
+                setFilter(prev => ({ ...prev, AnimalId: value }))
+              }
             />
           </Box>
         )}
