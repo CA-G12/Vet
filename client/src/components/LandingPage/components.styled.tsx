@@ -14,15 +14,18 @@ const CardContainer = styled(Box)({
     flexDirection: 'row-reverse',
   },
   '@media screen and (max-width:450px)': {
-    margin: '1rem 2rem',
+    margin: '0.5rem 0rem',
+    padding: '0 0 1rem 0',
+    width: '18rem',
+    borderBottom: '0.1px solid black',
   },
 });
 
 const ServiceImage = styled('img')({
   width: '30rem',
-  borderRadius: '1rem',
+  borderRadius: '5px',
   '@media screen and (max-width:450px)': {
-    width: '20rem',
+    width: '16rem',
   },
 });
 
@@ -30,9 +33,12 @@ const ServiceDescription = styled(Typography)({
   width: '30rem',
   marginTop: '1.5rem',
   fontSize: '20px',
+  color: '#356E6E',
   '@media screen and (max-width:450px)': {
-    width: '20rem',
+    width: '16rem',
     textAlign: 'center',
+    fontSize: '1rem',
+    marginTop: '0',
   },
 });
 
@@ -48,7 +54,7 @@ const ServicesList = styled(Box)({
   background: '#ffffff',
   paddingBottom: '1.5rem',
   '@media screen and (max-width:450px)': {
-    margin: '10rem 0px 0px 0px',
+    margin: '11rem 0px 0px 0px',
   },
 });
 
@@ -56,6 +62,7 @@ const WelcomeLandSection = styled(Box)({
   position: 'absolute',
   top: '0',
   background: 'url(./catBackground.png)',
+  backgroundAttachment: 'fixed',
   width: '100%',
   minHeight: '100%',
   backgroundRepeat: 'no-repeat',
@@ -77,10 +84,18 @@ const WelcomePargraph = styled(Typography)({
   fontFamily: 'Inter',
   letterSpacing: '.6rem',
   paddingBottom: '1.5rem',
+  fontWeight: '600',
   '@media screen and (max-width:450px)': {
     fontSize: '1rem',
     letterSpacing: '.2rem',
     marginBottom: '25rem',
+  },
+});
+const ServicesTitle = styled(Typography)({
+  'padding-top': '1rem',
+  color: '#D53449',
+  '@media screen and (max-width:450px)': {
+    fontSize: '1.5rem',
   },
 });
 
@@ -91,4 +106,5 @@ export {
   ServicesList,
   WelcomeLandSection,
   WelcomePargraph,
+  ServicesTitle,
 };
