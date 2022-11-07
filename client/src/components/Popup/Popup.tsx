@@ -56,7 +56,7 @@ const PopUp = (propss: Propss) => {
             <Typography id="modal-modal-title" variant="h6" component="h2">
               <img src="./pawsLogo.png" alt="logo" width="40px" height="40px" />
               <section className="tabs">
-                <LabTabs open={setOpen} />
+                <LabTabs />
               </section>
             </Typography>
           </Box>

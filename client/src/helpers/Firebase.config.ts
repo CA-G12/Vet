@@ -1,4 +1,6 @@
 import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+
 import { getStorage } from 'firebase/storage';
 
 const app = initializeApp({
@@ -16,7 +18,9 @@ const app = initializeApp({
 
   measurementId: 'G-ED5N1LCEJT',
 });
+export const db = getFirestore(app);
 
 // Initialize Firebase
 export const storage = getStorage(app);
+
 export default storage;

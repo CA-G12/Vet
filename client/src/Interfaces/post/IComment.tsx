@@ -5,7 +5,7 @@ interface IComment {
   PostId: number;
   UserId: number;
   comment: string;
-  image: string | null;
+  image?: string | null;
   User: IUser;
 }
 export default IComment;

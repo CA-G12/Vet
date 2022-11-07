@@ -11,6 +11,7 @@ import Emergency from './pages/Emergency';
 import DoctorProfile from './pages/DoctorProfile';
 import NotFound from './pages/NotFound';
 import ApiService from './services/ApiService';
+import ChatRoom from './pages/ChatRoom';
 
 ApiService.init();
 
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: 'emergency',
         element: <Emergency />,
+      },
+      {
+        path: 'chatroom/:id',
+        element: <ChatRoom />,
       },
       { path: 'profile/:id', element: <DoctorProfile /> },
     ],
