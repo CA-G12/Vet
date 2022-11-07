@@ -1,17 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import './index.css';
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Landing from './pages/Landing';
 import Home from './pages/Home';
+
 import Doctors from './pages/Doctors';
 import Emergency from './pages/Emergency';
 import DoctorProfile from './pages/DoctorProfile';
+
 import NotFound from './pages/NotFound';
 import ApiService from './services/ApiService';
+import { LandingPage } from './components/LandingPage';
+
 import ChatRoom from './pages/ChatRoom';
+
+import './index.css';
 
 ApiService.init();
 
@@ -20,7 +25,7 @@ const router = createBrowserRouter([
     path: '/',
     element: <App />,
     children: [
-      { index: true, element: <Landing /> },
+      { index: true, element: <LandingPage /> },
       { path: 'home', element: <Home /> },
       { path: 'doctors', element: <Doctors /> },
       {
@@ -47,7 +52,4 @@ root.render(
   </React.StrictMode>,
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
