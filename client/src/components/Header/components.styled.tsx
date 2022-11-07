@@ -69,6 +69,7 @@ const StyledHeader = styled('header')({
   '@media screen and (max-width: 850px)': {
     padding: '0 20px',
     gap: '0.5rem',
+    height: '3em',
   },
 });
 
