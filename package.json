@@ -2,6 +2,7 @@
   "name": "vet",
   "version": "1.0.0",
   "description": "",
+  "type":"module",
   "main": "index.ts",
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --runInBand",
