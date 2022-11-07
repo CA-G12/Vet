@@ -96,37 +96,26 @@ export default class PostsController {
   }
 
   public static async update(req: Request, res: Response) {
-    try {
-      const { content, image, Animal, Tag, User } = req.body;
-
-      const validatedUpdate = await postSchema.validateAsync({
-        content,
-        image,
-        Animal,
-        Tag,
-        UserId: User.id,
-      });
-
-      const [, [updatePost]] = await Post.update(validatedUpdate, {
-        where: { id: req.params.postId, UserId: User.id },
-        returning: true,
-      });
-      if (!updatePost) {
-        throw new CustomError(400, 'you cannot update this post');
-      }
-      res.status(200).json({
-        status: res.status,
-        msg: 'post updated successfully',
-        data: updatePost,
-      });
-    } catch (error) {
-      console.log(error);
-
-      res.status(400).json({
-        msg: 'something went wrong',
-        error,
-      });
+    const { content, image, AnimalId, TagId } = req.body;
+    const validatedUpdate = await postSchema.validateAsync({
+      content,
+      image,
+      AnimalId,
+      TagId,
+      UserId: req.user?.id,
+    });
+    const [, [updatePost]] = await Post.update(validatedUpdate, {
+      where: { id: req.params.postId, UserId: req.user?.id },
+      returning: true,
+    });
+    if (!updatePost) {
+      throw new CustomError(400, 'you cannot update this post');
     }
+    res.status(200).json({
+      status: res.status,
+      msg: 'post updated successfully',
+      data: updatePost,
+    });
   }
 
   public static async delete(req: Request, res: Response) {
