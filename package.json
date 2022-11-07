@@ -8,7 +8,7 @@
     "buildDB": " cross-env NODE_ENV=development ts-node src/db/build.ts",
     "build-db": " cross-env NODE_ENV=production ts-node src/db/build.ts",
     "dev": "cross-env NODE_ENV=development nodemon --config nodemon.json src/index.ts",
-    "start": "cross-env NODE_ENV=production node dist",
+    "start": "cross-env NODE_ENV=production node src/index.ts",
     "build": "tsc -p .",
     "lint": "eslint src/** --ext .ts",
     "lint-fix": "eslint src/**/*.ts --fix --max-warnings=0",
