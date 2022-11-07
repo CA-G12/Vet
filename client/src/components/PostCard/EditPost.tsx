@@ -21,9 +21,11 @@ const EditPost = ({
   const handEleditPost = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     ApiServices.put(`post/${postContent.id}`, {
-      content:postContent.content,
-      image:postContent.image,
-      AnimalId:postContent.Animal.id,TagId:postContent.Tag.id});
+      content: postContent.content,
+      image: postContent.image,
+      AnimalId: postContent.Animal.id,
+      TagId: postContent.Tag.id,
+    });
     setEditPost(false);
   };
   return (
