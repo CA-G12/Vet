@@ -1,7 +1,5 @@
 import './post.css';
-
 import { useContext, useState } from 'react';
-
 import useOutsideClick from '../../hooks/UseOutsideClick';
 import BtnsPost from './BtnsPost';
 import IPost from '../../Interfaces/post/IPost';
@@ -11,6 +9,7 @@ import EditAndDeleteBtn from './EditAndDeleteBtn';
 import StackCommentsAndLikes from './StackCommentsAndLikes';
 import ApiServices from '../../services/ApiService';
 import { authContext } from '../../hooks/useAuth';
+import EditPost from './EditPost';
 
 const Post = ({ post }: { post: IPost }) => {
   const { user } = useContext(authContext);
@@ -21,6 +20,8 @@ const Post = ({ post }: { post: IPost }) => {
   const [page, setPage] = useState(1);
   const [isShowMore, setIsShowMore] = useState(false);
   const [numComments, setNumComments] = useState(post.Comments.length);
+  const [editPost, setEditPost] = useState(false);
+  const [postContent, setPostContent] = useState(post);
 
   const showMore = async () => {
     setIsShowMore(true);
@@ -52,14 +53,21 @@ const Post = ({ post }: { post: IPost }) => {
   return (
     <div ref={ref} className="post-card">
       <article className="article abusluot-btns">
-        <section className="post-content-continuer">
+        <section style={{ width: '100%' }} className="post-content-continuer">
           <UserPostInfo user={post.User} />
-          {post.image && (
+          {postContent.image && !editPost && (
             <div className="img-post-mobile">
-              <img src={post.image} alt="" />
+              <img src={postContent.image} alt="" />
             </div>
           )}
-          <p className="content">{post.content}</p>
+          {!editPost && <p className="content">{postContent.content}</p>}
+          {editPost && (
+            <EditPost
+              postContent={postContent}
+              setPostContent={setPostContent}
+              setEditPost={setEditPost}
+            />
+          )}
 
           <StackCommentsAndLikes
             commentNum={numComments}
@@ -67,12 +75,18 @@ const Post = ({ post }: { post: IPost }) => {
             handleClick={handleClick}
           />
         </section>
-        {post.image && (
+        {postContent.image && !editPost && (
           <figure className="img-post-desctop">
-            <img className="img-post" src={post.image} alt="" />
+            <img className="img-post" src={postContent.image} alt="" />
           </figure>
         )}
-        {user?.id === post.User.id && <EditAndDeleteBtn />}
+        {user?.id === post.User.id && (
+          <EditAndDeleteBtn
+            edit={editPost}
+            setEdit={setEditPost}
+            postId={post.id}
+          />
+        )}
       </article>
 
       <BtnsPost

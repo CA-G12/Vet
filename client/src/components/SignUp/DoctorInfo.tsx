@@ -118,7 +118,7 @@ const Doctor = ({ open }: { open: Function }) => {
       </FormControl>
       <br />
       <button type="submit" className="sign-Doctor">
-        Sign up{' '}
+        Sign up
       </button>
     </form>
   );

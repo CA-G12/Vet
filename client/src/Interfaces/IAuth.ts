@@ -1,12 +1,9 @@
-interface IAuth {
-  id?: number;
-  name?: string;
-  avatar?: string;
-  password?: string;
-  confirmPassword?: string;
+import IUser from './post/IUser';
+
+type IAuth = IUser & {
   role?: string;
+  password?: string;
   showPassword?: boolean;
   showConfirmPassword?: boolean;
-  email?: string;
-}
+};
 export default IAuth;

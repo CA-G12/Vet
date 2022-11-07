@@ -4,8 +4,18 @@ import supertest from 'supertest';
 import build from '../src/db/build';
 import sequelize from '../src/db/connection';
 
-beforeEach(() => build());
-afterAll(() => sequelize.close());
+let token = '';
+
+beforeAll(() => build());
+
+beforeEach(async () => {
+  const response = await supertest(app).post('/api/v1/sign-in').send({
+    email: 'saeed@gmail.com',
+    password: '123456',
+  });
+  token = response.body.data.token;
+});
+
 describe(' Appointments for success', () => {
   test('for insert new appointment', done => {
     supertest(app)
@@ -19,6 +29,7 @@ describe(' Appointments for success', () => {
         end: '2022-10-27T20:00:00+03:00',
         description: 'test 1test2 ,test3 test 1 ,test2 ,test3   ',
       })
+      .set('Authorization', `Bearer ${token}`)
       .end((err, res) => {
         if (err) return done(err);
         else {
@@ -40,6 +51,7 @@ describe(' Appointments for success', () => {
         start: '2022-10-29T18:00:00+03:00',
         end: '2022-10-29T20:00:00+03:00',
       })
+      .set('Authorization', `Bearer ${token}`)
       .end((err, res) => {
         if (err) return done(err);
         else {
@@ -57,6 +69,7 @@ describe(' Appointments for success', () => {
     supertest(app)
       .get('/api/v1/Appointment/6')
       .expect(200)
+      .set('Authorization', `Bearer ${token}`)
       .end((err, res) => {
         if (err) return done(err);
         else {
@@ -72,6 +85,7 @@ describe(' Appointments for success', () => {
   test('get pending appointment', done => {
     supertest(app)
       .get('/api/v1/pending-appointment/6')
+      .set('Authorization', `Bearer ${token}`)
       .expect(200)
       .end((err, res) => {
         if (err) return done(err);
@@ -84,6 +98,7 @@ describe(' Appointments for success', () => {
   test('accept appointment', done => {
     supertest(app)
       .put('/api/v1/pending-appointment')
+      .set('Authorization', `Bearer ${token}`)
       .send({
         id: 2,
         DoctorId: 6,
@@ -94,8 +109,8 @@ describe(' Appointments for success', () => {
         else {
           expect(res.body).toEqual({
             id: 2,
-            start: '2022-10-26T17:00:00.000Z',
-            end: '2022-10-26T17:00:00.000Z',
+            start: '2022-10-29T15:00:00.000Z',
+            end: '2022-10-29T17:00:00.000Z',
             status: 'ACCEPTED',
             DoctorId: 6,
           });
@@ -106,6 +121,7 @@ describe(' Appointments for success', () => {
   test('Delete appointment', done => {
     supertest(app)
       .delete('/api/v1/Appointment/6/1')
+      .set('Authorization', `Bearer ${token}`)
       .expect(200)
       .end((err, res) => {
         if (err) return done(err);
@@ -121,6 +137,7 @@ describe('invalid inputs for insert Appointment ', () => {
   test('add invalid description  appointment', done => {
     supertest(app)
       .post('/api/v1/Appointment')
+      .set('Authorization', `Bearer ${token}`)
       .send({
         id: 2,
         status: 'ACCEPTED',
@@ -143,6 +160,7 @@ describe('invalid inputs for insert Appointment ', () => {
   test('add invalid status appointment', done => {
     supertest(app)
       .post('/api/v1/Appointment')
+      .set('Authorization', `Bearer ${token}`)
       .send({
         id: 2,
         DoctorId: 6,
@@ -164,6 +182,7 @@ describe('invalid inputs for insert Appointment ', () => {
   test('Delete appointment', done => {
     supertest(app)
       .delete('/api/v1/Appointment/6/5')
+      .set('Authorization', `Bearer ${token}`)
       .expect(404)
       .end((err, res) => {
         if (err) return done(err);
@@ -174,3 +193,5 @@ describe('invalid inputs for insert Appointment ', () => {
       });
   });
 });
+
+afterAll(() => sequelize.close());

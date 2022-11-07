@@ -1,11 +1,15 @@
+import { useContext, useState } from 'react';
+
 import { IconButton } from '@mui/material';
 import PetsIcon from '@mui/icons-material/Pets';
 import Tooltip from '@mui/material/Tooltip';
-import { useContext, useState } from 'react';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
+
 import AddInputComment from './AddInputComment';
 import IComment from '../../Interfaces/post/IComment';
+
 import { authContext } from '../../hooks/useAuth';
 import PopUp from '../Popup/Popup';
 
@@ -30,7 +34,7 @@ const BtnsPost = ({
   getComments,
   setGetComments,
 }: IBtnsPost) => {
-  const { user } = useContext(authContext);
+  const { user, open, setOpen } = useContext(authContext);
   const [showCommentInput, setShowCommentInput] = useState(false);
   const handleClick = () => {
     setShowCommentInput(!showCommentInput);
@@ -67,7 +71,7 @@ const BtnsPost = ({
           setShowCommentInput={setShowCommentInput}
         />
       )}
-      {showCommentInput && !user && <PopUp />}
+      {showCommentInput && !user && <PopUp open={open} setOpen={setOpen} />}
     </div>
   );
 };

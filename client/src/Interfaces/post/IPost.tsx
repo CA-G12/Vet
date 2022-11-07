@@ -5,7 +5,7 @@ import ITag from './ITag';
 interface IPost {
   id: number;
   content: string;
-  image: string;
+  image?: string;
   User: IUser;
   Likes: Array<ILike>;
   Tag: ITag;
