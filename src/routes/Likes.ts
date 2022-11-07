@@ -9,5 +9,10 @@ router.post(
   errorWrapper(isAuth),
   errorWrapper(LikesController.store),
 );
+router.delete(
+  '/likes',
+  errorWrapper(isAuth),
+  errorWrapper(LikesController.destroy),
+);
 
 export default router;
