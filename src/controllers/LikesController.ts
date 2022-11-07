@@ -14,7 +14,6 @@ export default class LikesController {
         UserId,
         PostId,
       });
-      console.log(postDoesExist);
 
       res.json({
         status: res.status,
