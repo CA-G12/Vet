@@ -21,10 +21,34 @@ export default class PostsController {
         TagId,
         UserId,
       });
+
+      const Newpost = await Post.findAll({
+        attributes: ['id', 'content', 'image'],
+        include: [
+          { model: User, attributes: ['name', 'avatar', 'id', 'role'] },
+          {
+            model: Like,
+            attributes: ['id'],
+            include: [
+              { model: User, attributes: ['name', 'id', 'avatar', 'role'] },
+            ],
+          },
+          {
+            model: Tag,
+            attributes: ['id', 'name'],
+          },
+          { model: Comment, attributes: ['id'] },
+          {
+            model: Animal,
+            attributes: ['id', 'name'],
+          },
+        ],
+        where: { id: createPost.id },
+      });
       res.status(200).json({
         status: res.status,
         msg: 'new post added successfully',
-        data: createPost,
+        data: Newpost,
       });
     } catch (error) {
       res.status(400).json({

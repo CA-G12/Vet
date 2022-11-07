@@ -79,7 +79,7 @@ const Home = () => {
         )}
       </Box>
       <Box className="posts">
-        <AddPost />
+        <AddPost posts={posts} setPost={setPost} />
 
         {loading && posts.length !== 0 ? (
           <PostsList posts={posts} />

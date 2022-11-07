@@ -16,6 +16,7 @@ import ITag from '../../Interfaces/post/ITag';
 import IAddPost from '../../Interfaces/post/IAddPost';
 import ApiServices from '../../services/ApiService';
 import { authContext } from '../../hooks/useAuth';
+import IPost from '../../Interfaces/post/IPost';
 
 const AnimalList: ITag[] = [
   { id: 1, name: 'Cats' },
@@ -47,7 +48,13 @@ const style = {
   p: 4,
 };
 
-const AddPost = () => {
+const AddPost = ({
+  posts,
+  setPost,
+}: {
+  posts: Array<IPost>;
+  setPost: Function;
+}) => {
   const { user } = React.useContext(authContext);
   const [open, setOpen] = React.useState(false);
   const [progress, setProgress] = React.useState(0);
@@ -86,8 +93,9 @@ const AddPost = () => {
         image: imageUrl,
       };
 
-      ApiServices.init();
-      await ApiServices.post('/posts', postData);
+      const newPost = await ApiServices.post('/posts', postData);
+      setPost([newPost.data.data[0], ...posts]);
+
       toast.success('new post added successfully');
       handleClose();
     } catch (err: any) {
