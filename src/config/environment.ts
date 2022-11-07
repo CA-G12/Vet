@@ -16,12 +16,17 @@ if (!nodeEnv) {
 }
 
 let dbUrl: string | undefined;
+let ssl: boolean | object = false;
 switch (nodeEnv) {
   case 'development':
     dbUrl = process.env.DEV_DB_URL;
     break;
   case 'production':
     dbUrl = process.env.DATABASE_URL;
+    ssl = {
+      require: true,
+      rejectunauthorized: false,
+    };
     break;
   case 'test':
     dbUrl = process.env.TEST_URL;
@@ -37,4 +42,5 @@ export default {
   secretKey,
   googleClientId,
   googleClientSecret,
+  ssl,
 };

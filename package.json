@@ -6,6 +6,7 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --runInBand",
     "buildDB": " cross-env NODE_ENV=development ts-node src/db/build.ts",
+    "build-db": " cross-env NODE_ENV=production ts-node src/db/build.ts",
     "dev": "cross-env NODE_ENV=development nodemon --config nodemon.json src/index.ts",
     "start": "cross-env NODE_ENV=development node dist",
     "build": "tsc -p .",
@@ -82,5 +83,8 @@
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.24.0",
     "ts-jest": "^29.0.3"
-  }
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.0.7"
+}
 }
