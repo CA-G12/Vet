@@ -1,19 +1,21 @@
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import ButtonDoctor from './ButtonDoctor';
-import UserPostInfo from './DoctorInfo';
+import ButtonDoctor from './DoctorButton';
+import UserAvatar from './UserAvatar';
 import IUser from '../../Interfaces/post/IUser';
 
 const Index = ({ user }: { user: IUser }) => (
-  <Box sx={{ width: '80%' }}>
-    <Grid sx={{ alignItems: 'center' }} container rowSpacing={1}>
-      <Grid xs={6}>
-        <UserPostInfo user={user} />
-      </Grid>
-      <Grid xs={2}>
-        <ButtonDoctor user={user} />
-      </Grid>
-    </Grid>
+  <Box
+    display="flex"
+    justifyContent="space-between"
+    alignItems="center"
+    sx={{ width: '80%', marginTop: '20px' }}
+  >
+    <Box>
+      <UserAvatar user={user} />
+    </Box>
+    <Box>
+      <ButtonDoctor id={user.id} />
+    </Box>
   </Box>
 );
 export default Index;

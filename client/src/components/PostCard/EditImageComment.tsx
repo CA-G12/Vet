@@ -6,10 +6,11 @@ import * as React from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import IComment from '../../Interfaces/post/IComment';
 import uploadImage from '../../helpers/uploadImage';
+import IPost from '../../Interfaces/post/IPost';
 
 type Props = {
-  data: IComment;
-  setData: React.Dispatch<React.SetStateAction<IComment>>;
+  data: IComment | IPost;
+  setData: any;
 };
 
 const EditImageComment = ({ data, setData }: Props) => {
@@ -25,7 +26,7 @@ const EditImageComment = ({ data, setData }: Props) => {
     if (file) {
       setIsUploading(true);
       const imageUrl = await uploadImage(file, () => {});
-      setData(prevData => ({ ...prevData, image: imageUrl }));
+      setData({ ...data, image: imageUrl });
       setIsUploading(false);
     }
   };

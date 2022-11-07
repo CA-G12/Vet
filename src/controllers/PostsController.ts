@@ -1,5 +1,5 @@
 import { User, Post, Like, Tag, Animal, Comment } from '../db';
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 import { Op } from 'sequelize';
 import { postSchema } from '../schemes';
 import CustomError from '../helpers/errorsHandling/CustomError';
@@ -21,10 +21,34 @@ export default class PostsController {
         TagId,
         UserId,
       });
+
+      const Newpost = await Post.findAll({
+        attributes: ['id', 'content', 'image'],
+        include: [
+          { model: User, attributes: ['name', 'avatar', 'id', 'role'] },
+          {
+            model: Like,
+            attributes: ['id'],
+            include: [
+              { model: User, attributes: ['name', 'id', 'avatar', 'role'] },
+            ],
+          },
+          {
+            model: Tag,
+            attributes: ['id', 'name'],
+          },
+          { model: Comment, attributes: ['id'] },
+          {
+            model: Animal,
+            attributes: ['id', 'name'],
+          },
+        ],
+        where: { id: createPost.id },
+      });
       res.status(200).json({
         status: res.status,
         msg: 'new post added successfully',
-        data: createPost,
+        data: Newpost,
       });
     } catch (error) {
       res.status(400).json({
@@ -95,7 +119,7 @@ export default class PostsController {
     res.json(posts);
   }
 
-  public static async update(req: Request, res: Response, next: NextFunction) {
+  public static async update(req: Request, res: Response) {
     const { content, image, AnimalId, TagId } = req.body;
     const validatedUpdate = await postSchema.validateAsync({
       content,
