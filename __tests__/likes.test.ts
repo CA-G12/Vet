@@ -5,8 +5,8 @@ import build from '../src/db/build';
 import sequelize from '../src/db/connection';
 let token = '';
 beforeAll(() => build());
-beforeAll(async () => {
-  const response = await supertest(app).post('/api/v1/signin').send({
+beforeEach(async () => {
+  const response = await supertest(app).post('/api/v1/sign-in').send({
     email: 'saeed@gmail.com',
     password: '123456',
   });
