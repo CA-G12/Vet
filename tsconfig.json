@@ -17,11 +17,15 @@
     "module": "commonjs",
     "declaration": true,
     "outDir": "dist",
+    "rootDir": "./src",
     "esModuleInterop": true,
     "resolveJsonModule": true,
   },
   "include": [
     "src",
+  ],
+  "exclude": [
+    "__tests__/**.ts"
   ],
   "files": [
     "src/types/express/index.d.ts"
