@@ -16,20 +16,10 @@ type Props = {
 };
 export const Actions = (props: Props) => {
   const { user } = useContext(authContext);
-  const [isAuth, setIsAuth] = useState(false);
   const [isLandingPage, setIsLandingPage] = useState(false);
   const [isAdminDashboard, setIsAdminDashboard] = useState(true);
   const location = useLocation();
 
-  // handle user isAuth
-  useEffect(() => {
-    if (user) {
-      setIsAuth(true);
-    } else {
-      setIsAuth(false);
-    }
-  }, [user]);
-  // handle route pathName
   useEffect(() => {
     // condition to change isLandingPage
     if (location.pathname === '/') {
@@ -49,8 +39,8 @@ export const Actions = (props: Props) => {
     <ActionsBox>
       {isLandingPage ? <Search /> : null}
       {isAdminDashboard ? <FireCall /> : null}
-      {isAuth ? <UserTicket user={user} /> : null}
-      {!isAuth ? <AuthButtons handleOpen={handleOpen} /> : null}
+      {user ? <UserTicket user={user} /> : null}
+      <AuthButtons handleOpen={handleOpen} />
     </ActionsBox>
   );
 };
