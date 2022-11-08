@@ -11,7 +11,6 @@ import AddInputComment from './AddInputComment';
 import IComment from '../../Interfaces/post/IComment';
 
 import { authContext } from '../../hooks/useAuth';
-import PopUp from '../Popup/Popup';
 import ILike from '../../Interfaces/post/ILike';
 import ApiServices from '../../services/ApiService';
 
@@ -43,8 +42,12 @@ const BtnsPost = ({
   const { user, open, setOpen } = useContext(authContext);
   const [showCommentInput, setShowCommentInput] = useState(false);
   const handleClick = () => {
-    setShowCommentInput(!showCommentInput);
-    setIsConnected(true);
+    if (!user) {
+      setOpen(!open);
+    } else {
+      setShowCommentInput(!showCommentInput);
+      setIsConnected(true);
+    }
   };
   const handelLike = async () => {
     if (user) {
@@ -68,6 +71,8 @@ const BtnsPost = ({
           },
         ]);
       }
+    } else {
+      setOpen(!open);
     }
   };
 
@@ -110,7 +115,6 @@ const BtnsPost = ({
           setShowCommentInput={setShowCommentInput}
         />
       )}
-      {showCommentInput && !user && <PopUp open={open} setOpen={setOpen} />}
     </div>
   );
 };

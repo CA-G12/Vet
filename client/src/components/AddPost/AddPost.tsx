@@ -55,7 +55,7 @@ const AddPost = ({
   posts: Array<IPost>;
   setPost: Function;
 }) => {
-  const { user } = React.useContext(authContext);
+  const userContext = React.useContext(authContext);
   const [open, setOpen] = React.useState(false);
   const [progress, setProgress] = React.useState(0);
   const [file, setFile] = React.useState<File | null>(null);
@@ -70,9 +70,10 @@ const AddPost = ({
   };
 
   const handleOpen = () => {
-    if (user) {
+    if (userContext.user) {
       setOpen(true);
     } else {
+      userContext.setOpen(true);
       toast.error('you have to be logged in to post');
     }
   };
@@ -89,7 +90,7 @@ const AddPost = ({
 
       const postData: IAddPost = {
         ...validated,
-        UserId: user?.id,
+        UserId: userContext.user?.id,
         image: imageUrl,
       };
 
@@ -128,7 +129,7 @@ const AddPost = ({
           <form action="" onSubmit={handleSubmit}>
             <Box sx={style}>
               <Box sx={{ alignSelf: 'flex-start' }}>
-                {user && <Username user={user} />}
+                {userContext.user && <Username user={userContext.user} />}
               </Box>
               <TextareaAutosize
                 name="content"
