@@ -25,7 +25,12 @@ class App {
     this.app.use(express.json());
     this.app.use(cookieParser());
     this.app.use(express.urlencoded({ extended: false }));
-    this.app.use(express.static(join(__dirname, '..', 'client', 'build')));
+    if (environment.nodeEnv === 'production') {
+      this.app.use(express.static(join(__dirname, '..', 'client', 'build')));
+      this.app.get('*', (req, res) => {
+        res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
+      });
+    }
     this.app.use('/api/v1', router);
 
     this.app.use(
