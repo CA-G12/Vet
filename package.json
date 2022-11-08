@@ -2,7 +2,7 @@
   "name": "vet",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --runInBand",
     "buildDB": " cross-env NODE_ENV=development ts-node src/db/build.ts",
