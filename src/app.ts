@@ -31,7 +31,7 @@ class App {
     this.app.use(express.urlencoded({ extended: false }));
     if (environment.nodeEnv === 'production') {
       this.app.use(express.static(join(__dirname, '..', 'client', 'build')));
-      this.app.get('*', (req, res) => {
+      this.app.get('/*', (req: Request, res: Response) => {
         res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
       });
     }
