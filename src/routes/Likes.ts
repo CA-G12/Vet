@@ -10,7 +10,7 @@ router.post(
   errorWrapper(LikesController.store),
 );
 router.delete(
-  '/likes',
+  '/likes/:postId',
   errorWrapper(isAuth),
   errorWrapper(LikesController.destroy),
 );

@@ -13,6 +13,7 @@ import IComment from '../../Interfaces/post/IComment';
 import { authContext } from '../../hooks/useAuth';
 import PopUp from '../Popup/Popup';
 import ILike from '../../Interfaces/post/ILike';
+import ApiServices from '../../services/ApiService';
 
 interface IBtnsPost {
   isConnected: boolean;
@@ -45,15 +46,19 @@ const BtnsPost = ({
     setShowCommentInput(!showCommentInput);
     setIsConnected(true);
   };
-  const handelLike = () => {
+  const handelLike = async () => {
     if (user) {
       if (likes.some(like => like.User.id === user?.id)) {
+        await ApiServices.destroy(`likes/${postId}`);
         setLikes(likes.filter(like => like.User.id !== user?.id));
       } else {
+        const addLike = await ApiServices.post('likes', {
+          PostId: postId,
+        });
         setLikes([
           ...likes,
           {
-            id: 1,
+            id: addLike.data.data.id,
             User: {
               id: user.id,
               avatar: user.avatar,
