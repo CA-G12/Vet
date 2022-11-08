@@ -9,7 +9,7 @@
     "build-db": " cross-env NODE_ENV=production ts-node src/db/build.ts",
     "dev": "cross-env NODE_ENV=development nodemon --config nodemon.json src/index.ts",
     "start": "cross-env NODE_ENV=production node dist",
-    "build": "tsc -p .",
+    "build": "tsc",
     "lint": "eslint src/** --ext .ts",
     "lint-fix": "eslint src/**/*.ts --fix --max-warnings=0",
     "prepare": "husky install",
