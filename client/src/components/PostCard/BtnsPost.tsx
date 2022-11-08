@@ -12,6 +12,7 @@ import IComment from '../../Interfaces/post/IComment';
 
 import { authContext } from '../../hooks/useAuth';
 import PopUp from '../Popup/Popup';
+import ILike from '../../Interfaces/post/ILike';
 
 interface IBtnsPost {
   isConnected: boolean;
@@ -22,6 +23,8 @@ interface IBtnsPost {
   getComments: Array<IComment>;
   setGetComments: Function;
   setIsConnected: Function;
+  likes: Array<ILike>;
+  setLikes: Function;
 }
 
 const BtnsPost = ({
@@ -33,12 +36,34 @@ const BtnsPost = ({
   showComments,
   getComments,
   setGetComments,
+  setLikes,
+  likes,
 }: IBtnsPost) => {
   const { user, open, setOpen } = useContext(authContext);
   const [showCommentInput, setShowCommentInput] = useState(false);
   const handleClick = () => {
     setShowCommentInput(!showCommentInput);
     setIsConnected(true);
+  };
+  const handelLike = () => {
+    if (user) {
+      if (likes.some(like => like.User.id === user?.id)) {
+        setLikes(likes.filter(like => like.User.id !== user?.id));
+      } else {
+        setLikes([
+          ...likes,
+          {
+            id: 1,
+            User: {
+              id: user.id,
+              avatar: user.avatar,
+              role: 'USER',
+              name: user.name,
+            },
+          },
+        ]);
+      }
+    }
   };
 
   return (
@@ -51,13 +76,22 @@ const BtnsPost = ({
           <label htmlFor="add-comment-btn">
             {' '}
             <IconButton className="comment-btn" onClick={handleClick}>
-              <FontAwesomeIcon icon={faComment} />
+              <FontAwesomeIcon
+                style={{ width: '100px', color: '#ffff' }}
+                icon={faComment}
+              />
             </IconButton>
           </label>
         </Tooltip>
 
-        <IconButton>
-          <PetsIcon />
+        <IconButton onClick={handelLike}>
+          <PetsIcon
+            sx={{
+              color: !likes.some(like => like.User.id === user?.id)
+                ? '#ffff'
+                : '#FDD853',
+            }}
+          />
         </IconButton>
       </div>
       {showCommentInput && user && (
