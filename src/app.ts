@@ -29,6 +29,7 @@ class App {
     this.app.use(express.json());
     this.app.use(cookieParser());
     this.app.use(express.urlencoded({ extended: false }));
+    this.app.use('/api/v1', router);
     if (environment.nodeEnv === 'production') {
       this.app.use(express.static(join(__dirname, '..', 'client', 'build')));
 
@@ -36,8 +37,6 @@ class App {
         res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
       });
     }
-
-    this.app.use('/api/v1', router);
 
     this.app.use(
       // eslint-disable-next-line @typescript-eslint/no-unused-vars, promise/prefer-await-to-callbacks
