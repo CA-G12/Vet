@@ -9,6 +9,7 @@ import { ProvideAuth } from './hooks/useAuth';
 import { Header } from './components/Header/Header';
 import Notifications from './components/Notification';
 import { Footer } from './components/Footer';
+import WhoActive from './components/ActiveUsers.tsx';
 
 const App = () => (
   <ThemeProvider theme={theme}>
@@ -27,6 +28,7 @@ const App = () => (
       />
       <PostsContext>
         <Header />
+        <WhoActive />
         <Notifications />
         <Outlet />
         <Footer />
