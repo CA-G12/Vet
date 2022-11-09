@@ -5,7 +5,7 @@ const errorWrapper = (controller: RequestHandler) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
       await controller(req, res, next);
-    } catch (error: any) {
+    } catch (error: unknown) {
       if (isCustomError(error)) {
         if (error.name === 'JsonWebTokenError') {
           error.status = 401;

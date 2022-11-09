@@ -3,6 +3,7 @@ import { FormControl, TextField, Button } from '@mui/material';
 import '../Popup/style.css';
 import ImageIcon from '@mui/icons-material/Image';
 import { toast } from 'react-toastify';
+import LoadingButton from '@mui/lab/LoadingButton';
 import { DoctorInfo } from '../../Validation';
 import ApiService from '../../services/ApiService';
 import { authContext } from '../../hooks/useAuth';
@@ -126,9 +127,16 @@ const Doctor = ({ open }: { open: Function }) => {
         </label>
       </FormControl>
       <br />
-      <button type="submit" className="sign-Doctor">
-        Sign up
-      </button>
+      <LoadingButton
+        loading={progress > 0 && progress < 100}
+        type="submit"
+        variant="contained"
+        sx={{
+          width: 200,
+        }}
+      >
+        Post
+      </LoadingButton>
     </form>
   );
 };
