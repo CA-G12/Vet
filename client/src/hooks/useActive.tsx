@@ -1,11 +1,11 @@
 import React from 'react';
-import { getWhoActive } from '../helpers/onActiveUsersChange';
+import { onActiveUsersChange } from '../helpers/onActiveUsersChange';
 
 function useActive() {
   const [active, setActive] = React.useState([]);
 
   React.useEffect(() => {
-    const unsubscribe = getWhoActive(setActive);
+    const unsubscribe = onActiveUsersChange(setActive);
     return unsubscribe;
   }, []);
 

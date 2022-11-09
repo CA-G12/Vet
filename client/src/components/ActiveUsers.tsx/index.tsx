@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { SendIsActive } from '../../helpers/setActiveUser';
+import { setActiveUser } from '../../helpers/setActiveUser';
 import { useAuth } from '../../hooks/UseAuthar';
-import { deleteOffLine } from '../../helpers/unsetActiveUser';
+import { unsetActiveUser } from '../../helpers/unsetActiveUser';
 
 const WhoActive = () => {
   const { user } = useAuth();
@@ -9,9 +9,9 @@ const WhoActive = () => {
     if (user && user.role === 'DOCTOR') {
       document.addEventListener('visibilitychange', function () {
         if (document.hidden) {
-          deleteOffLine(user.id);
+          unsetActiveUser(user.id);
         } else {
-          SendIsActive(user, true);
+          setActiveUser(user, true);
         }
       });
     }
