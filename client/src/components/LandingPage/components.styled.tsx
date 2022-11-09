@@ -44,7 +44,7 @@ const ServiceDescription = styled(Typography)({
 
 const ServicesList = styled(Box)({
   zIndex: '5',
-  position: 'absolute',
+  position: 'relative',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -86,9 +86,9 @@ const WelcomePargraph = styled(Typography)({
   paddingBottom: '1.5rem',
   fontWeight: '600',
   '@media screen and (max-width:450px)': {
-    fontSize: '1rem',
+    fontSize: '0.9rem',
     letterSpacing: '.2rem',
-    marginBottom: '25rem',
+    marginBottom: '27rem',
   },
 });
 const ServicesTitle = styled(Typography)({
