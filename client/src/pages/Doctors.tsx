@@ -1,5 +1,6 @@
 import { Box } from '@mui/system';
 import { useState, useEffect } from 'react';
+import Divider from '@mui/material/Divider';
 import Doctor from '../components/Doctor';
 import IUser from '../Interfaces/post/IUser';
 import ApiServices from '../services/ApiService';
@@ -21,7 +22,7 @@ const Doctors = () => {
       justifyContent="center"
       flexDirection="column"
       alignItems="center"
-      minHeight="60vh"
+      minHeight="0vh"
       sx={{
         width: { xs: '100%', sm: '50%' },
         height: '100%',
@@ -30,7 +31,10 @@ const Doctors = () => {
     >
       {doctors
         ? doctors.map((doctor: IUser) => (
-            <Doctor key={doctor.id} user={doctor} />
+            <Box width={{ xs: '100%', sm: '70%' }}>
+              <Doctor key={doctor.id} user={doctor} />
+              <Divider />
+            </Box>
           ))
         : null}
     </Box>

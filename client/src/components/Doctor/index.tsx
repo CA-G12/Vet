@@ -8,7 +8,7 @@ const Index = ({ user }: { user: IUser }) => (
     display="flex"
     justifyContent="space-between"
     alignItems="center"
-    sx={{ width: '80%', marginTop: '20px' }}
+    sx={{ width: '100%', marginTop: '20px' }}
   >
     <Box>
       <UserAvatar user={user} />

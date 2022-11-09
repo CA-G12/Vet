@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import { Box } from '@mui/material';
 import Typography from '@mui/material/Typography';
+import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import IUser from '../../Interfaces/post/IUser';
 
 const UserAvatar = ({ user }: { user: IUser | null | undefined }) => {
@@ -11,7 +12,7 @@ const UserAvatar = ({ user }: { user: IUser | null | undefined }) => {
       to={`/users/${user?.id}`}
       className="user-info-post"
     >
-      <Box display="flex">
+      <Box display="flex" alignItems="center">
         <Box>
           <Avatar
             sx={{ width: '50px', height: '50px' }}
@@ -38,14 +39,17 @@ const UserAvatar = ({ user }: { user: IUser | null | undefined }) => {
             display="flex"
             justifyContent="space-between"
             alignItems="center"
-            sx={{ paddingLeft: '10px', width: '60px' }}
+            sx={{ width: '60px' }}
           >
             <Typography
               color="primary"
               paddingLeft="10px"
               variant="subtitle2"
               gutterBottom
+              display="flex"
+              alignItems="center"
             >
+              <FmdGoodIcon />
               {user?.Doctor?.workplace}
             </Typography>
           </Box>
