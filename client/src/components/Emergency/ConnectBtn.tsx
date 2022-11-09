@@ -9,7 +9,7 @@ const ConnectBtn = ({ id }: { id: number }) => (
       background: '#2D9B9B',
       borderRadius: 8,
     }}
-    to={`/livechat/${id}`}
+    to={`/chatroom/${id}`}
   >
     Connect
   </Link>
