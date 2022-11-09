@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import * as React from 'react';
 import { toast } from 'react-toastify';
+import { Box, Stack } from '@mui/system';
+import { Button } from '@mui/material';
 import deleteImageFromStorage from '../../helpers/deleteImageFromStorage';
 import IComment from '../../Interfaces/post/IComment';
 import ApiServices from '../../services/ApiService';
@@ -66,33 +68,61 @@ const Comment = ({
   };
 
   return (
-    <div className="comment-container abusluot-btns">
-      <div className="comment">
-        <UserPostInfo user={comment.User} />
-        <div className="content-comment">
+    <Stack
+      width="100%"
+      direction="row"
+      justifyContent="space-between"
+      position="relative"
+      sx={{
+        padding: ' 10px 40px 10PX 24px',
+        borderBottom: '1px solid #cfc4c4',
+      }}
+    >
+      <Stack>
+        <UserPostInfo
+          id={comment.User.id}
+          name={comment.User.name}
+          avatar={comment.User.avatar}
+        />
+        <Box>
           {!edit ? (
-            <p>{changeComment.comment}</p>
+            <p style={{ marginLeft: ' 50px' }}>{changeComment.comment}</p>
           ) : (
             <form className="edit-comment" onSubmit={saveChange}>
               <input
+                style={{ padding: '5px' }}
                 value={changeComment.comment}
                 onChange={handeleChangeCommentContent}
               />
-              <button type="submit">save</button>
+              <Button
+                sx={{
+                  background: '#356E6E',
+                  color: '#ffff',
+                  padding: '3px',
+                  borderRadius: '0',
+                }}
+                type="submit"
+              >
+                save
+              </Button>
             </form>
           )}
-        </div>
-      </div>
+        </Box>
+      </Stack>
 
       <img
         className="comment-img"
-        style={{ display: changeComment.image && !edit ? 'block' : 'none' }}
+        style={{
+          display: changeComment.image && !edit ? 'block' : 'none',
+          width: '100px',
+          borderRadius: '12px',
+        }}
         src={changeComment.image ? changeComment.image : ''}
         alt=""
       />
-      <div style={{ display: edit ? 'block' : 'none' }}>
+      <Box style={{ display: edit ? 'block' : 'none' }}>
         <EditImageComment setData={setChangeComment} data={changeComment} />
-      </div>
+      </Box>
       {user?.id === comment.User?.id && (
         <EditAndDeleteBtn
           deleteData={comments}
@@ -105,7 +135,7 @@ const Comment = ({
           edit={edit}
         />
       )}
-    </div>
+    </Stack>
   );
 };
 

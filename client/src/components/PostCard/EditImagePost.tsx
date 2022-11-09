@@ -36,7 +36,7 @@ const EditImagePost = ({ data, setData }: Props) => {
     <Box
       sx={{
         padding: '50px',
-        width: { sm: '50%', xs: '100%' },
+        width: { sm: '40%', xs: '100%' },
         height: { sm: '150px', xs: '300px' },
         backgroundImage: data.image
           ? `url(${data.image})`

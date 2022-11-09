@@ -128,7 +128,13 @@ const AddPost = ({
           <form action="" onSubmit={handleSubmit}>
             <Box sx={style}>
               <Box sx={{ alignSelf: 'flex-start' }}>
-                {user && <Username user={user} />}
+                {user && (
+                  <Username
+                    id={user.id}
+                    name={user.name}
+                    avatar={user.avatar}
+                  />
+                )}
               </Box>
               <TextareaAutosize
                 name="content"

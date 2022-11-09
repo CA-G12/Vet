@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import { Stack } from '@mui/system';
 
-const UserPostInfo = ({
+const UserLike = ({
   id,
   name,
   avatar,
@@ -16,10 +16,15 @@ const UserPostInfo = ({
     to={`/users/${id}`}
     className="user-info-post"
   >
-    <Stack justifyContent="flex-start" alignItems="center" direction="row">
-      <Avatar alt={name} src={avatar} />
+    <Stack
+      marginTop="10px"
+      justifyContent="space-between"
+      alignItems="center"
+      direction="row"
+    >
+      <Avatar sx={{ width: 24, height: 24 }} alt={name} src={avatar} />
       <span style={{ alignSelf: 'center', paddingLeft: '10px' }}>{name}</span>
     </Stack>
   </NavLink>
 );
-export default UserPostInfo;
+export default UserLike;

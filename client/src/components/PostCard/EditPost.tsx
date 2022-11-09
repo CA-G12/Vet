@@ -2,6 +2,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { Stack } from '@mui/system';
 import IPost from '../../Interfaces/post/IPost';
 import EditImagePost from './EditImagePost';
 import ApiServices from '../../services/ApiService';
@@ -29,12 +30,13 @@ const EditPost = ({
     setEditPost(false);
   };
   return (
-    <form onSubmit={handEleditPost} style={{ width: '100%' }}>
-      <Box>
+    <form onSubmit={handEleditPost}>
+      <Stack>
         <Box
-          flexWrap={{ sm: 'nowrap', xs: 'wrap-reverse' }}
+          margin="20px 0"
+          flexWrap={{ sm: 'nowrap', s: 'wrap-reverse' }}
           display="flex"
-          justifyContent={{ sm: 'space-between', xs: 'center' }}
+          justifyContent={{ sm: 'space-between', s: 'center' }}
           gap="20px"
         >
           <TextField
@@ -42,15 +44,16 @@ const EditPost = ({
             label="Multiline"
             multiline
             rows={5}
+            fullWidth
             defaultValue={postContent.content}
             onChange={handelPostContent}
           />
           <EditImagePost data={postContent} setData={setPostContent} />
         </Box>
-        <Button type="submit" variant="contained">
+        <Button sx={{ width: '25%' }} type="submit" variant="contained">
           Save
         </Button>
-      </Box>
+      </Stack>
     </form>
   );
 };

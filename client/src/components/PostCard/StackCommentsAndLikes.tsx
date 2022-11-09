@@ -1,12 +1,11 @@
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
-import PetsIcon from '@mui/icons-material/Pets';
 import Tooltip from '@mui/material/Tooltip';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
 import Like from '../../Interfaces/post/ILike';
-import HoverLikes from './HoverLikes';
+import HoverWhoLikes from './HoverWhoLikes';
 
 interface ICommentsAndLikesNum {
   commentNum: number;
@@ -33,7 +32,14 @@ const StackCommentsAndLikes = ({
   likes,
   handleClick,
 }: ICommentsAndLikesNum) => (
-  <Stack spacing={2} direction="row" className="comments-likes-btn">
+  <Stack
+    spacing={2}
+    direction="row"
+    display="flex"
+    justifyContent="start"
+    alignItems="center"
+    className="comments-likes-btn"
+  >
     <StyledBadge
       onClick={() => {
         handleClick();
@@ -42,13 +48,13 @@ const StackCommentsAndLikes = ({
       role="presentation"
     >
       <Tooltip title="Show Comments">
-        <FontAwesomeIcon icon={faComment} />
+        <FontAwesomeIcon
+          style={{ fontSize: '20px', marginTop: '2px' }}
+          icon={faComment}
+        />
       </Tooltip>
     </StyledBadge>
-
-    <StyledBadge badgeContent={likes.length} className="likesNum">
-      <PetsIcon /> <HoverLikes likes={likes} />
-    </StyledBadge>
+    <HoverWhoLikes likes={likes} />
   </Stack>
 );
 

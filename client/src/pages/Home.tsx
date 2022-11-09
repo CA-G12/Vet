@@ -30,23 +30,28 @@ const Home = () => {
   }, [filter]);
 
   return (
-    <main className="home-page">
+    <Box
+      display="flex"
+      alignItems={{ sx: 'center' }}
+      flexDirection={{ sm: 'row', s: 'column' }}
+    >
       <Box
-        width={{ lg: '25%', sm: '50%' }}
+        width={{ sm: '30%', s: '100%' }}
         minHeight="100vh"
         component="div"
         display="flex"
-        flexDirection={{ sm: 'column', xs: 'row' }}
+        marginTop={{ s: '30px' }}
+        flexDirection={{ sm: 'column', s: 'row' }}
         alignItems="center"
         sx={{
           minHeight: {
             lg: '100vh',
             sm: '0',
           },
-          backgroundColor: { sm: 'primary.main', xs: '#ffff' },
+          backgroundColor: { sm: 'primary.main', s: '#ffff' },
           position: 'relative',
           top: { sm: '-97px' },
-          padding: { sm: '120px 50px', xs: '20px 0 0 0' },
+          padding: { sm: '120px 50px', s: '20px 0 0 0' },
         }}
       >
         {TagList && (
@@ -78,18 +83,29 @@ const Home = () => {
           </Box>
         )}
       </Box>
-      <Box className="posts">
-        <AddPost posts={posts} setPost={setPost} />
-
+      <Box
+        width={{ sm: '60%', md: '40%', s: '100%' }}
+        sx={{ margin: '30px auto' }}
+      >
+        <Box
+          display="flex"
+          justifyContent="flex-start"
+          position={{ s: 'absolute', sm: 'static' }}
+          left="5px"
+          top="40px"
+          margin="20px 0"
+        >
+          <AddPost posts={posts} setPost={setPost} />
+        </Box>
         {loading && posts.length !== 0 ? (
-          <PostsList posts={posts} />
+          <PostsList setPost={setPost} posts={posts} />
         ) : loading && posts.length === 0 ? (
           <h2 className="no-result">No Result</h2>
         ) : (
           <LoadingPosts />
         )}
       </Box>
-    </main>
+    </Box>
   );
 };
 
