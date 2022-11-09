@@ -7,11 +7,7 @@ import IUser from '../../Interfaces/post/IUser';
 
 const UserAvatar = ({ user }: { user: IUser | null | undefined }) => {
   return (
-    <NavLink
-      style={{ textDecoration: 'none' }}
-      to={`/users/${user?.id}`}
-      className="user-info-post"
-    >
+    <NavLink style={{ textDecoration: 'none' }} to={`/users/${user?.id}`}>
       <Box display="flex" alignItems="center">
         <Box>
           <Avatar
