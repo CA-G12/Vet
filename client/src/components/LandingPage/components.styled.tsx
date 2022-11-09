@@ -10,7 +10,7 @@ const CardContainer = styled(Box)({
   zIndex: '9999',
   background: '#fff',
   flexWrap: 'wrap',
-  '&:nth-child(even)': {
+  '&:nth-of-type(odd)': {
     flexDirection: 'row-reverse',
   },
   '@media screen and (max-width:450px)': {
@@ -92,7 +92,7 @@ const WelcomePargraph = styled(Typography)({
   },
 });
 const ServicesTitle = styled(Typography)({
-  'padding-top': '1rem',
+  paddingTop: '1rem',
   color: '#D53449',
   '@media screen and (max-width:450px)': {
     fontSize: '1.5rem',
