@@ -19,7 +19,7 @@ const Post = ({
   posts,
 }: {
   post: IPost;
-  setPosts: Function;
+  setPosts: React.Dispatch<React.SetStateAction<IPost[]>>;
   posts: Array<IPost>;
 }) => {
   const { user } = useContext(authContext);
@@ -90,9 +90,11 @@ const Post = ({
         >
           <Box width="20%" sx={{ padding: { sm: '0', xs: '20px' } }}>
             <UserPostInfo
-              id={post.User.id}
-              name={post.User.name}
-              avatar={post.User.avatar}
+              user={{
+                id: post.User.id,
+                name: post.User.name,
+                avatar: post.User.avatar,
+              }}
             />
           </Box>
           <Stack

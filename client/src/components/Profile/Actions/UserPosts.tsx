@@ -18,7 +18,7 @@ export const UserPosts = () => {
   return (
     <Box display="flex" justifyContent="center">
       {uPosts.length > 0 ? (
-        <Post posts={uPosts} />
+        <Post posts={uPosts} setPost={setUPosts} />
       ) : (
         <Typography textAlign="center"> No Posts Published </Typography>
       )}

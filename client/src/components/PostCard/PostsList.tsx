@@ -7,7 +7,7 @@ const Posts = ({
   setPost,
 }: {
   posts: Array<IPost>;
-  setPost: Function;
+  setPost: React.Dispatch<React.SetStateAction<IPost[]>>;
 }) => (
   <Box display="flex" flexDirection="column" gap="40px" alignItems="center">
     {posts.map(post => (

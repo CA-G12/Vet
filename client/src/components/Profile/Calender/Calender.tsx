@@ -133,7 +133,7 @@ export const Calender = () => {
   };
   return (
     <div className="demo-app">
-      {user?.id === Number(params.id) ? (
+      {user?.id === Number(params.id) && (
         <>
           <PendingPopup
             open={open.pendingPop}
@@ -150,7 +150,7 @@ export const Calender = () => {
             appointment={delAppointment}
           />
         </>
-      ) : null}
+      )}
       <AddAppointment
         open={open.addingPop}
         onClose={() => {

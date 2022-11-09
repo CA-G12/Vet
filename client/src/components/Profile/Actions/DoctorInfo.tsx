@@ -119,7 +119,7 @@ const DoctorEdit = () => {
           </label>
         </FormControl>
       </Box>
-      {user?.role === 'DOCTOR' ? (
+      {user?.role === 'DOCTOR' && (
         <>
           <Box
             display="flex"
@@ -203,7 +203,7 @@ const DoctorEdit = () => {
             />
           </FormControl>
         </>
-      ) : null}
+      )}
       <LoadingButton
         loading={progress > 0 && progress < 100}
         type="submit"

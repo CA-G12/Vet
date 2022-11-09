@@ -131,9 +131,7 @@ const AddPost = ({
               <Box sx={{ alignSelf: 'flex-start' }}>
                 {user && (
                   <Username
-                    id={user.id}
-                    name={user.name}
-                    avatar={user.avatar}
+                    user={{ id: user.id, name: user.name, avatar: user.avatar }}
                   />
                 )}
               </Box>

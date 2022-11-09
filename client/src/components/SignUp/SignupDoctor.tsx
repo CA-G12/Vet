@@ -30,6 +30,11 @@ const Doctor = ({ open }: { open: Function }) => {
   };
   return (
     <form
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+      }}
       onSubmit={async event => {
         event.preventDefault();
         try {
@@ -42,6 +47,7 @@ const Doctor = ({ open }: { open: Function }) => {
               DoctorId: user?.id,
             });
             open(false);
+            toast.success('Welcome');
           }
         } catch (error: any) {
           toast.error(error.message);
@@ -126,17 +132,20 @@ const Doctor = ({ open }: { open: Function }) => {
           </Button>
         </label>
       </FormControl>
-      <br />
-      <LoadingButton
-        loading={progress > 0 && progress < 100}
-        type="submit"
-        variant="contained"
-        sx={{
-          width: 200,
-        }}
-      >
-        Post
-      </LoadingButton>
+      <FormControl>
+        <LoadingButton
+          loading={progress > 0 && progress < 100}
+          type="submit"
+          variant="contained"
+          sx={{
+            width: 200,
+            display: 'block',
+            margin: 'auto',
+          }}
+        >
+          Sign up
+        </LoadingButton>
+      </FormControl>
     </form>
   );
 };

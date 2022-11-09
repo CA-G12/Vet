@@ -34,7 +34,7 @@ export const Profile = () => {
                 <img src={userInfo.avatar} alt="user" className="user-avatar" />
                 <Typography sx={iconStyle}>
                   {userInfo.name}
-                  {user?.id === Number(params.id) ? (
+                  {user?.id === Number(params.id) && (
                     <EditIcon
                       color="disabled"
                       fontSize="small"
@@ -42,7 +42,7 @@ export const Profile = () => {
                         if (user?.id === Number(params.id)) setOpen(true);
                       }}
                     />
-                  ) : null}
+                  )}
                 </Typography>
               </Box>
               {userInfo.role === 'DOCTOR' && docInfo ? (
