@@ -21,7 +21,12 @@ const Doctors = () => {
       justifyContent="center"
       flexDirection="column"
       alignItems="center"
-      sx={{ width: { xs: '100%', sm: '50%' }, margin: ' 40px auto' }}
+      minHeight="60vh"
+      sx={{
+        width: { xs: '100%', sm: '50%' },
+        height: '100%',
+        margin: ' 40px auto',
+      }}
     >
       {doctors
         ? doctors.map((doctor: IUser) => (
