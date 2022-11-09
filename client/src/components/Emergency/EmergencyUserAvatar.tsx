@@ -33,7 +33,13 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     },
   },
 }));
-const EmergencyUserAvatar = ({ user }: { user: IUser | null | undefined }) => {
+const EmergencyUserAvatar = ({
+  user,
+}: {
+  user: IUser & {
+    workplace?: string;
+  };
+}) => {
   return (
     <NavLink to={`/users/${user?.id}`} className="user-info-post">
       <Box display="flex">
@@ -50,7 +56,6 @@ const EmergencyUserAvatar = ({ user }: { user: IUser | null | undefined }) => {
             />
           </StyledBadge>
         </Box>
-
         <Box
           display="flex"
           alignItems="flex-start"
@@ -65,7 +70,7 @@ const EmergencyUserAvatar = ({ user }: { user: IUser | null | undefined }) => {
             sx={{ paddingLeft: '10px', width: '60px' }}
           >
             <p style={{ color: '#2D9B9B', paddingLeft: '5px' }}>
-              {user?.Doctor?.workplace}
+              {user?.workplace}
             </p>
           </Box>
         </Box>
