@@ -253,9 +253,7 @@
   width: 100%;
   border-radius: 10px;
 }
-.MuiButtonBase-root {
-  padding: 2px !important;
-}
+
 .btns-list span {
   font-size: 11px !important;
   line-height: 0;

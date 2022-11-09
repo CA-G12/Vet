@@ -121,7 +121,6 @@ export default class PostsController {
       ],
       where: { UserId: id },
     });
-    console.log(posts);
     res.json({ posts });
   }
 }

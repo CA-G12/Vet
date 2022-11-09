@@ -1,22 +1,7 @@
 import { Box, Typography, Modal, TextField, Stack } from '@mui/material';
 import IOpen from '../../../Interfaces/IOpen';
+import style from '../../../helpers/PopStyle';
 
-const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  height: 400,
-  outLine: 'none',
-  borderRadius: '2%',
-  boxShadow: 24,
-  p: 1,
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-};
 const btnAdd = {
   width: '100px',
   padding: '2px',
@@ -30,7 +15,7 @@ const btnAdd = {
   backgroundColor: 'rgb(45, 155, 155)',
 };
 
-export const ResponsiveDialog = ({
+export const EditPopup = ({
   edit,
   remove,
   open,
@@ -76,7 +61,7 @@ export const ResponsiveDialog = ({
               variant="h6"
               component="h2"
             >
-              Add new Appointment
+              Edit Appointment
             </Typography>
             <TextField
               label="Title"

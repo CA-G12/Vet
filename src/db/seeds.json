@@ -69,25 +69,29 @@
       "DoctorId": 1,
       "hourRate": "xx",
       "clinicLocation": "xx",
-      "workplace": "canda"
+      "workplace": "canda",
+      "universityDegree":"https://firebasestorage.googleapis.com/v0/b/vets-10634.appspot.com/o/files%2Fc8fdc9dd-4d7f-45f7-a05f-98bc0307ffb6.pdf?alt=media&token=aba21ee6-68a2-4129-812e-31d71ca3d1b0"
     },
     {
       "DoctorId": 2,
       "hourRate": "xx",
       "clinicLocation": "xx",
-      "workplace": "canda"
+      "workplace": "canda",
+      "universityDegree":"https://firebasestorage.googleapis.com/v0/b/vets-10634.appspot.com/o/files%2Fc8fdc9dd-4d7f-45f7-a05f-98bc0307ffb6.pdf?alt=media&token=aba21ee6-68a2-4129-812e-31d71ca3d1b0"
     },
     {
       "DoctorId": 3,
       "hourRate": "xx",
       "clinicLocation": "xx",
-      "workplace": "canda"
+      "workplace": "canda",
+      "universityDegree":"https://firebasestorage.googleapis.com/v0/b/vets-10634.appspot.com/o/files%2Fc8fdc9dd-4d7f-45f7-a05f-98bc0307ffb6.pdf?alt=media&token=aba21ee6-68a2-4129-812e-31d71ca3d1b0"
     },
     {
       "DoctorId": 4,
       "hourRate": "xx",
       "clinicLocation": "xx",
-      "workplace": "canda"
+      "workplace": "canda",
+      "universityDegree":"https://firebasestorage.googleapis.com/v0/b/vets-10634.appspot.com/o/files%2Fc8fdc9dd-4d7f-45f7-a05f-98bc0307ffb6.pdf?alt=media&token=aba21ee6-68a2-4129-812e-31d71ca3d1b0"
     }
   ],
   "Comment": [

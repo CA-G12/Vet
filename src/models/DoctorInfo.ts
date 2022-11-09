@@ -28,6 +28,10 @@ DoctorInfo.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    universityDegree: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
   {
     sequelize,

@@ -1,42 +1,44 @@
 import React, { useEffect, useContext, useState } from 'react';
-import FullCalendar from '@fullcalendar/react';
+import FullCalendar, { EventClickArg } from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { toast } from 'react-toastify';
+import { useParams } from 'react-router-dom';
 import AddAppointment from './AddAppointment';
 import { authContext } from '../../../hooks/useAuth';
 import ApiService from '../../../services/ApiService';
-import { ResponsiveDialog } from './DeleteConfirm';
+import { EditPopup } from './DeleteEdit';
 import IAppointment from '../../../Interfaces/IAppointment';
-import PendingPopup from './PendingCard';
+import PendingPopup from './PendingAppointments';
 import IOpen from '../../../Interfaces/IOpen';
 import AppointmentValid from '../../../Validation/Appointment';
 
 export const Calender = () => {
   const { user } = useContext(authContext);
+  const params = useParams();
   const [newAppointment, setNewAppointment] = useState<IAppointment>();
   const [info, setInfo] = useState<any>();
   const [currentEvents, setCurrentEvents] = React.useState<any>([]);
+  const [delAppointment, setDelAppointment] = useState({
+    title: '',
+    description: '',
+  });
   const [open, setOpen] = useState<IOpen>({
     deletePop: false,
     pendingPop: false,
     addingPop: false,
   });
-  const [delAppointment, setDelAppointment] = useState({
-    title: '',
-    description: '',
-  });
 
   useEffect(() => {
     const events = async () => {
-      const appointment = await ApiService.get(`/Appointment/${user?.id}`);
-      setCurrentEvents(appointment.data);
+      const { data } = await ApiService.get(`/Appointment/${params?.id}`);
+      setCurrentEvents(data.docAppointment);
     };
     events();
-  }, [user?.id]);
+  }, [params?.id]);
 
   const handleDateSelect = async (selectInfo: any) => {
-    setOpen(prev => ({ ...prev, addingPop: true }));
+    if (user) setOpen(prev => ({ ...prev, addingPop: true }));
     const calendarApi = selectInfo.view.calendar;
     calendarApi.unselect();
     setNewAppointment(prev => ({
@@ -45,28 +47,27 @@ export const Calender = () => {
       end: selectInfo.endStr,
     }));
   };
-  const handle = async (eventDropInfo: any) => {
+  const handleDrop = async (eventDropInfo: any) => {
     try {
       const { data } = await ApiService.put('/dragAppointment', {
-        start: new Date(eventDropInfo.event.start).toISOString(),
-        end: new Date(eventDropInfo.event.start).toISOString(),
+        start: eventDropInfo.event.startStr,
+        end: new Date(eventDropInfo.event.end),
         id: eventDropInfo.event.id,
-        DoctorId: user?.id,
       });
       setCurrentEvents((prev: any) => {
         return prev.map((ele: any) => {
-          if (ele.id === data.id) {
-            return { ...ele, start: data.start, end: data.end };
+          if (ele.id === data.newTime.id) {
+            return { ...ele, ...data.newTime };
           }
           return ele;
         });
       });
       toast.success('Change successfully');
     } catch (error: any) {
-      toast.error(error.massage);
+      toast.error(error.response.data.msg);
     }
   };
-  const handleEventClick = async (clickInfo: any) => {
+  const handleEventClick = async (clickInfo: EventClickArg) => {
     setOpen(prev => ({ ...prev, deletePop: true }));
     setDelAppointment({
       title: clickInfo.event.title,
@@ -74,59 +75,82 @@ export const Calender = () => {
     });
     setInfo(clickInfo);
   };
+  const edit = async () => {
+    try {
+      await AppointmentValid.validate({
+        ...delAppointment,
+        id: info.event.id,
+        DoctorId: user?.id,
+      });
+      const { data } = await ApiService.put(`/Appointment/`, {
+        ...delAppointment,
+        id: info.event.id,
+        DoctorId: user?.id,
+      });
+      setCurrentEvents((prev: any) => {
+        return prev.map((ele: any) => {
+          if (ele.id === data.id) {
+            return data;
+          }
+          return ele;
+        });
+      });
+      toast.success('Edited successfully');
+      setOpen(prev => ({ ...prev, deletePop: false }));
+    } catch (error: any) {
+      toast.error(error.message);
+    }
+  };
+  const remove = async () => {
+    try {
+      await ApiService.destroy(`/Appointment/${info.event.id}`);
+      setOpen(prev => ({ ...prev, deletePop: false }));
+      setCurrentEvents((prev: any) => {
+        return prev.filter((ele: any) => ele.id !== Number(info.event.id));
+      });
+      toast.success('Deleted successfully');
+    } catch (error: any) {
+      toast.error(error.message);
+    }
+  };
+  const addApp = async () => {
+    try {
+      await AppointmentValid.validate({
+        ...newAppointment,
+        DoctorId: params.id,
+      });
+      const { data } = await ApiService.post('/Appointment', {
+        appointment: { ...newAppointment, DoctorId: params.id },
+      });
+      if (data.appointment === 'ACCEPTED') {
+        setCurrentEvents((prev: any) => prev.concat(data.appointment));
+      }
+      toast.success(data.msg);
+      setOpen(prev => ({ ...prev, addingPop: false }));
+    } catch (error: any) {
+      toast.error(error.response.data.msg);
+    }
+  };
   return (
     <div className="demo-app">
-      <PendingPopup
-        open={open.pendingPop}
-        setOpen={setOpen}
-        setAppointment={setCurrentEvents}
-      />
-      <ResponsiveDialog
-        setOpen={setOpen}
-        setAppointment={setDelAppointment}
-        edit={async () => {
-          try {
-            await AppointmentValid.validate({
-              title: delAppointment.title,
-              description: delAppointment.description,
-              id: info.event.id,
-              DoctorId: user?.id,
-            });
-            const { data } = await ApiService.put(`/Appointment/`, {
-              ...delAppointment,
-              id: info.event.id,
-              DoctorId: user?.id,
-            });
+      {user?.id === Number(params.id) ? (
+        <>
+          <PendingPopup
+            open={open.pendingPop}
+            setOpen={setOpen}
+            setAppointment={setCurrentEvents}
+          />
 
-            setCurrentEvents((prev: any) => {
-              return prev.map((ele: any) => {
-                if (ele.id === data.id) {
-                  return data;
-                }
-                return ele;
-              });
-            });
-            toast.success('edited successfully');
-            setOpen(prev => ({ ...prev, deletePop: false }));
-          } catch (error: any) {
-            toast.error(error.message);
-          }
-        }}
-        remove={async () => {
-          try {
-            await ApiService.destroy(
-              `/Appointment/${user?.id}/${info.event.id}`,
-            );
-            info.event.remove();
-            setOpen(prev => ({ ...prev, deletePop: false }));
-            toast.success('Deleted successfully');
-          } catch (error: any) {
-            toast.error(error.message);
-          }
-        }}
-        open={open.deletePop}
-        appointment={delAppointment}
-      />
+          <EditPopup
+            setOpen={setOpen}
+            setAppointment={setDelAppointment}
+            edit={edit}
+            remove={remove}
+            open={open.deletePop}
+            appointment={delAppointment}
+          />
+        </>
+      ) : null}
       <AddAppointment
         open={open.addingPop}
         onClose={() => {
@@ -141,27 +165,7 @@ export const Calender = () => {
             }));
           }
         }}
-        onClick={async () => {
-          try {
-            await AppointmentValid.validate({
-              description: newAppointment?.description,
-              title: newAppointment?.title,
-              end: newAppointment?.end,
-              start: newAppointment?.start,
-              DoctorId: user?.id,
-            });
-            const newAppoint = await ApiService.post('/Appointment', {
-              ...newAppointment,
-              id: user?.id,
-              DoctorId: user?.id,
-            });
-            setCurrentEvents((prev: any) => prev.concat(newAppoint.data));
-            toast.success('Added successfully');
-            setOpen(prev => ({ ...prev, addingPop: false }));
-          } catch (error: any) {
-            toast.error(error.message);
-          }
-        }}
+        onClick={addApp}
       />
       <div
         className="demo-app-main"
@@ -181,11 +185,11 @@ export const Calender = () => {
             right: 'timeGridWeek',
           }}
           initialView="timeGridWeek"
-          editable={user?.role === 'DOCTOR'}
+          editable={user?.id === Number(params.id)}
           selectable
           selectMirror
           dayMaxEvents
-          eventDrop={handle}
+          eventDrop={handleDrop}
           eventSources={[
             {
               events: [...currentEvents],

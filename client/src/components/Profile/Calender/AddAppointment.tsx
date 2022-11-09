@@ -7,8 +7,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
-  height: 400,
+  width: 350,
   bgcolor: 'background.paper',
   borderRadius: '2%',
   boxShadow: 24,
@@ -91,7 +90,6 @@ const AddAppointment = ({
             }}
           />
           <button type="button" onClick={onClick} name="add" style={btnAdd}>
-            {' '}
             Add
           </button>
         </Box>

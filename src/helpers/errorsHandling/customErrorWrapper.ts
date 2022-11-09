@@ -5,9 +5,11 @@ const errorWrapper = (controller: RequestHandler) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
       await controller(req, res, next);
-    } catch (error: unknown) {
+    } catch (error: any) {
       if (isCustomError(error)) {
-        if (error.name === 'ValidationError') {
+        if (error.name === 'JsonWebTokenError') {
+          error.status = 401;
+        } else if (error.name === 'ValidationError') {
           error.status = 422;
         }
         next(error);

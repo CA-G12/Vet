@@ -15,7 +15,7 @@ import * as React from 'react';
 import { toast } from 'react-toastify';
 import IAuth from '../../Interfaces/IAuth';
 import { authContext } from '../../hooks/useAuth';
-import Doctor from './DoctorInfo';
+import Doctor from './SignupDoctor';
 import { SignUpValid } from '../../Validation';
 
 const SignUp = ({ open }: { open: Function }) => {

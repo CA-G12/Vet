@@ -2,20 +2,9 @@ import { useState } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import 'react-toastify/dist/ReactToastify.css';
 import { Box, Button, Typography, Modal } from '@mui/material';
-
 import LabTabs from './Tabs';
+import style from '../../helpers/PopStyle';
 
-const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 350,
-  bgcolor: 'background.paper',
-  borderRadius: '2%',
-  boxShadow: 24,
-  p: 1,
-};
 const theme = createTheme({
   palette: {
     primary: {

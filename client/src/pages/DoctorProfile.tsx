@@ -1,9 +1,10 @@
 import { Profile } from '../components/Profile/Profile';
+import { ProvideProfile } from '../hooks/useProfileInfo';
 
 const DoctorProfile = () => (
-  <h1>
+  <ProvideProfile>
     <Profile />
-  </h1>
+  </ProvideProfile>
 );
 
 export default DoctorProfile;
