@@ -22,7 +22,7 @@ export default class AuthController {
     const user = await User.findOne({ where: { email } });
     if (!user) {
       throw new CustomError(
-        422,
+        404,
         "The email address you entered isn't connected to an account",
       );
     }

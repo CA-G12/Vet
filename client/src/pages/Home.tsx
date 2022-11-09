@@ -7,6 +7,7 @@ import { AllPosts } from '../Context/PostsContext';
 import LoadingPosts from './LoadingPosts';
 import 'react-toastify/dist/ReactToastify.css';
 import BasicSelect from '../components/BasicSelect';
+import AddPost from '../components/AddPost/AddPost';
 
 const Home = () => {
   const { TagList, AnimalList } = useContext(AllPosts);
@@ -31,17 +32,29 @@ const Home = () => {
   return (
     <main className="home-page">
       <Box
-        p={5}
-        width="25%"
-        minHeight="90vh"
+        width={{ lg: '25%', sm: '50%' }}
+        minHeight="100vh"
         component="div"
         display="flex"
-        flexDirection="column"
+        flexDirection={{ sm: 'column', xs: 'row' }}
         alignItems="center"
-        sx={{ backgroundColor: 'primary.main' }}
+        sx={{
+          minHeight: {
+            lg: '100vh',
+            sm: '0',
+          },
+          backgroundColor: { sm: 'primary.main', xs: '#ffff' },
+          position: 'relative',
+          top: { sm: '-97px' },
+          padding: { sm: '120px 50px', xs: '20px 0 0 0' },
+        }}
       >
         {TagList && (
-          <Box mt={2} width="100%" sx={{ backgroundColor: 'common.white' }}>
+          <Box
+            mt={2}
+            width="100%"
+            sx={{ backgroundColor: 'common.white', borderRadius: '8px' }}
+          >
             <BasicSelect
               value={filter.TagId}
               options={TagList}
@@ -50,22 +63,32 @@ const Home = () => {
           </Box>
         )}
         {AnimalList && (
-          <Box mt={2} width="100%">
+          <Box
+            mt={2}
+            width="100%"
+            sx={{ backgroundColor: 'common.white', borderRadius: '8px' }}
+          >
             <BasicSelect
               value={filter.AnimalId}
               options={AnimalList}
-              setValue={value => setFilter(prev => ({ ...prev, TagId: value }))}
+              setValue={value =>
+                setFilter(prev => ({ ...prev, AnimalId: value }))
+              }
             />
           </Box>
         )}
       </Box>
-      {loading && posts.length !== 0 ? (
-        <PostsList posts={posts} />
-      ) : loading && posts.length === 0 ? (
-        <h2 className="no-result">No Result</h2>
-      ) : (
-        <LoadingPosts />
-      )}
+      <Box className="posts">
+        <AddPost posts={posts} setPost={setPost} />
+
+        {loading && posts.length !== 0 ? (
+          <PostsList posts={posts} />
+        ) : loading && posts.length === 0 ? (
+          <h2 className="no-result">No Result</h2>
+        ) : (
+          <LoadingPosts />
+        )}
+      </Box>
     </main>
   );
 };

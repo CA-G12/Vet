@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, MouseEventHandler } from 'react';
 
 import { useLocation } from 'react-router-dom';
 import { authContext } from '../../../hooks/useAuth';
@@ -11,22 +11,15 @@ import { AuthButtons } from './AuthButtons';
 
 import { ActionsBox } from '../components.styled';
 
-export const Actions = () => {
+type Props = {
+  handleOpen: MouseEventHandler<HTMLButtonElement>;
+};
+export const Actions = (props: Props) => {
   const { user } = useContext(authContext);
-  const [isAuth, setIsAuth] = useState(false);
   const [isLandingPage, setIsLandingPage] = useState(false);
   const [isAdminDashboard, setIsAdminDashboard] = useState(true);
   const location = useLocation();
 
-  // handle user isAuth
-  useEffect(() => {
-    if (user) {
-      setIsAuth(true);
-    } else {
-      setIsAuth(false);
-    }
-  }, [user]);
-  // handle route pathName
   useEffect(() => {
     // condition to change isLandingPage
     if (location.pathname === '/') {
@@ -41,13 +34,13 @@ export const Actions = () => {
       setIsAdminDashboard(true);
     }
   }, [location]);
-
+  const { handleOpen } = props;
   return (
     <ActionsBox>
       {isLandingPage ? <Search /> : null}
       {isAdminDashboard ? <FireCall /> : null}
-      {isAuth ? <UserTicket user={user} /> : null}
-      {!isAuth ? <AuthButtons /> : null}
+      {user ? <UserTicket user={user} /> : null}
+      <AuthButtons handleOpen={handleOpen} />
     </ActionsBox>
   );
 };

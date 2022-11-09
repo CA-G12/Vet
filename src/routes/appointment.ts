@@ -15,6 +15,7 @@ router.get(
 );
 router.get(
   '/pending-appointment/:DoctorId',
+  errorWrapper(isAuth),
   errorWrapper(Appointment.pendingAppointment),
 );
 router.delete(

@@ -10,6 +10,7 @@ import { authContext } from '../../../hooks/useAuth';
 import uploadImage from '../../../helpers/uploadImage';
 import JwtService from '../../../services/JwtService';
 import { profileContext } from '../../../hooks/useProfileInfo';
+import IUser from '../../../Interfaces/post/IUser';
 
 const DoctorEdit = () => {
   const { user } = useContext(authContext);
@@ -17,7 +18,7 @@ const DoctorEdit = () => {
   const [avatarFile, setAvatarFile] = React.useState<File>();
   const [degreeFile, setDegreeFile] = React.useState<File>();
   const [progress, setProgress] = useState<number>(0);
-  const [userName, setUserName] = useState({
+  const [userName, setUserName] = useState<Partial<IUser>>({
     name: user?.name,
     avatar: user?.avatar,
   });

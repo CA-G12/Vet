@@ -11,33 +11,25 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import React, { useContext } from 'react';
 import { toast } from 'react-toastify';
-import IAuth from '../../Interfaces/IAuth';
 import { authContext } from '../../hooks/useAuth';
 import { SignInValid } from '../../Validation';
 
-const SignIn = ({ open }: { open: Function }) => {
-  const [userData, setUserData] = React.useState<IAuth>({
+const SignIn = () => {
+  const { signIn, setOpen } = useContext(authContext);
+  const [signInData, setSignInData] = React.useState({
     showPassword: false,
     password: '',
     email: '',
   });
-  const { signIn } = useContext(authContext);
   const handleState = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.currentTarget;
-    setUserData((prev: object) => ({ ...prev, [name]: value }));
+    const { name, value } = e.target;
+    setSignInData(prev => ({ ...prev, [name]: value }));
   };
-  const handleClickShowPassword = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (e.currentTarget.name === 'password') {
-      setUserData({
-        ...userData,
-        showPassword: !userData.showPassword,
-      });
-    } else {
-      setUserData({
-        ...userData,
-        showConfirmPassword: !userData.showConfirmPassword,
-      });
-    }
+  const handleClickShowPassword = () => {
+    setSignInData(prev => ({
+      ...prev,
+      showConfirmPassword: !prev.showPassword,
+    }));
   };
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>,
@@ -50,9 +42,9 @@ const SignIn = ({ open }: { open: Function }) => {
       onSubmit={async event => {
         event.preventDefault();
         try {
-          await SignInValid.validate(userData);
-          await signIn(userData);
-          open(false);
+          await SignInValid.validate(signInData);
+          await signIn(signInData);
+          setOpen(false);
         } catch (error: any) {
           toast.error(error.message);
         }
@@ -109,7 +101,7 @@ const SignIn = ({ open }: { open: Function }) => {
           size="small"
           fullWidth
           id="outlined-adornment-password"
-          type={userData.showPassword ? 'text' : 'password'}
+          type={signInData.showPassword ? 'text' : 'password'}
           onChange={handleState}
           endAdornment={
             <InputAdornment position="end">
@@ -120,7 +112,7 @@ const SignIn = ({ open }: { open: Function }) => {
                 edge="end"
                 name="password"
               >
-                {userData.showPassword ? <VisibilityOff /> : <Visibility />}
+                {signInData.showPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>
             </InputAdornment>
           }
@@ -129,8 +121,7 @@ const SignIn = ({ open }: { open: Function }) => {
       </FormControl>
       <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
         <button type="submit" className="sign-Btn">
-          {' '}
-          Sign in{' '}
+          Sign in
         </button>
       </FormControl>
     </form>

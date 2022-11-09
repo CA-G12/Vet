@@ -11,6 +11,11 @@ const errorWrapper = (controller: RequestHandler) => {
           error.status = 401;
         } else if (error.name === 'ValidationError') {
           error.status = 422;
+        } else if (
+          error.name ===
+          "The email address you entered isn't connected to an account"
+        ) {
+          error.status = 404;
         }
         next(error);
       } else {

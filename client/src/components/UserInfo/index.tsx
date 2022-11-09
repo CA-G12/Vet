@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
-import User from '../../Interfaces/IAuth';
+import IUser from '../../Interfaces/post/IUser';
 
-const UserPostInfo = ({ user }: { user: User | null | undefined }) => (
+const UserPostInfo = ({ user }: { user: Partial<IUser> | undefined }) => (
   <NavLink to={`/users/${user?.id}`} className="user-info-post">
     <div style={{ display: 'flex' }}>
       <Avatar alt={user?.name} src={user?.avatar} />

@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
-import IUser from '../../Interfaces/post/IUser';
 
-const ButtonDoctor = ({ user }: { user: IUser }) => (
+const ConnectBtn = ({ id }: { id: number }) => (
   <Link
     style={{
       textDecoration: 'none',
@@ -10,10 +9,10 @@ const ButtonDoctor = ({ user }: { user: IUser }) => (
       background: '#2D9B9B',
       borderRadius: 8,
     }}
-    to={`/users/${user?.id}`}
+    to={`/chatroom/${id}`}
   >
-    Visit
+    Connect
   </Link>
 );
 
-export default ButtonDoctor;
+export default ConnectBtn;

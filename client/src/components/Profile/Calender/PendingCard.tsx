@@ -18,7 +18,7 @@ const PendingCard = ({
   setAppointment: React.Dispatch<React.SetStateAction<any>>;
 }) => (
   <>
-    {pendingAppointment.map(ele => (
+    {pendingAppointment.map((ele: IAppointment) => (
       <Box key={ele.id}>
         <Stack direction="row" justifyContent="space-between" spacing={1}>
           <Username user={ele.User} />

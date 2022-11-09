@@ -17,7 +17,6 @@ describe('sign in router', () => {
       .expect(422)
       .expect('Content-Type', /json/)
       .end((err: any, res: any) => {
-        console.log(err, 'hello her1');
         if (err) {
           done(err);
         } else {
@@ -33,11 +32,9 @@ describe('sign in router', () => {
         email: 'most0717883@gmail.com',
         password: '123456',
       })
-      .expect(422)
+      .expect(404)
       .expect('Content-Type', /json/)
       .end((err: any, res: any) => {
-        console.log(err, 'hello her1');
-
         if (err) done(err);
         else {
           return done();

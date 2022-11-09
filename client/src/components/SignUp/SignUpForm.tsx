@@ -13,52 +13,48 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import * as React from 'react';
 import { toast } from 'react-toastify';
-import IAuth from '../../Interfaces/IAuth';
 import { authContext } from '../../hooks/useAuth';
 import Doctor from './SignupDoctor';
 import { SignUpValid } from '../../Validation';
+import { SignUp as ISignUp } from '../../Interfaces/IAuthCon';
 
-const SignUp = ({ open }: { open: Function }) => {
-  const { signUp } = React.useContext(authContext);
+type SignUpState = ISignUp & {
+  showPassword: boolean;
+};
+
+const SignUp = () => {
+  const { signUp, setOpen } = React.useContext(authContext);
   const [next, setNext] = React.useState<boolean>(false);
-  const [userData, setUserData] = React.useState<IAuth>({
+  const [signUpData, setSignUpData] = React.useState<SignUpState>({
     name: '',
     password: '',
     confirmPassword: '',
     role: 'USER',
-    showPassword: false,
-    showConfirmPassword: false,
     email: '',
+    showPassword: false,
   });
   const handleState = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.currentTarget;
-    setUserData((prev: object) => ({ ...prev, [name]: value }));
+    const { name, value } = e.target;
+    setSignUpData(prev => ({ ...prev, [name]: value }));
   };
   const handleSubmit = async (event: React.SyntheticEvent) => {
     try {
       event.preventDefault();
-      await SignUpValid.validate(userData);
-      await signUp(userData);
-      if (userData.role === 'DOCTOR') {
+      const validated = await SignUpValid.validate(signUpData);
+      await signUp(validated);
+      if (validated.role === 'DOCTOR') {
         setNext(true);
       }
-      if (userData.role === 'USER') open(false);
+      if (validated.role === 'USER') setOpen(false);
     } catch (err) {
       toast.error((err as Error).message);
     }
   };
-  const handleClickShowPassword = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (e.currentTarget.name === 'password') {
-      setUserData({
-        ...userData,
-        showPassword: !userData.showPassword,
-      });
-    } else {
-      setUserData({
-        ...userData,
-        showConfirmPassword: !userData.showConfirmPassword,
-      });
-    }
+  const handleClickShowPassword = () => {
+    setSignUpData(prev => ({
+      ...prev,
+      showPassword: prev.showPassword,
+    }));
   };
 
   return !next ? (
@@ -126,7 +122,7 @@ const SignUp = ({ open }: { open: Function }) => {
             size="small"
             fullWidth
             id="outlined-adornment-password"
-            type={userData.showPassword ? 'text' : 'password'}
+            type={signUpData.showPassword ? 'text' : 'password'}
             onChange={handleState}
             endAdornment={
               <InputAdornment position="end">
@@ -137,7 +133,7 @@ const SignUp = ({ open }: { open: Function }) => {
                   edge="end"
                   name="password"
                 >
-                  {userData.showPassword ? <VisibilityOff /> : <Visibility />}
+                  {signUpData.showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
             }
@@ -153,7 +149,7 @@ const SignUp = ({ open }: { open: Function }) => {
             fullWidth
             name="confirmPassword"
             id="outlined-adornment-password"
-            type={userData.showConfirmPassword ? 'text' : 'password'}
+            type={signUpData.showPassword ? 'text' : 'password'}
             onChange={handleState}
             endAdornment={
               <InputAdornment position="end">
@@ -166,11 +162,7 @@ const SignUp = ({ open }: { open: Function }) => {
                   }}
                   edge="end"
                 >
-                  {userData.showConfirmPassword ? (
-                    <VisibilityOff />
-                  ) : (
-                    <Visibility />
-                  )}
+                  {signUpData.showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
             }
@@ -189,9 +181,9 @@ const SignUp = ({ open }: { open: Function }) => {
             labelId="demo-simple-select-helper-label"
             id="demo-simple-select-helper"
             name="role"
-            value={userData.role}
+            value={signUpData.role}
             onChange={e =>
-              setUserData({ ...userData, role: e.target.value as string })
+              setSignUpData({ ...signUpData, role: e.target.value as string })
             }
           >
             <MenuItem value="USER">User</MenuItem>
@@ -200,7 +192,7 @@ const SignUp = ({ open }: { open: Function }) => {
         </FormControl>
 
         <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-          {userData.role !== 'DOCTOR' ? (
+          {signUpData.role !== 'DOCTOR' ? (
             <button type="submit" className="sign-Btn">
               Sign up{' '}
             </button>
@@ -213,7 +205,7 @@ const SignUp = ({ open }: { open: Function }) => {
       </div>
     </form>
   ) : (
-    <Doctor open={open} />
+    <Doctor open={setOpen} />
   );
 };
 export default SignUp;
