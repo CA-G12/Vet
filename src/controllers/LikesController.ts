@@ -29,22 +29,24 @@ export default class LikesController {
   }
 
   public static async destroy(req: Request, res: Response) {
-    const { PostId } = req.body;
     const UserId = req.user?.id;
-    const isLiked = await Like.findOne({ where: { UserId, PostId } });
+    const isLiked = await Like.findOne({
+      where: { UserId, PostId: req.params.postId },
+    });
     if (isLiked) {
       const removeLike = await Like.destroy({
-        where: { UserId, PostId },
+        where: { UserId, PostId: req.params.postId },
       });
       res.json({
         status: res.status,
         msg: 'post unliked successfully',
         data: removeLike,
       });
+    } else {
+      throw new CustomError(
+        400,
+        'something went wrong, you cannot unlike this post',
+      );
     }
-    throw new CustomError(
-      400,
-      'something went wrong, you cannot like this post',
-    );
   }
 }

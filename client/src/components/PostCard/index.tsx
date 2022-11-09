@@ -22,6 +22,7 @@ const Post = ({ post }: { post: IPost }) => {
   const [numComments, setNumComments] = useState(post.Comments.length);
   const [editPost, setEditPost] = useState(false);
   const [postContent, setPostContent] = useState(post);
+  const [likes, setLikes] = useState(post.Likes);
 
   const showMore = async () => {
     setIsShowMore(true);
@@ -71,7 +72,7 @@ const Post = ({ post }: { post: IPost }) => {
 
           <StackCommentsAndLikes
             commentNum={numComments}
-            likes={post.Likes}
+            likes={likes}
             handleClick={handleClick}
           />
         </section>
@@ -95,6 +96,8 @@ const Post = ({ post }: { post: IPost }) => {
         numComments={numComments}
         setNumComments={setNumComments}
         postId={post.id}
+        setLikes={setLikes}
+        likes={likes}
         showComments={showComments}
         getComments={getComments}
         setGetComments={setGetComments}
