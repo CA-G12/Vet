@@ -1,5 +1,5 @@
 import React from 'react';
-import { getWhoActive } from '../helpers/getWhoActive';
+import { getWhoActive } from '../helpers/onActiveUsersChange';
 
 function useActive() {
   const [active, setActive] = React.useState([]);

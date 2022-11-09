@@ -2,7 +2,7 @@ import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
 import { db } from './Firebase.config';
 
 // eslint-disable-next-line promise/prefer-await-to-callbacks
-function getWhoActive(callback: Function) {
+function onActiveUsersChange(callback: Function) {
   return onSnapshot(
     query(collection(db, 'whoActive'), orderBy('timestamp', 'asc')),
     querySnapshot => {
@@ -17,4 +17,4 @@ function getWhoActive(callback: Function) {
   );
 }
 
-export { getWhoActive };
+export { onActiveUsersChange };

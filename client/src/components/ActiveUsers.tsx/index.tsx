@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { SendIsActive } from '../../helpers/SendIsActive';
+import { SendIsActive } from '../../helpers/setActiveUser';
 import { useAuth } from '../../hooks/UseAuthar';
-import { deleteOffLine } from '../../helpers/deleteOffLine';
+import { deleteOffLine } from '../../helpers/unsetActiveUser';
 
 const WhoActive = () => {
   const { user } = useAuth();
