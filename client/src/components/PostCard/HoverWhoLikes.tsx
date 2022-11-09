@@ -46,7 +46,7 @@ const HoverWhoLikes = ({ likes }: { likes: Array<ILike> }) => {
           aria-haspopup="true"
         >
           <StyledBadge badgeContent={likes.length} className="likesNum">
-            <PetsIcon />
+            <PetsIcon color="primary" />
           </StyledBadge>
         </Typography>
       </IconButton>{' '}

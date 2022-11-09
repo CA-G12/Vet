@@ -49,7 +49,7 @@ const StackCommentsAndLikes = ({
     >
       <Tooltip title="Show Comments">
         <FontAwesomeIcon
-          style={{ fontSize: '20px', marginTop: '2px' }}
+          style={{ fontSize: '20px', marginTop: '2px', color: '#2D9B9B' }}
           icon={faComment}
         />
       </Tooltip>

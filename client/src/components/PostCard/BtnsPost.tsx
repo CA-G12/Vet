@@ -82,7 +82,7 @@ const BtnsPost = ({
       width="100%"
       sx={{
         position: 'relative',
-        background: '#356E6E',
+        background: '#2d9b9b',
         borderRadius: !isConnected ? '0 0 12px 12px' : 0,
       }}
     >
@@ -106,7 +106,7 @@ const BtnsPost = ({
           </label>
         </Tooltip>
 
-        <IconButton onClick={handelLike}>
+        <IconButton sx={{ width: '50%' }} onClick={handelLike}>
           <PetsIcon
             sx={{
               color: !likes.some(like => like.User.id === user?.id)
@@ -127,6 +127,17 @@ const BtnsPost = ({
           setShowCommentInput={setShowCommentInput}
         />
       )}
+      <Box
+        position="absolute"
+        sx={{
+          width: '1px',
+          height: '24px',
+          background: 'red',
+          left: '50%',
+          top: '8px',
+          backgroundColor: '#FDD853',
+        }}
+      />
     </Box>
   );
 };

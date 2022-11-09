@@ -129,9 +129,6 @@
   ],
   "Tag": [
     {
-      "name": "All"
-    },
-    {
       "name": "Need help"
     },
     {
@@ -148,9 +145,6 @@
     }
   ],
   "Animal": [
-    {
-      "name": "All"
-    },
     {
       "name": "Cat"
     },

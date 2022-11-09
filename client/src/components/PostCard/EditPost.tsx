@@ -34,9 +34,9 @@ const EditPost = ({
       <Stack>
         <Box
           margin="20px 0"
-          flexWrap={{ sm: 'nowrap', s: 'wrap-reverse' }}
+          flexWrap={{ sm: 'nowrap', xs: 'wrap-reverse' }}
           display="flex"
-          justifyContent={{ sm: 'space-between', s: 'center' }}
+          justifyContent={{ sm: 'space-between', xs: 'center' }}
           gap="20px"
         >
           <TextField

@@ -1,6 +1,6 @@
-import './post.css';
 import { useContext, useState } from 'react';
 import { Box, Stack } from '@mui/system';
+import Typography from '@mui/material/Typography';
 import useOutsideClick from '../../hooks/UseOutsideClick';
 import BtnsPost from './BtnsPost';
 import IPost from '../../Interfaces/post/IPost';
@@ -11,6 +11,7 @@ import ApiServices from '../../services/ApiService';
 import { authContext } from '../../hooks/useAuth';
 import EditPost from './EditPost';
 import EditAndDeletePost from './EditAndDeletePost';
+import Hashtags from './Hashtags';
 
 const Post = ({
   post,
@@ -84,10 +85,10 @@ const Post = ({
           sx={{
             width: '100%',
             borderRadius: '12px',
-            padding: { sm: '20px', s: '0' },
+            padding: { sm: '20px', xs: '0' },
           }}
         >
-          <Box width="20%">
+          <Box width="20%" sx={{ padding: { sm: '0', xs: '20px' } }}>
             <UserPostInfo
               id={post.User.id}
               name={post.User.name}
@@ -95,24 +96,28 @@ const Post = ({
             />
           </Box>
           <Stack
-            direction={{ sm: 'row', s: 'column-reverse' }}
+            direction={{ sm: 'row', xs: 'column-reverse' }}
             spacing={2}
-            justifyContent={{ sm: 'space-between', s: 'center' }}
+            justifyContent={{ sm: 'space-between', xs: 'center' }}
           >
             {!editPost && (
-              <p
-                style={{
+              <Typography
+                sx={{
                   textAlign: 'center',
                   padding: '20px 50px',
                 }}
+                color="primary"
+                variant="h6"
+                display="block"
+                gutterBottom
               >
                 {postContent.content}
-              </p>
+              </Typography>
             )}
             {postContent.image && !editPost && (
               <Box
-                paddingTop={{ sm: '0', s: '20px' }}
-                width={{ sm: '30%', s: '100%' }}
+                paddingTop={{ sm: '0', xs: '20px' }}
+                width={{ sm: '30%', xs: '100%' }}
               >
                 <img
                   style={{ width: '100%', borderRadius: '12px' }}
@@ -130,12 +135,14 @@ const Post = ({
               setEditPost={setEditPost}
             />
           )}
-
-          <StackCommentsAndLikes
-            commentNum={numComments}
-            likes={likes}
-            handleClick={handleClick}
-          />
+          <Stack direction="row" justifyContent="space-evenly">
+            <Hashtags tag={post.Tag} animal={post.Animal} />
+            <StackCommentsAndLikes
+              commentNum={numComments}
+              likes={likes}
+              handleClick={handleClick}
+            />
+          </Stack>
         </Box>
       </Box>
 
