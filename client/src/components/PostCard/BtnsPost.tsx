@@ -93,11 +93,7 @@ const BtnsPost = ({
         <Tooltip title="Add new comment">
           <label htmlFor="add-comment-btn">
             {' '}
-            <IconButton
-              sx={{ width: '50%' }}
-              className="comment-btn"
-              onClick={handleClick}
-            >
+            <IconButton sx={{ width: '50%' }} onClick={handleClick}>
               <FontAwesomeIcon
                 style={{ width: '100px', color: '#ffff' }}
                 icon={faComment}

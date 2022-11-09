@@ -61,7 +61,7 @@ const EditImagePost = ({ data, setData }: Props) => {
           right: '-7px',
         }}
       >
-        <IconButton className="mangment-img-comment-btn">
+        <IconButton>
           <label htmlFor={`${data.id}`}>
             <input
               onChange={editImg}
@@ -75,7 +75,7 @@ const EditImagePost = ({ data, setData }: Props) => {
         </IconButton>
 
         {data.image && (
-          <IconButton className="mangment-img-comment-btn" onClick={deleteImg}>
+          <IconButton onClick={deleteImg}>
             <DeleteIcon />
           </IconButton>
         )}

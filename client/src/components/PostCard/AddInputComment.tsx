@@ -91,7 +91,7 @@ const AddInputComment = ({
   }, [file]);
 
   return (
-    <form onSubmit={sendComment} className="addCommentInput">
+    <form onSubmit={sendComment}>
       <Stack
         justifyContent="space-between"
         direction="row"

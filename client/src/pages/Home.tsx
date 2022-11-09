@@ -107,7 +107,7 @@ const Home = () => {
         {loading && posts.length !== 0 ? (
           <PostsList setPost={setPost} posts={posts} />
         ) : loading && posts.length === 0 ? (
-          <h2 className="no-result">No Result</h2>
+          <h2>No Result</h2>
         ) : (
           <LoadingPosts />
         )}

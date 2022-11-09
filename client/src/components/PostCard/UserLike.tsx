@@ -11,11 +11,7 @@ const UserLike = ({
   name: string;
   avatar: string;
 }) => (
-  <NavLink
-    style={{ textDecoration: 'none', width: 0 }}
-    to={`/users/${id}`}
-    className="user-info-post"
-  >
+  <NavLink style={{ textDecoration: 'none', width: 0 }} to={`/users/${id}`}>
     <Stack
       marginTop="10px"
       justifyContent="space-between"

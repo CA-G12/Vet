@@ -81,12 +81,7 @@ const EditAndDeleteBtn = ({
           <MoreHorizIcon sx={{ color: '#121212' }} />
         </ListItemIcon>
       </Button>
-      <Collapse
-        className="btns-container"
-        in={open}
-        timeout="auto"
-        unmountOnExit
-      >
+      <Collapse in={open} timeout="auto" unmountOnExit>
         <List
           sx={{
             position: 'absolute',
@@ -97,13 +92,13 @@ const EditAndDeleteBtn = ({
           component="div"
           disablePadding
         >
-          <ListItemButton className="btns-list" sx={{ pl: 0 }}>
+          <ListItemButton sx={{ pl: 0 }}>
             <Button sx={{ width: '100%' }} onClick={handelEdit}>
               <EditIcon />
               <ListItemText primary="Edit" />
             </Button>
           </ListItemButton>
-          <ListItemButton className="btns-list" sx={{ pl: 0 }}>
+          <ListItemButton sx={{ pl: 0 }}>
             <Button onClick={deleteComment}>
               <DeleteIcon />
               <ListItemText primary="Delete" />

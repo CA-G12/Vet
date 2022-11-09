@@ -38,7 +38,6 @@ const StackCommentsAndLikes = ({
     display="flex"
     justifyContent="start"
     alignItems="center"
-    className="comments-likes-btn"
   >
     <StyledBadge
       onClick={() => {

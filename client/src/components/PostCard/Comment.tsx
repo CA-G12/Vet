@@ -88,7 +88,7 @@ const Comment = ({
           {!edit ? (
             <p style={{ marginLeft: ' 50px' }}>{changeComment.comment}</p>
           ) : (
-            <form className="edit-comment" onSubmit={saveChange}>
+            <form onSubmit={saveChange}>
               <input
                 style={{ padding: '5px' }}
                 value={changeComment.comment}
@@ -111,7 +111,6 @@ const Comment = ({
       </Stack>
 
       <img
-        className="comment-img"
         style={{
           display: changeComment.image && !edit ? 'block' : 'none',
           width: '100px',

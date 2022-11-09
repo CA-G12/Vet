@@ -70,7 +70,7 @@ const EditImageComment = ({ data, setData }: Props) => {
         </IconButton>
 
         {data.image && (
-          <IconButton className="mangment-img-comment-btn" onClick={deleteImg}>
+          <IconButton onClick={deleteImg}>
             <DeleteIcon />
           </IconButton>
         )}
