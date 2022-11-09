@@ -40,14 +40,14 @@ export const UserAppointment = () => {
       {
         field: '',
         headerName: 'Doctor Name',
-        valueGetter: appin => appin.row.User?.name,
+        valueGetter: appin => appin.row.User,
         width: 160,
       },
       {
         field: 'actions',
         type: 'actions',
-        headerName: 'actions',
-        width: 160,
+        headerName: 'Actions',
+        width: 100,
         getActions: (params: any) => [
           <GridActionsCellItem
             icon={<DeleteIcon />}
@@ -60,8 +60,19 @@ export const UserAppointment = () => {
     [],
   );
   return (
-    <Box sx={{ height: 400, width: '100%' }}>
-      <DataGrid rows={userAppointment} columns={columns} />
+    <Box display="flex" justifyContent="center">
+      <Box
+        sx={{
+          height: 350,
+          width: '50%',
+        }}
+      >
+        <DataGrid
+          rows={userAppointment}
+          columns={columns}
+          sx={{ overflowX: 'none' }}
+        />
+      </Box>
     </Box>
   );
 };

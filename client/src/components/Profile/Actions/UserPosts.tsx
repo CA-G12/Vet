@@ -11,12 +11,12 @@ export const UserPosts = () => {
   useEffect(() => {
     const getPosts = async () => {
       const { data } = await ApiServices.get(`/posts/${params.id}`);
-      setUPosts([...data.posts]);
+      setUPosts(data.posts);
     };
     getPosts();
   }, [params.id]);
   return (
-    <Box>
+    <Box display="flex" justifyContent="center">
       {uPosts.length > 0 ? (
         <Post posts={uPosts} />
       ) : (

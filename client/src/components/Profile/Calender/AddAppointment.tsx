@@ -1,21 +1,10 @@
 import { Box, Typography, Modal, TextField, Stack } from '@mui/material';
-
 import React from 'react';
+import PopStyle from '../../../helpers/PopStyle';
 
 const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
   width: 350,
-  bgcolor: 'background.paper',
-  borderRadius: '2%',
-  boxShadow: 24,
-  p: 1,
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
+  ...PopStyle,
 };
 const btnAdd = {
   width: '150px',

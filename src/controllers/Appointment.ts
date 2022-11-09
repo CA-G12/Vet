@@ -4,14 +4,20 @@ import Booking from '../models/Booking';
 import AppointmentValid from '../validation/Appointment';
 import CustomError from '../helpers/errorsHandling/CustomError';
 import { Op } from 'sequelize';
+import { sequelize } from '../db';
+
 export default class Appointment {
   public static async userAppointment(req: Request, res: Response) {
     const userAppointment = await Booking.findAll({
-      attributes: ['id', 'title', 'start', 'description', 'status'],
-      include: {
-        model: User,
-        as: 'User',
-        attributes: ['name'],
+      attributes: {
+        include: [
+          [
+            sequelize.literal(
+              `(SELECT name FROM "Users" WHERE "Users".id="Booking"."DoctorId")`,
+            ),
+            'User',
+          ],
+        ],
       },
       where: { UserId: req.user?.id },
     });

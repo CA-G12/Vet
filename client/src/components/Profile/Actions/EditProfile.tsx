@@ -13,7 +13,7 @@ const EditProfile = () => {
         setOpen(false);
       }}
     >
-      <Box sx={styleModal}>
+      <Box sx={{ height: 500, width: 400, ...styleModal }}>
         <Typography color="primary"> Edit Profile </Typography>
         <Doctor />
       </Box>

@@ -32,6 +32,40 @@ const DoctorEdit = () => {
       [name]: value,
     }));
   };
+  const submitForm = async () => {
+    try {
+      if (user?.role === 'DOCTOR') {
+        await DoctorInfo.validate(docInfo);
+        if (degreeFile) {
+          const degree = await uploadImage(degreeFile, setProgress);
+          setDocInfo(prev => ({ ...prev, universityDegree: degree }));
+          await ApiService.put('/doctor-info', {
+            ...docInfo,
+            universityDegree: degree,
+            DoctorId: user?.id,
+          });
+        }
+      }
+      if (avatarFile) {
+        const userAv = await uploadImage(avatarFile, setProgress);
+        setUserName(() => ({ ...userName, avatar: userAv }));
+
+        const { data } = await ApiService.put('/user', {
+          ...userName,
+          avatar: userAv,
+        });
+        setUserInfo(prev => ({ ...prev, ...userName }));
+        JwtService.setToken(data.token);
+      } else {
+        const { data } = await ApiService.put('/user', userName);
+        setUserInfo(prev => ({ ...prev, ...userName }));
+        JwtService.setToken(data.token);
+      }
+      toast.success('Edited successfully');
+    } catch (error: any) {
+      toast.error(error.message);
+    }
+  };
   return (
     <form
       style={{
@@ -40,41 +74,7 @@ const DoctorEdit = () => {
         alignItems: 'center',
         gap: 10,
       }}
-      onSubmit={async event => {
-        event.preventDefault();
-        try {
-          if (user?.role === 'DOCTOR') {
-            await DoctorInfo.validate(docInfo);
-            if (degreeFile) {
-              const degree = await uploadImage(degreeFile, setProgress);
-              setDocInfo(prev => ({ ...prev, universityDegree: degree }));
-              await ApiService.put('/doctor-info', {
-                ...docInfo,
-                universityDegree: degree,
-                DoctorId: user?.id,
-              });
-            }
-          }
-          if (avatarFile) {
-            const userAv = await uploadImage(avatarFile, setProgress);
-            setUserName(() => ({ ...userName, avatar: userAv }));
-
-            const { data } = await ApiService.put('/user', {
-              ...userName,
-              avatar: userAv,
-            });
-            setUserInfo(prev => ({ ...prev, ...userName }));
-            JwtService.setToken(data.token);
-          } else {
-            const { data } = await ApiService.put('/user', userName);
-            setUserInfo(prev => ({ ...prev, ...userName }));
-            JwtService.setToken(data.token);
-          }
-          toast.success('Edited successfully');
-        } catch (error: any) {
-          toast.error(error.message);
-        }
-      }}
+      onSubmit={submitForm}
     >
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <FormControl>

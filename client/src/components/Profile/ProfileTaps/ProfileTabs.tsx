@@ -16,16 +16,16 @@ export const ProfileTabs = ({ userInfo }: { userInfo: IAuth }) => {
   };
   return (
     <Box sx={{ width: '100%', typography: 'body1' }}>
-      {user?.id === Number(params.id) && user?.role === 'USER' ? (
+      {user?.id === Number(params.id) && user?.role === 'USER' && (
         <UserTabProfile value={value} handleChange={handleChange} />
-      ) : null}
+      )}
 
-      {userInfo?.role === 'DOCTOR' ? (
+      {userInfo?.role === 'DOCTOR' && (
         <DoctorTabProfile value={value} handleChange={handleChange} />
-      ) : null}
-      {user?.id !== Number(params.id) && userInfo?.role === 'USER' ? (
+      )}
+      {user?.id !== Number(params.id) && userInfo?.role === 'USER' && (
         <UserPosts />
-      ) : null}
+      )}
     </Box>
   );
 };

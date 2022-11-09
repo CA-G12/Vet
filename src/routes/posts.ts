@@ -10,6 +10,8 @@ router.post(
   errorWrapper(PostsController.store),
 );
 router.get('/posts', errorWrapper(PostsController.index));
+router.get('/posts/:id', errorWrapper(PostsController.userPosts));
+
 router.put(
   '/post/:postId',
   errorWrapper(isAuth),

@@ -3,7 +3,7 @@ import Avatar from '@mui/material/Avatar';
 import { Box } from '@mui/material';
 import IUser from '../../Interfaces/post/IUser';
 
-const UserAvatar = ({ user }: { user: IUser | null | undefined }) => {
+const UserAvatar = ({ user }: { user: IUser | undefined }) => {
   return (
     <NavLink to={`/users/${user?.id}`} className="user-info-post">
       <Box display="flex">

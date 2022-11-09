@@ -72,7 +72,7 @@ const PendingPopup = ({
         open={open}
         onClose={() => setOpen(prev => ({ ...prev, pendingPop: false }))}
       >
-        <Box sx={style}>
+        <Box sx={{ ...style, width: 400, height: 400 }}>
           <Stack spacing={2}>
             <Box
               display="flex"
