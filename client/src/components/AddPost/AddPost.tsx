@@ -55,11 +55,11 @@ const AddPost = ({
   posts: Array<IPost>;
   setPost: Function;
 }) => {
-  const userContext = React.useContext(authContext);
-  const [open, setOpen] = React.useState(false);
+  const { user, setOpen } = React.useContext(authContext);
+  const [openModal, setOpenModal] = React.useState(false);
   const [progress, setProgress] = React.useState(0);
   const [file, setFile] = React.useState<File | null>(null);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => setOpenModal(false);
   React.useEffect(() => {
     if (progress === 100) handleClose();
   }, [progress]);
@@ -70,10 +70,10 @@ const AddPost = ({
   };
 
   const handleOpen = () => {
-    if (userContext.user) {
-      setOpen(true);
+    if (user) {
+      setOpenModal(true);
     } else {
-      userContext.setOpen(true);
+      setOpen(true);
       toast.error('you have to be logged in to post');
     }
   };
@@ -90,7 +90,7 @@ const AddPost = ({
 
       const postData: IAddPost = {
         ...validated,
-        UserId: userContext.user?.id,
+        UserId: user?.id,
         image: imageUrl,
       };
 
@@ -120,7 +120,7 @@ const AddPost = ({
       </Button>
       <Modal
         className="addPost"
-        open={open}
+        open={openModal}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -129,7 +129,7 @@ const AddPost = ({
           <form action="" onSubmit={handleSubmit}>
             <Box sx={style}>
               <Box sx={{ alignSelf: 'flex-start' }}>
-                {userContext.user && <Username user={userContext.user} />}
+                {user && <Username user={user} />}
               </Box>
               <TextareaAutosize
                 name="content"
