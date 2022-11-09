@@ -1,4 +1,3 @@
-import './post.css';
 import { useContext, useState } from 'react';
 import { Box, Stack } from '@mui/system';
 import useOutsideClick from '../../hooks/UseOutsideClick';
@@ -11,6 +10,7 @@ import ApiServices from '../../services/ApiService';
 import { authContext } from '../../hooks/useAuth';
 import EditPost from './EditPost';
 import EditAndDeletePost from './EditAndDeletePost';
+import Hashtags from './Hashtags';
 
 const Post = ({
   post,
@@ -129,12 +129,14 @@ const Post = ({
               setEditPost={setEditPost}
             />
           )}
-
-          <StackCommentsAndLikes
-            commentNum={numComments}
-            likes={post.Likes}
-            handleClick={handleClick}
-          />
+          <Stack direction="row" justifyContent="space-evenly">
+            <Hashtags tag={post.Tag} animal={post.Animal} />
+            <StackCommentsAndLikes
+              commentNum={numComments}
+              likes={post.Likes}
+              handleClick={handleClick}
+            />
+          </Stack>
         </Box>
       </Box>
 

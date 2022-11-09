@@ -1,5 +1,3 @@
-import './post.css';
-
 import { Box } from '@mui/system';
 import IPost from '../../Interfaces/post/IPost';
 import Post from '.';

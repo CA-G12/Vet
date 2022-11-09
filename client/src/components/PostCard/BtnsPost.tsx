@@ -47,7 +47,7 @@ const BtnsPost = ({
       width="100%"
       sx={{
         position: 'relative',
-        background: '#356E6E',
+        background: '#2D9B9B',
         borderRadius: !isConnected ? '0 0 12px 12px' : 0,
       }}
     >
