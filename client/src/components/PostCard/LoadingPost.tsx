@@ -1,18 +1,31 @@
 import Skeleton from '@mui/material/Skeleton';
+import { Box } from '@mui/system';
 
 const LoadingPost = () => (
-  <div className="loading-post">
-    <div className="loading-user-info">
+  <Box
+    sx={{
+      background: '#EFF2F2',
+      margin: '20px',
+      padding: '20px',
+      borderRadius: '12px',
+    }}
+  >
+    <Box display="flex" alignItems="self-end">
       <Skeleton animation="wave" variant="circular" width={40} height={40} />
       <Skeleton
         animation="wave"
         height={10}
         width="20%"
-        style={{ marginBottom: 6 }}
+        sx={{ marginBottom: 2 }}
       />
-    </div>
-    <div className="post-loading-info">
-      <div className="loading-content">
+    </Box>
+    <Box
+      display="flex"
+      alignItems="center"
+      justifyContent="space-around"
+      gap={1}
+    >
+      <Box width="100%">
         <Skeleton
           animation="wave"
           height={10}
@@ -37,17 +50,16 @@ const LoadingPost = () => (
           width="30%"
           style={{ marginBottom: 6 }}
         />
-      </div>
+      </Box>
 
       <Skeleton
-        className="loading-img"
-        width="40%"
-        sx={{ height: 60, borderRadius: 4 }}
+        width={200}
+        sx={{ height: 100, borderRadius: 4 }}
         animation="wave"
         variant="rectangular"
       />
-    </div>
-  </div>
+    </Box>
+  </Box>
 );
 
 export default LoadingPost;

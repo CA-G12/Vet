@@ -7,6 +7,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
 
+import { Box } from '@mui/system';
 import AddInputComment from './AddInputComment';
 import IComment from '../../Interfaces/post/IComment';
 
@@ -77,15 +78,22 @@ const BtnsPost = ({
   };
 
   return (
-    <div>
-      <div
-        style={{ borderRadius: isConnected ? '0' : '0 0 10px 10px' }}
-        className="BtnsPost"
+    <Box
+      width="100%"
+      sx={{
+        position: 'relative',
+        background: '#2d9b9b',
+        borderRadius: !isConnected ? '0 0 12px 12px' : 0,
+      }}
+    >
+      <Box
+        width="100%"
+        sx={{ borderRadius: isConnected ? '0' : '0 0 10px 10px' }}
       >
         <Tooltip title="Add new comment">
           <label htmlFor="add-comment-btn">
             {' '}
-            <IconButton className="comment-btn" onClick={handleClick}>
+            <IconButton sx={{ width: '50%' }} onClick={handleClick}>
               <FontAwesomeIcon
                 style={{ width: '100px', color: '#ffff' }}
                 icon={faComment}
@@ -94,7 +102,7 @@ const BtnsPost = ({
           </label>
         </Tooltip>
 
-        <IconButton onClick={handelLike}>
+        <IconButton sx={{ width: '50%' }} onClick={handelLike}>
           <PetsIcon
             sx={{
               color: !likes.some(like => like.User.id === user?.id)
@@ -103,7 +111,7 @@ const BtnsPost = ({
             }}
           />
         </IconButton>
-      </div>
+      </Box>
       {showCommentInput && user && (
         <AddInputComment
           numComments={numComments}
@@ -115,7 +123,18 @@ const BtnsPost = ({
           setShowCommentInput={setShowCommentInput}
         />
       )}
-    </div>
+      <Box
+        position="absolute"
+        sx={{
+          width: '1px',
+          height: '24px',
+          background: 'red',
+          left: '50%',
+          top: '8px',
+          backgroundColor: '#FDD853',
+        }}
+      />
+    </Box>
   );
 };
 
