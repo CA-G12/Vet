@@ -1,5 +1,6 @@
 import { Box } from '@mui/system';
 import { useState, useEffect } from 'react';
+import Divider from '@mui/material/Divider';
 import Doctor from '../components/Emergency';
 import IUser from '../Interfaces/post/IUser';
 import { useActive } from '../hooks/useActive';
@@ -20,6 +21,7 @@ const Emergency = () => {
       flexDirection="column"
       alignItems="center"
       sx={{ width: { xs: '100%', sm: '50%' }, margin: ' 40px auto' }}
+      minHeight="50vh"
     >
       <p
         style={{
@@ -33,7 +35,11 @@ const Emergency = () => {
       </p>
 
       {user ? (
-        doctors.map((doctor: IUser) => <Doctor key={doctor.id} user={doctor} />)
+        doctors.map((doctor: IUser) => (
+          <Box width={{ xs: '100%', sm: '70%' }}>
+            <Doctor key={doctor.id} user={doctor} /> <Divider />
+          </Box>
+        ))
       ) : (
         <h1>you have to signIn pro!</h1>
       )}

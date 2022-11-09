@@ -8,7 +8,8 @@ const Index = ({ user }: { user: IUser }) => (
     display="flex"
     justifyContent="space-between"
     alignItems="center"
-    sx={{ width: '80%', marginTop: '20px' }}
+    width={{ xs: '100%', sm: '100%' }}
+    marginTop="20px"
   >
     <Box>
       <EmergencyUserAvatar user={user} />
