@@ -31,6 +31,7 @@ const Post = ({
   const [numComments, setNumComments] = useState(post.Comments.length);
   const [editPost, setEditPost] = useState(false);
   const [postContent, setPostContent] = useState(post);
+  const [likes, setLikes] = useState(post.Likes);
 
   const showMore = async () => {
     setIsShowMore(true);
@@ -132,7 +133,7 @@ const Post = ({
 
           <StackCommentsAndLikes
             commentNum={numComments}
-            likes={post.Likes}
+            likes={likes}
             handleClick={handleClick}
           />
         </Box>
@@ -144,6 +145,8 @@ const Post = ({
         numComments={numComments}
         setNumComments={setNumComments}
         postId={post.id}
+        setLikes={setLikes}
+        likes={likes}
         showComments={showComments}
         getComments={getComments}
         setGetComments={setGetComments}

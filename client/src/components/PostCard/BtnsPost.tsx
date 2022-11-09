@@ -12,7 +12,8 @@ import AddInputComment from './AddInputComment';
 import IComment from '../../Interfaces/post/IComment';
 
 import { authContext } from '../../hooks/useAuth';
-import PopUp from '../Popup/Popup';
+import ILike from '../../Interfaces/post/ILike';
+import ApiServices from '../../services/ApiService';
 
 interface IBtnsPost {
   isConnected: boolean;
@@ -23,6 +24,8 @@ interface IBtnsPost {
   getComments: Array<IComment>;
   setGetComments: Function;
   setIsConnected: Function;
+  likes: Array<ILike>;
+  setLikes: Function;
 }
 
 const BtnsPost = ({
@@ -34,12 +37,44 @@ const BtnsPost = ({
   showComments,
   getComments,
   setGetComments,
+  setLikes,
+  likes,
 }: IBtnsPost) => {
   const { user, open, setOpen } = useContext(authContext);
   const [showCommentInput, setShowCommentInput] = useState(false);
   const handleClick = () => {
-    setShowCommentInput(!showCommentInput);
-    setIsConnected(true);
+    if (!user) {
+      setOpen(!open);
+    } else {
+      setShowCommentInput(!showCommentInput);
+      setIsConnected(true);
+    }
+  };
+  const handelLike = async () => {
+    if (user) {
+      if (likes.some(like => like.User.id === user?.id)) {
+        await ApiServices.destroy(`likes/${postId}`);
+        setLikes(likes.filter(like => like.User.id !== user?.id));
+      } else {
+        const addLike = await ApiServices.post('likes', {
+          PostId: postId,
+        });
+        setLikes([
+          ...likes,
+          {
+            id: addLike.data.data.id,
+            User: {
+              id: user.id,
+              avatar: user.avatar,
+              role: 'USER',
+              name: user.name,
+            },
+          },
+        ]);
+      }
+    } else {
+      setOpen(!open);
+    }
   };
 
   return (
@@ -63,13 +98,22 @@ const BtnsPost = ({
               className="comment-btn"
               onClick={handleClick}
             >
-              <FontAwesomeIcon icon={faComment} />
+              <FontAwesomeIcon
+                style={{ width: '100px', color: '#ffff' }}
+                icon={faComment}
+              />
             </IconButton>
           </label>
         </Tooltip>
 
-        <IconButton sx={{ width: '50%' }}>
-          <PetsIcon />
+        <IconButton onClick={handelLike}>
+          <PetsIcon
+            sx={{
+              color: !likes.some(like => like.User.id === user?.id)
+                ? '#ffff'
+                : '#FDD853',
+            }}
+          />
         </IconButton>
       </Box>
       {showCommentInput && user && (
@@ -83,18 +127,6 @@ const BtnsPost = ({
           setShowCommentInput={setShowCommentInput}
         />
       )}
-      <Box
-        sx={{
-          position: 'absolute',
-          left: '50%',
-          height: '20px',
-          width: '1px',
-          top: '10px',
-          background: '#FDD853',
-          zIndex: 15,
-        }}
-      />
-      {showCommentInput && !user && <PopUp open={open} setOpen={setOpen} />}
     </Box>
   );
 };

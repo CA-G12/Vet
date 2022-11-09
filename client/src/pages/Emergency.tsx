@@ -2,18 +2,16 @@ import { Box } from '@mui/system';
 import { useState, useEffect } from 'react';
 import Doctor from '../components/Emergency';
 import IUser from '../Interfaces/post/IUser';
-import ApiServices from '../services/ApiService';
+import { useActive } from '../hooks/useActive';
+import { useAuth } from '../hooks/UseAuthar';
 
 const Emergency = () => {
+  const { user } = useAuth();
   const [doctors, setDoctors] = useState([]);
-
-  const getDoctors = async () => {
-    const allDoctors = await ApiServices.get('doctors');
-    setDoctors(allDoctors.data);
-  };
+  const active = useActive();
   useEffect(() => {
-    getDoctors();
-  }, []);
+    setDoctors(active);
+  }, [active]);
 
   return (
     <Box
@@ -33,9 +31,12 @@ const Emergency = () => {
       >
         Available Emergency Doctors
       </p>
-      {doctors.map((doctor: IUser) => (
-        <Doctor key={doctor.id} user={doctor} />
-      ))}
+
+      {user ? (
+        doctors.map((doctor: IUser) => <Doctor key={doctor.id} user={doctor} />)
+      ) : (
+        <h1>you have to signIn pro!</h1>
+      )}
     </Box>
   );
 };

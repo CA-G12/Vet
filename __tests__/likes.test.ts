@@ -58,9 +58,8 @@ describe('like a post', () => {
 describe('unlike a post', () => {
   test('unlike a post from an authorized account, should be successful', done => {
     supertest(app)
-      .delete('/api/v1/likes')
+      .delete('/api/v1/likes/2')
       .set('Authorization', `Bearer ${token}`)
-      .send({ PostId: 2 })
       .end((err, res) => {
         if (err) return done(err);
         expect(200);
@@ -70,28 +69,26 @@ describe('unlike a post', () => {
   });
   test("unlike a post that isn't liked, should fail", done => {
     supertest(app)
-      .delete('/api/v1/likes')
+      .delete('/api/v1/likes/2')
       .set('Authorization', `Bearer ${token}`)
-      .send({ PostId: 2 })
       .end((err, res) => {
         if (err) return done(err);
         expect(200);
         expect(res.body.msg).toBe(
-          'something went wrong, you cannot like this post',
+          'something went wrong, you cannot unlike this post',
         );
         return done();
       });
   });
   test("unlike a post that doesn't exist, should fail", done => {
     supertest(app)
-      .delete('/api/v1/likes')
+      .delete('/api/v1/likes/100')
       .set('Authorization', `Bearer ${token}`)
-      .send({ PostId: 100 })
       .end((err, res) => {
         if (err) return done(err);
         expect(200);
         expect(res.body.msg).toBe(
-          'something went wrong, you cannot like this post',
+          'something went wrong, you cannot unlike this post',
         );
         return done();
       });
