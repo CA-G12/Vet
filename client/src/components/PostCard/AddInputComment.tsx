@@ -5,6 +5,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 import HideImageIcon from '@mui/icons-material/HideImage';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { toast } from 'react-toastify';
+import { Box, Stack } from '@mui/system';
+import { Button } from '@mui/material';
 import ApiServices from '../../services/ApiService';
 import deleteImageFromStorage from '../../helpers/deleteImageFromStorage';
 import IComment from '../../Interfaces/post/IComment';
@@ -89,40 +91,58 @@ const AddInputComment = ({
   }, [file]);
 
   return (
-    <form onSubmit={sendComment} className="addCommentInput">
-      <input
-        value={data.comment}
-        onChange={handelOnChange}
-        placeholder="Add Comment"
-        id="add-comment-btn"
-        type="text"
-      />
-      <div style={{ display: isUploading ? 'block' : 'none' }}>
-        <CircularProgress />
-      </div>
-      <div
-        style={{ display: data.image ? 'block' : 'none' }}
-        role="presentation"
-        onClick={handelDeleteImg}
+    <form onSubmit={sendComment}>
+      <Stack
+        justifyContent="space-between"
+        direction="row"
+        alignItems="center"
+        paddingTop="5px"
+        sx={{ background: '#EFF2F2' }}
       >
-        <HideImageIcon />
-      </div>
-      <label
-        style={{ display: !data.image && !isUploading ? 'block' : 'none' }}
-        htmlFor="upload-img-comment"
-      >
-        <AddPhotoAlternateIcon />
-      </label>
+        <input
+          value={data.comment}
+          onChange={handelOnChange}
+          placeholder="Add Comment"
+          id="add-comment-btn"
+          type="text"
+          style={{ width: '75%', padding: '8px' }}
+        />
+        <Box style={{ display: isUploading ? 'block' : 'none' }}>
+          <CircularProgress />
+        </Box>
+        <Box
+          style={{ display: data.image ? 'block' : 'none' }}
+          role="presentation"
+          onClick={handelDeleteImg}
+        >
+          <HideImageIcon />
+        </Box>
+        <label
+          style={{ display: !data.image && !isUploading ? 'block' : 'none' }}
+          htmlFor="upload-img-comment"
+        >
+          <AddPhotoAlternateIcon />
+        </label>
 
-      <input
-        onChange={handleChange}
-        type="file"
-        name=""
-        id="upload-img-comment"
-      />
-      <button className="add-comment-btn" type="submit">
-        Comment
-      </button>
+        <input
+          onChange={handleChange}
+          type="file"
+          name=""
+          id="upload-img-comment"
+          style={{ display: 'none' }}
+        />
+        <Button
+          sx={{
+            width: '20%',
+            background: '#356E6E',
+            color: '#ffff',
+            borderRadius: '0',
+          }}
+          type="submit"
+        >
+          Comment
+        </Button>
+      </Stack>
     </form>
   );
 };

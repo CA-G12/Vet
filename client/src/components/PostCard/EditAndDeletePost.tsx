@@ -12,26 +12,20 @@ import { useState } from 'react';
 import { Stack } from '@mui/system';
 import useOutsideClick from '../../hooks/UseOutsideClick';
 import ApiServices from '../../services/ApiService';
-import IComment from '../../Interfaces/post/IComment';
+import IPost from '../../Interfaces/post/IPost';
 
 interface ICommentIdAndPostId {
-  commentId?: number;
   postId?: number;
-  deleteData?: Array<IComment>;
+  deleteData?: Array<IPost>;
   deleteCallback?: Function;
-  numComments?: number;
-  setNumComments?: Function;
   setEdit?: Function;
   edit?: boolean;
 }
 
 const EditAndDeleteBtn = ({
-  commentId,
   postId,
   deleteData,
   deleteCallback,
-  numComments,
-  setNumComments,
   setEdit,
   edit,
 }: ICommentIdAndPostId) => {
@@ -46,16 +40,11 @@ const EditAndDeleteBtn = ({
   const deleteComment = async () => {
     setOpen(false);
 
-    let url = `post/${postId}`;
-    if (commentId) {
-      url += `/comments/${commentId}`;
-    }
+    const url = `post/${postId}`;
+
     await ApiServices.destroy(url).then(() => {
       if (deleteCallback) {
-        deleteCallback(deleteData?.filter(item => item.id !== commentId));
-        if (setNumComments && numComments) {
-          setNumComments(numComments - 1);
-        }
+        deleteCallback(deleteData?.filter(item => item.id !== postId));
       }
     });
   };
