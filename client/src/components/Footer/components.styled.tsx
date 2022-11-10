@@ -3,7 +3,7 @@ import { styled } from '@mui/system';
 
 const SimpleFlexBox = styled(Box)({
   display: 'flex',
-  'align-items': 'center',
+  alignItems: 'center',
   gap: '0.2rem',
 });
 
