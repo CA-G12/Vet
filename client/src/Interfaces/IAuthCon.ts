@@ -18,6 +18,8 @@ interface IAuthCon {
   signUp: (info: SignUp) => Promise<void>;
   signIn: (info: SignIn) => Promise<void>;
   signOut: () => void;
+  value: string;
+  setValue: Dispatch<SetStateAction<string>>;
   user: IAuth | null;
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;

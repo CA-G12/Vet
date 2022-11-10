@@ -20,6 +20,8 @@ const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
 
   // signing pop up
   const [open, setOpen] = useState(false);
+  // Auth Sign Form
+  const [value, setValue] = React.useState('1');
 
   const signUp = useCallback(
     async ({ email, password, confirmPassword, name, role }: SignUp) => {
@@ -89,8 +91,10 @@ const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
       signOut,
       open,
       setOpen,
+      value,
+      setValue,
     }),
-    [user, signUp, signIn, signOut, open, setOpen],
+    [user, signUp, signIn, signOut, open, setOpen, value],
   );
 
   return (
