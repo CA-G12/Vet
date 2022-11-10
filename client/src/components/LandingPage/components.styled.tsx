@@ -6,11 +6,11 @@ const CardContainer = styled(Box)({
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',
-  gap: '1rem',
+  gap: '3rem',
   zIndex: '9999',
   background: '#fff',
   flexWrap: 'wrap',
-  '&:nth-child(even)': {
+  '&:nth-of-type(odd)': {
     flexDirection: 'row-reverse',
   },
   '@media screen and (max-width:450px)': {
@@ -18,6 +18,7 @@ const CardContainer = styled(Box)({
     padding: '0 0 1rem 0',
     width: '18rem',
     borderBottom: '0.1px solid black',
+    gap: '1rem',
   },
 });
 
@@ -92,7 +93,7 @@ const WelcomePargraph = styled(Typography)({
   },
 });
 const ServicesTitle = styled(Typography)({
-  'padding-top': '1rem',
+  paddingTop: '1rem',
   color: '#D53449',
   '@media screen and (max-width:450px)': {
     fontSize: '1.5rem',
