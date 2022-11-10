@@ -11,15 +11,14 @@ const Posts = ({
 }) => (
   <Box
     display="flex"
-    margin={{ xs: 'auto', sm: '0' }}
-    width={{ xs: '90%' }}
-    overflow="hidden"
     flexDirection="column"
-    gap="40px"
     alignItems="center"
+    minHeight="85vh"
   >
     {posts.map(post => (
-      <Post key={post.id} setPosts={setPost} posts={posts} post={post} />
+      <Box mb={2} width="100%">
+        <Post key={post.id} setPosts={setPost} posts={posts} post={post} />
+      </Box>
     ))}
   </Box>
 );
