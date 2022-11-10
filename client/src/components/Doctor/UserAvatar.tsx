@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import IUser from '../../Interfaces/post/IUser';
 
-const UserAvatar = ({ user }: { user: IUser | null | undefined }) => {
+const UserAvatar = ({ user }: { user: IUser | undefined }) => {
   return (
     <NavLink style={{ textDecoration: 'none' }} to={`/users/${user?.id}`}>
       <Box display="flex" alignItems="center">

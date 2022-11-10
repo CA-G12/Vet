@@ -1,22 +1,20 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { FormControl, TextField, Button } from '@mui/material';
 import '../Popup/style.css';
 import ImageIcon from '@mui/icons-material/Image';
 import { toast } from 'react-toastify';
+import LoadingButton from '@mui/lab/LoadingButton';
 import { DoctorInfo } from '../../Validation';
 import ApiService from '../../services/ApiService';
 import { authContext } from '../../hooks/useAuth';
+import uploadImage from '../../helpers/uploadImage';
+import IDoctorInfo from '../../Interfaces/doctor/IDoctorInfo';
 
-interface IDoctorInfo {
-  DoctorId?: number;
-  clinicLocation?: string;
-  workplace?: string;
-  hourRate?: string;
-  uploadPhoto?: string;
-}
 const Doctor = ({ open }: { open: Function }) => {
   const { user } = React.useContext(authContext);
-  const [doctorInfo, setDoctorInfo] = React.useState<IDoctorInfo>({
+  const [degreeFile, setDegreeFile] = useState<File>();
+  const [progress, setProgress] = useState<number>(0);
+  const [doctorInfo, setDoctorInfo] = useState<IDoctorInfo>({
     clinicLocation: '',
     workplace: '',
     hourRate: '',
@@ -32,13 +30,25 @@ const Doctor = ({ open }: { open: Function }) => {
   };
   return (
     <form
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+      }}
       onSubmit={async event => {
         event.preventDefault();
         try {
           await DoctorInfo.validate(doctorInfo);
-          await ApiService.post('/doctor-info', doctorInfo);
-          open(false);
-          toast.success('done');
+          if (degreeFile) {
+            const degree = await uploadImage(degreeFile, setProgress);
+            await ApiService.post('/doctor-info', {
+              ...doctorInfo,
+              universityDegree: degree,
+              DoctorId: user?.id,
+            });
+            open(false);
+            toast.success('Welcome');
+          }
         } catch (error: any) {
           toast.error(error.message);
         }
@@ -93,12 +103,18 @@ const Doctor = ({ open }: { open: Function }) => {
         />
       </FormControl>
       <FormControl>
-        <label htmlFor="upload-photo">
+        <label htmlFor="universityDegree">
           <input
-            style={{ display: 'none' }}
-            id="upload-photo"
-            name="uploadPhoto"
             type="file"
+            accept="application/pdf"
+            onChange={event => {
+              if (event.target.files) {
+                setDegreeFile(event.target.files[0]);
+              }
+            }}
+            style={{ display: 'none' }}
+            id="universityDegree"
+            name="universityDegree"
           />
           <Button
             variant="outlined"
@@ -112,14 +128,24 @@ const Doctor = ({ open }: { open: Function }) => {
             }}
             endIcon={<ImageIcon />}
           >
-            add Image
+            University Degree
           </Button>
         </label>
       </FormControl>
-      <br />
-      <button type="submit" className="sign-Doctor">
-        Sign up
-      </button>
+      <FormControl>
+        <LoadingButton
+          loading={progress > 0 && progress < 100}
+          type="submit"
+          variant="contained"
+          sx={{
+            width: 200,
+            display: 'block',
+            margin: 'auto',
+          }}
+        >
+          Sign up
+        </LoadingButton>
+      </FormControl>
     </form>
   );
 };

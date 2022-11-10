@@ -1,6 +1,6 @@
 import CommentsController from '../controllers/CommentsController';
-import { Router } from 'express';
 import errorWrapper from '../helpers/errorsHandling/customErrorWrapper';
+import { Router } from 'express';
 import { isAuth } from '../middlewares/auth.middleware';
 
 const router = Router();

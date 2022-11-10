@@ -3,75 +3,87 @@ import User from '../models/User';
 import Booking from '../models/Booking';
 import AppointmentValid from '../validation/Appointment';
 import CustomError from '../helpers/errorsHandling/CustomError';
+import { Op } from 'sequelize';
+import { sequelize } from '../db';
 
 export default class Appointment {
-  public static async doctorAppointment(req: Request, res: Response) {
-    const { id } = req.params;
-    const doctorAppointment = await Booking.findAll({
-      attributes: ['id', 'title', 'start'],
-      where: { DoctorId: id, status: 'ACCEPTED' },
+  public static async userAppointment(req: Request, res: Response) {
+    const userAppointment = await Booking.findAll({
+      attributes: {
+        include: [
+          [
+            sequelize.literal(
+              `(SELECT name FROM "Users" WHERE "Users".id="Booking"."DoctorId")`,
+            ),
+            'User',
+          ],
+        ],
+      },
+      where: { UserId: req.user?.id },
     });
-    if (doctorAppointment) {
-      res.json(doctorAppointment);
-    }
+    res.json({ userAppointment });
+  }
+
+  public static async doctorAppointment(req: Request, res: Response) {
+    const { DoctorId } = req.params;
+    const doctorAppointment = await Booking.findAll({
+      attributes: ['id', 'title', 'start', 'end', 'description'],
+      where: { DoctorId, status: 'ACCEPTED' },
+    });
+    res.json({ docAppointment: doctorAppointment });
   }
 
   public static async insertDoctorAppointment(req: Request, res: Response) {
-    const { description, title, start, end, DoctorId, id } = req.body;
-
-    await AppointmentValid.addAppointmentValid({
-      description,
-      title,
-      start,
-      end,
-      DoctorId,
-      id,
+    const { appointment } = req.body;
+    const doctorAppointment = await Booking.create({
+      ...appointment,
+      UserId: req.user?.id,
+      status: 'ACCEPTED',
     });
-    const findUserID = await User.findAll({ where: { id } });
-    const finalDoctorID = await User.findAll({ where: { id: DoctorId } });
+    res.json({ appointment: doctorAppointment, msg: 'Accepted' });
+  }
 
-    if (finalDoctorID.length === 1 && findUserID.length === 1) {
-      if (id === DoctorId) {
-        const userAppointment = await Booking.create({
-          description,
-          title,
-          start,
-          UserId: id,
-          DoctorId,
-          end,
-          status: 'ACCEPTED',
-        });
-        res.json({
-          id: userAppointment.id,
-          title: userAppointment.title,
-          start: userAppointment.start,
-        });
-      } else {
-        const doctorAppointment = await Booking.create({
-          UserId: id,
-          description,
-          title,
-          start,
-          DoctorId,
-          end,
-          status: 'PENDING',
-        });
-        res.json({
-          id: doctorAppointment.id,
-          title: doctorAppointment.title,
-          start: doctorAppointment.start,
-        });
-      }
+  public static async insertUserAppointment(req: Request, res: Response) {
+    const { appointment } = req.body;
+    const userAppointment = await Booking.create({
+      UserId: req.user?.id,
+      ...appointment,
+      status: 'PENDING',
+    });
+    res.json({ appointment: userAppointment, msg: 'Your book in pending ' });
+  }
+
+  public static async insertAppointment(req: Request, res: Response) {
+    const { appointment } = req.body;
+    await AppointmentValid.addAppointmentValid({ ...appointment });
+    const findUserID = await User.findOne({ where: { id: req.user?.id } });
+    const finalDoctorID = await User.findOne({
+      where: { id: appointment.DoctorId },
+    });
+    const userFound = findUserID && finalDoctorID;
+
+    const findAppointment = await Booking.findAll({
+      where: { start: appointment.start, status: 'ACCEPTED' },
+    });
+
+    if (findAppointment.length > 0)
+      throw new CustomError(402, 'The Appointment exist');
+
+    if (req.user?.id === Number(appointment.DoctorId) && userFound) {
+      Appointment.insertDoctorAppointment(req, res);
+    } else if (req.user?.id !== Number(appointment.DoctorId) && userFound) {
+      Appointment.insertUserAppointment(req, res);
     } else {
       throw new CustomError(404, 'user not found ');
     }
   }
 
   public static async deleteDoctorAppointment(req: Request, res: Response) {
-    const { doctorId, id } = req.params;
-    await AppointmentValid;
+    const { id } = req.params;
+    const userID = req.user?.id;
+
     const findBook = await Booking.findAll({
-      where: { id, DoctorId: doctorId },
+      where: { id, [Op.or]: [{ UserId: userID }, { DoctorId: userID }] },
     });
     if (findBook.length === 1) {
       await Booking.destroy({ where: { id } });
@@ -82,57 +94,86 @@ export default class Appointment {
   }
 
   public static async updateDoctorAppointment(req: Request, res: Response) {
-    const { DoctorId, id, start, end } = req.body;
-    await AppointmentValid.updateAppointmentValid({ DoctorId, id, start, end });
+    const { id, title, description } = req.body;
+    const DocID = req.user?.id;
 
-    const findBook = await Booking.findOne({ where: { id, DoctorId } });
+    await AppointmentValid.updateAppointmentValid({
+      DoctorId: DocID,
+      id,
+      title,
+      description,
+    });
+
+    const findBook = await Booking.findOne({
+      attributes: ['title', 'description', 'end', 'start', 'id'],
+      where: { id, DoctorId: DocID },
+    });
+    if (findBook) {
+      findBook.title = title;
+      findBook.description = description;
+      await findBook.save();
+      res.json(findBook);
+    } else {
+      throw new CustomError(404, 'Booking not found ');
+    }
+  }
+
+  public static async dragDoctorAppointment(req: Request, res: Response) {
+    const { id, start, end } = req.body;
+    const DoctorId = req.user?.id;
+    await AppointmentValid.dragAppointmentValid({ DoctorId, id, start, end });
+
+    const findAppointment = await Booking.findAll({
+      where: { start, status: 'ACCEPTED' },
+    });
+    if (findAppointment.length > 0)
+      throw new CustomError(402, 'This appointment is Booked');
+
+    const findBook = await Booking.findOne({
+      attributes: ['id', 'start', 'end'],
+      where: { id, DoctorId },
+    });
     if (findBook) {
       findBook.start = start;
       findBook.end = end;
       await findBook.save();
-      res.json({
-        id: findBook.id,
-        start: findBook.start,
-        end: findBook.end,
-        DoctorId,
-      });
-    } else {
-      throw new CustomError(404, 'Booking not found ');
+      res.json({ newTime: findBook });
     }
   }
 
   public static async pendingAppointment(req: Request, res: Response) {
     const { DoctorId } = req.params;
     const findBook = await Booking.findAll({
-      attributes: ['id', 'DoctorId', 'start', 'end', 'description', 'title'],
+      attributes: ['id', 'start', 'end', 'description', 'title'],
+      include: {
+        model: User,
+        as: 'User',
+        attributes: ['name', 'avatar'],
+      },
       where: { DoctorId, status: 'PENDING' },
     });
     if (findBook) {
-      res.json(findBook);
+      res.json({ pending: findBook });
     } else {
-      throw new CustomError(404, ' No pending Appointment ');
+      res.json({ msg: ' No pending Appointment ' });
     }
   }
 
   public static async acceptAppointment(req: Request, res: Response) {
-    const { DoctorId, id, status } = req.body;
+    const { id, status } = req.body;
+    const DoctorId = req.user?.id;
 
     const findBook = await Booking.findOne({
+      attributes: ['id', 'start', 'end', 'description', 'title'],
       where: { id, DoctorId, status: 'PENDING' },
     });
     if (findBook && status === 'ACCEPTED') {
       findBook.status = 'ACCEPTED';
       await findBook.save();
-      res.json({
-        id: findBook.id,
-        start: findBook.start,
-        end: findBook.end,
-        status: findBook.status,
-        DoctorId,
-      });
+      res.json({ msg: 'accept new Appointment', accepted: findBook });
     } else if (status === 'REJECTED') {
       await Booking.destroy({ where: { id } });
-      res.json({ done: 'deleted successfully' });
+      res.json({ msg: 'deleted successfully' });
     } else {
       throw new CustomError(404, 'Booking not found ');
     }
