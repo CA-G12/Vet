@@ -19,23 +19,15 @@ const BasicSelect = ({ options, setValue, value }: Props) => {
   };
 
   return (
-    <FormControl
-      sx={{
-        borderRadius: 1,
-      }}
-      fullWidth
-      hiddenLabel
-    >
+    <FormControl hiddenLabel>
       <Select
-        sx={{
-          border: 'none',
-        }}
         labelId="basic-select-label"
         id="basic-select"
         value={`${value}`}
         onChange={handleChange}
+        size="small"
       >
-        {options.map((option: Option) => (
+        {options.map(option => (
           <MenuItem key={option.id} value={option.id}>
             {option.name}
           </MenuItem>
