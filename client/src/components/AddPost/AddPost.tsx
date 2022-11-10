@@ -7,7 +7,7 @@ import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ImageIcon from '@mui/icons-material/Image';
-import AddIcon from '@mui/icons-material/Add';
+import CreateIcon from '@mui/icons-material/Create';
 import Stack from '@mui/material/Stack';
 import { Container, Fab } from '@mui/material';
 import uploadImage from '../../helpers/uploadImage';
@@ -131,7 +131,7 @@ const AddPost = ({
           right: '30px',
         }}
       >
-        <AddIcon />
+        <CreateIcon />
       </Fab>
 
       <Modal
@@ -166,14 +166,20 @@ const AddPost = ({
               />
               <Stack
                 id="allBtns"
+                sx={{ width: '80%' }}
                 direction={{ md: 'row', sm: 'row', xs: 'column' }}
+                justifyContent="space-between"
                 spacing={{ md: 4, sm: 1, xs: 1 }}
               >
                 <Stack direction="row" spacing={1}>
                   <BasicSelect name="TagId" options={TagList} />
                   <BasicSelect name="AnimalId" options={AnimalList} />
                 </Stack>
-                <Stack direction="row" spacing={1}>
+                <Stack
+                  direction="row"
+                  justifyContent="space-between"
+                  spacing={1}
+                >
                   <label htmlFor="upload-photo" id="imageBtn">
                     <input
                       type="file"
@@ -186,16 +192,17 @@ const AddPost = ({
                     <Button
                       variant="outlined"
                       component="span"
+                      sx={{ minHeight: '100%', width: '100%' }}
                       endIcon={<ImageIcon />}
                     >
-                      add Image
+                      Image
                     </Button>
                   </label>
 
                   <LoadingButton
                     loading={progress > 0 && progress < 100}
                     type="submit"
-                    sx={{ height: 1 }}
+                    sx={{ minHeight: '100%', minWidth: '50%' }}
                     variant="contained"
                   >
                     Post
