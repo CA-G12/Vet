@@ -122,7 +122,7 @@ export const Calender = () => {
       const { data } = await ApiService.post('/Appointment', {
         appointment: { ...newAppointment, DoctorId: params.id },
       });
-      if (data.appointment === 'ACCEPTED') {
+      if (data.appointment.status === 'ACCEPTED') {
         setCurrentEvents((prev: any) => prev.concat(data.appointment));
       }
       toast.success(data.msg);

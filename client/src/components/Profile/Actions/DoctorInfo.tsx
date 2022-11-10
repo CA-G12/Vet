@@ -38,10 +38,10 @@ const DoctorEdit = () => {
         await DoctorInfo.validate(docInfo);
         if (degreeFile) {
           const degree = await uploadImage(degreeFile, setProgress);
+
           setDocInfo(prev => ({ ...prev, universityDegree: degree }));
           await ApiService.put('/doctor-info', {
             ...docInfo,
-            universityDegree: degree,
             DoctorId: user?.id,
           });
         }
@@ -49,7 +49,6 @@ const DoctorEdit = () => {
       if (avatarFile) {
         const userAv = await uploadImage(avatarFile, setProgress);
         setUserName(() => ({ ...userName, avatar: userAv }));
-
         const { data } = await ApiService.put('/user', {
           ...userName,
           avatar: userAv,
@@ -74,7 +73,10 @@ const DoctorEdit = () => {
         alignItems: 'center',
         gap: 10,
       }}
-      onSubmit={submitForm}
+      onSubmit={event => {
+        event.preventDefault();
+        submitForm();
+      }}
     >
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <FormControl>

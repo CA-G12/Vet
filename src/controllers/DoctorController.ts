@@ -68,7 +68,7 @@ export default class DoctorController {
   }
 
   public static async updateDoctorInfo(req: Request, res: Response) {
-    const { workplace, clinicLocation, hourRate } = req.body;
+    const { workplace, clinicLocation, hourRate, universityDegree } = req.body;
     const doctorInfo = await DoctorInfo.findOne({
       where: {
         DoctorId: req.user?.id,
@@ -78,6 +78,7 @@ export default class DoctorController {
       doctorInfo.hourRate = hourRate;
       doctorInfo.clinicLocation = clinicLocation;
       doctorInfo.workplace = workplace;
+      doctorInfo.universityDegree = universityDegree;
       doctorInfo.save();
       res.json({ doctorInfo });
     } else {
@@ -86,11 +87,13 @@ export default class DoctorController {
         clinicLocation,
         workplace,
         hourRate,
+        universityDegree,
       });
       const newDoctorInfo = await DoctorInfo.create({
         hourRate,
         clinicLocation,
         workplace,
+        universityDegree,
         DoctorId: req.user?.id,
       });
       res.json({ newDoctorInfo });

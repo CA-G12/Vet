@@ -6,6 +6,7 @@ class DoctorInfo extends Model {
   declare DoctorId: number;
   declare hourRate: string;
   declare clinicLocation: string;
+  declare universityDegree: string;
   declare workplace: string;
 }
 

@@ -4,6 +4,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import { Box, Typography, Stack } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import { toast } from 'react-toastify';
+import moment from 'moment';
 import IAppointment from '../../../Interfaces/IAppointment';
 import Username from '../../UserInfo';
 import ApiServices from '../../../services/ApiService';
@@ -93,9 +94,12 @@ const PendingCard = ({
           </Box>
         </Stack>
         <Typography>{ele.title}</Typography>
-        {/* <Typography>{ele.end}</Typography>
-        <Typography>{ele.start}</Typography> */}
-
+        <Typography>
+          startAt {moment(ele.start).format('YYYY-M-D h:mm:ss a')}
+        </Typography>
+        <Typography>
+          EndAt {moment(ele.end).format('YYYY-M-D h:mm:ss a')}
+        </Typography>
         <Typography>{ele.description}</Typography>
       </Box>
     ))}
