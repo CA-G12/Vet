@@ -30,16 +30,16 @@ export const isAuth = async (
   res: Response,
   next: NextFunction,
 ) => {
-  try {
-    const headerToken = req.header('Authorization');
-    const authToken = headerToken?.split('Bearer ')?.[1];
-    if (!authToken) {
-      throw new Error('Unauthorized');
-    }
-    const user = await verifyJWT<UserJWT>(authToken);
-    req.user = user;
-    next();
-  } catch (e) {
-    next(e);
+  // try {
+  const headerToken = req.header('Authorization');
+  const authToken = headerToken?.split('Bearer ')?.[1];
+  if (!authToken) {
+    throw new Error('Unauthorized');
   }
+  const user = await verifyJWT<UserJWT>(authToken);
+  req.user = user;
+  next();
+  // } catch (e) {
+  //   next(e);
+  // }
 };

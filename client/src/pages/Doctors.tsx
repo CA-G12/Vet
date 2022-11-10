@@ -23,11 +23,10 @@ const Doctors = () => {
       alignItems="center"
       sx={{ width: { xs: '100%', sm: '50%' }, margin: ' 40px auto' }}
     >
-      {doctors
-        ? doctors.map((doctor: IUser) => (
-            <Doctor key={doctor.id} user={doctor} />
-          ))
-        : null}
+      {doctors &&
+        doctors.map((doctor: IUser) => (
+          <Doctor key={doctor.id} user={doctor} />
+        ))}
     </Box>
   );
 };
