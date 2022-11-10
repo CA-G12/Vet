@@ -1,17 +1,27 @@
-import './post.css';
 import { useContext, useState } from 'react';
+import { Box, Stack } from '@mui/system';
+import Typography from '@mui/material/Typography';
 import useOutsideClick from '../../hooks/UseOutsideClick';
 import BtnsPost from './BtnsPost';
 import IPost from '../../Interfaces/post/IPost';
 import UserPostInfo from '../UserInfo';
 import Comments from './Comments';
-import EditAndDeleteBtn from './EditAndDeleteBtn';
 import StackCommentsAndLikes from './StackCommentsAndLikes';
 import ApiServices from '../../services/ApiService';
 import { authContext } from '../../hooks/useAuth';
 import EditPost from './EditPost';
+import EditAndDeletePost from './EditAndDeletePost';
+import Hashtags from './Hashtags';
 
-const Post = ({ post }: { post: IPost }) => {
+const Post = ({
+  post,
+  setPosts,
+  posts,
+}: {
+  post: IPost;
+  setPosts: Function;
+  posts: Array<IPost>;
+}) => {
   const { user } = useContext(authContext);
 
   const [showComments, setShowComments] = useState(false);
@@ -22,6 +32,7 @@ const Post = ({ post }: { post: IPost }) => {
   const [numComments, setNumComments] = useState(post.Comments.length);
   const [editPost, setEditPost] = useState(false);
   const [postContent, setPostContent] = useState(post);
+  const [likes, setLikes] = useState(post.Likes);
 
   const showMore = async () => {
     setIsShowMore(true);
@@ -51,16 +62,72 @@ const Post = ({ post }: { post: IPost }) => {
   const ref = useOutsideClick(handleClickOutside);
 
   return (
-    <div ref={ref} className="post-card">
-      <article className="article abusluot-btns">
-        <section style={{ width: '100%' }} className="post-content-continuer">
-          <UserPostInfo user={post.User} />
-          {postContent.image && !editPost && (
-            <div className="img-post-mobile">
-              <img src={postContent.image} alt="" />
-            </div>
-          )}
-          {!editPost && <p className="content">{postContent.content}</p>}
+    <Box
+      width="100%"
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      sx={{ background: '#EFF2F2', borderRadius: '12px' }}
+      position="relative"
+      ref={ref}
+    >
+      {user?.id === post.User.id && (
+        <EditAndDeletePost
+          edit={editPost}
+          setEdit={setEditPost}
+          postId={post.id}
+          deleteData={posts}
+          deleteCallback={setPosts}
+        />
+      )}
+      <Box width="100%">
+        <Box
+          sx={{
+            width: '100%',
+            borderRadius: '12px',
+            padding: { sm: '20px', xs: '0' },
+          }}
+        >
+          <Box width="20%" sx={{ padding: { sm: '0', xs: '20px' } }}>
+            <UserPostInfo
+              id={post.User.id}
+              name={post.User.name}
+              avatar={post.User.avatar}
+            />
+          </Box>
+          <Stack
+            direction={{ sm: 'row', xs: 'column-reverse' }}
+            spacing={2}
+            justifyContent={{ sm: 'space-between', xs: 'center' }}
+          >
+            {!editPost && (
+              <Typography
+                sx={{
+                  textAlign: 'center',
+                  padding: '20px 50px',
+                }}
+                color="primary"
+                variant="h6"
+                display="block"
+                gutterBottom
+              >
+                {postContent.content}
+              </Typography>
+            )}
+            {postContent.image && !editPost && (
+              <Box
+                paddingTop={{ sm: '0', xs: '20px' }}
+                width={{ sm: '30%', xs: '100%' }}
+              >
+                <img
+                  style={{ width: '100%', borderRadius: '12px' }}
+                  src={postContent.image}
+                  alt=""
+                />
+              </Box>
+            )}
+          </Stack>
+
           {editPost && (
             <EditPost
               postContent={postContent}
@@ -68,26 +135,16 @@ const Post = ({ post }: { post: IPost }) => {
               setEditPost={setEditPost}
             />
           )}
-
-          <StackCommentsAndLikes
-            commentNum={numComments}
-            likes={post.Likes}
-            handleClick={handleClick}
-          />
-        </section>
-        {postContent.image && !editPost && (
-          <figure className="img-post-desctop">
-            <img className="img-post" src={postContent.image} alt="" />
-          </figure>
-        )}
-        {user?.id === post.User.id && (
-          <EditAndDeleteBtn
-            edit={editPost}
-            setEdit={setEditPost}
-            postId={post.id}
-          />
-        )}
-      </article>
+          <Stack direction="row" justifyContent="space-evenly">
+            <Hashtags tag={post.Tag} animal={post.Animal} />
+            <StackCommentsAndLikes
+              commentNum={numComments}
+              likes={likes}
+              handleClick={handleClick}
+            />
+          </Stack>
+        </Box>
+      </Box>
 
       <BtnsPost
         isConnected={isConnected}
@@ -95,13 +152,15 @@ const Post = ({ post }: { post: IPost }) => {
         numComments={numComments}
         setNumComments={setNumComments}
         postId={post.id}
+        setLikes={setLikes}
+        likes={likes}
         showComments={showComments}
         getComments={getComments}
         setGetComments={setGetComments}
       />
 
       {showComments && (
-        <div>
+        <Box width="100%">
           <Comments
             isShowMore={isShowMore}
             showMore={showMore}
@@ -111,9 +170,9 @@ const Post = ({ post }: { post: IPost }) => {
             numComments={numComments}
             setNumComments={setNumComments}
           />
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 };
 export default Post;

@@ -57,11 +57,11 @@ const AddPost = ({
   posts: Array<IPost>;
   setPost: Function;
 }) => {
-  const { user } = React.useContext(authContext);
-  const [open, setOpen] = React.useState(false);
+  const { user, setOpen } = React.useContext(authContext);
+  const [openModal, setOpenModal] = React.useState(false);
   const [progress, setProgress] = React.useState(0);
   const [file, setFile] = React.useState<File | null>(null);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => setOpenModal(false);
   React.useEffect(() => {
     if (progress === 100) handleClose();
   }, [progress]);
@@ -73,8 +73,9 @@ const AddPost = ({
 
   const handleOpen = () => {
     if (user) {
-      setOpen(true);
+      setOpenModal(true);
     } else {
+      setOpen(true);
       toast.error('you have to be logged in to post');
     }
   };
@@ -134,7 +135,7 @@ const AddPost = ({
 
       <Modal
         className="addPost"
-        open={open}
+        open={openModal}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -143,7 +144,13 @@ const AddPost = ({
           <form action="" onSubmit={handleSubmit}>
             <Box sx={style}>
               <Box sx={{ alignSelf: 'flex-start' }}>
-                {user && <Username user={user} />}
+                {user && (
+                  <Username
+                    id={user.id}
+                    name={user.name}
+                    avatar={user.avatar}
+                  />
+                )}
               </Box>
               <TextareaAutosize
                 name="content"

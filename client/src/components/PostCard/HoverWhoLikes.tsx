@@ -45,8 +45,8 @@ const HoverWhoLikes = ({ likes }: { likes: Array<ILike> }) => {
           aria-owns={open ? 'mouse-over-popover' : undefined}
           aria-haspopup="true"
         >
-          <StyledBadge badgeContent={likes.length} className="likesNum">
-            <PetsIcon />
+          <StyledBadge badgeContent={likes.length}>
+            <PetsIcon color="primary" />
           </StyledBadge>
         </Typography>
       </IconButton>{' '}
