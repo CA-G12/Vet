@@ -3,7 +3,7 @@ import * as yup from 'yup';
 const postSchema = yup.object().shape({
   content: yup
     .string()
-    .min(20, 'please write a post longer than 20 letters')
+    .min(3, 'please write a post longer than 20 letters')
     .required('please write a post longer than 20 letters'),
   TagId: yup
     .number()
