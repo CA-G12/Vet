@@ -79,6 +79,7 @@ export default class AuthController {
         {
           id: newUser.id,
           name: newUser.name,
+          email: newUser.email,
           avatar: newUser.avatar,
           role: newUser.role,
         },

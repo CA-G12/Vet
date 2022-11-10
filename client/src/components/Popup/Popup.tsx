@@ -1,23 +1,9 @@
 import { Dispatch, SetStateAction } from 'react';
-
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Box, Typography, Modal } from '@mui/material';
-
 import LabTabs from './Tabs';
+import style from '../../helpers/PopStyle';
 
-import 'react-toastify/dist/ReactToastify.css';
-
-const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 350,
-  bgcolor: 'background.paper',
-  borderRadius: '2%',
-  boxShadow: 24,
-  p: 1,
-};
 const theme = createTheme({
   palette: {
     primary: {
@@ -39,8 +25,7 @@ type Propss = {
   setOpen: Dispatch<SetStateAction<boolean>>;
 };
 const PopUp = (propss: Propss) => {
-  const { open, setOpen } = propss;
-  const handleClose = () => setOpen(false);
+  const { open } = propss;
 
   return (
     <ThemeProvider theme={theme}>
@@ -48,7 +33,6 @@ const PopUp = (propss: Propss) => {
         <Modal
           sx={{ top: '6rem' }}
           open={open}
-          onClose={handleClose}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >

@@ -80,9 +80,11 @@ const Comment = ({
     >
       <Stack>
         <UserPostInfo
-          id={comment.User.id}
-          name={comment.User.name}
-          avatar={comment.User.avatar}
+          user={{
+            id: comment.User.id,
+            name: comment.User.name,
+            avatar: comment.User.avatar,
+          }}
         />
         <Box>
           {!edit ? (

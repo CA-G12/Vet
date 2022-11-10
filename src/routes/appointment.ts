@@ -1,39 +1,46 @@
 import Appointment from '../controllers/Appointment';
 import express from 'express';
-import errorWrapper from '../helpers/errorsHandling/customErrorWrapper';
 import { isAuth } from '../middlewares/auth.middleware';
+import errorWrapper from '../helpers/errorsHandling/customErrorWrapper';
 
 const router = express.Router();
 router.get(
-  '/Appointment/:id',
+  '/Appointment',
   errorWrapper(isAuth),
+  errorWrapper(Appointment.userAppointment),
+);
+router.get(
+  '/Appointment/:DoctorId',
   errorWrapper(Appointment.doctorAppointment),
 );
+router.get(
+  '/pending-appointment/:DoctorId',
+  errorWrapper(isAuth),
+  errorWrapper(Appointment.pendingAppointment),
+);
 router.delete(
-  '/Appointment/:doctorId/:id',
+  '/Appointment/:id',
   errorWrapper(isAuth),
   errorWrapper(Appointment.deleteDoctorAppointment),
 );
 router.post(
   '/Appointment',
   errorWrapper(isAuth),
-  errorWrapper(Appointment.insertDoctorAppointment),
+  errorWrapper(Appointment.insertAppointment),
 );
 router.put(
   '/Appointment',
   errorWrapper(isAuth),
   errorWrapper(Appointment.updateDoctorAppointment),
 );
-
-router.get(
-  '/pending-appointment/:DoctorId',
+router.put(
+  '/dragAppointment',
   errorWrapper(isAuth),
-  errorWrapper(Appointment.pendingAppointment),
+  errorWrapper(Appointment.dragDoctorAppointment),
 );
 router.put(
   '/pending-appointment',
   errorWrapper(isAuth),
   errorWrapper(Appointment.acceptAppointment),
 );
-
 export default router;

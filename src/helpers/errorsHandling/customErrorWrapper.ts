@@ -7,7 +7,9 @@ const errorWrapper = (controller: RequestHandler) => {
       await controller(req, res, next);
     } catch (error: unknown) {
       if (isCustomError(error)) {
-        if (error.name === 'ValidationError') {
+        if (error.name === 'JsonWebTokenError') {
+          error.status = 401;
+        } else if (error.name === 'ValidationError') {
           error.status = 422;
         } else if (
           error.name ===
