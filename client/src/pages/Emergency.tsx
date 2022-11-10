@@ -1,4 +1,4 @@
-import { Box } from '@mui/system';
+import { Box, Container } from '@mui/system';
 import { useState, useEffect } from 'react';
 import Divider from '@mui/material/Divider';
 import Doctor from '../components/Emergency';
@@ -15,20 +15,15 @@ const Emergency = () => {
   }, [active]);
 
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      flexDirection="column"
-      alignItems="center"
-      sx={{ width: { xs: '100%', sm: '50%' }, margin: ' 40px auto' }}
-      minHeight="50vh"
-    >
+    <Container maxWidth="md" sx={{ minHeight: '57vh' }}>
       <p
         style={{
           fontSize: '36px',
           lineHeight: '43.57px',
           color: '#D53449',
           marginBottom: '20px',
+          textAlign: 'center',
+          marginTop: '50px',
         }}
       >
         Available Emergency Doctors
@@ -36,14 +31,14 @@ const Emergency = () => {
 
       {user ? (
         doctors.map((doctor: IUser) => (
-          <Box width={{ xs: '100%', sm: '70%' }}>
+          <Container maxWidth="md">
             <Doctor key={doctor.id} user={doctor} /> <Divider />
-          </Box>
+          </Container>
         ))
       ) : (
         <h1>you have to signIn pro!</h1>
       )}
-    </Box>
+    </Container>
   );
 };
 
