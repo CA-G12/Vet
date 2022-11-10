@@ -1,4 +1,4 @@
-import { Box, Container } from '@mui/system';
+import { Container } from '@mui/system';
 import { useState, useEffect } from 'react';
 import Divider from '@mui/material/Divider';
 import Doctor from '../components/Emergency';
