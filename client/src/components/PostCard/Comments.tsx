@@ -1,6 +1,7 @@
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 
 import { Box, Stack } from '@mui/system';
+import { Button } from '@mui/material';
 import Comment from './Comment';
 import IComment from '../../Interfaces/post/IComment';
 import LoadingComments from './LoadingComment';
@@ -24,7 +25,7 @@ const Comments = ({
   numComments,
   setNumComments,
 }: IComments) => (
-  <Box>
+  <Box paddingBottom="10px">
     {comments.map(comment => (
       <Comment
         setGetComments={setGetComments}
@@ -39,10 +40,9 @@ const Comments = ({
 
     {commentNum > comments.length && (
       <Stack direction="row" justifyContent="flex-end">
-        <p role="presentation" onClick={() => showMore()}>
-          Show More
-        </p>
-        <KeyboardDoubleArrowDownIcon />
+        <Button onClick={() => showMore()}>
+          Show More <KeyboardDoubleArrowDownIcon />
+        </Button>
       </Stack>
     )}
   </Box>

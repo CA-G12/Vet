@@ -115,13 +115,13 @@ const AddInputComment = ({
           role="presentation"
           onClick={handelDeleteImg}
         >
-          <HideImageIcon />
+          <HideImageIcon color="primary" />
         </Box>
         <label
           style={{ display: !data.image && !isUploading ? 'block' : 'none' }}
           htmlFor="upload-img-comment"
         >
-          <AddPhotoAlternateIcon />
+          <AddPhotoAlternateIcon color="primary" />
         </label>
 
         <input
@@ -134,7 +134,7 @@ const AddInputComment = ({
         <Button
           sx={{
             width: '20%',
-            background: '#356E6E',
+            background: 'rgb(45 155 155)',
             color: '#ffff',
             borderRadius: '0',
           }}
