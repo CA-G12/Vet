@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ImageIcon from '@mui/icons-material/Image';
 import AddIcon from '@mui/icons-material/Add';
 import Stack from '@mui/material/Stack';
-import { Fab } from '@mui/material';
+import { Container, Fab } from '@mui/material';
 import uploadImage from '../../helpers/uploadImage';
 import postSchema from '../../Validation/addPost';
 import Username from '../UserInfo';
@@ -42,7 +42,8 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  minWidth: '55%',
+  minWidth: { md: '55%', xs: '100vw', sm: '100vw' },
+  maxWidth: { md: '100%', xs: '100vw', sm: '100vw' },
   minHeight: '55%',
   bgcolor: 'background.paper',
   borderRadius: '15px',
@@ -113,9 +114,7 @@ const AddPost = ({
         color="secondary"
         variant="contained"
         sx={{
-          display: { sm: 'none', xl: 'block' },
-          alignSelf: 'flex-end',
-          marginRight: '30px',
+          display: { sm: 'none', xs: 'none', md: 'inline-flex' },
           borderRadius: '50px',
         }}
       >
@@ -126,8 +125,10 @@ const AddPost = ({
         onClick={handleOpen}
         color="secondary"
         sx={{
-          // display: { sm: 'block', xl: 'none' },
+          display: { sm: 'inline-flex', xs: 'inline-flex', md: 'none' },
           position: 'fixed',
+          bottom: '30px',
+          right: '30px',
         }}
       >
         <AddIcon />
@@ -140,10 +141,10 @@ const AddPost = ({
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box>
+        <Container maxWidth="md">
           <form action="" onSubmit={handleSubmit}>
-            <Box sx={style}>
-              <Box sx={{ alignSelf: 'flex-start' }}>
+            <Box sx={style} id="form-body">
+              <Box sx={{ alignSelf: 'flex-start' }} id="username">
                 {user && (
                   <Username
                     id={user.id}
@@ -165,15 +166,17 @@ const AddPost = ({
                   backgroundColor: '#EFF2F2',
                 }}
               />
-              <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  width: '90%',
-                }}
+              <Stack
+                id="allBtns"
+                direction={{ md: 'row', sm: 'row', xs: 'column' }}
+                spacing={{ md: 4, sm: 1, xs: 1 }}
               >
-                <Stack direction="row" spacing={4}>
-                  <label htmlFor="upload-photo">
+                <Stack direction="row" spacing={1}>
+                  <BasicSelect name="TagId" options={TagList} />
+                  <BasicSelect name="AnimalId" options={AnimalList} />
+                </Stack>
+                <Stack direction="row" spacing={1}>
+                  <label htmlFor="upload-photo" id="imageBtn">
                     <input
                       type="file"
                       accept="/image/*"
@@ -185,29 +188,25 @@ const AddPost = ({
                     <Button
                       variant="outlined"
                       component="span"
-                      sx={{ minWidth: 150, minHeight: '100%' }}
                       endIcon={<ImageIcon />}
                     >
                       add Image
                     </Button>
                   </label>
-                  <BasicSelect name="TagId" options={TagList} />
-                  <BasicSelect name="AnimalId" options={AnimalList} />
+
+                  <LoadingButton
+                    loading={progress > 0 && progress < 100}
+                    type="submit"
+                    sx={{ height: 1 }}
+                    variant="contained"
+                  >
+                    Post
+                  </LoadingButton>
                 </Stack>
-                <LoadingButton
-                  loading={progress > 0 && progress < 100}
-                  type="submit"
-                  variant="contained"
-                  sx={{
-                    width: 200,
-                  }}
-                >
-                  Post
-                </LoadingButton>
-              </Box>
+              </Stack>
             </Box>
           </form>
-        </Box>
+        </Container>
       </Modal>
     </>
   );
