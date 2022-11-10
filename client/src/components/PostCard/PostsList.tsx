@@ -9,7 +9,15 @@ const Posts = ({
   posts: Array<IPost>;
   setPost: Function;
 }) => (
-  <Box display="flex" flexDirection="column" gap="40px" alignItems="center">
+  <Box
+    display="flex"
+    margin={{ xs: 'auto', sm: '0' }}
+    width={{ xs: '90%' }}
+    overflow="hidden"
+    flexDirection="column"
+    gap="40px"
+    alignItems="center"
+  >
     {posts.map(post => (
       <Post key={post.id} setPosts={setPost} posts={posts} post={post} />
     ))}
