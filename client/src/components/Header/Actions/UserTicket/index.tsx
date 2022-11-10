@@ -13,7 +13,7 @@ type Props = {
 export const UserTicket = ({ user }: Props) => (
   <NavigationAnchor to={`profile/${user?.id}`}>
     <UserTicketBox>
-      <UserAvatar alt="Reem" src={user?.avatar} />
+      <UserAvatar alt="UserAvatar" src={user?.avatar} />
       <UserNameText gutterBottom variant="h5">
         {user?.name}
       </UserNameText>

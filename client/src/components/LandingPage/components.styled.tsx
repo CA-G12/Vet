@@ -6,7 +6,7 @@ const CardContainer = styled(Box)({
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',
-  gap: '1rem',
+  gap: '3rem',
   zIndex: '9999',
   background: '#fff',
   flexWrap: 'wrap',
@@ -18,6 +18,7 @@ const CardContainer = styled(Box)({
     padding: '0 0 1rem 0',
     width: '18rem',
     borderBottom: '0.1px solid black',
+    gap: '1rem',
   },
 });
 

@@ -215,6 +215,8 @@ const UserAvatar = styled(Avatar)({
 
 const UserNameText = styled(Typography)({
   paddingTop: '0.4rem',
+  color: '#2D9B9B',
+  fontWeight: '600',
   '@media screen and (max-width:850px)': {
     fontSize: '1rem',
   },
