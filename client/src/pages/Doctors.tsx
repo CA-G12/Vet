@@ -1,4 +1,4 @@
-import { Box } from '@mui/system';
+import { Box, Container } from '@mui/system';
 import { useState, useEffect } from 'react';
 import Divider from '@mui/material/Divider';
 import Doctor from '../components/Doctor';
@@ -17,24 +17,13 @@ const Doctors = () => {
   }, []);
 
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      flexDirection="column"
-      alignItems="center"
-      minHeight="0vh"
-      sx={{
-        width: { xs: '100%', sm: '50%' },
-        height: '100%',
-        margin: ' 40px auto',
-      }}
-    >
+    <Box>
       {doctors
         ? doctors.map((doctor: IUser) => (
-            <Box width={{ xs: '100%', sm: '70%' }}>
+            <Container maxWidth="md">
               <Doctor key={doctor.id} user={doctor} />
               <Divider />
-            </Box>
+            </Container>
           ))
         : null}
     </Box>
