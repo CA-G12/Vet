@@ -43,7 +43,11 @@ const EmergencyUserAvatar = ({
   };
 }) => {
   return (
-    <NavLink to={`/users/${user?.id}`} className="user-info-post">
+    <NavLink
+      style={{ textDecoration: 'none' }}
+      to={`/users/${user?.id}`}
+      className="user-info-post"
+    >
       <Box display="flex" alignItems="center">
         <Box>
           <StyledBadge
