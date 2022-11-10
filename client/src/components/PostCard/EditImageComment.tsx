@@ -4,6 +4,7 @@ import { IconButton } from '@mui/material';
 import { useState } from 'react';
 import * as React from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
+import { Box, Stack } from '@mui/system';
 import IComment from '../../Interfaces/post/IComment';
 import uploadImage from '../../helpers/uploadImage';
 import IPost from '../../Interfaces/post/IPost';
@@ -32,11 +33,10 @@ const EditImageComment = ({ data, setData }: Props) => {
   };
 
   return (
-    <div
-      className="edit-img-comment-icons"
-      style={{
-        width: '60px',
-        height: '60px',
+    <Box
+      sx={{
+        width: '80px',
+        height: '80px',
         backgroundImage: data.image
           ? `url(${data.image})`
           : 'url(https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/2560px-Placeholder_view_vector.svg.png)',
@@ -46,8 +46,17 @@ const EditImageComment = ({ data, setData }: Props) => {
         position: 'relative',
       }}
     >
-      <div>
-        <IconButton className="mangment-img-comment-btn">
+      <Stack
+        direction="column"
+        justifyContent="space-between"
+        sx={{
+          height: '112px',
+          position: 'absolute',
+          top: '-16px',
+          right: '-15px',
+        }}
+      >
+        <IconButton>
           <label htmlFor={`${data.id}`}>
             <input
               onChange={editImg}
@@ -61,18 +70,18 @@ const EditImageComment = ({ data, setData }: Props) => {
         </IconButton>
 
         {data.image && (
-          <IconButton className="mangment-img-comment-btn" onClick={deleteImg}>
+          <IconButton onClick={deleteImg}>
             <DeleteIcon />
           </IconButton>
         )}
-      </div>
+      </Stack>
       {isUploading && (
-        <div className="progress-edit">
+        <Box position="absolute" top="30%" left="25%">
           {' '}
           <CircularProgress />
-        </div>
+        </Box>
       )}{' '}
-    </div>
+    </Box>
   );
 };
 export default EditImageComment;
