@@ -4,12 +4,7 @@ import UserAvatar from './UserAvatar';
 import IUser from '../../Interfaces/post/IUser';
 
 const Index = ({ user }: { user: IUser }) => (
-  <Box
-    display="flex"
-    justifyContent="space-between"
-    alignItems="center"
-    sx={{ width: '80%', marginTop: '20px' }}
-  >
+  <Box display="flex" justifyContent="space-between" alignItems="center">
     <Box>
       <UserAvatar user={user} />
     </Box>

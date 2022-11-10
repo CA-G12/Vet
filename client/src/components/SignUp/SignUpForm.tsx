@@ -14,7 +14,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import * as React from 'react';
 import { toast } from 'react-toastify';
 import { authContext } from '../../hooks/useAuth';
-import Doctor from './DoctorInfo';
+import Doctor from './SignupDoctor';
 import { SignUpValid } from '../../Validation';
 import { SignUp as ISignUp } from '../../Interfaces/IAuthCon';
 

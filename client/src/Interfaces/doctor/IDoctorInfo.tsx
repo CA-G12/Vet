@@ -1,4 +1,8 @@
 interface IDoctorInfo {
-  workplace: string;
+  DoctorId?: number;
+  clinicLocation?: string;
+  workplace?: string;
+  hourRate?: string;
+  universityDegree?: string;
 }
 export default IDoctorInfo;

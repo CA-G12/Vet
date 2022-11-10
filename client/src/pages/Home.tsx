@@ -9,10 +9,11 @@ import LoadingPosts from './LoadingPosts';
 import 'react-toastify/dist/ReactToastify.css';
 import BasicSelect from '../components/BasicSelect';
 import AddPost from '../components/AddPost/AddPost';
+import IPost from '../Interfaces/post/IPost';
 
 const Home = () => {
   const { TagList, AnimalList } = useContext(AllPosts);
-  const [posts, setPost] = useState([]);
+  const [posts, setPost] = useState<IPost[]>([]);
   const { filter, setFilter } = useContext(AllPosts);
   const [loading, setLoading] = useState(false);
 

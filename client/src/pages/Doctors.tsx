@@ -1,5 +1,6 @@
-import { Box } from '@mui/system';
+import { Box, Container } from '@mui/system';
 import { useState, useEffect } from 'react';
+import Divider from '@mui/material/Divider';
 import Doctor from '../components/Doctor';
 import IUser from '../Interfaces/post/IUser';
 import ApiServices from '../services/ApiService';
@@ -16,16 +17,13 @@ const Doctors = () => {
   }, []);
 
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      flexDirection="column"
-      alignItems="center"
-      sx={{ width: { xs: '100%', sm: '50%' }, margin: ' 40px auto' }}
-    >
+    <Box>
       {doctors
         ? doctors.map((doctor: IUser) => (
-            <Doctor key={doctor.id} user={doctor} />
+            <Container maxWidth="md">
+              <Doctor key={doctor.id} user={doctor} />
+              <Divider />
+            </Container>
           ))
         : null}
     </Box>

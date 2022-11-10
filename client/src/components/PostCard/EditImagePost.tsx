@@ -17,7 +17,7 @@ type Props = {
 const EditImagePost = ({ data, setData }: Props) => {
   const [isUploading, setIsUploading] = useState(false);
   const deleteImg = () => {
-    setData({ ...data, image: null });
+    setData({ ...data, image: '' });
   };
   const editImg = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) {
