@@ -22,7 +22,7 @@ export const FooterRight = () => (
       of jokes to them.
     </TiteledPargraph>
     <FooterIconsBox>
-      <Link href="/">
+      <Link href="https://www.facebook.com/profile.php?id=100083695861528">
         <FacebookIcon sx={{ color: '#1877F2' }} />
       </Link>
       <Link href="/">

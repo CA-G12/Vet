@@ -17,12 +17,12 @@ export const FooterCenter = () => (
     </SimpleFlexBox>
     <SimpleFlexBox>
       <StayPrimaryPortraitIcon />
-      <Typography>+97 059 926 6293</Typography>
+      <Typography>+972594032655</Typography>
     </SimpleFlexBox>
     <SimpleFlexBox>
       <MailOutlineIcon />
       <Typography>
-        <EmailLink href="/">saed.dev9@gmail.com</EmailLink>
+        <EmailLink href="/">mohmmedalshorafa1996@gmail.com</EmailLink>
       </Typography>
     </SimpleFlexBox>
   </FooterBox>
