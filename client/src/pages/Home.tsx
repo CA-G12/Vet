@@ -30,66 +30,89 @@ const Home = () => {
   }, [filter]);
 
   return (
-    <main className="home-page">
-      <Box
-        width={{ lg: '25%', sm: '50%' }}
-        minHeight="100vh"
-        component="div"
-        display="flex"
-        flexDirection={{ sm: 'column', xs: 'row' }}
-        alignItems="center"
-        sx={{
-          minHeight: {
-            lg: '100vh',
-            sm: '0',
-          },
-          backgroundColor: { sm: 'primary.main', xs: '#ffff' },
-          position: 'relative',
-          top: { sm: '-97px' },
-          padding: { sm: '120px 50px', xs: '20px 0 0 0' },
-        }}
-      >
-        {TagList && (
-          <Box
-            mt={2}
-            width="100%"
-            sx={{ backgroundColor: 'common.white', borderRadius: '8px' }}
-          >
-            <BasicSelect
-              value={filter.TagId}
-              options={TagList}
-              setValue={value => setFilter(prev => ({ ...prev, TagId: value }))}
-            />
-          </Box>
-        )}
-        {AnimalList && (
-          <Box
-            mt={2}
-            width="100%"
-            sx={{ backgroundColor: 'common.white', borderRadius: '8px' }}
-          >
-            <BasicSelect
-              value={filter.AnimalId}
-              options={AnimalList}
-              setValue={value =>
-                setFilter(prev => ({ ...prev, AnimalId: value }))
-              }
-            />
-          </Box>
-        )}
+    <Box
+      display="flex"
+      alignItems={{ xs: 'center', sm: 'flex-start' }}
+      flexDirection={{ sm: 'row', xs: 'column' }}
+      position="relative"
+      sx={{ background: 'primary.main' }}
+    >
+      <Box width={{ sm: '30%', xs: '100%' }}>
+        <Box
+          component="div"
+          display="flex"
+          marginTop={{ xs: '150px' }}
+          flexDirection={{ sm: 'column', xs: 'row' }}
+          alignItems="center"
+          sx={{
+            height: { xs: '0', sm: '120%' },
+            width: { sm: '30%', xs: '100%' },
+            minHeight: {
+              sm: '100vh',
+              sx: '0',
+            },
+            backgroundColor: { sm: 'primary.main', xs: '#ffff' },
+            position: 'absolute',
+            top: { sm: '-250px' },
+            padding: { sm: '120px 50px', xs: '20px 0 0 0' },
+          }}
+        >
+          {TagList && (
+            <Box
+              mt={2}
+              width="100%"
+              sx={{ backgroundColor: 'common.white', borderRadius: '8px' }}
+            >
+              <BasicSelect
+                value={filter.TagId}
+                options={TagList}
+                setValue={value =>
+                  setFilter(prev => ({ ...prev, TagId: value }))
+                }
+              />
+            </Box>
+          )}
+          {AnimalList && (
+            <Box
+              mt={2}
+              width="100%"
+              sx={{ backgroundColor: 'common.white', borderRadius: '8px' }}
+            >
+              <BasicSelect
+                value={filter.AnimalId}
+                options={AnimalList}
+                setValue={value =>
+                  setFilter(prev => ({ ...prev, AnimalId: value }))
+                }
+              />
+            </Box>
+          )}
+        </Box>
       </Box>
-      <Box className="posts">
-        <AddPost posts={posts} setPost={setPost} />
 
+      <Box
+        width={{ sm: '60%', md: '40%', xs: '100%' }}
+        sx={{ margin: { sm: '30px auto', xs: '250px auto' } }}
+      >
+        <Box
+          display="flex"
+          justifyContent="flex-start"
+          position={{ xs: 'absolute', sm: 'static' }}
+          left="5px"
+          top="40px"
+          margin="20px 0"
+        >
+          <AddPost posts={posts} setPost={setPost} />
+        </Box>
         {loading && posts.length !== 0 ? (
-          <PostsList posts={posts} />
+          <PostsList setPost={setPost} posts={posts} />
         ) : loading && posts.length === 0 ? (
-          <h2 className="no-result">No Result</h2>
+          <h2>No Result</h2>
         ) : (
           <LoadingPosts />
         )}
       </Box>
-    </main>
+    </Box>
   );
 };
 
