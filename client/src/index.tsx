@@ -14,6 +14,7 @@ import NotFound from './pages/NotFound';
 import ApiService from './services/ApiService';
 import { LandingPage } from './components/LandingPage';
 import './index.css';
+import ChatRoom from './pages/ChatRoom';
 
 ApiService.init();
 
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: 'emergency',
         element: <Emergency />,
+      },
+      {
+        path: 'chatroom/:id',
+        element: <ChatRoom />,
       },
       { path: 'users/:id', element: <DoctorProfile /> },
     ],
