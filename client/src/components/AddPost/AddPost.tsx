@@ -7,7 +7,9 @@ import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ImageIcon from '@mui/icons-material/Image';
+import AddIcon from '@mui/icons-material/Add';
 import Stack from '@mui/material/Stack';
+import { Fab } from '@mui/material';
 import uploadImage from '../../helpers/uploadImage';
 import postSchema from '../../Validation/addPost';
 import Username from '../UserInfo';
@@ -110,6 +112,7 @@ const AddPost = ({
         color="secondary"
         variant="contained"
         sx={{
+          display: { sm: 'none', xl: 'block' },
           alignSelf: 'flex-end',
           marginRight: '30px',
           borderRadius: '50px',
@@ -117,6 +120,18 @@ const AddPost = ({
       >
         create post
       </Button>
+
+      <Fab
+        onClick={handleOpen}
+        color="secondary"
+        sx={{
+          // display: { sm: 'block', xl: 'none' },
+          position: 'fixed',
+        }}
+      >
+        <AddIcon />
+      </Fab>
+
       <Modal
         className="addPost"
         open={open}
@@ -124,7 +139,7 @@ const AddPost = ({
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <div>
+        <Box>
           <form action="" onSubmit={handleSubmit}>
             <Box sx={style}>
               <Box sx={{ alignSelf: 'flex-start' }}>
@@ -185,7 +200,7 @@ const AddPost = ({
               </Box>
             </Box>
           </form>
-        </div>
+        </Box>
       </Modal>
     </>
   );
