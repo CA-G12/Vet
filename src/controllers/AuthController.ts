@@ -31,6 +31,8 @@ export default class AuthController {
       user.password ?? '',
     );
     if (!isValid) {
+      console.log(11111);
+
       throw new CustomError(
         422,
         "The password that you've entered is incorrect",

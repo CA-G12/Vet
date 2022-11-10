@@ -13,6 +13,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import * as React from 'react';
 import { toast } from 'react-toastify';
+import { LoadingButton } from '@mui/lab';
 import { authContext } from '../../hooks/useAuth';
 import Doctor from './SignupDoctor';
 import { SignUpValid } from '../../Validation';
@@ -25,6 +26,7 @@ type SignUpState = ISignUp & {
 const SignUp = () => {
   const { signUp, setOpen } = React.useContext(authContext);
   const [next, setNext] = React.useState<boolean>(false);
+  const [signed, setSigned] = React.useState<boolean>(false);
   const [signUpData, setSignUpData] = React.useState<SignUpState>({
     name: '',
     password: '',
@@ -40,8 +42,10 @@ const SignUp = () => {
   const handleSubmit = async (event: React.SyntheticEvent) => {
     try {
       event.preventDefault();
+      setSigned(true);
       const validated = await SignUpValid.validate(signUpData);
       await signUp(validated);
+      setSigned(false);
       if (validated.role === 'DOCTOR') {
         setNext(true);
       }
@@ -67,21 +71,7 @@ const SignUp = () => {
           alignItems: 'center',
         }}
         variant="outlined"
-      >
-        <Button
-          sx={{
-            color: '#356E6E',
-            border: '1.5px #356E6E  solid',
-            m: 1,
-            width: '30ch',
-          }}
-          fullWidth
-        >
-          <img src="./google.png" alt="google" width="25px" height="25px" />
-          Sign-up with Google
-        </Button>
-      </FormControl>
-      <p style={{ textAlign: 'center', margin: '2px' }}> - Or -</p>
+      />
       <div
         style={{
           display: 'flex',
@@ -193,13 +183,22 @@ const SignUp = () => {
 
         <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
           {signUpData.role !== 'DOCTOR' ? (
-            <button type="submit" className="sign-Btn">
-              Sign up{' '}
-            </button>
+            <LoadingButton
+              loading={signed}
+              type="submit"
+              variant="contained"
+              sx={{
+                width: 200,
+                display: 'block',
+                margin: 'auto',
+              }}
+            >
+              Sign up
+            </LoadingButton>
           ) : (
-            <button type="submit" className="sign-Btn">
+            <Button type="submit" className="sign-Btn">
               Next
-            </button>
+            </Button>
           )}
         </FormControl>
       </div>

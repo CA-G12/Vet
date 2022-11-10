@@ -28,7 +28,6 @@ const ChatRoom = () => {
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
-      <h2 style={{ marginBottom: '50px' }}>Chat Room with {receiver.name}</h2>
       <Box
         sx={{
           width: { xs: '100%', sm: '50%' },
