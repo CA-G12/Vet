@@ -171,7 +171,11 @@ const AddPost = ({
                 justifyContent="space-between"
                 spacing={{ md: 4, sm: 1, xs: 1 }}
               >
-                <Stack direction="row" spacing={1}>
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  justifyContent={{ xs: 'space-between', md: 'flex-start' }}
+                >
                   <BasicSelect name="TagId" options={TagList} />
                   <BasicSelect name="AnimalId" options={AnimalList} />
                 </Stack>
@@ -192,7 +196,7 @@ const AddPost = ({
                     <Button
                       variant="outlined"
                       component="span"
-                      sx={{ minHeight: '100%', width: '100%' }}
+                      sx={{ minHeight: '100%', minWidth: '50%' }}
                       endIcon={<ImageIcon />}
                     >
                       Image
@@ -202,7 +206,7 @@ const AddPost = ({
                   <LoadingButton
                     loading={progress > 0 && progress < 100}
                     type="submit"
-                    sx={{ minHeight: '100%', minWidth: '50%' }}
+                    sx={{ minHeight: '100%', minWidth: { xs: '35%' } }}
                     variant="contained"
                   >
                     Post
