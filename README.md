@@ -103,8 +103,9 @@ Now you can view the app live in the Browser!
 - Libraries: **Material UI**
 - Cloud Storage, Chat and Notifications: **Firebase**
 
-## **Lead Mentor** :sunglasses:
+## **Lead Mentors** :sunglasses:
 
+- [Imad Shatali](https://github.com/Amoodaa)
 - [Abdullah Abu Amra](https://github.com/aaamra)
 
 ## **Team Members** 
@@ -113,8 +114,7 @@ Now you can view the app live in the Browser!
 - [Mohammed Al-Shurafa](https://github.com/mohmmed23)
 - [Said Madi](https://github.com/Saeed99Madi)
 - [Salsabeel Omar](https://github.com/salsabeelomar)
-## **Lead Mentor v2.0** 👥
-- [Imad Shatali](https://github.com/Amoodaa)
+
 ## **Resources** 
 
 - [Node Js](https://nodejs.org/en/)
