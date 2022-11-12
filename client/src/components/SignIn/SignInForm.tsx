@@ -5,17 +5,18 @@ import {
   InputAdornment,
   OutlinedInput,
   IconButton,
-  Button,
 } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import React, { useContext } from 'react';
 import { toast } from 'react-toastify';
+import { LoadingButton } from '@mui/lab';
 import { authContext } from '../../hooks/useAuth';
 import { SignInValid } from '../../Validation';
 
 const SignIn = () => {
   const { signIn, setOpen } = useContext(authContext);
+  const [signed, setSigned] = React.useState<boolean>(false);
   const [signInData, setSignInData] = React.useState({
     showPassword: false,
     password: '',
@@ -42,10 +43,14 @@ const SignIn = () => {
       onSubmit={async event => {
         event.preventDefault();
         try {
+          setSigned(true);
           await SignInValid.validate(signInData);
           await signIn(signInData);
+          setSigned(false);
           setOpen(false);
         } catch (error: any) {
+          setOpen(true);
+
           toast.error(error.message);
         }
       }}
@@ -58,21 +63,7 @@ const SignIn = () => {
           alignItems: 'center',
         }}
         variant="outlined"
-      >
-        <Button
-          sx={{
-            color: '#356E6E',
-            border: '1.5px #356E6E  solid',
-            m: 1,
-            width: '30ch',
-          }}
-          fullWidth
-        >
-          <img src="./google.png" alt="google" width="25px" height="25px" />
-          Sign-in with Google
-        </Button>
-      </FormControl>
-      <p style={{ textAlign: 'center', marginBottom: '10px' }}> - Or -</p>
+      />
       <FormControl>
         <TextField
           label="Email"
@@ -119,11 +110,19 @@ const SignIn = () => {
           label="Password"
         />
       </FormControl>
-      <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-        <button type="submit" className="sign-Btn">
-          Sign in
-        </button>
-      </FormControl>
+      <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined" />
+      <LoadingButton
+        loading={signed}
+        type="submit"
+        variant="contained"
+        sx={{
+          width: 200,
+          display: 'block',
+          margin: 'auto',
+        }}
+      >
+        Sign in
+      </LoadingButton>
     </form>
   );
 };

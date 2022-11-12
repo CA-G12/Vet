@@ -1,4 +1,5 @@
 import { Box, Typography } from '@mui/material/';
+import { Container } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import IPost from '../../../Interfaces/post/IPost';
@@ -16,12 +17,12 @@ export const UserPosts = () => {
     getPosts();
   }, [params.id]);
   return (
-    <Box display="flex" justifyContent="center">
+    <Container maxWidth="md">
       {uPosts.length > 0 ? (
         <Post posts={uPosts} setPost={setUPosts} />
       ) : (
         <Typography textAlign="center"> No Posts Published </Typography>
       )}
-    </Box>
+    </Container>
   );
 };
