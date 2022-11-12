@@ -29,7 +29,7 @@ const MessageInput = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="message-input-container">
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Enter a message"

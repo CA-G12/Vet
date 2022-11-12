@@ -1,3 +1,4 @@
+import { Container } from '@mui/system';
 import { MessageInput } from './MessageInput';
 
 function index({
@@ -8,9 +9,9 @@ function index({
   resverId: string | undefined;
 }) {
   return (
-    <div>
+    <Container maxWidth="md">
       <MessageInput resverId={resverId} roomId={roomId} />
-    </div>
+    </Container>
   );
 }
 

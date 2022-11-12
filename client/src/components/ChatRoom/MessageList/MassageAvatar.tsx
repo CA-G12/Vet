@@ -16,7 +16,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 const MassageAvatar = ({ user }: { user: IUser | IMassage | undefined }) => {
   return (
     <NavLink
-      style={{ width: '57px' }}
+      style={{ width: '57px', textDecoration: 'none' }}
       to={`/users/${user?.id}`}
       className="user-info-post"
     >

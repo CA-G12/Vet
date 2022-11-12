@@ -25,7 +25,7 @@ type Propss = {
   setOpen: Dispatch<SetStateAction<boolean>>;
 };
 const PopUp = (propss: Propss) => {
-  const { open } = propss;
+  const { open, setOpen } = propss;
 
   return (
     <ThemeProvider theme={theme}>
@@ -33,6 +33,7 @@ const PopUp = (propss: Propss) => {
         <Modal
           sx={{ top: '6rem' }}
           open={open}
+          onClose={() => setOpen(false)}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
