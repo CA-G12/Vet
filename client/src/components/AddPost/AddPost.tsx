@@ -7,7 +7,9 @@ import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ImageIcon from '@mui/icons-material/Image';
+import CreateIcon from '@mui/icons-material/Create';
 import Stack from '@mui/material/Stack';
+import { Container, Fab } from '@mui/material';
 import uploadImage from '../../helpers/uploadImage';
 import postSchema from '../../Validation/addPost';
 import Username from '../UserInfo';
@@ -40,7 +42,8 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  minWidth: '55%',
+  minWidth: { md: '55%', xs: '100vw', sm: '100vw' },
+  maxWidth: { md: '100%', xs: '100vw', sm: '100vw' },
   minHeight: '55%',
   bgcolor: 'background.paper',
   borderRadius: '15px',
@@ -55,11 +58,11 @@ const AddPost = ({
   posts: Array<IPost>;
   setPost: Function;
 }) => {
-  const { user } = React.useContext(authContext);
-  const [open, setOpen] = React.useState(false);
+  const { user, setOpen } = React.useContext(authContext);
+  const [openModal, setOpenModal] = React.useState(false);
   const [progress, setProgress] = React.useState(0);
   const [file, setFile] = React.useState<File | null>(null);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => setOpenModal(false);
   React.useEffect(() => {
     if (progress === 100) handleClose();
   }, [progress]);
@@ -71,8 +74,9 @@ const AddPost = ({
 
   const handleOpen = () => {
     if (user) {
-      setOpen(true);
+      setOpenModal(true);
     } else {
+      setOpen(true);
       toast.error('you have to be logged in to post');
     }
   };
@@ -110,25 +114,42 @@ const AddPost = ({
         color="secondary"
         variant="contained"
         sx={{
-          alignSelf: 'flex-end',
-          marginRight: '30px',
+          display: { sm: 'none', xs: 'none', md: 'inline-flex' },
           borderRadius: '50px',
         }}
       >
         create post
       </Button>
+
+      <Fab
+        onClick={handleOpen}
+        color="secondary"
+        sx={{
+          display: { sm: 'inline-flex', xs: 'inline-flex', md: 'none' },
+          position: 'fixed',
+          bottom: '30px',
+          right: '30px',
+        }}
+      >
+        <CreateIcon />
+      </Fab>
+
       <Modal
         className="addPost"
-        open={open}
+        open={openModal}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <div>
+        <Container maxWidth="md">
           <form action="" onSubmit={handleSubmit}>
-            <Box sx={style}>
-              <Box sx={{ alignSelf: 'flex-start' }}>
-                {user && <Username user={user} />}
+            <Box sx={style} id="form-body">
+              <Box sx={{ alignSelf: 'flex-start' }} id="username">
+                {user && (
+                  <Username
+                    user={{ id: user.id, name: user.name, avatar: user.avatar }}
+                  />
+                )}
               </Box>
               <TextareaAutosize
                 name="content"
@@ -143,15 +164,27 @@ const AddPost = ({
                   backgroundColor: '#EFF2F2',
                 }}
               />
-              <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  width: '90%',
-                }}
+              <Stack
+                id="allBtns"
+                sx={{ width: '80%' }}
+                direction={{ md: 'row', sm: 'row', xs: 'column' }}
+                justifyContent="space-between"
+                spacing={{ md: 4, sm: 1, xs: 1 }}
               >
-                <Stack direction="row" spacing={4}>
-                  <label htmlFor="upload-photo">
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  justifyContent={{ xs: 'space-between', md: 'flex-start' }}
+                >
+                  <BasicSelect name="TagId" options={TagList} />
+                  <BasicSelect name="AnimalId" options={AnimalList} />
+                </Stack>
+                <Stack
+                  direction="row"
+                  justifyContent="space-between"
+                  spacing={1}
+                >
+                  <label htmlFor="upload-photo" id="imageBtn">
                     <input
                       type="file"
                       accept="/image/*"
@@ -163,29 +196,26 @@ const AddPost = ({
                     <Button
                       variant="outlined"
                       component="span"
-                      sx={{ minWidth: 150, minHeight: '100%' }}
+                      sx={{ minHeight: '100%', minWidth: '50%' }}
                       endIcon={<ImageIcon />}
                     >
-                      add Image
+                      Image
                     </Button>
                   </label>
-                  <BasicSelect name="TagId" options={TagList} />
-                  <BasicSelect name="AnimalId" options={AnimalList} />
+
+                  <LoadingButton
+                    loading={progress > 0 && progress < 100}
+                    type="submit"
+                    sx={{ minHeight: '100%', minWidth: { xs: '35%' } }}
+                    variant="contained"
+                  >
+                    Post
+                  </LoadingButton>
                 </Stack>
-                <LoadingButton
-                  loading={progress > 0 && progress < 100}
-                  type="submit"
-                  variant="contained"
-                  sx={{
-                    width: 200,
-                  }}
-                >
-                  Post
-                </LoadingButton>
-              </Box>
+              </Stack>
             </Box>
           </form>
-        </div>
+        </Container>
       </Modal>
     </>
   );

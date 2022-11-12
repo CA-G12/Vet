@@ -1,5 +1,5 @@
 /* eslint-disable react/require-default-props */
-import { IconButton } from '@mui/material';
+import { Button } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import List from '@mui/material/List';
@@ -9,6 +9,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { useState } from 'react';
+import { Stack } from '@mui/system';
 import useOutsideClick from '../../hooks/UseOutsideClick';
 import ApiServices from '../../services/ApiService';
 import IComment from '../../Interfaces/post/IComment';
@@ -68,37 +69,47 @@ const EditAndDeleteBtn = ({
   const ref = useOutsideClick(handleClickOutside);
 
   return (
-    <div ref={ref} className="Edit-and-deleteBtn">
-      <button className="dots-btn" type="submit" onClick={handleClick}>
-        <ListItemIcon className="dots-icon">
-          <MoreHorizIcon />
+    <Stack
+      sx={{ minWidth: '0px', width: '10px', zIndex: 5 }}
+      display="flex"
+      position="absolute"
+      right="0px"
+      ref={ref}
+    >
+      <Button sx={{ minWidth: '0' }} type="submit" onClick={handleClick}>
+        <ListItemIcon>
+          <MoreHorizIcon sx={{ color: '#121212' }} />
         </ListItemIcon>
-      </button>
-      <Collapse
-        className="btns-container"
-        in={open}
-        timeout="auto"
-        unmountOnExit
-      >
-        <List component="div" disablePadding>
-          <ListItemButton className="btns-list" sx={{ pl: 4 }}>
-            <IconButton onClick={handelEdit}>
+      </Button>
+      <Collapse in={open} timeout="auto" unmountOnExit>
+        <List
+          sx={{
+            position: 'absolute',
+            zIndex: '5',
+            right: '10px',
+            background: 'rgb(239 242 242)',
+          }}
+          component="div"
+          disablePadding
+        >
+          <ListItemButton sx={{ pl: 0 }}>
+            <Button sx={{ width: '100%' }} onClick={handelEdit}>
               <EditIcon />
               <ListItemText primary="Edit" />
-            </IconButton>
+            </Button>
           </ListItemButton>
-          <ListItemButton className="btns-list" sx={{ pl: 4 }}>
-            <IconButton onClick={deleteComment}>
+          <ListItemButton sx={{ pl: 0 }}>
+            <Button onClick={deleteComment}>
               <DeleteIcon />
               <ListItemText primary="Delete" />
-            </IconButton>
+            </Button>
           </ListItemButton>
         </List>
       </Collapse>
 
       {/*
        */}
-    </div>
+    </Stack>
   );
 };
 

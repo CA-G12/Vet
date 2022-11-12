@@ -11,7 +11,7 @@ interface Props {
 }
 
 const BasicSelect = ({ name, options }: Props) => (
-  <Box sx={{ minWidth: 150 }}>
+  <Box sx={{ minWidth: 100 }}>
     <FormControl fullWidth>
       <InputLabel id="basic-select-label">{name}</InputLabel>
       <Select

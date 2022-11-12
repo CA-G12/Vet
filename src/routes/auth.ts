@@ -8,8 +8,19 @@ const router = express.Router();
 
 router.post('/sign-up', errorWrapper(AuthController.signup));
 router.post('/sign-in', errorWrapper(AuthController.signin));
-router.post('/doctor-info', errorWrapper(DoctorController.doctorInfo));
 router.get('/user/me', errorWrapper(isAuth), errorWrapper(isAuthenticated));
-router.get('/doctors', DoctorController.getAllDoctor);
+router.get('/user/:id', errorWrapper(DoctorController.getDoctorInfo));
+router.get('/doctors', errorWrapper(DoctorController.getAllDoctor));
+router.post('/doctor-info', errorWrapper(DoctorController.doctorInfo));
+router.put(
+  '/doctor-info',
+  errorWrapper(isAuth),
+  errorWrapper(DoctorController.updateDoctorInfo),
+);
+router.put(
+  '/user',
+  errorWrapper(isAuth),
+  errorWrapper(DoctorController.updateUserInfo),
+);
 
 export default router;

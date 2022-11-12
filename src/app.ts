@@ -1,11 +1,15 @@
+import { createServer } from 'http';
+import { join } from 'path';
+
 import express, { Application, NextFunction, Request, Response } from 'express';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
+
 import environment from './config/environment';
 import cors from 'cors';
 import morgan from 'morgan';
+
 import router from './routes';
-import { join } from 'path';
 import CustomError from './helpers/errorsHandling/CustomError';
 
 class App {
@@ -25,13 +29,14 @@ class App {
     this.app.use(express.json());
     this.app.use(cookieParser());
     this.app.use(express.urlencoded({ extended: false }));
+    this.app.use('/api/v1', router);
     if (environment.nodeEnv === 'production') {
       this.app.use(express.static(join(__dirname, '..', 'client', 'build')));
-      this.app.get('*', (req, res) => {
+
+      this.app.get('*', (req: Request, res: Response) => {
         res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
       });
     }
-    this.app.use('/api/v1', router);
 
     this.app.use(
       // eslint-disable-next-line @typescript-eslint/no-unused-vars, promise/prefer-await-to-callbacks
@@ -43,5 +48,6 @@ class App {
 }
 
 const { app } = new App();
+const httpServer = createServer(app);
 
-export default app;
+export default httpServer;

@@ -17,7 +17,7 @@ type Props = {
 const EditImagePost = ({ data, setData }: Props) => {
   const [isUploading, setIsUploading] = useState(false);
   const deleteImg = () => {
-    setData({ ...data, image: null });
+    setData({ ...data, image: '' });
   };
   const editImg = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) {
@@ -36,7 +36,7 @@ const EditImagePost = ({ data, setData }: Props) => {
     <Box
       sx={{
         padding: '50px',
-        width: { sm: '50%', xs: '100%' },
+        width: { sm: '40%', xs: '100%' },
         height: { sm: '150px', xs: '300px' },
         backgroundImage: data.image
           ? `url(${data.image})`
@@ -61,7 +61,7 @@ const EditImagePost = ({ data, setData }: Props) => {
           right: '-7px',
         }}
       >
-        <IconButton className="mangment-img-comment-btn">
+        <IconButton>
           <label htmlFor={`${data.id}`}>
             <input
               onChange={editImg}
@@ -75,7 +75,7 @@ const EditImagePost = ({ data, setData }: Props) => {
         </IconButton>
 
         {data.image && (
-          <IconButton className="mangment-img-comment-btn" onClick={deleteImg}>
+          <IconButton onClick={deleteImg}>
             <DeleteIcon />
           </IconButton>
         )}

@@ -1,12 +1,18 @@
-import LikeItem from './LikeItem';
+import { Box } from '@mui/system';
 import ILike from '../../Interfaces/post/ILike';
+import UserLike from './UserLike';
 
 const HoverLikes = ({ likes }: { likes: Array<ILike> }) => (
-  <div className="whoLike">
+  <Box>
     {likes.map((liked: ILike) => (
-      <LikeItem key={liked.id} like={liked} />
+      <UserLike
+        key={liked.id}
+        id={liked.User.id}
+        name={liked.User.name}
+        avatar={liked.User.avatar}
+      />
     ))}
-  </div>
+  </Box>
 );
 
 export default HoverLikes;

@@ -14,13 +14,15 @@ import {
 export const FooterRight = () => (
   <FooterBox>
     <TiteledPargraph>
-      <Typography component="span">About The Company</Typography>
-      <strong>Saed Developer</strong> A web developer where you can find more
-      creative CSS Animation and Effects along with HTML, JavaScript and
-      Projects Using Node Js, React Js.
+      <Typography component="span">About Us</Typography>
+      <strong>Paws</strong> Paws Community Care to Your Pet, It cares about pet
+      owners, and offers a lot of advantages for pet owners, by creating a
+      community dedicated to them, and aims to help and educate the pet owner,
+      through special medical advice and consultations, and also add some kind
+      of jokes to them.
     </TiteledPargraph>
     <FooterIconsBox>
-      <Link href="/">
+      <Link href="https://www.facebook.com/profile.php?id=100083695861528">
         <FacebookIcon sx={{ color: '#1877F2' }} />
       </Link>
       <Link href="/">

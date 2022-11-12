@@ -11,7 +11,6 @@ import userRouter from './users';
 const router = Router();
 
 router.get('/posts', PostsController.index);
-
 router.use(LikesRoutes);
 router.use(PostRoutes);
 router.use(CommentsRoutes);
