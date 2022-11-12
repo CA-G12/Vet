@@ -43,7 +43,7 @@ const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
         });
         toast.success(signUpReq.data.name);
       } catch (err: any) {
-        toast.error(err.response);
+        toast.error(err.response.data.msg);
       }
     },
     [],
@@ -62,7 +62,7 @@ const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
       JwtService.setToken(signInReq.data.data.token);
       toast.success(signInReq.data.data.name);
     } catch (err: any) {
-      toast.error(err.response);
+      toast.error(err.response.data.msg);
     }
   }, []);
 
