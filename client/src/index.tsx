@@ -36,8 +36,8 @@ const router = createBrowserRouter([
       },
       { path: 'users/:id', element: <DoctorProfile /> },
     ],
+    errorElement: <NotFound />,
   },
-  { path: '*', element: <NotFound /> },
 ]);
 
 const root = ReactDOM.createRoot(
