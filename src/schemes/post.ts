@@ -1,6 +1,6 @@
 import Joi from 'joi';
 const postSchema = Joi.object({
-  content: Joi.string().min(20).required(),
+  content: Joi.string().min(3).required(),
   image: Joi.string()
     .regex(/(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/i)
     .allow(''),
