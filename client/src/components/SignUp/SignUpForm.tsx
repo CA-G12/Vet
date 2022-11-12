@@ -44,13 +44,16 @@ const SignUp = () => {
       event.preventDefault();
       setSigned(true);
       const validated = await SignUpValid.validate(signUpData);
+
       await signUp(validated);
+
       setSigned(false);
       if (validated.role === 'DOCTOR') {
         setNext(true);
       }
       if (validated.role === 'USER') setOpen(false);
     } catch (err) {
+      setSigned(false);
       toast.error((err as Error).message);
     }
   };
@@ -119,7 +122,7 @@ const SignUp = () => {
                 <IconButton
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
-                  onMouseDown={e => e.preventDefault()}
+                  onMouseDown={(e: any) => e.preventDefault()}
                   edge="end"
                   name="password"
                 >
@@ -147,7 +150,7 @@ const SignUp = () => {
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
                   name="confirmPassword"
-                  onMouseDown={e => {
+                  onMouseDown={(e: any) => {
                     e.preventDefault();
                   }}
                   edge="end"

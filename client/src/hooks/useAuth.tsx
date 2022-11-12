@@ -61,7 +61,9 @@ const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
       });
       JwtService.setToken(signInReq.data.data.token);
       toast.success(signInReq.data.data.name);
+      setOpen(false);
     } catch (err: any) {
+      toast.error('the email or password is wrong');
       toast.error(err.response);
     }
   }, []);
