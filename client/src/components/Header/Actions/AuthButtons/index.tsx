@@ -12,8 +12,7 @@ type Props = {
 };
 export const AuthButtons = (props: Props) => {
   const { handleOpen } = props;
-
-  const { signOut, user } = useContext(authContext);
+  const { signOut, user, setValue } = useContext(authContext);
   const [isAuth, setIsAuth] = useState(false);
 
   // handle user isAuth
@@ -40,10 +39,22 @@ export const AuthButtons = (props: Props) => {
         </LoginButton>
       ) : (
         <>
-          <LoginButton onClick={handleOpen} variant="outlined">
+          <LoginButton
+            onClick={event => {
+              handleOpen(event);
+              setValue('2');
+            }}
+            variant="outlined"
+          >
             Login
           </LoginButton>
-          <SignUpButton onClick={handleOpen} variant="contained">
+          <SignUpButton
+            onClick={event => {
+              handleOpen(event);
+              setValue('1');
+            }}
+            variant="contained"
+          >
             SignUp
           </SignUpButton>
         </>

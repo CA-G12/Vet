@@ -6,10 +6,11 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import SignUp from '../SignUp/SignUpForm';
 import SignIn from '../SignIn/SignInForm';
+import { authContext } from '../../hooks/useAuth';
 import './style.css';
 
 const LabTabs = () => {
-  const [value, setValue] = React.useState('1');
+  const { value, setValue } = React.useContext(authContext);
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
