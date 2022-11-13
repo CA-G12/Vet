@@ -1,5 +1,6 @@
 import { Box, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
+import notfound from '../assets/notFound.png';
 
 const NotFound = () => {
   return (
@@ -19,16 +20,19 @@ const NotFound = () => {
       <Typography variant="h6" style={{ color: '#2D9B9B' }}>
         The page you’re looking for doesn’t exist.
       </Typography>
-      <Link to="/">
+      <Link to="/" style={{ textDecoration: 'none' }}>
         <Button
           variant="contained"
-          sx={{ backgroundColor: '#FDD853', color: '#2D9B9B' }}
+          sx={{
+            backgroundColor: '#FDD853',
+            color: '#2D9B9B',
+          }}
         >
           Back Home
         </Button>
       </Link>
       <img
-        src="./notFound.png"
+        src={notfound}
         alt="not found"
         style={{ width: '30vw', right: '55%' }}
       />
