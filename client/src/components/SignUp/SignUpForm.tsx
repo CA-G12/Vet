@@ -24,7 +24,7 @@ type SignUpState = ISignUp & {
 };
 
 const SignUp = () => {
-  const { signUp, setOpen, user } = React.useContext(authContext);
+  const { signUp, setOpen } = React.useContext(authContext);
   const [next, setNext] = React.useState<boolean>(false);
   const [signed, setSigned] = React.useState<boolean>(false);
   const [signUpData, setSignUpData] = React.useState<SignUpState>({
@@ -51,7 +51,7 @@ const SignUp = () => {
       if (validated.role === 'DOCTOR' && signedUp) {
         setNext(true);
       }
-      if (user?.role === 'USER') setOpen(false);
+      if (validated.role === 'USER' && signedUp) setOpen(false);
     } catch (err) {
       setSigned(false);
       toast.error((err as Error).message);
