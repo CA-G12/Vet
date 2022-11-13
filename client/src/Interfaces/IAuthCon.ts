@@ -15,7 +15,7 @@ export type SignUp = {
 };
 
 interface IAuthCon {
-  signUp: (info: SignUp) => Promise<void>;
+  signUp: (info: SignUp) => Promise<Boolean>;
   signIn: (info: SignIn) => Promise<void>;
   signOut: () => void;
   value: string;

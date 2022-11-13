@@ -29,7 +29,7 @@ const SignIn = () => {
   const handleClickShowPassword = () => {
     setSignInData(prev => ({
       ...prev,
-      showConfirmPassword: !prev.showPassword,
+      showPassword: !prev.showPassword,
     }));
   };
   const handleMouseDownPassword = (

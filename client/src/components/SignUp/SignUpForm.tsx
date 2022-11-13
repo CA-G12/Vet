@@ -7,7 +7,6 @@ import {
   InputAdornment,
   OutlinedInput,
   IconButton,
-  Button,
 } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -21,10 +20,11 @@ import { SignUp as ISignUp } from '../../Interfaces/IAuthCon';
 
 type SignUpState = ISignUp & {
   showPassword: boolean;
+  showConfirmPassword: boolean;
 };
 
 const SignUp = () => {
-  const { signUp, setOpen } = React.useContext(authContext);
+  const { signUp, setOpen, user } = React.useContext(authContext);
   const [next, setNext] = React.useState<boolean>(false);
   const [signed, setSigned] = React.useState<boolean>(false);
   const [signUpData, setSignUpData] = React.useState<SignUpState>({
@@ -34,6 +34,7 @@ const SignUp = () => {
     role: 'USER',
     email: '',
     showPassword: false,
+    showConfirmPassword: false,
   });
   const handleState = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -45,23 +46,29 @@ const SignUp = () => {
       setSigned(true);
       const validated = await SignUpValid.validate(signUpData);
 
-      await signUp(validated);
-
+      const signedUp = await signUp(validated);
       setSigned(false);
-      if (validated.role === 'DOCTOR') {
+      if (validated.role === 'DOCTOR' && signedUp) {
         setNext(true);
       }
-      if (validated.role === 'USER') setOpen(false);
+      if (user?.role === 'USER') setOpen(false);
     } catch (err) {
       setSigned(false);
       toast.error((err as Error).message);
     }
   };
-  const handleClickShowPassword = () => {
-    setSignUpData(prev => ({
-      ...prev,
-      showPassword: prev.showPassword,
-    }));
+  const handleClickShowPassword = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (e.currentTarget.name === 'password') {
+      setSignUpData(prev => ({
+        ...prev,
+        showPassword: !prev.showPassword,
+      }));
+    } else if (e.currentTarget.name === 'confirmPassword') {
+      setSignUpData(prev => ({
+        ...prev,
+        showConfirmPassword: !prev.showConfirmPassword,
+      }));
+    }
   };
 
   return !next ? (
@@ -142,7 +149,7 @@ const SignUp = () => {
             fullWidth
             name="confirmPassword"
             id="outlined-adornment-password"
-            type={signUpData.showPassword ? 'text' : 'password'}
+            type={signUpData.showConfirmPassword ? 'text' : 'password'}
             onChange={handleState}
             endAdornment={
               <InputAdornment position="end">
@@ -155,7 +162,11 @@ const SignUp = () => {
                   }}
                   edge="end"
                 >
-                  {signUpData.showPassword ? <VisibilityOff /> : <Visibility />}
+                  {signUpData.showConfirmPassword ? (
+                    <VisibilityOff />
+                  ) : (
+                    <Visibility />
+                  )}
                 </IconButton>
               </InputAdornment>
             }
@@ -199,9 +210,18 @@ const SignUp = () => {
               Sign up
             </LoadingButton>
           ) : (
-            <Button type="submit" className="sign-Btn">
+            <LoadingButton
+              loading={signed}
+              type="submit"
+              variant="contained"
+              sx={{
+                width: 200,
+                display: 'block',
+                margin: 'auto',
+              }}
+            >
               Next
-            </Button>
+            </LoadingButton>
           )}
         </FormControl>
       </div>

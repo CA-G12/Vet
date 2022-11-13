@@ -42,8 +42,10 @@ const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
           avatar: signUpReq.data.avatar,
         });
         toast.success(signUpReq.data.name);
+        return true;
       } catch (err: any) {
-        toast.error(err.response);
+        toast.error(err.response.data.msg);
+        return false;
       }
     },
     [],
@@ -63,8 +65,7 @@ const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
       toast.success(signInReq.data.data.name);
       setOpen(false);
     } catch (err: any) {
-      toast.error('the email or password is wrong');
-      toast.error(err.response);
+      toast.error(err.response.data.ms);
     }
   }, []);
 
@@ -98,7 +99,6 @@ const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
     }),
     [user, signUp, signIn, signOut, open, setOpen, value],
   );
-
   return (
     <authContext.Provider value={authValues}>{children}</authContext.Provider>
   );
