@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/system';
+import catBackground from '../../assets/catBackground.png';
 
 const CardContainer = styled(Box)({
   paddingTop: '1.5rem',
@@ -62,7 +63,7 @@ const ServicesList = styled(Box)({
 const WelcomeLandSection = styled(Box)({
   position: 'absolute',
   top: '0',
-  background: 'url(./catBackground.png)',
+  background: `url(${catBackground})`,
   backgroundAttachment: 'fixed',
   width: '100%',
   minHeight: '100%',
