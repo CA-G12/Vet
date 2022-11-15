@@ -157,7 +157,7 @@ const SignUp = () => {
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
                   name="confirmPassword"
-                  onMouseDown={(e: any) => {
+                  onMouseDown={e => {
                     e.preventDefault();
                   }}
                   edge="end"
