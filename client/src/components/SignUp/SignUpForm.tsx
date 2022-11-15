@@ -129,7 +129,7 @@ const SignUp = () => {
                 <IconButton
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
-                  onMouseDown={(e: any) => e.preventDefault()}
+                  onMouseDown={e => e.preventDefault()}
                   edge="end"
                   name="password"
                 >

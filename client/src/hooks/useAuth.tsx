@@ -65,7 +65,7 @@ const ProvideAuth = ({ children }: { children: React.ReactNode }) => {
       toast.success(signInReq.data.data.name);
       setOpen(false);
     } catch (err: any) {
-      toast.error(err.response.data.ms);
+      toast.error(err.response.data.msg);
     }
   }, []);
 
