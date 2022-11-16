@@ -15,7 +15,7 @@ import { authContext } from '../../hooks/useAuth';
 import { SignInValid } from '../../Validation';
 
 const SignIn = () => {
-  const { signIn, setOpen } = useContext(authContext);
+  const { signIn } = useContext(authContext);
   const [signed, setSigned] = React.useState<boolean>(false);
   const [signInData, setSignInData] = React.useState({
     showPassword: false,
@@ -29,7 +29,7 @@ const SignIn = () => {
   const handleClickShowPassword = () => {
     setSignInData(prev => ({
       ...prev,
-      showConfirmPassword: !prev.showPassword,
+      showPassword: !prev.showPassword,
     }));
   };
   const handleMouseDownPassword = (
@@ -43,14 +43,11 @@ const SignIn = () => {
       onSubmit={async event => {
         event.preventDefault();
         try {
-          setSigned(true);
           await SignInValid.validate(signInData);
+          setSigned(true);
           await signIn(signInData);
           setSigned(false);
-          setOpen(false);
         } catch (error: any) {
-          setOpen(true);
-
           toast.error(error.message);
         }
       }}
