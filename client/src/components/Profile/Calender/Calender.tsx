@@ -23,7 +23,7 @@ export const Calender = () => {
     title: '',
     description: '',
   });
-  const [open, setOpenPop] = useState<IOpen>({
+  const [openPop, setOpenPop] = useState<IOpen>({
     deletePop: false,
     pendingPop: false,
     addingPop: false,
@@ -139,7 +139,7 @@ export const Calender = () => {
       {user?.id === Number(params.id) && (
         <>
           <PendingPopup
-            open={open.pendingPop}
+            open={openPop.pendingPop}
             setOpen={setOpenPop}
             setAppointment={setCurrentEvents}
           />
@@ -149,13 +149,13 @@ export const Calender = () => {
             setAppointment={setDelAppointment}
             edit={edit}
             remove={remove}
-            open={open.deletePop}
+            open={openPop.deletePop}
             appointment={delAppointment}
           />
         </>
       )}
       <AddAppointment
-        open={open.addingPop}
+        open={openPop.addingPop}
         onClose={() => {
           setOpenPop(prev => ({ ...prev, addingPop: false }));
         }}
