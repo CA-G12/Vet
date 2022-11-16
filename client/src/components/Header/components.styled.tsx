@@ -164,13 +164,11 @@ const SearchInputIcon = styled(SearchIcon)({
 });
 
 const EmergencyAvatar = styled(Avatar)({
-  margin: '0',
   backgroundColor: '#D53449',
   width: 40,
   height: 40,
   cursor: 'pointer',
   '@media screen and (max-width:850px)': {
-    margin: '0 0.5rem',
     width: 25,
     height: 25,
     marginRight: 'auto',
