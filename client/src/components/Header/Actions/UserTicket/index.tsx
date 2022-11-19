@@ -1,6 +1,6 @@
+import { Link } from 'react-router-dom';
 import IAuth from '../../../../Interfaces/IAuth';
 import {
-  NavigationAnchor,
   UserAvatar,
   UserNameText,
   UserTicketBox,
@@ -11,12 +11,12 @@ type Props = {
 };
 
 export const UserTicket = ({ user }: Props) => (
-  <NavigationAnchor to={`users/${user?.id}`}>
-    <UserTicketBox>
+  <UserTicketBox>
+    <Link to={`users/${user?.id}`}>
       <UserAvatar alt="UserAvatar" src={user?.avatar} />
-      <UserNameText gutterBottom variant="h5">
-        {user?.name}
-      </UserNameText>
-    </UserTicketBox>
-  </NavigationAnchor>
+    </Link>
+    <UserNameText gutterBottom variant="h5">
+      {user?.name}
+    </UserNameText>
+  </UserTicketBox>
 );

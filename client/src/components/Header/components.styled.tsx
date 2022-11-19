@@ -164,13 +164,11 @@ const SearchInputIcon = styled(SearchIcon)({
 });
 
 const EmergencyAvatar = styled(Avatar)({
-  margin: '0 2rem',
   backgroundColor: '#D53449',
   width: 40,
   height: 40,
   cursor: 'pointer',
   '@media screen and (max-width:850px)': {
-    margin: '0 0.5rem',
     width: 25,
     height: 25,
     marginRight: 'auto',
@@ -193,10 +191,12 @@ const UserTicketBox = styled(Box)({
   alignItems: 'center',
   textAlign: 'center',
   marginRight: '1rem',
+  order: '5',
   gap: '0.1rem',
   '@media screen and (max-width:450px)': {
     gap: '0.1rem',
     fontSize: '0.5rem',
+    marginRight: '0',
   },
 });
 
@@ -243,6 +243,7 @@ const LoginButton = styled(Button)({
   '@media screen and (max-width:450px)': {
     fontSize: '0.45rem',
     padding: '0.1rem',
+    margin: '0',
   },
 });
 
