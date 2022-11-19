@@ -13,7 +13,7 @@
     "lint": "eslint src/** --ext .ts",
     "lint-fix": "eslint src/**/*.ts --fix --max-warnings=0",
     "postinstall": "cd client && npm i",
-    "heroku-postbuild": "npm i && cd client && npm run build && cd .. && npm run build"
+    "heroku-postbuild": "npm i --force && cd client && npm run build && cd .. && npm run build"
   },
   "repository": {
     "type": "git",
