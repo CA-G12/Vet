@@ -7,8 +7,6 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
-    'airbnb',
-    'airbnb-typescript',
     'plugin:react/jsx-runtime',
     'prettier',
     'plugin:prettier/recommended',
