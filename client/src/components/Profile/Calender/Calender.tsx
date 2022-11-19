@@ -14,7 +14,7 @@ import IOpen from '../../../Interfaces/IOpen';
 import AppointmentValid from '../../../Validation/Appointment';
 
 export const Calender = () => {
-  const { user } = useContext(authContext);
+  const { user, setOpen } = useContext(authContext);
   const params = useParams();
   const [newAppointment, setNewAppointment] = useState<IAppointment>();
   const [info, setInfo] = useState<any>();
@@ -23,7 +23,7 @@ export const Calender = () => {
     title: '',
     description: '',
   });
-  const [open, setOpen] = useState<IOpen>({
+  const [openPop, setOpenPop] = useState<IOpen>({
     deletePop: false,
     pendingPop: false,
     addingPop: false,
@@ -38,7 +38,10 @@ export const Calender = () => {
   }, [params?.id]);
 
   const handleDateSelect = async (selectInfo: any) => {
-    if (user) setOpen(prev => ({ ...prev, addingPop: true }));
+    if (user) setOpenPop(prev => ({ ...prev, addingPop: true }));
+    else {
+      setOpen(true);
+    }
     const calendarApi = selectInfo.view.calendar;
     calendarApi.unselect();
     setNewAppointment(prev => ({
@@ -68,7 +71,7 @@ export const Calender = () => {
     }
   };
   const handleEventClick = async (clickInfo: EventClickArg) => {
-    setOpen(prev => ({ ...prev, deletePop: true }));
+    setOpenPop(prev => ({ ...prev, deletePop: true }));
     setDelAppointment({
       title: clickInfo.event.title,
       description: clickInfo.event.extendedProps.description,
@@ -96,7 +99,7 @@ export const Calender = () => {
         });
       });
       toast.success('Edited successfully');
-      setOpen(prev => ({ ...prev, deletePop: false }));
+      setOpenPop(prev => ({ ...prev, deletePop: false }));
     } catch (error: any) {
       toast.error(error.message);
     }
@@ -104,7 +107,7 @@ export const Calender = () => {
   const remove = async () => {
     try {
       await ApiService.destroy(`/Appointment/${info.event.id}`);
-      setOpen(prev => ({ ...prev, deletePop: false }));
+      setOpenPop(prev => ({ ...prev, deletePop: false }));
       setCurrentEvents((prev: any) => {
         return prev.filter((ele: any) => ele.id !== Number(info.event.id));
       });
@@ -126,7 +129,7 @@ export const Calender = () => {
         setCurrentEvents((prev: any) => prev.concat(data.appointment));
       }
       toast.success(data.msg);
-      setOpen(prev => ({ ...prev, addingPop: false }));
+      setOpenPop(prev => ({ ...prev, addingPop: false }));
     } catch (error: any) {
       toast.error(error.response.data.msg);
     }
@@ -136,25 +139,25 @@ export const Calender = () => {
       {user?.id === Number(params.id) && (
         <>
           <PendingPopup
-            open={open.pendingPop}
-            setOpen={setOpen}
+            open={openPop.pendingPop}
+            setOpen={setOpenPop}
             setAppointment={setCurrentEvents}
           />
 
           <EditPopup
-            setOpen={setOpen}
+            setOpen={setOpenPop}
             setAppointment={setDelAppointment}
             edit={edit}
             remove={remove}
-            open={open.deletePop}
+            open={openPop.deletePop}
             appointment={delAppointment}
           />
         </>
       )}
       <AddAppointment
-        open={open.addingPop}
+        open={openPop.addingPop}
         onClose={() => {
-          setOpen(prev => ({ ...prev, addingPop: false }));
+          setOpenPop(prev => ({ ...prev, addingPop: false }));
         }}
         handleState={(event: any) => {
           const { name, value } = event.currentTarget;
