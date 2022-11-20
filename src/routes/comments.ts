@@ -4,11 +4,7 @@ import { Router } from 'express';
 import { isAuth } from '../middlewares/auth.middleware';
 
 const router = Router();
-router.get(
-  '/posts/:postId/comments',
-  errorWrapper(isAuth),
-  errorWrapper(CommentsController.index),
-);
+router.get('/posts/:postId/comments', errorWrapper(CommentsController.index));
 router.post(
   '/post/:postId/comments',
   errorWrapper(isAuth),
